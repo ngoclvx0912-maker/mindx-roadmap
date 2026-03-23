@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+
+<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindX Roadmap — Lộ trình học tập</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./xmember.css?v=20260323i">
+<link rel="stylesheet" href="./xmember2.css?v=20260323i">
+<link rel="stylesheet" href="./coding-badges.css">
+<link rel="stylesheet" href="./art-badges.css">
+<link rel="stylesheet" href="./xart.css?v=20260323i">
+<link rel="stylesheet" href="./expert.css">
+<link rel="stylesheet" href="./x18plus.css?v=20260323j">
+</head>
+<body>
+
+<!-- Mobile overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <img src="./mindx-logo.png" alt="MindX" class="sidebar-logo">
+    <span class="sidebar-tagline">Technology School</span>
+    <button class="sidebar-close" id="sidebarClose" aria-label="Đóng menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">K12</div>
+    <button class="nav-item active" data-roadmap="robotics">
+      <span class="nav-icon">🤖</span>
+      <span class="nav-label">Robotics</span>
+    </button>
+    <button class="nav-item" data-roadmap="coding">
+      <span class="nav-icon">💻</span>
+      <span class="nav-label">Coding</span>
+    </button>
+    <button class="nav-item" data-roadmap="art">
+      <span class="nav-icon">🎨</span>
+      <span class="nav-label">Art</span>
+    </button>
+    <div class="nav-section-label nav-section-18plus" style="display:none">
+      18+
+      <span class="coming-soon-badge">Sắp ra mắt</span>
+    </div>
+    <div class="nav-xmember-divider"></div>
+    <button class="nav-xmember" id="xmemberBtn" onclick="if(window.xmemberActivate)window.xmemberActivate();">
+      <span class="xm-nav-icon">X</span>
+      X-Coding
+    </button>
+    <button class="nav-xart" id="xartBtn" onclick="if(window.xartActivate)window.xartActivate();">
+      <span class="xa-nav-icon">🎨</span>
+      X-Art
+    </button>
+    <button class="nav-xmember2" id="xmember2Btn" onclick="if(window.xmember2Activate)window.xmember2Activate();">
+      <span class="xm2-nav-icon">✈</span>
+      Du học
+    </button>
+  </nav>
+  <div class="sidebar-footer">
+    <button class="admin-toggle" id="adminToggle">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1a3 3 0 00-3 3v2H4a1 1 0 00-1 1v6a1 1 0 001 1h8a1 1 0 001-1V7a1 1 0 00-1-1h-1V4a3 3 0 00-3-3zm-1 3a1 1 0 112 0v2H7V4z" fill="currentColor"/></svg>
+      Chế độ Admin
+    </button>
+  </div>
+</aside>
+
+<!-- Main Content -->
+<main class="main-content" id="mainContent">
+  <!-- Top bar -->
+  <header class="topbar">
+    <button class="hamburger" id="hamburgerBtn" aria-label="Mở menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <h1 class="page-title" id="pageTitle">Lộ trình Robotics</h1>
+    <div class="topbar-actions">
+      <div class="admin-badge hidden" id="adminBadge">
+        <span class="admin-dot"></span> ADMIN
+      </div>
+    </div>
+  </header>
+  <button class="save-btn hidden" id="saveBtn">
+    <svg width="20" height="20" viewBox="0 0 16 16" fill="none"><path d="M2 2h9l3 3v9H2V2z" stroke="currentColor" stroke-width="1.2"/><path d="M5 2v4h5V2M5 14v-4h6v4" stroke="currentColor" stroke-width="1.2"/></svg>
+    Lưu thay đổi
+  </button>
+
+  <!-- Roadmap area -->
+  <div class="roadmap-wrapper" id="roadmapWrapper">
+    <div class="roadmap-canvas" id="roadmapCanvas">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+
+  <!-- Pricing section -->
+  <section class="pricing-section" id="pricingSection">
+    <h2 class="section-title">Bảng học phí</h2>
+    <div class="pricing-tables" id="pricingTables"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+  </footer>
+</main>
+
+<!-- Course detail drawer -->
+<div class="drawer-overlay hidden" id="drawerOverlay"></div>
+<div class="drawer hidden" id="courseDrawer">
+  <div class="drawer-header" id="drawerHeader">
+    <h2 class="drawer-title" id="drawerTitle"></h2>
+    <button class="drawer-close" id="drawerClose" aria-label="Đóng">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+</div>
+
+<!-- Admin password modal -->
+<div class="modal-overlay hidden" id="adminModal">
+  <div class="modal-content modal-small">
+    <h3>Đăng nhập Admin</h3>
+    <p class="modal-desc">Nhập mật khẩu để kích hoạt chế độ chỉnh sửa</p>
+    <input type="password" id="adminPassword" placeholder="Mật khẩu" class="admin-input" autocomplete="off">
+    <p class="error-msg hidden" id="adminError">Mật khẩu không đúng</p>
+    <div class="modal-actions">
+      <button class="btn-secondary" id="adminCancel">Hủy</button>
+      <button class="btn-primary" id="adminSubmit">Xác nhận</button>
+    </div>
+  </div>
+</div>
+
+<script src="./app.js?v=20260323b"></script>
+<script src="./xmember.js?v=20260323i"></script>
+<script src="./xmember2.js"></script>
+<script src="./coding-badges.js"></script>
+<script src="./art-badges.js"></script>
+<script src="./xart.js?v=20260323i"></script>
+<script src="./expert.js"></script>
+<script src="./x18plus.js?v=20260323j"></script>
+<script>
+/* Auto-fit roadmap to viewport width */
+(function(){
+  var debounceTimer = null;
+  function fitRoadmap(){
+    var wrapper = document.getElementById('roadmapWrapper');
+    var canvas = document.getElementById('roadmapCanvas');
+    if(!wrapper||!canvas) return;
+    /* Reset to measure natural width */
+    canvas.style.transform = 'none';
+    canvas.style.marginBottom = '';
+    /* Force reflow */
+    void canvas.offsetWidth;
+    /* Use actual visible width: viewport minus sidebar */
+    var sidebar = document.querySelector('.sidebar');
+    var sidebarW = (sidebar && getComputedStyle(sidebar).display !== 'none') ? sidebar.offsetWidth : 0;
+    var wW = Math.min(wrapper.clientWidth, window.innerWidth - sidebarW) - 48;
+    /* Find the widest child element */
+    var maxChildW = 0;
+    var children = canvas.children;
+    for(var i=0;i<children.length;i++){
+      var w = children[i].scrollWidth;
+      if(w>maxChildW) maxChildW = w;
+    }
+    var cW = Math.max(canvas.scrollWidth, maxChildW);
+    if(cW > wW && cW > 0){
+      var scale = wW / cW;
+      canvas.style.transform = 'scale(' + scale + ')';
+      canvas.style.transformOrigin = 'top left';
+      var h = canvas.scrollHeight;
+      canvas.style.marginBottom = '-' + (h * (1 - scale)) + 'px';
+    } else {
+      canvas.style.transform = '';
+      canvas.style.marginBottom = '';
+    }
+  }
+  function debouncedFit(){ clearTimeout(debounceTimer); debounceTimer = setTimeout(fitRoadmap, 150); }
+  var obs = new MutationObserver(debouncedFit);
+  var canvas = document.getElementById('roadmapCanvas');
+  if(canvas) obs.observe(canvas, {childList:true, subtree:true});
+  window.addEventListener('resize', debouncedFit);
+  setTimeout(fitRoadmap, 400);
+})();
+</script>
+</body>
+</html>
