@@ -1,4 +1,5 @@
 /* x18plus.js — MindX 18+ Module: Roadmap + Overview + Sales Flows */
+/* Rewritten: 6 fixes — Data Engineer, Career Outcomes, Sales Flows x7, Pricing, CTA, Career styling */
 (function () {
   "use strict";
 
@@ -67,7 +68,33 @@
           ],
           output: "Portfolio chuyên nghiệp + CV + Giới thiệu việc làm"
         }
-      ]
+      ],
+      pricing: {
+        levels: [
+          { code: "B", price: "5.000.000" },
+          { code: "A", price: "7.000.000" },
+          { code: "I", price: "9.000.000" },
+          { code: "S", price: "11.000.000" }
+        ],
+        combo: { name: "Combo X (8 tháng)", original: "32.000.000", discount: "27.200.000", save: "15%" }
+      },
+      career: {
+        positions: [
+          { title: "Junior Front-end Developer", hot: true },
+          { title: "Junior Full-stack Developer", hot: true },
+          { title: "Back-end Developer (NodeJS)", hot: false },
+          { title: "Freelance Web Developer", hot: false }
+        ],
+        salary: [
+          { level: "Fresher", range: "7–12 triệu", min: 7, max: 12 },
+          { level: "Junior", range: "15–25 triệu", min: 15, max: 25 },
+          { level: "Mid-level", range: "25–40 triệu", min: 25, max: 40 },
+          { level: "Senior", range: "40–70 triệu", min: 40, max: 70 }
+        ],
+        growth: "15–20%/năm",
+        employers: ["FPT Software", "VNG", "MoMo", "Techcombank", "Shopee Vietnam"],
+        source: "ITviec, JDI Group 2025"
+      }
     },
     data: {
       id: "data",
@@ -132,7 +159,33 @@
           ],
           output: "Portfolio DA + CV + Giới thiệu việc làm"
         }
-      ]
+      ],
+      pricing: {
+        levels: [
+          { code: "B", price: "5.000.000" },
+          { code: "A", price: "7.000.000" },
+          { code: "I", price: "9.000.000" },
+          { code: "S", price: "11.000.000" }
+        ],
+        combo: { name: "Combo X (8 tháng)", original: "32.000.000", discount: "27.200.000", save: "15%" }
+      },
+      career: {
+        positions: [
+          { title: "Data Analyst / BI Analyst", hot: true },
+          { title: "Business Intelligence Specialist", hot: true },
+          { title: "Data Scientist (Junior)", hot: false },
+          { title: "Marketing Analyst", hot: false }
+        ],
+        salary: [
+          { level: "Fresher", range: "8–12 triệu", min: 8, max: 12 },
+          { level: "Junior", range: "11–18 triệu", min: 11, max: 18 },
+          { level: "Mid-level", range: "20–30 triệu", min: 20, max: 30 },
+          { level: "Senior", range: "28–45 triệu", min: 28, max: 45 }
+        ],
+        growth: "15–25%/năm",
+        employers: ["FPT", "Techcombank", "Shopee", "Tiki", "VPBank"],
+        source: "ITviec, NodeFlair 2025"
+      }
     },
     itba: {
       id: "itba",
@@ -184,7 +237,32 @@
           ],
           output: "Portfolio BA + Dự án thực tế + CV"
         }
-      ]
+      ],
+      pricing: {
+        levels: [
+          { code: "B", price: "5.000.000" },
+          { code: "A", price: "7.000.000" },
+          { code: "S", price: "11.000.000" }
+        ],
+        combo: { name: "Combo 3 (6 tháng)", original: "23.000.000", discount: "20.700.000", save: "10%" }
+      },
+      career: {
+        positions: [
+          { title: "IT Business Analyst", hot: true },
+          { title: "Product Owner / Scrum Master", hot: true },
+          { title: "System Analyst", hot: false },
+          { title: "Project Manager (IT)", hot: false }
+        ],
+        salary: [
+          { level: "Fresher", range: "8–15 triệu", min: 8, max: 15 },
+          { level: "Junior", range: "15–25 triệu", min: 15, max: 25 },
+          { level: "Senior BA", range: "30–55 triệu", min: 30, max: 55 },
+          { level: "PO/PM", range: "50–75 triệu", min: 50, max: 75 }
+        ],
+        growth: "20–30%/năm",
+        employers: ["Techcombank", "VPBank", "FPT IS", "KMS Technology", "MoMo"],
+        source: "ITviec, SmartOSC 2025"
+      }
     },
     uiux: {
       id: "uiux",
@@ -249,7 +327,33 @@
           ],
           output: "Portfolio UX/UI + Case Study + CV + Việc làm"
         }
-      ]
+      ],
+      pricing: {
+        levels: [
+          { code: "B", price: "5.000.000" },
+          { code: "A", price: "7.000.000" },
+          { code: "I", price: "9.000.000" },
+          { code: "S", price: "11.000.000" }
+        ],
+        combo: { name: "Combo X (8 tháng)", original: "32.000.000", discount: "27.200.000", save: "15%" }
+      },
+      career: {
+        positions: [
+          { title: "UI/UX Designer", hot: true },
+          { title: "Product Designer", hot: true },
+          { title: "UX Researcher", hot: false },
+          { title: "Freelance UI Designer", hot: false }
+        ],
+        salary: [
+          { level: "Fresher", range: "5–10 triệu", min: 5, max: 10 },
+          { level: "Junior", range: "10–20 triệu", min: 10, max: 20 },
+          { level: "Mid-level", range: "20–30 triệu", min: 20, max: 30 },
+          { level: "Senior", range: "30–50 triệu", min: 30, max: 50 }
+        ],
+        growth: "15–20%/năm",
+        employers: ["VNPAY", "MoMo", "Shopee", "Tiki", "VNG"],
+        source: "ITviec, Telos Academy 2025"
+      }
     },
     marketing: {
       id: "marketing",
@@ -314,59 +418,110 @@
           ],
           output: "Marketing Plan 360° + Portfolio + CV"
         }
-      ]
+      ],
+      pricing: {
+        levels: [
+          { code: "A1", price: "7.000.000" },
+          { code: "A2", price: "7.000.000" },
+          { code: "A3", price: "7.000.000" },
+          { code: "S", price: "9.000.000" }
+        ],
+        combo: { name: "Combo X (8 tháng)", original: "30.000.000", discount: "25.500.000", save: "15%" }
+      },
+      career: {
+        positions: [
+          { title: "Performance Marketing Specialist", hot: true },
+          { title: "Content Marketing / AI Content", hot: true },
+          { title: "SEO Specialist", hot: false },
+          { title: "Growth Marketer / Marketing Manager", hot: true }
+        ],
+        salary: [
+          { level: "Fresher", range: "8–12 triệu", min: 8, max: 12 },
+          { level: "Junior", range: "12–18 triệu", min: 12, max: 18 },
+          { level: "Mid-level", range: "18–30 triệu", min: 18, max: 30 },
+          { level: "Senior", range: "25–50 triệu", min: 25, max: 50 }
+        ],
+        growth: "25–40%/năm (có AI)",
+        employers: ["Shopee", "TikTok Shop", "Lazada", "Agency lớn", "Startup"],
+        source: "TopCV, Robert Walters 2025"
+      }
     },
-    design: {
-      id: "design",
-      name: "Graphic Designer",
-      icon: "🖌️",
-      color: "#EC4899",
-      colorLight: "#FDF2F8",
+    dataeng: {
+      id: "dataeng",
+      name: "Data Engineer",
+      icon: "🛢️",
+      color: "#0EA5E9",
+      colorLight: "#F0F9FF",
       duration: "6 tháng",
       sessions: "48 buổi",
-      tagline: "Không cần biết vẽ — học tư duy thiết kế & phần mềm chuyên nghiệp",
-      target: "Người muốn làm designer, freelancer thiết kế",
+      tagline: "Xây dựng hạ tầng dữ liệu — lương cao nhất ngành Data",
+      target: "Người có nền tảng kỹ thuật, muốn chuyên sâu Data Engineering",
       levels: [
         {
-          code: "B", label: "Basic", name: "Nền tảng Graphic Design",
-          desc: "Tư duy thiết kế, bố cục, màu sắc, typography, Photoshop",
-          duration: "2 tháng", sessions: "16 buổi",
-          tools: ["Adobe Photoshop", "Canva"],
+          code: "B", label: "Basic", name: "Python for Data Engineer",
+          desc: "Nền tảng lập trình Python, Flask, xử lý dữ liệu cơ bản",
+          duration: "2 tháng", sessions: "16 buổi × 3h",
+          tools: ["Python", "Flask", "Pandas", "GenAI"],
           topics: [
-            "Tư duy thiết kế đồ họa cơ bản",
-            "Bố cục, lưới, hệ thống tỉ lệ",
-            "Màu sắc, typography, hierarchy",
-            "Adobe Photoshop: retouching, compositing"
+            "Python cơ bản: biến, hàm, cấu trúc dữ liệu",
+            "Xử lý dữ liệu với Pandas, NumPy",
+            "Web Server với Flask, API design",
+            "GenAI hỗ trợ viết code và giao diện web"
           ],
-          output: "Bộ poster + Banner + Bài tập typography"
+          output: "Web App phân tích dữ liệu với Flask + AI"
         },
         {
-          code: "A", label: "Advanced", name: "Thiết kế nhận diện thương hiệu",
-          desc: "Logo, brand guideline, bộ nhận diện, Illustrator",
-          duration: "2 tháng", sessions: "16 buổi",
-          tools: ["Adobe Illustrator", "Photoshop"],
+          code: "A", label: "Advanced", name: "Data Processing & Automation",
+          desc: "ETL Pipeline, SQL nâng cao, Airflow, dbt, PySpark",
+          duration: "2 tháng", sessions: "16 buổi × 3h",
+          tools: ["PostgreSQL", "Apache Airflow", "dbt", "PySpark"],
           topics: [
-            "Thiết kế logo: concept, sketch, vectorize",
-            "Brand Identity: màu sắc, font, visual language",
-            "Brand Guideline hoàn chỉnh",
-            "Ứng dụng nhận diện: namecard, letterhead, mockup"
+            "SQL nâng cao: JOIN, CTE, Window Functions",
+            "Thiết kế Data Warehouse, Star Schema",
+            "Apache Airflow: DAG, scheduling pipeline",
+            "PySpark xử lý dữ liệu lớn, Kafka streaming"
           ],
-          output: "Logo + Brand Guideline + Bộ nhận diện"
+          output: "Smart ETL Pipeline tự động hóa hoàn chỉnh"
         },
         {
-          code: "S", label: "Career Kickstart", name: "Illustrator & Career Kickstart",
-          desc: "Illustration, portfolio Behance, mock interview",
-          duration: "2 tháng", sessions: "16 buổi",
-          tools: ["Adobe Illustrator", "Behance", "Portfolio"],
+          code: "S", label: "Career Kickstart", name: "Cloud-Based DE & Deployment",
+          desc: "AWS Cloud, Docker, CI/CD, Data Lake, portfolio",
+          duration: "2 tháng", sessions: "16 buổi × 3h",
+          tools: ["AWS S3", "Docker", "GitHub Actions", "MongoDB"],
           topics: [
-            "Illustration chuyên sâu: vector, character",
-            "Portfolio Behance chuẩn ngành",
-            "Dự án chiến dịch truyền thông hoàn chỉnh",
-            "CV designer + Mock interview + Freelance"
+            "Data Lake trên AWS S3, Glue, Redshift",
+            "Docker đóng gói pipeline, CI/CD automation",
+            "MongoDB & NoSQL Data Modeling",
+            "Portfolio DE + CV + Mock interview"
           ],
-          output: "Behance Portfolio + CV + Giới thiệu việc làm"
+          output: "Cloud DataOps System + Portfolio DE + CV"
         }
-      ]
+      ],
+      pricing: {
+        levels: [
+          { code: "B", price: "5.000.000" },
+          { code: "A", price: "7.000.000" },
+          { code: "S", price: "11.000.000" }
+        ],
+        combo: { name: "Combo 3 (6 tháng)", original: "23.000.000", discount: "20.700.000", save: "10%" }
+      },
+      career: {
+        positions: [
+          { title: "Junior Data Engineer", hot: true },
+          { title: "ETL Developer / Data Pipeline Engineer", hot: true },
+          { title: "Cloud Data Engineer (AWS)", hot: true },
+          { title: "Data Architect (Senior path)", hot: false }
+        ],
+        salary: [
+          { level: "Fresher", range: "15–18 triệu", min: 15, max: 18 },
+          { level: "Junior", range: "17–22 triệu", min: 17, max: 22 },
+          { level: "Mid-level", range: "28–40 triệu", min: 28, max: 40 },
+          { level: "Senior", range: "50–70 triệu", min: 50, max: 70 }
+        ],
+        growth: "20–30%/năm",
+        employers: ["Zalo", "FPT Software", "VNG", "Techcombank", "Bosch Vietnam"],
+        source: "ITviec, NodeFlair 2025"
+      }
     },
     ai: {
       id: "ai",
@@ -405,123 +560,309 @@
           ],
           output: "Dashboard tự động + Bộ template AI"
         }
-      ]
+      ],
+      pricing: {
+        levels: [
+          { code: "B", price: "3.500.000", note: "7 buổi" },
+          { code: "A", price: "5.000.000", note: "12 buổi" }
+        ],
+        combo: { name: "Combo AI", original: "8.500.000", discount: "8.500.000", save: "" }
+      },
+      career: {
+        positions: [
+          { title: "AI-Powered Professional (mọi ngành)", hot: true },
+          { title: "Prompt Engineer", hot: true },
+          { title: "AI Workflow Automation Specialist", hot: false },
+          { title: "AI Content / AI Marketing Specialist", hot: false }
+        ],
+        salary: [
+          { level: "Không AI", range: "10–25 triệu", min: 10, max: 25 },
+          { level: "Có AI cơ bản", range: "13–33 triệu", min: 13, max: 33 },
+          { level: "AI + Automation", range: "20–40 triệu", min: 20, max: 40 },
+          { level: "Growth + AI", range: "25–50 triệu", min: 25, max: 50 }
+        ],
+        growth: "+25–50% thu nhập khi có AI skills",
+        employers: ["Mọi ngành nghề", "Tech companies", "Agency", "Remote/Freelance"],
+        source: "Swiss Coding, VietSourcing 2025"
+      }
     }
   };
 
-  var courseOrder = ["coding", "data", "itba", "uiux", "marketing", "design", "ai"];
+  var courseOrder = ["coding", "data", "itba", "uiux", "marketing", "dataeng", "ai"];
 
-  // ===== SALES FLOW DATA =====
+  // ===== SALES FLOW DATA (7 bộ môn, 12-14 slides mỗi môn) =====
   var salesData = {
     coding: {
       slides: [
-        { type: "hero", title: "Lập trình Web —\nNghề <span>hot nhất</span> thời đại số", sub: "Từ zero đến Junior Developer trong 8 tháng, cam kết việc làm tại 200+ doanh nghiệp đối tác." },
-        { type: "stats", title: "Thị trường <span>cần bạn</span>", stats: [
-          { num: "700.000", label: "lao động IT Việt Nam\ncần bổ sung đến 2025", src: "B-Company" },
-          { num: "43.2 triệu", label: "lương trung bình IT/tháng\ntại Việt Nam", src: "ITviec 2025" },
-          { num: "45%", label: "JD tuyển dụng\nlà lập trình viên web", src: "TopDev" }
+        { type: "hook", title: "Bạn đang <span>mắc kẹt</span> với công việc hiện tại?", sub: "Lương không tăng, công việc lặp lại, không có hướng phát triển rõ ràng?\nĐã đến lúc thay đổi — chỉ cần 8 tháng để bắt đầu sự nghiệp mới.", icon: "😰" },
+        { type: "stats", title: "Thị trường IT <span>đang thiếu bạn</span>", stats: [
+          { num: "150.000+", label: "lao động IT Việt Nam\ncần bổ sung mỗi năm", src: "InApps 2025" },
+          { num: "36.35 triệu", label: "lương trung vị Developer\n(6 năm KN)", src: "ITviec 2025" },
+          { num: "58%", label: "doanh nghiệp\ntuyển Full-stack Dev", src: "TopDev 2025" }
         ]},
-        { type: "audience", title: "Ai nên học <span>XCareer Coding?</span>", cards: [
+        { type: "stories", title: "Họ đã <span>thay đổi cuộc đời</span>", stories: [
+          { before: "Kế toán", salaryBefore: "10–12tr", after: "Junior Full-stack Dev", salaryAfter: "18–22tr", time: "8 tháng", increase: "+80%" },
+          { before: "Kỹ sư cơ khí", salaryBefore: "15–18tr", after: "Mid-level Developer", salaryAfter: "28–35tr", time: "12 tháng", increase: "+70%" },
+          { before: "Sales B2B", salaryBefore: "12–15tr", after: "Junior React Dev", salaryAfter: "20–25tr", time: "8 tháng", increase: "+60%" }
+        ]},
+        { type: "audience", title: "Bạn phù hợp nếu...", cards: [
           { icon: "🎓", title: "Sinh viên IT", desc: "Thiếu kỹ năng thực tế, cần project & portfolio để apply việc ngay khi ra trường" },
           { icon: "🔄", title: "Người chuyển ngành", desc: "Từ Kinh tế, Điện tử, bất kỳ ngành nào — muốn vào IT với lộ trình bài bản" },
           { icon: "📈", title: "Người đi làm upskill", desc: "Đã có việc, muốn nâng lương hoặc chuyển sang vị trí Developer" },
           { icon: "💼", title: "Freelancer", desc: "Muốn nhận dự án web freelance, xây dựng nguồn thu nhập thêm" }
         ]},
         { type: "levels", title: "Lộ trình 4 cấp độ <span>B → A → I → S</span>" },
-        { type: "output", title: "Sản phẩm <span>đầu ra</span>", items: [
-          { icon: "🌐", title: "Website hoàn chỉnh", desc: "Fullstack web app MERN với front-end React + back-end Node.js" },
-          { icon: "📁", title: "GitHub Portfolio", desc: "5+ projects trên GitHub, code chuẩn, có README chuyên nghiệp" },
-          { icon: "👥", title: "Dự án nhóm Agile", desc: "Làm việc nhóm với Scrum, mô phỏng môi trường doanh nghiệp thật" },
-          { icon: "📄", title: "CV & Portfolio Pro", desc: "CV chuẩn IT, portfolio trực tuyến, sẵn sàng apply Junior Dev" }
-        ]},
+        { type: "leveldetail", title: "Chi tiết <span>từng level</span>" },
+        { type: "career", title: "Cơ hội nghề nghiệp <span>sau tốt nghiệp</span>" },
         { type: "method", title: "Phương pháp <span>On Job Training</span>", items: [
           { icon: "⚡", title: "50%+ thực hành", desc: "Mỗi buổi: 50% lý thuyết, 50% code thực tế — không chỉ nghe giảng" },
-          { icon: "👨‍🏫", title: "Mentor kèm", desc: "Lớp 10-15 học viên, mentor review code trực tiếp" },
+          { icon: "👨‍🏫", title: "Mentor kèm 1-1", desc: "Lớp 10-15 học viên, mentor review code trực tiếp từng người" },
           { icon: "🔄", title: "Dự án thật", desc: "Project cuối mỗi kỳ, demo trước hội đồng, feedback chi tiết" },
           { icon: "🤖", title: "Tích hợp AI", desc: "Sử dụng AI hỗ trợ viết code, debug, tối ưu quy trình" }
         ]},
-        { type: "commitment", title: "Cam kết <span>hỗ trợ việc làm</span>", items: [
-          { icon: "🤝", title: "200+ đối tác tuyển dụng", desc: "FPT, Viettel, VNG, và nhiều công ty quốc tế" },
+        { type: "brand" },
+        { type: "pricing", title: "Học phí <span>đầu tư cho tương lai</span>" },
+        { type: "guarantee", title: "Cam kết <span>hỗ trợ việc làm trọn đời</span>", items: [
+          { icon: "🤝", title: "200+ đối tác tuyển dụng", desc: "FPT, Viettel, VNG, Techcombank, và nhiều công ty quốc tế" },
           { icon: "📋", title: "Hỗ trợ trọn đời", desc: "Đạt chuẩn đầu ra → được hỗ trợ việc làm không giới hạn thời gian" },
           { icon: "💼", title: "Mock Interview", desc: "Giả lập phỏng vấn kỹ thuật, feedback chi tiết từ chuyên gia" },
           { icon: "🌏", title: "Cơ hội quốc tế", desc: "Alumni đã làm việc tại Singapore, Google, các công ty đa quốc gia" }
         ]},
-        { type: "brand" },
-        { type: "cta", title: "Bắt đầu hành trình\ntrở thành Developer", sub: "Đăng ký tư vấn miễn phí — tìm hiểu lộ trình phù hợp với bạn.", btn: "Đăng ký tư vấn ngay" }
+        { type: "cta" }
       ]
     },
     data: {
       slides: [
-        { type: "hero", title: "Data Analyst —\nNghề <span>dẫn dắt</span> mọi quyết định", sub: "Phân tích dữ liệu từ Excel đến Python, trở thành DA trong 8 tháng." },
+        { type: "hook", title: "Ra quyết định bằng <span>cảm tính</span>?\nĐã đến lúc dùng <span>dữ liệu</span>.", sub: "Data Analyst là ngành HOT nhất cho người chuyển ngành vào IT — không cần code nặng, kiến thức domain ngành cũ là lợi thế.", icon: "📊" },
         { type: "stats", title: "Data đang <span>thay đổi</span> mọi ngành", stats: [
-          { num: "31.3 triệu", label: "lương trung bình DA/tháng\n(5.5 năm kinh nghiệm)", src: "ITviec 2025" },
-          { num: "44.1 triệu", label: "lương Data Engineer/tháng\n(6 năm kinh nghiệm)", src: "ITviec 2025" },
-          { num: "+33.5%", label: "tăng trưởng việc làm\nData Scientist toàn cầu", src: "BLS" }
+          { num: "31.3 triệu", label: "lương trung vị DA/tháng\n(5.5 năm kinh nghiệm)", src: "ITviec 2025" },
+          { num: "40.65 triệu", label: "DA 3-4 năm KN\n(ITviec update 2026)", src: "ITviec 2026" },
+          { num: "60%", label: "doanh nghiệp mở rộng\nnhân sự Data/AI 2025", src: "ITviec Report" }
         ]},
-        { type: "audience", title: "Ai nên học <span>Data Analyst?</span>", cards: [
+        { type: "stories", title: "Từ trái ngành → <span>Data Analyst</span>", stories: [
+          { before: "Kế toán viên", salaryBefore: "10–15tr", after: "DA Fresher", salaryAfter: "15–20tr", time: "6 tháng", increase: "+40%" },
+          { before: "Business Dev", salaryBefore: "15–20tr", after: "DA Junior", salaryAfter: "20–25tr", time: "8 tháng", increase: "+30%" },
+          { before: "Kỹ sư khác ngành", salaryBefore: "15–20tr", after: "DA Junior/Mid", salaryAfter: "25–30tr", time: "10 tháng", increase: "+50%" }
+        ]},
+        { type: "audience", title: "Bạn phù hợp nếu...", cards: [
           { icon: "🎓", title: "Sinh viên", desc: "Muốn có skill phân tích dữ liệu — lợi thế cạnh tranh ở mọi ngành" },
           { icon: "🔄", title: "Người chuyển ngành", desc: "Từ kế toán, marketing, kinh doanh — data là cầu nối tuyệt vời" },
           { icon: "📈", title: "Người đi làm", desc: "Muốn ra quyết định bằng dữ liệu, tăng giá trị bản thân" },
           { icon: "🤖", title: "Yêu thích AI", desc: "Data là nền tảng của AI — muốn hiểu sâu Machine Learning" }
         ]},
         { type: "levels", title: "Lộ trình 4 cấp độ <span>B → A → I → S</span>" },
-        { type: "output", title: "Sản phẩm <span>đầu ra</span>", items: [
-          { icon: "📊", title: "Dashboard Power BI", desc: "Dashboard trực quan hóa dữ liệu kinh doanh chuyên nghiệp" },
-          { icon: "🐍", title: "Dự án Python", desc: "EDA + ML model phân tích dữ liệu thực tế" },
-          { icon: "📋", title: "Báo cáo phân tích", desc: "Insight report chuyên nghiệp từ dữ liệu doanh nghiệp" },
-          { icon: "📁", title: "Portfolio DA", desc: "Portfolio Data Analyst hoàn chỉnh trên GitHub" }
-        ]},
+        { type: "leveldetail", title: "Chi tiết <span>từng level</span>" },
+        { type: "career", title: "Cơ hội nghề nghiệp <span>sau tốt nghiệp</span>" },
         { type: "method", title: "Phương pháp <span>On Job Training</span>", items: [
           { icon: "⚡", title: "50%+ thực hành", desc: "Mỗi buổi: 50% lý thuyết, 50% thực hành với dữ liệu thật" },
-          { icon: "👨‍🏫", title: "Mentor kèm", desc: "Lớp 10-15 HV, mentor review trực tiếp" },
+          { icon: "👨‍🏫", title: "Mentor kèm 1-1", desc: "Lớp 10-15 HV, mentor review trực tiếp từng người" },
           { icon: "🔄", title: "Dữ liệu thật", desc: "Làm việc với dataset thực tế từ doanh nghiệp" },
           { icon: "🤖", title: "AI Analytics", desc: "SQL Assistant, AI phân tích — công cụ mới nhất" }
         ]},
-        { type: "commitment", title: "Cam kết <span>hỗ trợ việc làm</span>", items: [
+        { type: "brand" },
+        { type: "pricing", title: "Học phí <span>đầu tư cho tương lai</span>" },
+        { type: "guarantee", title: "Cam kết <span>hỗ trợ việc làm trọn đời</span>", items: [
           { icon: "🤝", title: "200+ đối tác", desc: "Fintech, Banking, E-commerce — nơi cần DA nhất" },
           { icon: "📋", title: "Hỗ trợ trọn đời", desc: "Đạt chuẩn đầu ra → hỗ trợ việc làm vĩnh viễn" },
           { icon: "💼", title: "Demo Day", desc: "Trình bày dự án trước doanh nghiệp — cơ hội nhận offer" },
-          { icon: "📈", title: "Lương khởi điểm", desc: "12.5-23.5 triệu/tháng cho Junior DA" }
+          { icon: "📈", title: "Lương khởi điểm", desc: "8–15 triệu/tháng cho DA Fresher" }
+        ]},
+        { type: "cta" }
+      ]
+    },
+    itba: {
+      slides: [
+        { type: "hook", title: "Muốn vào <span>ngành IT</span>\nnhưng <span>không biết code?</span>", sub: "IT Business Analyst — vị trí cầu nối giữa business và IT. Không cần lập trình, kiến thức ngành cũ là lợi thế cạnh tranh lớn nhất.", icon: "📋" },
+        { type: "stats", title: "BA — nghề <span>không biết thừa</span>", stats: [
+          { num: "32.4 triệu", label: "lương trung vị BA/tháng\n(6 năm kinh nghiệm)", src: "ITviec 2025" },
+          { num: "75+", label: "vị trí BA đang tuyển\ntrên ITviec", src: "ITviec 3/2026" },
+          { num: "50.95 triệu", label: "lương Product Owner\n(6 năm KN)", src: "ITviec 2025" }
+        ]},
+        { type: "stories", title: "Họ đã <span>chuyển ngành thành công</span>", stories: [
+          { before: "Nhân viên ngân hàng", salaryBefore: "12–15tr", after: "IT BA (Banking)", salaryAfter: "20–28tr", time: "6 tháng", increase: "+70%" },
+          { before: "HR Executive", salaryBefore: "10–14tr", after: "BA Fresher", salaryAfter: "15–20tr", time: "6 tháng", increase: "+50%" },
+          { before: "Logistics Coordinator", salaryBefore: "12–18tr", after: "BA (Supply Chain)", salaryAfter: "22–30tr", time: "8 tháng", increase: "+60%" }
+        ]},
+        { type: "audience", title: "Bạn phù hợp nếu...", cards: [
+          { icon: "🏦", title: "Người từ Banking/Finance", desc: "Hiểu nghiệp vụ core banking, payment → rất hot trong IT" },
+          { icon: "🔄", title: "Người trái ngành 3-7 năm KN", desc: "Domain knowledge cũ + BA skills = giá trị cực cao" },
+          { icon: "📊", title: "Người thích phân tích", desc: "Tư duy logic, thích vẽ sơ đồ, tổ chức quy trình" },
+          { icon: "💼", title: "PM/Team Lead", desc: "Muốn chuyển sang Product Owner với lương 50-75tr+" }
+        ]},
+        { type: "levels", title: "Lộ trình 3 cấp độ <span>B → A → S</span>" },
+        { type: "leveldetail", title: "Chi tiết <span>từng level</span>" },
+        { type: "career", title: "Cơ hội nghề nghiệp <span>sau tốt nghiệp</span>" },
+        { type: "method", title: "Phương pháp <span>On Job Training</span>", items: [
+          { icon: "⚡", title: "Dự án thực tế", desc: "Viết BRD, SRS, wireframe cho đề bài từ doanh nghiệp thật" },
+          { icon: "👨‍🏫", title: "Mentor BA kèm 1-1", desc: "Mentor là BA đang làm việc tại doanh nghiệp lớn" },
+          { icon: "🔄", title: "Không cần code", desc: "Tập trung vào tư duy phân tích, tài liệu, giao tiếp" },
+          { icon: "🤖", title: "AI hỗ trợ", desc: "Dùng AI viết user stories, tạo wireframe, phân tích yêu cầu" }
         ]},
         { type: "brand" },
-        { type: "cta", title: "Bắt đầu hành trình\ntrở thành Data Analyst", sub: "Đăng ký tư vấn miễn phí — khám phá tiềm năng dữ liệu.", btn: "Đăng ký tư vấn ngay" }
+        { type: "pricing", title: "Học phí <span>đầu tư cho tương lai</span>" },
+        { type: "guarantee", title: "Cam kết <span>hỗ trợ việc làm trọn đời</span>", items: [
+          { icon: "🤝", title: "Đối tác Banking/Fintech", desc: "Techcombank, VPBank, MoMo, VNPAY — nơi cần BA nhất" },
+          { icon: "📋", title: "Hỗ trợ trọn đời", desc: "Career Team hỗ trợ việc làm không giới hạn thời gian" },
+          { icon: "💼", title: "Portfolio chuẩn", desc: "BRD + SRS + Use Case + Prototype sẵn sàng apply" },
+          { icon: "🌏", title: "Career path rõ", desc: "BA → Senior BA → PO → PM: lương lên đến 75tr+" }
+        ]},
+        { type: "cta" }
       ]
     },
     uiux: {
       slides: [
-        { type: "hero", title: "UI/UX Designer —\nNghề <span>sáng tạo</span> thời đại số", sub: "Thiết kế trải nghiệm người dùng, từ zero đến portfolio chuyên nghiệp trong 8 tháng." },
+        { type: "hook", title: "Muốn làm <span>sáng tạo</span>\nnhưng chưa biết bắt đầu?", sub: "UI/UX Design — ngành thiết kế hot nhất thời đại số. Không cần biết vẽ, chỉ cần tư duy thiết kế và Figma.", icon: "🎨" },
         { type: "stats", title: "Design đang <span>bùng nổ</span>", stats: [
-          { num: "34.6 triệu", label: "lương trung bình Designer/tháng\n(6.5 năm KN)", src: "ITviec 2025" },
-          { num: "+15%/năm", label: "tăng trưởng nhu cầu\nUX Designer 2025", src: "TopDev" },
-          { num: "60 triệu", label: "lương Lead/Principal\nDesigner top", src: "Telos Academy" }
+          { num: "34.6 triệu", label: "lương trung vị Designer\n(6.5 năm KN)", src: "ITviec 2025" },
+          { num: "+15%/năm", label: "tăng trưởng nhu cầu\nUX Designer", src: "Telos Academy" },
+          { num: "60–100 triệu", label: "lương Senior Designer\ntại HCM", src: "Telos Academy 2025" }
         ]},
-        { type: "audience", title: "Ai nên học <span>UI/UX Design?</span>", cards: [
+        { type: "stories", title: "Từ zero → <span>UI/UX Designer</span>", stories: [
+          { before: "Graphic Designer", salaryBefore: "9–15tr", after: "UI/UX Junior/Mid", salaryAfter: "18–25tr", time: "8 tháng", increase: "+65%" },
+          { before: "Content Creator", salaryBefore: "10–15tr", after: "UI/UX Junior", salaryAfter: "15–22tr", time: "8 tháng", increase: "+50%" },
+          { before: "Không có IT background", salaryBefore: "8–12tr", after: "Junior UX", salaryAfter: "12–18tr", time: "10 tháng", increase: "+50%" }
+        ]},
+        { type: "audience", title: "Bạn phù hợp nếu...", cards: [
           { icon: "🎓", title: "Sinh viên", desc: "Không chuyên thiết kế, muốn vào ngành Product/UX" },
           { icon: "🔄", title: "Người chuyển ngành", desc: "Từ marketing, kinh doanh, kỹ thuật — UX chào đón mọi background" },
           { icon: "🖌️", title: "Graphic Designer", desc: "Đã biết thiết kế, muốn chuyển sang UX/UI — lương cao hơn" },
           { icon: "💡", title: "Product people", desc: "PM, BA muốn hiểu Design Thinking & Product Design" }
         ]},
         { type: "levels", title: "Lộ trình 4 cấp độ <span>B → A → I → S</span>" },
-        { type: "output", title: "Sản phẩm <span>đầu ra</span>", items: [
-          { icon: "📱", title: "UI Screens", desc: "15-20 screens hoàn chỉnh trên Figma (web + mobile)" },
-          { icon: "🔬", title: "UX Research", desc: "Case Study UX Research có Persona, Journey Map" },
-          { icon: "🎯", title: "Prototype", desc: "Interactive Prototype có thể click-through thực tế" },
-          { icon: "📁", title: "Portfolio", desc: "Portfolio UX/UI chuyên nghiệp, sẵn sàng apply" }
-        ]},
+        { type: "leveldetail", title: "Chi tiết <span>từng level</span>" },
+        { type: "career", title: "Cơ hội nghề nghiệp <span>sau tốt nghiệp</span>" },
         { type: "method", title: "Phương pháp <span>học qua dự án</span>", items: [
           { icon: "⚡", title: "Learning by Doing", desc: "Mỗi kỳ kết thúc bằng 1 project thực tế có thể showcase" },
-          { icon: "👨‍🏫", title: "Mentor designer", desc: "Mentor là designer đang làm việc tại doanh nghiệp" },
+          { icon: "👨‍🏫", title: "Mentor designer 1-1", desc: "Mentor là designer đang làm việc tại doanh nghiệp" },
           { icon: "🛠️", title: "Figma 100%", desc: "Công cụ #1 ngành — thành thạo Figma từ đầu" },
           { icon: "🎯", title: "Real brief", desc: "Đề bài từ doanh nghiệp thật ở kỳ Career Kickstart" }
         ]},
-        { type: "commitment", title: "Cam kết <span>hỗ trợ việc làm</span>", items: [
+        { type: "brand" },
+        { type: "pricing", title: "Học phí <span>đầu tư cho tương lai</span>" },
+        { type: "guarantee", title: "Cam kết <span>hỗ trợ việc làm trọn đời</span>", items: [
           { icon: "🤝", title: "Đối tác tuyển dụng", desc: "Fintech, E-commerce, Startup — nơi cần UX nhất" },
           { icon: "📋", title: "Hỗ trợ trọn đời", desc: "Career Team hỗ trợ việc làm không giới hạn" },
           { icon: "💼", title: "Portfolio Review", desc: "Senior Designer review portfolio trước khi apply" },
-          { icon: "🌏", title: "Cộng đồng", desc: "35.000+ thành viên cộng đồng MindX networking" }
+          { icon: "🌏", title: "Freelance cơ hội", desc: "UX freelance: $1.900–$2.800/tháng (quốc tế)" }
+        ]},
+        { type: "cta" }
+      ]
+    },
+    marketing: {
+      slides: [
+        { type: "hook", title: "Marketing truyền thống\n<span>đã hết thời</span>?", sub: "Marketer biết AI tiết kiệm 7 giờ/tháng cho content, tăng lương 25-40%. Nếu bạn không upskill AI, bạn đang tự đào thải mình.", icon: "📢" },
+        { type: "stats", title: "Marketing + AI = <span>công thức vàng</span>", stats: [
+          { num: "88%", label: "nhân viên VN đã dùng\nGenerative AI", src: "Swiss Coding 2025" },
+          { num: "+25–40%", label: "tăng lương khi có\nAI marketing skills", src: "VietSourcing 2025" },
+          { num: "76%", label: "lãnh đạo VN không\ntuyển thiếu AI skills", src: "Swiss Coding 2025" }
+        ]},
+        { type: "stories", title: "Từ marketer thường → <span>AI Marketer</span>", stories: [
+          { before: "Content Writer cơ bản", salaryBefore: "8–12tr", after: "AI Content Specialist", salaryAfter: "15–22tr", time: "6 tháng", increase: "+70%" },
+          { before: "Social Media Exec", salaryBefore: "10–15tr", after: "Performance Marketer", salaryAfter: "20–28tr", time: "8 tháng", increase: "+80%" },
+          { before: "Marketing Executive", salaryBefore: "12–18tr", after: "Digital + AI Specialist", salaryAfter: "25–35tr", time: "8 tháng", increase: "+80%" }
+        ]},
+        { type: "audience", title: "Bạn phù hợp nếu...", cards: [
+          { icon: "📝", title: "Content Writer", desc: "Muốn viết nhanh hơn 3-5x với AI, nâng cấp content chuyển đổi" },
+          { icon: "📱", title: "Social Media Manager", desc: "Muốn master Facebook Ads, Google Ads, tối ưu ROI" },
+          { icon: "🔄", title: "Người chuyển ngành", desc: "Từ sales, business — marketing + AI là kỹ năng gần nhất" },
+          { icon: "💼", title: "Freelancer/Agency", desc: "Muốn chạy agency riêng, nhận client với AI tools" }
+        ]},
+        { type: "levels", title: "Lộ trình 4 module <span>A1 → A2 → A3 → S</span>" },
+        { type: "leveldetail", title: "Chi tiết <span>từng module</span>" },
+        { type: "career", title: "Cơ hội nghề nghiệp <span>sau tốt nghiệp</span>" },
+        { type: "method", title: "Phương pháp <span>On Job Training</span>", items: [
+          { icon: "⚡", title: "Campaign thật", desc: "Chạy chiến dịch marketing thật với budget thật" },
+          { icon: "👨‍🏫", title: "Mentor marketer 1-1", desc: "Mentor là marketer đang chạy chiến dịch triệu đô" },
+          { icon: "🤖", title: "AI Tools mới nhất", desc: "ChatGPT, Meta Advantage+, Google Performance Max" },
+          { icon: "🎯", title: "Portfolio marketing", desc: "Campaign plan + content + ads report sẵn sàng" }
         ]},
         { type: "brand" },
-        { type: "cta", title: "Bắt đầu hành trình\ntrở thành UX/UI Designer", sub: "Đăng ký tư vấn miễn phí — khám phá tiềm năng sáng tạo.", btn: "Đăng ký tư vấn ngay" }
+        { type: "pricing", title: "Học phí <span>đầu tư cho tương lai</span>" },
+        { type: "guarantee", title: "Cam kết <span>hỗ trợ việc làm trọn đời</span>", items: [
+          { icon: "🤝", title: "Đối tác tuyển dụng", desc: "E-commerce, Agency, Startup — nơi cần marketer nhất" },
+          { icon: "📋", title: "Hỗ trợ trọn đời", desc: "Career Team hỗ trợ việc làm không giới hạn" },
+          { icon: "💼", title: "Freelance ready", desc: "Portfolio đủ để nhận client ngay sau khi tốt nghiệp" },
+          { icon: "🌏", title: "Remote opportunity", desc: "Remote marketing: $2.000–$6.000/tháng" }
+        ]},
+        { type: "cta" }
+      ]
+    },
+    dataeng: {
+      slides: [
+        { type: "hook", title: "Muốn lương <span>cao nhất ngành Data</span>?", sub: "Data Engineer — lương trung vị 44.1 triệu/tháng, cao hơn DA và Developer. Ngành khan hiếm nhân lực, doanh nghiệp săn đón.", icon: "🛢️" },
+        { type: "stats", title: "Data Engineer <span>khan hiếm & giá trị cao</span>", stats: [
+          { num: "44.1 triệu", label: "lương trung vị DE/tháng\n(6 năm kinh nghiệm)", src: "ITviec 2025" },
+          { num: "56.9 triệu", label: "DE 3-4 năm KN\n(ITviec update 2026)", src: "ITviec 2026" },
+          { num: "46+", label: "vị trí DE đang tuyển\ntrên ITviec", src: "ITviec 3/2026" }
+        ]},
+        { type: "stories", title: "Con đường trở thành <span>Data Engineer</span>", stories: [
+          { before: "Data Analyst", salaryBefore: "15–20tr", after: "Junior DE", salaryAfter: "22–30tr", time: "6 tháng", increase: "+50%" },
+          { before: "Backend Developer", salaryBefore: "20–25tr", after: "Mid DE", salaryAfter: "30–40tr", time: "6 tháng", increase: "+50%" },
+          { before: "Database Admin", salaryBefore: "15–22tr", after: "DE (Cloud)", salaryAfter: "28–35tr", time: "6 tháng", increase: "+55%" }
+        ]},
+        { type: "audience", title: "Bạn phù hợp nếu...", cards: [
+          { icon: "📊", title: "Data Analyst muốn lên level", desc: "Đã biết SQL/Python, muốn chuyển sang DE — lương cao hơn 50%" },
+          { icon: "💻", title: "Backend Developer", desc: "Đã biết code, muốn chuyên sâu data pipeline & cloud" },
+          { icon: "🔧", title: "DevOps / DBA", desc: "Có nền tảng hạ tầng, học thêm Big Data tooling" },
+          { icon: "🎓", title: "Sinh viên IT", desc: "Muốn vào ngành hot nhất, lương cao nhất ngành Data" }
+        ]},
+        { type: "levels", title: "Lộ trình 3 cấp độ <span>B → A → S</span>" },
+        { type: "leveldetail", title: "Chi tiết <span>từng level</span>" },
+        { type: "career", title: "Cơ hội nghề nghiệp <span>sau tốt nghiệp</span>" },
+        { type: "method", title: "Phương pháp <span>On Job Training</span>", items: [
+          { icon: "⚡", title: "Hands-on pipeline", desc: "Xây ETL pipeline thật với Airflow, Spark, AWS" },
+          { icon: "👨‍🏫", title: "Mentor DE kèm 1-1", desc: "Mentor là Data Engineer đang làm tại doanh nghiệp lớn" },
+          { icon: "☁️", title: "Cloud thật", desc: "Thực hành trực tiếp trên AWS S3, Glue, Redshift" },
+          { icon: "🤖", title: "GenAI tích hợp", desc: "AI hỗ trợ sinh DAG, viết pipeline, tự động hóa" }
+        ]},
+        { type: "brand" },
+        { type: "pricing", title: "Học phí <span>đầu tư cho tương lai</span>" },
+        { type: "guarantee", title: "Cam kết <span>hỗ trợ việc làm trọn đời</span>", items: [
+          { icon: "🤝", title: "Đối tác tuyển dụng", desc: "Zalo, VNG, FPT, Bosch — nơi cần DE nhất" },
+          { icon: "📋", title: "Hỗ trợ trọn đời", desc: "Career Team hỗ trợ việc làm không giới hạn" },
+          { icon: "💼", title: "Lương top ngành", desc: "Fresher DE: 15-18tr, Senior: 50-70tr+" },
+          { icon: "🌏", title: "Career path rộng", desc: "DE → Data Architect / ML Engineer / Cloud Engineer" }
+        ]},
+        { type: "cta" }
+      ]
+    },
+    ai: {
+      slides: [
+        { type: "hook", title: "Đồng nghiệp dùng AI\n<span>xong việc trước bạn 3 giờ?</span>", sub: "76% lãnh đạo Việt Nam nói sẽ không tuyển ứng viên thiếu AI skills. AI không thay thế bạn — nhưng người biết AI sẽ thay thế bạn.", icon: "🤖" },
+        { type: "stats", title: "AI đang <span>thay đổi mọi thứ</span>", stats: [
+          { num: "88%", label: "nhân viên VN đã dùng\nGenerative AI", src: "Swiss Coding 2025" },
+          { num: "+30–50%", label: "tăng thu nhập khi\ncó AI skills", src: "VietSourcing 2025" },
+          { num: "41%", label: "tăng trưởng AI jobs\nQ1/2025 vs Q1/2024", src: "ITviec 2025" }
+        ]},
+        { type: "stories", title: "AI thay đổi <span>năng suất làm việc</span>", stories: [
+          { before: "Marketer HCM", salaryBefore: "8h/tháng content", after: "AI Marketer", salaryAfter: "1h/tháng content", time: "Tiết kiệm 7h", increase: "7x nhanh hơn" },
+          { before: "Financial Analyst", salaryBefore: "Manual risk", after: "AI-assisted", salaryAfter: "Giảm 15% chi phí", time: "3 tháng học", increase: "+35% thu nhập" },
+          { before: "Project Manager", salaryBefore: "Manual reporting", after: "AI automation", salaryAfter: "Auto reports", time: "2 tháng học", increase: "+40% thu nhập" }
+        ]},
+        { type: "audience", title: "Bạn phù hợp nếu...", cards: [
+          { icon: "💼", title: "Nhân viên văn phòng", desc: "Email, báo cáo, slide — AI giúp tiết kiệm 40-60 phút/ngày" },
+          { icon: "📊", title: "Người làm dữ liệu", desc: "Excel, bảng tính — AI tự động hóa công thức, dashboard" },
+          { icon: "📢", title: "Marketer / Content", desc: "Viết content, lên ý tưởng — nhanh hơn 3-5x với AI" },
+          { icon: "🔄", title: "Bất kỳ ai", desc: "Không cần kỹ thuật — chỉ cần muốn tiết kiệm thời gian" }
+        ]},
+        { type: "levels", title: "Lộ trình 2 cấp độ <span>B → A</span>" },
+        { type: "leveldetail", title: "Chi tiết <span>từng level</span>" },
+        { type: "career", title: "AI <span>tăng giá trị bạn</span> ở mọi ngành" },
+        { type: "method", title: "Phương pháp <span>học theo tình huống</span>", items: [
+          { icon: "⚡", title: "Ứng dụng ngay", desc: "Mỗi buổi tập trung 1 ứng dụng thực tế: slide, báo cáo, email" },
+          { icon: "👨‍🏫", title: "Mentor hướng dẫn", desc: "Học theo tình huống doanh nghiệp thật, không lý thuyết suông" },
+          { icon: "🤖", title: "Đa dạng công cụ", desc: "ChatGPT, Notion AI, SlidesAI, Canva AI, Google Sheets AI" },
+          { icon: "📝", title: "Template sẵn", desc: "Bộ template AI cho email, report, slide có thể dùng ngay" }
+        ]},
+        { type: "brand" },
+        { type: "pricing", title: "Học phí <span>đầu tư nhỏ — hiệu quả lớn</span>" },
+        { type: "guarantee", title: "Cam kết <span>hiệu quả ngay</span>", items: [
+          { icon: "⚡", title: "ROI nhanh nhất", desc: "Break-even: 1-2 tháng sau khi áp dụng AI" },
+          { icon: "📈", title: "+25-50% thu nhập", desc: "AI skills giúp tăng lương 25-50% — thêm 5-15tr/tháng" },
+          { icon: "🏢", title: "Mọi ngành nghề", desc: "Từ marketing, finance, HR, PM — AI áp dụng cho tất cả" },
+          { icon: "🌏", title: "Xu hướng bắt buộc", desc: "AI Literacy là #1 kỹ năng cần thiết 2026 (LinkedIn)" }
+        ]},
+        { type: "cta" }
       ]
     }
   };
@@ -534,6 +875,10 @@
   }
 
   function esc(s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
+
+  function formatPrice(p) {
+    return p.replace(/\./g, ".") + "đ";
+  }
 
   // ===== RENDER OVERVIEW =====
   function renderOverview() {
@@ -607,6 +952,102 @@
     if (ps) ps.style.display = "none";
   }
 
+  // ===== RENDER CAREER OUTCOMES CARD =====
+  function renderCareerOutcomes(c) {
+    var career = c.career;
+    if (!career) return "";
+
+    var maxSalary = 0;
+    career.salary.forEach(function (s) { if (s.max > maxSalary) maxSalary = s.max; });
+
+    var html = '<div class="x18-career-card">';
+    html += '<div class="x18-career-header" style="border-left-color:' + c.color + '">';
+    html += '<h4>🚀 Career Outcomes sau tốt nghiệp</h4>';
+    html += '<span class="x18-career-source">Nguồn: ' + esc(career.source) + '</span>';
+    html += '</div>';
+
+    // Positions
+    html += '<div class="x18-career-section">';
+    html += '<div class="x18-career-label">🎯 Vị trí có thể ứng tuyển</div>';
+    html += '<div class="x18-career-positions">';
+    career.positions.forEach(function (p) {
+      html += '<span class="x18-career-pos' + (p.hot ? ' hot' : '') + '">' +
+        esc(p.title) + (p.hot ? ' <span class="x18-hot-badge">HOT</span>' : '') +
+        '</span>';
+    });
+    html += '</div></div>';
+
+    // Salary range bars
+    html += '<div class="x18-career-section">';
+    html += '<div class="x18-career-label">💰 Mức lương kỳ vọng (triệu VND/tháng)</div>';
+    html += '<div class="x18-career-salary-bars">';
+    career.salary.forEach(function (s) {
+      var leftPct = (s.min / maxSalary * 100);
+      var widthPct = ((s.max - s.min) / maxSalary * 100);
+      html += '<div class="x18-salary-row">' +
+        '<div class="x18-salary-level">' + esc(s.level) + '</div>' +
+        '<div class="x18-salary-bar-wrap">' +
+          '<div class="x18-salary-bar" style="left:' + leftPct + '%;width:' + widthPct + '%;background:' + c.color + '">' +
+            '<span class="x18-salary-val">' + esc(s.range) + '</span>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    });
+    html += '</div></div>';
+
+    // Growth
+    html += '<div class="x18-career-section">';
+    html += '<div class="x18-career-label">📈 Tỷ lệ tăng lương trung bình</div>';
+    html += '<div class="x18-career-growth" style="color:' + c.color + '">' + esc(career.growth) + '</div>';
+    html += '</div>';
+
+    // Employers
+    html += '<div class="x18-career-section">';
+    html += '<div class="x18-career-label">🏢 Top employers đang tuyển</div>';
+    html += '<div class="x18-career-employers">';
+    career.employers.forEach(function (e) {
+      html += '<span class="x18-career-employer">' + esc(e) + '</span>';
+    });
+    html += '</div></div>';
+
+    html += '</div>';
+    return html;
+  }
+
+  // ===== RENDER PRICING TABLE =====
+  function renderPricingTable(c) {
+    var p = c.pricing;
+    if (!p) return "";
+
+    var html = '<div class="x18-pricing-card">';
+    html += '<h4 style="border-left-color:' + c.color + '">💰 Bảng học phí — ' + esc(c.name) + '</h4>';
+
+    // Level prices
+    html += '<div class="x18-pricing-levels">';
+    p.levels.forEach(function (lv) {
+      html += '<div class="x18-pricing-level">' +
+        '<span class="x18-pricing-code" style="background:' + c.color + '15;color:' + c.color + '">' + esc(lv.code) + '</span>' +
+        '<span class="x18-pricing-price">' + formatPrice(lv.price) + '</span>' +
+        (lv.note ? '<span class="x18-pricing-note">' + esc(lv.note) + '</span>' : '') +
+      '</div>';
+    });
+    html += '</div>';
+
+    // Combo
+    if (p.combo) {
+      html += '<div class="x18-pricing-combo" style="border-color:' + c.color + '40">';
+      html += '<div class="x18-pricing-combo-name" style="color:' + c.color + '">⭐ ' + esc(p.combo.name) + '</div>';
+      if (p.combo.save) {
+        html += '<div class="x18-pricing-combo-original"><s>' + formatPrice(p.combo.original) + '</s> <span class="x18-pricing-save">Giảm ' + esc(p.combo.save) + '</span></div>';
+      }
+      html += '<div class="x18-pricing-combo-price">' + formatPrice(p.combo.discount) + '</div>';
+      html += '</div>';
+    }
+
+    html += '</div>';
+    return html;
+  }
+
   // ===== RENDER ROADMAP for a course =====
   function renderRoadmap(key) {
     var c = courses[key];
@@ -633,18 +1074,15 @@
     // Staircase
     var staircase = el("div", "x18-staircase");
     c.levels.forEach(function (lv, i) {
-      // Step height: each level is taller
       var unit = el("div", "x18-stair-unit");
       unit.style.marginBottom = (i * 30) + "px";
 
-      // Label
       var label = el("div", "x18-stair-label");
       label.style.background = c.color + "15";
       label.style.color = c.color;
       label.textContent = lv.label;
       unit.appendChild(label);
 
-      // Node
       var node = el("div", "x18-stair-node");
       node.style.borderColor = c.color + "40";
       node.innerHTML =
@@ -659,7 +1097,6 @@
       unit.appendChild(node);
       staircase.appendChild(unit);
 
-      // Connector
       if (i < c.levels.length - 1) {
         var conn = el("div", "x18-stair-connector");
         conn.innerHTML = '<div class="x18-stair-connector-line" style="background:' + c.color + '"></div>';
@@ -668,17 +1105,23 @@
     });
     wrap.appendChild(staircase);
 
+    // Career outcomes (below staircase, above output)
+    if (c.career) {
+      var careerDiv = el("div");
+      careerDiv.innerHTML = renderCareerOutcomes(c);
+      wrap.appendChild(careerDiv.firstChild);
+    }
+
+    // Pricing table (below career outcomes)
+    if (c.pricing) {
+      var pricingDiv = el("div");
+      pricingDiv.innerHTML = renderPricingTable(c);
+      wrap.appendChild(pricingDiv.firstChild);
+    }
+
     // Info cards
     var info = el("div", "x18-roadmap-info");
 
-    // Target audience
-    var targetCard = el("div", "x18-info-card");
-    targetCard.innerHTML =
-      '<h4>🎯 Đối tượng phù hợp</h4>' +
-      '<p>' + esc(c.target) + '</p>';
-    info.appendChild(targetCard);
-
-    // Output summary
     var outputCard = el("div", "x18-info-card");
     var outputHtml = '<h4>📦 Sản phẩm đầu ra sau toàn bộ lộ trình</h4><ul>';
     c.levels.forEach(function (lv) {
@@ -688,9 +1131,15 @@
     outputCard.innerHTML = outputHtml;
     info.appendChild(outputCard);
 
+    var targetCard = el("div", "x18-info-card");
+    targetCard.innerHTML =
+      '<h4>🎯 Đối tượng phù hợp</h4>' +
+      '<p>' + esc(c.target) + '</p>';
+    info.appendChild(targetCard);
+
     wrap.appendChild(info);
 
-    // Sales flow trigger (only for 3 main courses)
+    // Sales flow trigger
     if (salesData[key]) {
       var trigger = el("button", "x18-sales-trigger");
       trigger.innerHTML = "🎯 Xem Sales Flow chi tiết — " + esc(c.name);
@@ -700,14 +1149,12 @@
 
     canvas.appendChild(wrap);
 
-    // Hide pricing
     var ps = document.getElementById("pricingSection");
     if (ps) ps.style.display = "none";
   }
 
   // ===== LEVEL POPUP =====
   function showLevelPopup(course, level) {
-    // Remove existing
     var existing = document.querySelector(".x18-popup-overlay");
     if (existing) existing.remove();
 
@@ -718,7 +1165,6 @@
 
     var popup = el("div", "x18-popup");
 
-    // Header
     var headerDiv = el("div", "x18-popup-header");
     headerDiv.style.background = "linear-gradient(135deg, " + course.color + " 0%, " + course.color + "CC 100%)";
     headerDiv.innerHTML =
@@ -730,20 +1176,17 @@
 
     var body = el("div", "x18-popup-body");
 
-    // Description
     body.innerHTML =
       '<div class="x18-popup-section">' +
         '<h4>📝 Mô tả</h4>' +
         '<p>' + esc(level.desc) + '</p>' +
       '</div>';
 
-    // Topics
     var topicsHtml = '<div class="x18-popup-section"><h4>📚 Nội dung chính</h4><ul>';
     level.topics.forEach(function (t) { topicsHtml += '<li>' + esc(t) + '</li>'; });
     topicsHtml += '</ul></div>';
     body.innerHTML += topicsHtml;
 
-    // Tools
     var toolsHtml = '<div class="x18-popup-section"><h4>🛠️ Công cụ sử dụng</h4><div class="x18-popup-tools">';
     level.tools.forEach(function (t) {
       toolsHtml += '<span class="x18-popup-tool-tag">' + esc(t) + '</span>';
@@ -751,7 +1194,6 @@
     toolsHtml += '</div></div>';
     body.innerHTML += toolsHtml;
 
-    // Output
     body.innerHTML +=
       '<div class="x18-popup-section">' +
         '<h4>🎯 Sản phẩm đầu ra</h4>' +
@@ -785,12 +1227,10 @@
     salesContainer = el("div", "x18-sales");
     salesContainer.id = "x18SalesFlow";
 
-    // Exit button
     var exitBtn = el("button", "x18-sales-exit");
     exitBtn.textContent = "✕ Thoát";
     exitBtn.addEventListener("click", closeSalesFlow);
 
-    // Slides
     var slidesWrap = el("div", "x18-sales-slides");
     sd.slides.forEach(function (s, i) {
       var slide = buildSalesSlide(s, key);
@@ -799,7 +1239,6 @@
       slidesWrap.appendChild(slide);
     });
 
-    // Nav
     var nav = el("div", "x18-sales-nav");
     var prevBtn = el("button", "x18-sales-nav-btn");
     prevBtn.id = "x18SalesPrev";
@@ -835,12 +1274,10 @@
     salesContainer.appendChild(nav);
     document.body.appendChild(salesContainer);
 
-    // Activate
     requestAnimationFrame(function () {
       salesContainer.classList.add("active");
     });
 
-    // Keyboard
     document.addEventListener("keydown", salesKeyHandler);
   }
 
@@ -883,6 +1320,15 @@
     var c = courses[key];
 
     switch (data.type) {
+      case "hook":
+        s.innerHTML =
+          '<div class="x18-s-hero">' +
+            '<div style="font-size:3rem;margin-bottom:16px">' + (data.icon || "😰") + '</div>' +
+            '<h1>' + data.title.replace(/\n/g, '<br>') + '</h1>' +
+            '<p>' + data.sub.replace(/\n/g, '<br>') + '</p>' +
+          '</div>';
+        break;
+
       case "hero":
         s.innerHTML =
           '<div class="x18-s-hero">' +
@@ -903,6 +1349,26 @@
         });
         statsHtml += '</div>';
         s.innerHTML = statsHtml;
+        break;
+
+      case "stories":
+        var stHtml = '<div class="x18-s-title">' + data.title + '</div><div class="x18-s-stories">';
+        data.stories.forEach(function (st) {
+          stHtml += '<div class="x18-s-story">' +
+            '<div class="x18-s-story-before">' +
+              '<div class="x18-s-story-role">' + esc(st.before) + '</div>' +
+              '<div class="x18-s-story-salary">' + esc(st.salaryBefore) + '</div>' +
+            '</div>' +
+            '<div class="x18-s-story-arrow">→</div>' +
+            '<div class="x18-s-story-after">' +
+              '<div class="x18-s-story-role">' + esc(st.after) + '</div>' +
+              '<div class="x18-s-story-salary">' + esc(st.salaryAfter) + '</div>' +
+            '</div>' +
+            '<div class="x18-s-story-badge">' + esc(st.increase) + '</div>' +
+          '</div>';
+        });
+        stHtml += '</div>';
+        s.innerHTML = stHtml;
         break;
 
       case "audience":
@@ -932,6 +1398,66 @@
         s.innerHTML = lHtml;
         break;
 
+      case "leveldetail":
+        var ldHtml = '<div class="x18-s-title">' + data.title + '</div><div class="x18-s-leveldetails">';
+        c.levels.forEach(function (lv) {
+          ldHtml += '<div class="x18-s-ld-card" style="border-left-color:' + c.color + '">' +
+            '<div class="x18-s-ld-header">' +
+              '<span class="x18-s-ld-code" style="background:' + c.color + ';color:#fff">' + esc(lv.code) + '</span>' +
+              '<strong>' + esc(lv.name) + '</strong>' +
+              '<span class="x18-s-ld-meta">' + esc(lv.duration) + '</span>' +
+            '</div>' +
+            '<p>' + esc(lv.desc) + '</p>' +
+            '<div class="x18-s-ld-tools">' + lv.tools.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>' +
+            '<div class="x18-s-ld-output">📦 ' + esc(lv.output) + '</div>' +
+          '</div>';
+        });
+        ldHtml += '</div>';
+        s.innerHTML = ldHtml;
+        break;
+
+      case "career":
+        var cr = c.career;
+        if (!cr) break;
+        var maxSal = 0;
+        cr.salary.forEach(function (sv) { if (sv.max > maxSal) maxSal = sv.max; });
+
+        var crHtml = '<div class="x18-s-title">' + data.title + '</div>';
+        crHtml += '<div class="x18-s-career-wrap">';
+
+        // Positions
+        crHtml += '<div class="x18-s-career-positions">';
+        cr.positions.forEach(function (p) {
+          crHtml += '<span class="x18-s-career-pos' + (p.hot ? ' hot' : '') + '">' +
+            esc(p.title) + (p.hot ? ' <span class="x18-hot-badge">HOT</span>' : '') + '</span>';
+        });
+        crHtml += '</div>';
+
+        // Salary bars
+        crHtml += '<div class="x18-s-career-bars">';
+        cr.salary.forEach(function (sv) {
+          var leftPct = (sv.min / maxSal * 100);
+          var widthPct = ((sv.max - sv.min) / maxSal * 100);
+          crHtml += '<div class="x18-salary-row">' +
+            '<div class="x18-salary-level">' + esc(sv.level) + '</div>' +
+            '<div class="x18-salary-bar-wrap">' +
+              '<div class="x18-salary-bar" style="left:' + leftPct + '%;width:' + widthPct + '%;background:' + c.color + '">' +
+                '<span class="x18-salary-val">' + esc(sv.range) + '</span>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        });
+        crHtml += '</div>';
+
+        crHtml += '<div class="x18-s-career-meta">' +
+          '<div>📈 Tăng lương: <strong style="color:' + c.color + '">' + esc(cr.growth) + '</strong></div>' +
+          '<div>🏢 Top employers: ' + cr.employers.join(', ') + '</div>' +
+          '<div class="x18-s-career-src">Nguồn: ' + esc(cr.source) + '</div>' +
+        '</div>';
+        crHtml += '</div>';
+        s.innerHTML = crHtml;
+        break;
+
       case "output":
         var oHtml = '<div class="x18-s-title">' + data.title + '</div><div class="x18-s-list-grid">';
         data.items.forEach(function (item) {
@@ -956,16 +1482,16 @@
         s.innerHTML = mHtml;
         break;
 
-      case "commitment":
-        var cHtml = '<div class="x18-s-title">' + data.title + '</div><div class="x18-s-list-grid">';
+      case "guarantee":
+        var gHtml = '<div class="x18-s-title">' + data.title + '</div><div class="x18-s-list-grid">';
         data.items.forEach(function (item) {
-          cHtml += '<div class="x18-s-list-item">' +
+          gHtml += '<div class="x18-s-list-item">' +
             '<div class="x18-s-list-item-icon">' + item.icon + '</div>' +
             '<div><h5>' + esc(item.title) + '</h5><p>' + esc(item.desc) + '</p></div>' +
           '</div>';
         });
-        cHtml += '</div>';
-        s.innerHTML = cHtml;
+        gHtml += '</div>';
+        s.innerHTML = gHtml;
         break;
 
       case "brand":
@@ -980,12 +1506,59 @@
           '<div class="x18-s-quote">"Nếu không có MindX, chắc mình sẽ chẳng có cơ hội nghĩ đến việc tìm được việc làm bên Sing"<br><span>— Gia Khánh, từ Điện tử → Fullstack Dev tại Singapore</span></div>';
         break;
 
+      case "pricing":
+        var pr = c.pricing;
+        if (!pr) break;
+        var prHtml = '<div class="x18-s-title">' + data.title + '</div>';
+        prHtml += '<div class="x18-s-pricing-table">';
+
+        // Level prices
+        prHtml += '<div class="x18-s-pricing-levels">';
+        pr.levels.forEach(function (lv) {
+          prHtml += '<div class="x18-s-pricing-lv">' +
+            '<div class="x18-s-pricing-lv-code" style="background:' + c.color + '">' + esc(lv.code) + '</div>' +
+            '<div class="x18-s-pricing-lv-price">' + formatPrice(lv.price) + '</div>' +
+            (lv.note ? '<div class="x18-s-pricing-lv-note">' + esc(lv.note) + '</div>' : '') +
+          '</div>';
+        });
+        prHtml += '</div>';
+
+        // Combo highlight
+        if (pr.combo) {
+          prHtml += '<div class="x18-s-pricing-combo" style="border-color:' + c.color + '">';
+          prHtml += '<div class="x18-s-pricing-combo-star">⭐</div>';
+          prHtml += '<div class="x18-s-pricing-combo-name">' + esc(pr.combo.name) + '</div>';
+          if (pr.combo.save) {
+            prHtml += '<div class="x18-s-pricing-combo-original"><s>' + formatPrice(pr.combo.original) + '</s></div>';
+            prHtml += '<div class="x18-s-pricing-combo-save">Tiết kiệm ' + esc(pr.combo.save) + '</div>';
+          }
+          prHtml += '<div class="x18-s-pricing-combo-final">' + formatPrice(pr.combo.discount) + '</div>';
+          prHtml += '</div>';
+        }
+
+        prHtml += '</div>';
+        s.innerHTML = prHtml;
+        break;
+
       case "cta":
+        var career = c.career;
+        var quickStats = '';
+        if (career) {
+          var topSalary = career.salary[career.salary.length - 1];
+          quickStats =
+            '<div class="x18-s-cta-stats">' +
+              '<div class="x18-s-cta-stat"><div class="x18-s-cta-stat-num">' + esc(topSalary.range) + '</div><div class="x18-s-cta-stat-label">Lương kỳ vọng</div></div>' +
+              '<div class="x18-s-cta-stat"><div class="x18-s-cta-stat-num">' + esc(c.duration) + '</div><div class="x18-s-cta-stat-label">Thời gian đào tạo</div></div>' +
+              '<div class="x18-s-cta-stat"><div class="x18-s-cta-stat-num">80.000+</div><div class="x18-s-cta-stat-label">Học viên đã thành công</div></div>' +
+            '</div>';
+        }
         s.innerHTML =
           '<div class="x18-s-cta">' +
-            '<h2>' + data.title.replace(/\n/g, '<br>') + '</h2>' +
-            '<p>' + esc(data.sub) + '</p>' +
-            '<button class="x18-s-cta-btn" onclick="window.open(\'https://mindx.edu.vn\',\'_blank\')">' + esc(data.btn) + ' →</button>' +
+            '<h2>Cuộc đời bạn chỉ thay đổi<br>khi bạn <span style="color:#E31F26">bắt đầu hành động</span></h2>' +
+            '<p>' + esc(c.duration) + ' để thay đổi 40 năm sự nghiệp phía trước</p>' +
+            quickStats +
+            '<button class="x18-s-cta-btn" onclick="window.open(\'https://mindx.edu.vn\',\'_blank\')">🚀 Đăng ký học ngay →</button>' +
+            '<div class="x18-s-cta-sub">Không phải đăng ký tư vấn — đăng ký học để thay đổi cuộc đời.</div>' +
           '</div>';
         break;
     }
@@ -1000,7 +1573,7 @@
     { key: "x18-itba", label: "ITBA", icon: "📋" },
     { key: "x18-uiux", label: "UI/UX", icon: "🎨" },
     { key: "x18-marketing", label: "Marketing", icon: "📢" },
-    { key: "x18-design", label: "Design", icon: "🖌️" },
+    { key: "x18-dataeng", label: "Data Engineer", icon: "🛢️" },
     { key: "x18-ai", label: "AI", icon: "🤖" }
   ];
 
@@ -1011,28 +1584,24 @@
     "x18-itba": "18+ — IT Business Analyst",
     "x18-uiux": "18+ — UI/UX Designer",
     "x18-marketing": "18+ — Fullstack Marketing",
-    "x18-design": "18+ — Graphic Designer",
+    "x18-dataeng": "18+ — Data Engineer",
     "x18-ai": "18+ — AI"
   };
 
   function activateCourse(courseKey) {
     var menuKey = "x18-" + courseKey;
     activateX18(menuKey);
-    // Update sidebar active state
     document.querySelectorAll(".nav-x18-item").forEach(function (btn) {
       btn.classList.toggle("active", btn.getAttribute("data-x18") === menuKey);
     });
-    // Deactivate K12 + old 18+
     document.querySelectorAll(".nav-item").forEach(function (btn) { btn.classList.remove("active"); });
     document.querySelectorAll(".nav-xmember, .nav-xart, .nav-xmember2").forEach(function (btn) { btn.classList.remove("active"); });
   }
 
   function activateX18(key) {
-    // Update title
     var pageTitle = document.getElementById("pageTitle");
     if (pageTitle) pageTitle.textContent = titleMap[key] || "18+";
 
-    // Render content
     if (key === "x18-overview") {
       renderOverview();
     } else {
@@ -1040,38 +1609,30 @@
       renderRoadmap(courseKey);
     }
 
-    // Update sidebar
     document.querySelectorAll(".nav-x18-item").forEach(function (btn) {
       btn.classList.toggle("active", btn.getAttribute("data-x18") === key);
     });
-    // Deactivate K12 nav items
     document.querySelectorAll(".nav-item").forEach(function (btn) { btn.classList.remove("active"); });
-    // Deactivate old X buttons
     document.querySelectorAll(".nav-xmember, .nav-xart, .nav-xmember2").forEach(function (btn) { btn.classList.remove("active"); });
   }
 
-  // Build sidebar section
   function buildSidebar() {
     var nav = document.querySelector(".sidebar-nav");
     if (!nav) return;
 
-    // Find insertion point: after Du học button
     var duhocBtn = document.getElementById("xmember2Btn");
     var insertBefore = null;
     if (duhocBtn) {
       insertBefore = duhocBtn.nextSibling;
     }
 
-    // Divider
     var divider = el("div", "nav-x18-divider");
     nav.insertBefore(divider, insertBefore);
 
-    // Section label
     var label = el("div", "nav-section-label nav-section-18plus-new");
     label.innerHTML = '18+ <span class="nav-18plus-badge">NEW</span>';
     nav.insertBefore(label, insertBefore);
 
-    // Menu items
     x18MenuItems.forEach(function (item) {
       var btn = el("button", "nav-x18-item");
       btn.setAttribute("data-x18", item.key);
@@ -1089,20 +1650,16 @@
   function init() {
     buildSidebar();
 
-    // Listen for K12 nav clicks to deactivate 18+ items
     document.querySelectorAll(".nav-item[data-roadmap]").forEach(function (btn) {
       btn.addEventListener("click", function () {
-        // Deactivate all 18+ nav items
         document.querySelectorAll(".nav-x18-item").forEach(function (b) {
           b.classList.remove("active");
         });
-        // Show pricing section again
         var ps = document.getElementById("pricingSection");
         if (ps) ps.style.display = "";
       });
     });
 
-    // Also listen for X-Coding, X-Art, Du học clicks
     ["xmemberBtn", "xartBtn", "xmember2Btn"].forEach(function (id) {
       var btn = document.getElementById(id);
       if (btn) {
@@ -1115,14 +1672,12 @@
     });
   }
 
-  // Wait for DOM
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
   } else {
     init();
   }
 
-  // Expose for external use
   window.x18plusActivate = activateX18;
 
 })();
