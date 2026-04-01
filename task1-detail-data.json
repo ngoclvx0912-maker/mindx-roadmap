@@ -1,0 +1,269 @@
+{
+  "slide3_cards": {
+    "title": "Tại sao cần bắt đầu từ sớm?",
+    "items": [
+      {
+        "id": "logic",
+        "icon": "🧠",
+        "name": "Tư duy logic",
+        "details": [
+          "Nghiên cứu từ MIT cho thấy trẻ từ 6-12 tuổi có giai đoạn phát triển tư duy logic mạnh nhất",
+          "Lập trình rèn kỹ năng phân tích, phân rã vấn đề — nền tảng cho MỌI ngành nghề, không chỉ IT",
+          "Trẻ học code sớm có điểm Toán cao hơn 15-20% (Code.org Research)",
+          "Tư duy thuật toán = tư duy có hệ thống: Input → Process → Output"
+        ]
+      },
+      {
+        "id": "creative",
+        "icon": "💡",
+        "name": "Sáng tạo",
+        "details": [
+          "Biến ý tưởng thành sản phẩm thật từ 8 tuổi — game, app, website",
+          "Không chỉ tiêu thụ công nghệ, mà TẠO RA công nghệ",
+          "Phát triển Growth Mindset: thử → sai → học → cải thiện",
+          "Mỗi dự án hoàn thành = một bước trưởng thành về sự tự tin"
+        ]
+      },
+      {
+        "id": "problem",
+        "icon": "🔧",
+        "name": "Giải quyết vấn đề",
+        "details": [
+          "Kỹ năng #1 mà WEF xếp hạng cho thế kỷ 21",
+          "Chia nhỏ vấn đề lớn thành từng bước nhỏ — áp dụng cho mọi tình huống trong cuộc sống",
+          "Debug code = rèn tính kiên nhẫn + phản biện",
+          "Con học cách đối mặt thử thách thay vì bỏ cuộc"
+        ]
+      },
+      {
+        "id": "confidence",
+        "icon": "🎯",
+        "name": "Tự tin & Kỷ luật",
+        "details": [
+          "Mỗi dự án hoàn thành = một thành tựu cụ thể con có thể chỉ ra",
+          "Trình bày sản phẩm trước lớp → rèn kỹ năng thuyết trình từ sớm",
+          "Kỷ luật viết code = kỷ luật tư duy: cẩn thận, tỉ mỉ, chính xác",
+          "Con tự tin hơn khi biết mình có thể TẠO RA thứ gì đó từ con số 0"
+        ]
+      }
+    ]
+  },
+  "slide4_stairs": {
+    "title": "Lộ trình phát triển tại MindX",
+    "items": [
+      {
+        "id": "scratch",
+        "year": "Năm 1",
+        "name": "Scratch",
+        "details": {
+          "tuduy": "Tư duy thuật toán trực quan — phân rã vấn đề, nhận dạng pattern",
+          "kynang": "Lập trình kéo thả, thiết kế game đơn giản, thuyết trình sản phẩm",
+          "kienthuc": "Biến, vòng lặp, sự kiện, điều kiện — nền tảng mọi ngôn ngữ",
+          "output": "Sản phẩm đủ sức thi Scratch cấp trường/quận/TP",
+          "duration": "3 HP × 14 buổi"
+        }
+      },
+      {
+        "id": "gamemaker",
+        "year": "Năm 2",
+        "name": "Game Maker",
+        "details": {
+          "tuduy": "Tư duy hệ thống (game design), quản lý dự án",
+          "kynang": "Thiết kế game 2D hoàn chỉnh, làm việc nhóm, thuyết trình & gọi vốn",
+          "kienthuc": "Game loop, sprite, physics, AI4L (AI for Literacy)",
+          "output": "Game 2D có thể upload lên CH Play / App Store",
+          "duration": "3 HP × 14 buổi + AI4L"
+        }
+      },
+      {
+        "id": "appproducer",
+        "year": "Năm 3",
+        "name": "App Producer",
+        "details": {
+          "tuduy": "Tư duy sản phẩm — từ ý tưởng → phát triển → phát hành",
+          "kynang": "Python, xây dựng ứng dụng, NextGen & Internship 60h",
+          "kienthuc": "Python — ngôn ngữ phổ biến nhất thế giới, API, CSDL",
+          "output": "App thực tế + kinh nghiệm khởi nghiệp sớm",
+          "duration": "3 HP × 14 buổi + NextGen + Intern 60h"
+        }
+      },
+      {
+        "id": "webcreator",
+        "year": "Năm 4",
+        "name": "Web Creator",
+        "details": {
+          "tuduy": "Tư duy thiết kế (UI/UX), giải quyết vấn đề phức tạp",
+          "kynang": "Thành thạo JavaScript, xây website responsive đa mục đích",
+          "kienthuc": "HTML, CSS, JavaScript, DOM, API — bộ công cụ web developer",
+          "output": "Website cá nhân, portfolio, khởi đầu freelance",
+          "duration": "3 HP × 14 buổi"
+        }
+      },
+      {
+        "id": "cs",
+        "year": "Năm 5",
+        "name": "Computer Science",
+        "details": {
+          "tuduy": "Tư duy phản biện, phân tích dữ liệu — ra quyết định dựa trên data",
+          "kynang": "Thu thập & phân tích dữ liệu, quản lý dự án công nghệ",
+          "kienthuc": "Giải thuật, cấu trúc dữ liệu, AI core, khoa học máy tính",
+          "output": "Sẵn sàng du học, thi SAT CS, hoặc ứng tuyển junior developer",
+          "duration": "3 HP × 14 buổi + Intern 60h"
+        }
+      }
+    ]
+  },
+  "slide5_values": {
+    "title": "3 hệ giá trị xuyên suốt",
+    "items": [
+      {
+        "id": "tuduy",
+        "name": "Tư duy",
+        "details": [
+          "Năm 1-2: Tư duy logic cơ bản, phân tích mẫu, nhận dạng pattern",
+          "Năm 3: Tư duy sản phẩm — biến ý tưởng thành sản phẩm hoàn chỉnh",
+          "Năm 4: Tư duy thiết kế (UI/UX), giải quyết vấn đề phức tạp",
+          "Năm 5: Tư duy phản biện, phân tích dữ liệu, ra quyết định",
+          "BF & Domain: Tư duy chiến lược kinh doanh, quản trị"
+        ]
+      },
+      {
+        "id": "kynang",
+        "name": "Kỹ năng",
+        "details": [
+          "Năm 1-2: Lập trình kéo thả → Game 2D, thuyết trình sản phẩm",
+          "Năm 3: Python + App thực tế + NextGen & Internship 60h",
+          "Năm 4: JavaScript + Website + Portfolio cá nhân",
+          "Năm 5: Data Analysis + AI + Quản lý dự án",
+          "BF & Domain: Kỹ năng kinh doanh toàn diện + Chuyên sâu 1 ngành"
+        ]
+      },
+      {
+        "id": "kienthuc",
+        "name": "Kiến thức",
+        "details": [
+          "Năm 1: Scratch — biến, vòng lặp, sự kiện, điều kiện",
+          "Năm 2: GML, game loop, sprite, physics, AI4L",
+          "Năm 3: Python, API, CSDL cơ bản",
+          "Năm 4: HTML, CSS, JavaScript, DOM",
+          "Năm 5: Giải thuật, cấu trúc dữ liệu, AI core",
+          "BF: MKT + Sale + Finance → Business Foundation toàn diện"
+        ]
+      }
+    ]
+  },
+  "slide6_fork": {
+    "items": [
+      {
+        "id": "bt-da-nganh",
+        "name": "Bảo trợ đa ngành",
+        "details": [
+          "Business Foundation: 3 levels × 14 buổi — MKT, Sale, Finance",
+          "Chuyên sâu 12 tháng: chọn 1 trong 4 domain (Tech, MKT, Finance, Business & Ops)",
+          "Tất cả domain đều tích hợp AI — không chỉ học ngành mà còn học cách dùng AI",
+          "Internship X: 30h thực tập tại doanh nghiệp + Cam kết việc làm",
+          "Con được THỬ 3 mảng kinh doanh trước khi chọn chuyên sâu — giảm rủi ro chọn sai ngành"
+        ]
+      },
+      {
+        "id": "bt-du-hoc",
+        "name": "Bảo trợ du học",
+        "details": [
+          "2 ngành: CNTT (X-Global Tech Seed) và Art (X-Global Art Seed)",
+          "Xây dựng portfolio quốc tế với sản phẩm công nghệ thực tế",
+          "Hồ sơ du học: CV, Motivation Letter, Portfolio/GitHub chuyên nghiệp",
+          "Thực tập chuyên môn tại doanh nghiệp + Bảng điểm kỹ thuật",
+          "Hỗ trợ phỏng vấn & chọn trường phù hợp năng lực"
+        ]
+      }
+    ]
+  },
+  "slide9_domains": {
+    "items": [
+      {
+        "id": "tech",
+        "name": "Tech",
+        "details": {
+          "sub": "Web · Data · UIUX + AI4Tech",
+          "courses": "Full Stack Web: React, Node.js, Database, DevOps\nData Analyst: Python, SQL, Power BI, Pandas\nUI/UX: Figma, User Research, Design System",
+          "tuduy": "Tư duy hệ thống, tư duy sản phẩm số",
+          "career": "Junior Developer → Full Stack → Tech Lead\nData Analyst → Data Scientist → Head of Data\nUI/UX Designer → Product Designer → Design Lead"
+        }
+      },
+      {
+        "id": "marketing",
+        "name": "Marketing",
+        "details": {
+          "sub": "MKT Fullstack + AI4MKT",
+          "courses": "Facebook Ads, Google Ads, TikTok Ads\nSEO, Content Marketing, Social Media\nAI Content Creation & Automation",
+          "tuduy": "Tư duy chiến lược marketing, phân tích thị trường",
+          "career": "Digital Marketing → Performance Marketer → Growth\nContent Creator → Content Strategist → Head of Content"
+        }
+      },
+      {
+        "id": "finance",
+        "name": "Finance",
+        "details": {
+          "sub": "Data/ITBA + AI4Finance",
+          "courses": "Financial Modeling & Excel nâng cao\nData Analysis: Python, SQL, Power BI\nAI4Finance: Machine Learning cho dự báo",
+          "tuduy": "Tư duy phân tích dữ liệu, ra quyết định dựa trên data",
+          "career": "Financial Analyst → Senior Analyst → Finance Manager\nBusiness Analyst → Senior BA → Product Owner"
+        }
+      },
+      {
+        "id": "business",
+        "name": "Business & Ops",
+        "details": {
+          "sub": "ITBA/Data + AI4B&O",
+          "courses": "IT Business Analyst: BPMN, Use Case, Agile/Scrum\nProject Management: Lean, Kanban\nAI4B&O: Tự động hóa quy trình vận hành",
+          "tuduy": "Tư duy quy trình, tối ưu vận hành & quản lý dự án",
+          "career": "Business Analyst → Senior BA → Product Manager\nOps Manager → COO"
+        }
+      }
+    ]
+  },
+  "slide11_timeline": {
+    "items": [
+      {
+        "id": "nentang",
+        "name": "5 năm nền tảng",
+        "details": [
+          "Scratch (8+) → Game Maker (9+) → App Producer (11+) → Web Creator (12+) → CS (14+)",
+          "Mỗi năm 3 học phần × 14 buổi, tổng ~210 buổi",
+          "Từ kéo thả đến code chuyên nghiệp",
+          "Kèm AI4L, NextGen, Internship 60h"
+        ]
+      },
+      {
+        "id": "bf",
+        "name": "Business Foundation",
+        "details": [
+          "Lv1: MKT & Communication — 14 buổi",
+          "Lv2: Sale & Operation — 14 buổi",
+          "Lv3: Finance & Accounting — 14 buổi",
+          "Dù con làm ngành gì, hiểu cách doanh nghiệp vận hành = thăng tiến nhanh hơn"
+        ]
+      },
+      {
+        "id": "domain",
+        "name": "Chuyên sâu 12T",
+        "details": [
+          "4 hướng: Tech, Marketing, Finance, Business & Ops",
+          "12 tháng chuyên sâu với AI tích hợp",
+          "Không cần chọn ngay — sau BF con sẽ hiểu mình phù hợp hướng nào",
+          "Mô hình T-shaped: Rộng nhiều lĩnh vực + Sâu 1 ngành"
+        ]
+      },
+      {
+        "id": "internship",
+        "name": "Internship X",
+        "details": [
+          "30h thực tập tại doanh nghiệp đối tác",
+          "Mentor hướng dẫn 1-1 suốt quá trình",
+          "Portfolio chuyên nghiệp — chứng minh năng lực thật",
+          "Cam kết giới thiệu việc làm sau hoàn thành"
+        ]
+      }
+    ]
+  }
+}

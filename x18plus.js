@@ -1620,19 +1620,29 @@
     var nav = document.querySelector(".sidebar-nav");
     if (!nav) return;
 
-    var duhocBtn = document.getElementById("xmember2Btn");
-    var insertBefore = null;
-    if (duhocBtn) {
-      insertBefore = duhocBtn.nextSibling;
-    }
+    /* Create 18+ nav group */
+    var group = el("div", "nav-group");
+    group.id = "navGroup18Plus";
 
-    var divider = el("div", "nav-x18-divider");
-    nav.insertBefore(divider, insertBefore);
+    var header = el("button", "nav-group-header");
+    header.setAttribute("data-group", "18plus");
+    header.innerHTML = '<span class="nav-group-icon">🚀</span>' +
+      '<span class="nav-group-label">18+</span>' +
+      '<span class="nav-group-arrow">\u25B6</span>';
+    header.onclick = function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var ch = document.querySelector('#navGroup18Plus .nav-group-children');
+      var ar = document.querySelector('#navGroup18Plus .nav-group-arrow');
+      if (ch) {
+        var isOpen = ch.classList.contains('open');
+        if (isOpen) { ch.classList.remove('open'); } else { ch.classList.add('open'); }
+        if (ar) ar.textContent = isOpen ? '\u25B6' : '\u25BC';
+      }
+    };
+    group.appendChild(header);
 
-    var label = el("div", "nav-section-label nav-section-18plus-new");
-    label.innerHTML = '18+ <span class="nav-18plus-badge">NEW</span>';
-    nav.insertBefore(label, insertBefore);
-
+    var children = el("div", "nav-group-children");
     x18MenuItems.forEach(function (item) {
       var btn = el("button", "nav-x18-item");
       btn.setAttribute("data-x18", item.key);
@@ -1641,9 +1651,21 @@
         '<span>' + esc(item.label) + '</span>';
       btn.addEventListener("click", function () {
         activateX18(item.key);
+        /* Mark 18+ group as active */
+        document.querySelectorAll(".nav-group-header").forEach(function(h){ h.classList.remove("active"); });
+        header.classList.add("active");
       });
-      nav.insertBefore(btn, insertBefore);
+      children.appendChild(btn);
     });
+    group.appendChild(children);
+
+    /* Insert before Training group */
+    var trainingGroup = document.getElementById("navGroupTraining");
+    if (trainingGroup) {
+      nav.insertBefore(group, trainingGroup);
+    } else {
+      nav.appendChild(group);
+    }
   }
 
   // ===== INIT =====

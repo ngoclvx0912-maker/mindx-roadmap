@@ -1,0 +1,180 @@
+/* Art Roadmap — Special Program Badges */
+
+/* ===== BADGE ROW ===== */
+.ab-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 2px 0 4px;
+  justify-content: center;
+}
+
+/* ===== BADGE ===== */
+.ab-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: var(--ab-color);
+  color: #fff;
+  font-size: 0.52rem;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  white-space: nowrap;
+  animation: ab-pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 0 0 var(--ab-color);
+  transition: transform 0.2s;
+}
+
+.ab-badge:hover {
+  transform: scale(1.1);
+  animation: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.ab-badge-icon {
+  font-size: 0.55rem;
+  line-height: 1;
+}
+
+.ab-badge-label {
+  letter-spacing: 0.02em;
+}
+
+/* ===== PULSE ANIMATION ===== */
+@keyframes ab-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--ab-color) 60%, transparent);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 12px 4px color-mix(in srgb, var(--ab-color) 40%, transparent);
+    transform: scale(1.06);
+  }
+}
+
+/* Staggered animation for multiple badges */
+.ab-badge-row .ab-badge:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.ab-badge-row .ab-badge:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+/* ===== POPUP OVERLAY ===== */
+.ab-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s, visibility 0.25s;
+}
+.ab-popup-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* ===== POPUP ===== */
+.ab-popup {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 32px;
+  max-width: 520px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  position: relative;
+  animation: ab-popup-in 0.3s ease-out;
+}
+
+@keyframes ab-popup-in {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.ab-popup-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #999;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.ab-popup-close:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.ab-popup-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+  padding-right: 32px;
+  line-height: 1.35;
+  text-wrap: balance;
+}
+
+.ab-popup-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.ab-popup-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.88rem;
+  color: #444;
+  line-height: 1.55;
+  position: relative;
+  padding-left: 20px;
+}
+.ab-popup-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #8B5CF6;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+.ab-popup-list li:last-child {
+  border-bottom: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .ab-badge {
+    font-size: 0.45rem;
+    padding: 2px 5px;
+  }
+  .ab-popup {
+    padding: 20px 24px;
+    width: 95%;
+  }
+  .ab-popup-title {
+    font-size: 1rem;
+  }
+}

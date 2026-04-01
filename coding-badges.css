@@ -1,0 +1,180 @@
+/* Coding Roadmap — Special Program Badges */
+
+/* ===== BADGE ROW ===== */
+.cb-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 2px 0 4px;
+  justify-content: center;
+}
+
+/* ===== BADGE ===== */
+.cb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: var(--cb-color);
+  color: #fff;
+  font-size: 0.52rem;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  white-space: nowrap;
+  animation: cb-pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 0 0 var(--cb-color);
+  transition: transform 0.2s;
+}
+
+.cb-badge:hover {
+  transform: scale(1.1);
+  animation: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.cb-badge-icon {
+  font-size: 0.55rem;
+  line-height: 1;
+}
+
+.cb-badge-label {
+  letter-spacing: 0.02em;
+}
+
+/* ===== PULSE ANIMATION ===== */
+@keyframes cb-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--cb-color) 60%, transparent);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 12px 4px color-mix(in srgb, var(--cb-color) 40%, transparent);
+    transform: scale(1.06);
+  }
+}
+
+/* Staggered animation for multiple badges */
+.cb-badge-row .cb-badge:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.cb-badge-row .cb-badge:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+/* ===== POPUP OVERLAY ===== */
+.cb-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s, visibility 0.25s;
+}
+.cb-popup-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* ===== POPUP ===== */
+.cb-popup {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 32px;
+  max-width: 520px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  position: relative;
+  animation: cb-popup-in 0.3s ease-out;
+}
+
+@keyframes cb-popup-in {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.cb-popup-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #999;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.cb-popup-close:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.cb-popup-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+  padding-right: 32px;
+  line-height: 1.35;
+  text-wrap: balance;
+}
+
+.cb-popup-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.cb-popup-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.88rem;
+  color: #444;
+  line-height: 1.55;
+  position: relative;
+  padding-left: 20px;
+}
+.cb-popup-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #E31F26;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+.cb-popup-list li:last-child {
+  border-bottom: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .cb-badge {
+    font-size: 0.45rem;
+    padding: 2px 5px;
+  }
+  .cb-popup {
+    padding: 20px 24px;
+    width: 95%;
+  }
+  .cb-popup-title {
+    font-size: 1rem;
+  }
+}

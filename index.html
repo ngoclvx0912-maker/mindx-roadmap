@@ -31,6 +31,7 @@
 <link rel="stylesheet" href="./xart.css?v=20260323i">
 <link rel="stylesheet" href="./expert.css">
 <link rel="stylesheet" href="./x18plus.css?v=20260323j">
+<link rel="stylesheet" href="./training-embed.css">
 </head>
 <body>
 
@@ -47,36 +48,53 @@
     </button>
   </div>
   <nav class="sidebar-nav">
-    <div class="nav-section-label">K12</div>
-    <button class="nav-item active" data-roadmap="robotics">
-      <span class="nav-icon">🤖</span>
-      <span class="nav-label">Robotics</span>
-    </button>
-    <button class="nav-item" data-roadmap="coding">
-      <span class="nav-icon">💻</span>
-      <span class="nav-label">Coding</span>
-    </button>
-    <button class="nav-item" data-roadmap="art">
-      <span class="nav-icon">🎨</span>
-      <span class="nav-label">Art</span>
-    </button>
-    <div class="nav-section-label nav-section-18plus" style="display:none">
-      18+
-      <span class="coming-soon-badge">Sắp ra mắt</span>
+    <!-- K12 Group -->
+    <div class="nav-group" id="navGroupK12">
+      <button class="nav-group-header active" data-group="k12" onclick="var c=document.getElementById('navGroupK12Children');var a=this.querySelector('.nav-group-arrow');if(c){var o=c.classList.contains('open');c.classList.toggle('open');if(a)a.textContent=o?'\u25B6':'\u25BC';}">
+        <span class="nav-group-icon">🎓</span>
+        <span class="nav-group-label">K12</span>
+        <span class="nav-group-arrow">▼</span>
+      </button>
+      <div class="nav-group-children open" id="navGroupK12Children">
+        <button class="nav-item active" data-roadmap="robotics">
+          <span class="nav-icon">🤖</span>
+          <span class="nav-label">Robotics</span>
+        </button>
+        <button class="nav-item" data-roadmap="coding">
+          <span class="nav-icon">💻</span>
+          <span class="nav-label">Coding</span>
+        </button>
+        <button class="nav-item" data-roadmap="art">
+          <span class="nav-icon">🎨</span>
+          <span class="nav-label">Art</span>
+        </button>
+        <div class="nav-xmember-divider"></div>
+        <button class="nav-xmember" id="xmemberBtn" onclick="if(window.xmemberActivate)window.xmemberActivate();">
+          <span class="xm-nav-icon">X</span>
+          X-Coding
+        </button>
+        <button class="nav-xart" id="xartBtn" onclick="if(window.xartActivate)window.xartActivate();">
+          <span class="xa-nav-icon">🎨</span>
+          X-Art
+        </button>
+        <button class="nav-xmember2" id="xmember2Btn" onclick="if(window.xmember2Activate)window.xmember2Activate();">
+          <span class="xm2-nav-icon">✈</span>
+          Du học
+        </button>
+      </div>
     </div>
-    <div class="nav-xmember-divider"></div>
-    <button class="nav-xmember" id="xmemberBtn" onclick="if(window.xmemberActivate)window.xmemberActivate();">
-      <span class="xm-nav-icon">X</span>
-      X-Coding
-    </button>
-    <button class="nav-xart" id="xartBtn" onclick="if(window.xartActivate)window.xartActivate();">
-      <span class="xa-nav-icon">🎨</span>
-      X-Art
-    </button>
-    <button class="nav-xmember2" id="xmember2Btn" onclick="if(window.xmember2Activate)window.xmember2Activate();">
-      <span class="xm2-nav-icon">✈</span>
-      Du học
-    </button>
+    <!-- 18+ Group (injected by x18plus.js) -->
+    <!-- Training Group -->
+    <div class="nav-group" id="navGroupTraining">
+      <button class="nav-group-header" data-group="training" id="trainingBtn" onclick="">
+        <span class="nav-group-icon">📚</span>
+        <span class="nav-group-label">Training nội bộ</span>
+        <span class="nav-group-arrow">▶</span>
+      </button>
+      <div class="nav-group-children" id="navGroupTrainingChildren">
+        <!-- Populated after password auth -->
+      </div>
+    </div>
   </nav>
   <div class="sidebar-footer">
     <button class="admin-toggle" id="adminToggle">
@@ -118,6 +136,9 @@
     <div class="pricing-tables" id="pricingTables"></div>
   </section>
 
+  <!-- Training container -->
+  <div id="trainingContainer"></div>
+
   <!-- Footer -->
   <footer class="main-footer">
     <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
@@ -134,6 +155,20 @@
     </button>
   </div>
   <div class="drawer-body" id="drawerBody"></div>
+</div>
+
+<!-- Training password modal -->
+<div class="modal-overlay hidden" id="trainingPasswordModal">
+  <div class="modal-content modal-small">
+    <h3>Training nội bộ</h3>
+    <p class="modal-desc">Nhập mật khẩu để truy cập hệ thống training</p>
+    <input type="password" id="trainingPassword" placeholder="Mật khẩu" class="admin-input" autocomplete="off">
+    <p class="error-msg hidden" id="trainingError">Mật khẩu không đúng</p>
+    <div class="modal-actions">
+      <button class="btn-secondary" id="trainingCancel">Hủy</button>
+      <button class="btn-primary" id="trainingSubmit">Xác nhận</button>
+    </div>
+  </div>
 </div>
 
 <!-- Admin password modal -->
@@ -158,6 +193,213 @@
 <script src="./xart.js?v=20260323i"></script>
 <script src="./expert.js"></script>
 <script src="./x18plus.js?v=20260323j"></script>
+<script src="./training-data.js" defer></script>
+<script src="./training-embed.js" defer></script>
+<script>
+/* Nav Group Toggle + Training handler */
+(function(){
+  var TRAINING_PW = 'mindx2026';
+  var trainingUnlocked = false;
+  var trainingActive = false;
+
+  document.addEventListener('DOMContentLoaded', function(){
+    /* ---- Training group click handler ---- */
+    var trnGroupBtn = document.getElementById('trainingBtn');
+    if(trnGroupBtn) {
+      trnGroupBtn.onclick = function(e) {
+        e.preventDefault();
+        if(!trainingUnlocked) {
+          showTrainingModal();
+          return;
+        }
+        /* Toggle expand/collapse */
+        var ch = document.getElementById('navGroupTrainingChildren');
+        var ar = trnGroupBtn.querySelector('.nav-group-arrow');
+        if(ch) {
+          var isOpen = ch.classList.contains('open');
+          if(isOpen) { ch.classList.remove('open'); } else { ch.classList.add('open'); }
+          if(ar) ar.textContent = isOpen ? '\u25B6' : '\u25BC';
+        }
+        /* Activate training view */
+        if(!trainingActive) activateTraining();
+      };
+    }
+
+    /* ---- Training password ---- */
+    var modal = document.getElementById('trainingPasswordModal');
+    var pwInput = document.getElementById('trainingPassword');
+    var errMsg = document.getElementById('trainingError');
+    var submitBtn = document.getElementById('trainingSubmit');
+    var cancelBtn = document.getElementById('trainingCancel');
+    var trnBtn = document.getElementById('trainingBtn');
+
+    function showTrainingModal(){
+      if(!modal) return;
+      modal.classList.remove('hidden');
+      pwInput.value='';
+      errMsg.classList.add('hidden');
+      pwInput.focus();
+    }
+
+    function activateTraining(){
+      trainingUnlocked = true;
+      trainingActive = true;
+      /* Populate sidebar sub-items */
+      var children = document.getElementById('navGroupTrainingChildren');
+      var arrow = trnBtn.querySelector('.nav-group-arrow');
+      if(children && children.children.length === 0) {
+        var items = [
+          {icon:'\ud83c\udfe0', label:'T\u1ed5ng quan', page:'dashboard'},
+          {type:'sub', icon:'\ud83d\udcc5', label:'Sale K12 Onboard', children:[
+            {label:'Ng\u00e0y 1: WHY & MINDSET', page:'day1'},
+            {label:'Ng\u00e0y 2: PRODUCT MASTERY', page:'day2'},
+            {label:'Ng\u00e0y 3: SELLING SKILLS', page:'day3'},
+            {label:'Ng\u00e0y 4: SIMULATION', page:'day4'},
+            {label:'Ng\u00e0y 5: ASSESSMENT', page:'day5'}
+          ]},
+          {type:'sub', icon:'\ud83c\udfaf', label:'CS K12 Onboard', children:[
+            {label:'Ng\u00e0y 1: T\u1ed4NG QUAN', page:'csk12_day1'},
+            {label:'Ng\u00e0y 2: S\u1ea2N PH\u1ea8M', page:'csk12_day2'},
+            {label:'Ng\u00e0y 3: V\u1eacN H\u00c0NH', page:'csk12_day3'},
+            {label:'Ng\u00e0y 4: CH\u0102M S\u00d3C', page:'csk12_day4'},
+            {label:'Ng\u00e0y 5: \u0110\u00c1NH GI\u00c1', page:'csk12_day5'}
+          ]},
+          {type:'sub', icon:'\ud83d\ude80', label:'K18 Sale Onboard', children:[
+            {label:'Ng\u00e0y 1: WHY & MINDSET', page:'k18_day1'},
+            {label:'Ng\u00e0y 2: PRODUCT (18+)', page:'k18_day2'},
+            {label:'Ng\u00e0y 3: SELLING (18+)', page:'k18_day3'},
+            {label:'Ng\u00e0y 4: SIMULATION (18+)', page:'k18_day4'},
+            {label:'Ng\u00e0y 5: ASSESSMENT (18+)', page:'k18_day5'}
+          ]},
+          {type:'sub', icon:'\ud83c\udfaf', label:'Tracks', children:[
+            {label:'K12 Sale', page:'track_k12_sale'},
+            {label:'K12 CS', page:'track_k12_cs'},
+            {label:'K18 Sale', page:'track_k18_sale'},
+            {label:'K18 CS', page:'track_k18_cs'},
+            {label:'Qu\u1ea3n l\u00fd', page:'track_manager'}
+          ]},
+          {icon:'\ud83d\udcdd', label:'Ki\u1ec3m tra', page:'quiz_hub'},
+          {type:'sub', icon:'\ud83d\udca1', label:'Microlearning', children:[
+            {label:'Tip of the Week', page:'micro_tips'},
+            {label:'Case Study', page:'micro_cases'},
+            {label:'Quiz Friday', page:'micro_friday'}
+          ]},
+          {icon:'\ud83c\udfc6', label:'B\u1ea3ng x\u1ebfp h\u1ea1ng', page:'leaderboard'},
+          {icon:'\u2699\ufe0f', label:'C\u00e0i \u0111\u1eb7t', page:'settings'}
+        ];
+        function ensureTrainingView(){
+          if(!trainingActive){
+            var rw=document.getElementById('roadmapWrapper');
+            var ps=document.getElementById('pricingSection');
+            var tc=document.getElementById('trainingContainer');
+            if(rw) rw.style.display='none';
+            if(ps) ps.style.display='none';
+            if(tc) tc.style.display='block';
+            document.querySelectorAll('.nav-group-header').forEach(function(h){h.classList.remove('active');});
+            document.querySelectorAll('.nav-item:not([data-trn-page]), .nav-xmember, .nav-xart, .nav-xmember2, .nav-x18-item').forEach(function(el){el.classList.remove('active');});
+            trnBtn.classList.add('active');
+            trainingActive=true;
+          }
+        }
+        function markActive(p){
+          children.querySelectorAll('.nav-item').forEach(function(b){b.classList.remove('active');});
+          var m=children.querySelector('[data-trn-page="'+p+'"]');
+          if(m){m.classList.add('active');var sg=m.closest('.trn-sidebar-subgroup');if(sg){var sb=sg.querySelector('.trn-sidebar-subgroup-btn');if(sb)sb.classList.add('active');}}
+        }
+        items.forEach(function(it){
+          if(it.type==='sub'){
+            var sg=document.createElement('div');
+            sg.className='trn-sidebar-subgroup';
+            var sgBtn=document.createElement('button');
+            sgBtn.className='nav-item trn-sidebar-subgroup-btn';
+            sgBtn.innerHTML='<span class="nav-icon">'+it.icon+'</span><span class="nav-label">'+it.label+'</span><span class="trn-sg-arrow">\u25B6</span>';
+            sgBtn.addEventListener('click',function(){
+              sg.classList.toggle('open');
+              sgBtn.querySelector('.trn-sg-arrow').textContent=sg.classList.contains('open')?'\u25BC':'\u25B6';
+            });
+            sg.appendChild(sgBtn);
+            var sgCh=document.createElement('div');
+            sgCh.className='trn-sidebar-subgroup-children';
+            it.children.forEach(function(c){
+              var cb=document.createElement('button');
+              cb.className='nav-item trn-sidebar-child';
+              cb.setAttribute('data-trn-page',c.page);
+              cb.innerHTML='<span class="nav-label">'+c.label+'</span>';
+              cb.addEventListener('click',function(){
+                ensureTrainingView();
+                if(window.TrainingEmbed) window.TrainingEmbed.navigate(c.page);
+                markActive(c.page);
+              });
+              sgCh.appendChild(cb);
+            });
+            sg.appendChild(sgCh);
+            children.appendChild(sg);
+          } else {
+            var btn=document.createElement('button');
+            btn.className='nav-item';
+            btn.setAttribute('data-trn-page',it.page);
+            btn.innerHTML='<span class="nav-icon">'+it.icon+'</span><span class="nav-label">'+it.label+'</span>';
+            btn.addEventListener('click',function(){
+              ensureTrainingView();
+              if(window.TrainingEmbed) window.TrainingEmbed.navigate(it.page);
+              markActive(it.page);
+            });
+            children.appendChild(btn);
+          }
+        });
+      }
+      if(children) children.classList.add('open');
+      if(arrow) arrow.textContent = '\u25BC';
+      /* Hide roadmap + pricing, show training */
+      var rw = document.getElementById('roadmapWrapper');
+      var ps = document.getElementById('pricingSection');
+      var tc = document.getElementById('trainingContainer');
+      if(rw) rw.style.display='none';
+      if(ps) ps.style.display='none';
+      if(tc) tc.style.display='block';
+      /* Deactivate other nav groups */
+      document.querySelectorAll('.nav-group-header').forEach(function(h){ h.classList.remove('active'); });
+      document.querySelectorAll('.nav-item, .nav-xmember, .nav-xart, .nav-xmember2, .nav-x18-item, [class*="nav-x18"]').forEach(function(el){ el.classList.remove('active'); });
+      trnBtn.classList.add('active');
+      var pt = document.getElementById('pageTitle');
+      if(pt) pt.textContent = 'Training n\u1ed9i b\u1ed9';
+      if(window.TrainingEmbed) window.TrainingEmbed.init();
+    }
+
+    if(submitBtn) submitBtn.addEventListener('click', function(){
+      if(pwInput.value===TRAINING_PW){
+        modal.classList.add('hidden');
+        activateTraining();
+      } else {
+        errMsg.classList.remove('hidden');
+      }
+    });
+    if(pwInput) pwInput.addEventListener('keydown', function(e){ if(e.key==='Enter') submitBtn.click(); });
+    if(cancelBtn) cancelBtn.addEventListener('click', function(){ modal.classList.add('hidden'); });
+    if(modal) modal.addEventListener('click', function(e){ if(e.target===modal) modal.classList.add('hidden'); });
+
+    /* When K12/18+ nav items clicked, hide training */
+    document.querySelectorAll('.nav-item[data-roadmap], .nav-xmember, .nav-xart, .nav-xmember2').forEach(function(el){
+      el.addEventListener('click', function(){
+        if(trainingActive){
+          var rw = document.getElementById('roadmapWrapper');
+          var ps = document.getElementById('pricingSection');
+          var tc = document.getElementById('trainingContainer');
+          if(rw) rw.style.display='';
+          if(ps) ps.style.display='';
+          if(tc) tc.style.display='none';
+          trnBtn.classList.remove('active');
+          trainingActive = false;
+        }
+        /* Activate K12 group header */
+        document.querySelectorAll('.nav-group-header').forEach(function(h){ h.classList.remove('active'); });
+        var k12Header = document.querySelector('#navGroupK12 .nav-group-header');
+        if(k12Header) k12Header.classList.add('active');
+      });
+    });
+  });
+})();
+</script>
 <script>
 /* Auto-fit roadmap to viewport width */
 (function(){

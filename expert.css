@@ -1,0 +1,482 @@
+/* ══════════════════════════════════════════════════════════
+   Expert Q&A — "Hỏi Chuyên gia" Feature
+   MindX Brand: #E31F26 Red, #7D0005 Dark Maroon
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Floating Button ─────────────────────────────────────── */
+.expert-fab {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 9000;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #E31F26;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(227, 31, 38, 0.35), 0 2px 8px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.expert-fab:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 28px rgba(227, 31, 38, 0.45), 0 4px 12px rgba(0,0,0,0.2);
+}
+.expert-fab svg {
+  width: 28px;
+  height: 28px;
+}
+.expert-fab .fab-close {
+  display: none;
+}
+.expert-fab.active .fab-open {
+  display: none;
+}
+.expert-fab.active .fab-close {
+  display: block;
+}
+/* Pulse animation */
+.expert-fab::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(227, 31, 38, 0.4);
+  animation: expert-pulse 2s ease-in-out infinite;
+}
+.expert-fab.active::after {
+  display: none;
+}
+@keyframes expert-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.15); opacity: 0; }
+}
+
+/* ── Nav button (sidebar) ────────────────────────────────── */
+.nav-expert-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #E31F26 0%, #7D0005 100%);
+  color: #fff;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 8px;
+}
+.nav-expert-btn:hover {
+  opacity: 0.92;
+  transform: translateX(2px);
+}
+.nav-expert-btn .expert-nav-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+/* ── Panel Overlay ───────────────────────────────────────── */
+.expert-panel-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 9500;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+.expert-panel-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ── Panel ───────────────────────────────────────────────── */
+.expert-panel {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 9999;
+  width: 420px;
+  max-height: 600px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.18), 0 2px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateY(20px) scale(0.95);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.expert-panel.open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ── Panel Header ────────────────────────────────────────── */
+.expert-header {
+  background: linear-gradient(135deg, #E31F26 0%, #7D0005 100%);
+  color: #fff;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+.expert-header-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.expert-header-icon svg {
+  width: 24px;
+  height: 24px;
+}
+.expert-header-text h3 {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+.expert-header-text p {
+  font-size: 12px;
+  margin: 2px 0 0;
+  opacity: 0.85;
+}
+
+/* ── Mode Tabs ───────────────────────────────────────────── */
+.expert-mode-tabs {
+  display: flex;
+  padding: 12px 16px 0;
+  gap: 8px;
+  flex-shrink: 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.expert-mode-tab {
+  flex: 1;
+  padding: 10px 12px;
+  border: none;
+  background: none;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #888;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.expert-mode-tab:hover {
+  color: #555;
+}
+.expert-mode-tab.active {
+  color: #E31F26;
+  border-bottom-color: #E31F26;
+  font-weight: 600;
+}
+.expert-mode-tab svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ── Chat Body ───────────────────────────────────────────── */
+.expert-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 200px;
+  max-height: 340px;
+}
+
+/* Welcome message */
+.expert-welcome {
+  text-align: center;
+  padding: 24px 16px;
+}
+.expert-welcome-icon {
+  width: 56px;
+  height: 56px;
+  background: #FFF0F0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+}
+.expert-welcome-icon svg {
+  width: 28px;
+  height: 28px;
+  color: #E31F26;
+}
+.expert-welcome h4 {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+  margin: 0 0 6px;
+}
+.expert-welcome p {
+  font-size: 13px;
+  color: #888;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Quick suggestions */
+.expert-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 12px;
+}
+.expert-suggestion {
+  padding: 7px 14px;
+  border: 1px solid #e8e8e8;
+  border-radius: 20px;
+  background: #fafafa;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 12px;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.expert-suggestion:hover {
+  border-color: #E31F26;
+  color: #E31F26;
+  background: #FFF5F5;
+}
+
+/* Messages */
+.expert-msg {
+  display: flex;
+  gap: 10px;
+  max-width: 92%;
+  animation: expertMsgIn 0.3s ease;
+}
+@keyframes expertMsgIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.expert-msg.user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+.expert-msg-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+.expert-msg.bot .expert-msg-avatar {
+  background: #FFF0F0;
+  color: #E31F26;
+}
+.expert-msg.user .expert-msg-avatar {
+  background: #F0F0F0;
+  color: #666;
+}
+.expert-msg-bubble {
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #333;
+}
+.expert-msg.bot .expert-msg-bubble {
+  background: #f5f5f5;
+  border-bottom-left-radius: 4px;
+}
+.expert-msg.user .expert-msg-bubble {
+  background: #E31F26;
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+.expert-msg-meta {
+  font-size: 11px;
+  color: #aaa;
+  margin-top: 4px;
+}
+.expert-msg.user .expert-msg-meta {
+  text-align: right;
+  color: rgba(255,255,255,0.7);
+}
+
+/* Typing indicator */
+.expert-typing {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+}
+.expert-typing-dots {
+  display: flex;
+  gap: 4px;
+}
+.expert-typing-dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ccc;
+  animation: expertDotBounce 1.2s ease infinite;
+}
+.expert-typing-dots span:nth-child(2) { animation-delay: 0.15s; }
+.expert-typing-dots span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes expertDotBounce {
+  0%, 60%, 100% { transform: translateY(0); background: #ccc; }
+  30% { transform: translateY(-6px); background: #E31F26; }
+}
+.expert-typing-text {
+  font-size: 12px;
+  color: #999;
+}
+
+/* Telegram waiting state */
+.expert-telegram-waiting {
+  text-align: center;
+  padding: 16px;
+}
+.expert-telegram-waiting .waiting-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+.expert-telegram-waiting p {
+  font-size: 13px;
+  color: #666;
+  margin: 4px 0;
+}
+.expert-telegram-waiting .waiting-timer {
+  font-size: 12px;
+  color: #999;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Input Area ──────────────────────────────────────────── */
+.expert-input-area {
+  padding: 12px 16px 16px;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+.expert-input-wrapper {
+  flex: 1;
+  position: relative;
+}
+.expert-input {
+  width: 100%;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 14px;
+  padding: 10px 14px;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-size: 13.5px;
+  resize: none;
+  outline: none;
+  transition: border-color 0.2s ease;
+  max-height: 100px;
+  overflow-y: auto;
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+.expert-input:focus {
+  border-color: #E31F26;
+}
+.expert-input::placeholder {
+  color: #bbb;
+}
+.expert-send-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #E31F26;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.expert-send-btn:hover {
+  background: #c41920;
+}
+.expert-send-btn:disabled {
+  background: #ddd;
+  cursor: not-allowed;
+}
+.expert-send-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ── Telegram not configured notice ──────────────────────── */
+.expert-tg-notice {
+  text-align: center;
+  padding: 24px 16px;
+  color: #888;
+}
+.expert-tg-notice svg {
+  width: 40px;
+  height: 40px;
+  color: #ddd;
+  margin-bottom: 8px;
+}
+.expert-tg-notice p {
+  font-size: 13px;
+  margin: 4px 0;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+.expert-body::-webkit-scrollbar {
+  width: 4px;
+}
+.expert-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.expert-body::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 4px;
+}
+
+/* ── Responsive (keep desktop only per user request) ─────── */
+@media (max-width: 500px) {
+  .expert-panel {
+    width: calc(100vw - 24px);
+    right: 12px;
+    bottom: 12px;
+    max-height: calc(100vh - 100px);
+  }
+  .expert-fab {
+    bottom: 20px;
+    right: 20px;
+  }
+}
