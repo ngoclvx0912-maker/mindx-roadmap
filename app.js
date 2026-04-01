@@ -423,12 +423,12 @@
       node.appendChild(pBtn);
     }
 
-    // Output tags (hide empty ones)
+    // Output tags (hide empty ones + filter out special program badges)
     if (course.outputs && course.outputs.length) {
       var outWrap = el("div", { className: "node-output" });
       course.outputs.forEach(function(o, oi) {
         var val = getEV("out_" + course.id + "_" + oi, o);
-        if (val && val.trim()) {
+        if (val && val.trim() && !isSpecialBadge(val)) {
           outWrap.appendChild(el("span", { className: "node-output-item" }, [editableSpan("out_" + course.id + "_" + oi, o)]));
         }
       });
@@ -446,6 +446,53 @@
     c.appendChild(line);
     c.appendChild(dot);
     return c;
+  }
+
+  // ===== SPECIAL PROGRAMS DATA =====
+  var specialPrograms = {
+    coding: [
+      { id: "sp_coding_ai4l", icon: "🤖", name: "AI4Learn", desc: "Khóa đệm chiến lược — học AI để học tốt hơn. 1 level × 6 buổi theo độ tuổi.", color: "#111827" },
+      { id: "sp_coding_nextgen", icon: "🚀", name: "NextGen", desc: "Khởi nghiệp & gọi vốn giả lập. 14 buổi × 3 lần (Game, App, Web).", color: "#E31F26" },
+      { id: "sp_coding_intern1", icon: "💼", name: "Internship 1", desc: "Tech Project + AI Foundation. 60h thực tập tại phòng ban MindX.", color: "#2563EB" },
+      { id: "sp_coding_intern2", icon: "📋", name: "Internship 2", desc: "Project Management + AI Core. Quản lý dự án công nghệ thực tế.", color: "#059669" },
+      { id: "sp_coding_internx", icon: "🏆", name: "Internship X", desc: "Thực tập tại doanh nghiệp đối tác. 30h + Job Guarantee.", color: "#7C3AED" }
+    ],
+    art: [
+      { id: "sp_art_ai4l", icon: "🤖", name: "AI4Learn", desc: "Khóa đệm chiến lược — học AI để học tốt hơn. 1 level × 6 buổi theo độ tuổi.", color: "#111827" },
+      { id: "sp_art_cregen", icon: "🎨", name: "CreGen", desc: "Họa sĩ minh họa + Creative Workshop. 14 buổi + 4 buổi tư duy sáng tạo.", color: "#8B5CF6" },
+      { id: "sp_art_intern1", icon: "💼", name: "Intern 1", desc: "Creative Studio Intern. Làm việc nhóm, pipeline sáng tạo thực tế.", color: "#2563EB" },
+      { id: "sp_art_intern2", icon: "📋", name: "Intern 2", desc: "Creative PM Intern. Quản lý dự án sáng tạo, leadership.", color: "#E31F26" },
+      { id: "sp_art_internx", icon: "🏆", name: "Internship X", desc: "Thực tập tại studio/agency đối tác. Cam kết việc làm.", color: "#7C3AED" }
+    ]
+  };
+
+  // Badge names to filter out from roadmap card outputs
+  var specialBadgeNames = ["NextGen", "Cregen", "CreGen", "Intern", "Internship", "AI4L", "AI4Learn"];
+  function isSpecialBadge(text) {
+    return specialBadgeNames.some(function(b) { return text.toLowerCase().indexOf(b.toLowerCase()) !== -1; });
+  }
+
+  function renderSpecialPanel(type) {
+    var programs = specialPrograms[type];
+    if (!programs) return null;
+    var panel = el("div", { className: "special-panel" });
+    var title = el("div", { className: "special-panel-title" });
+    title.innerHTML = '✨ Các chương trình đặc biệt';
+    panel.appendChild(title);
+
+    programs.forEach(function(prog) {
+      var card = el("div", { className: "special-card" });
+      card.style.borderLeftColor = prog.color;
+      var header = el("div", { className: "special-card-header" });
+      header.innerHTML = '<span class="special-card-icon">' + prog.icon + '</span>';
+      header.appendChild(el("span", { className: "special-card-name" }, [editableSpan("sp_name_" + prog.id, prog.name)]));
+      card.appendChild(header);
+      var desc = el("div", { className: "special-card-desc" });
+      desc.appendChild(editableSpan("sp_desc_" + prog.id, prog.desc));
+      card.appendChild(desc);
+      panel.appendChild(card);
+    });
+    return panel;
   }
 
   // ===== RENDER ASCENDING STAIRCASE (with phase labels aligned to nodes) =====
@@ -539,7 +586,13 @@
     c.innerHTML = "";
     var theme = themes.coding;
 
-    c.appendChild(renderSnake(codingCourses, "coding"));
+    // Roadmap + Special panel side by side
+    var row = el("div", { className: "roadmap-with-special" });
+    var mainCol = el("div", { className: "roadmap-main-col" });
+    mainCol.appendChild(renderSnake(codingCourses, "coding"));
+    row.appendChild(mainCol);
+    row.appendChild(renderSpecialPanel("coding"));
+    c.appendChild(row);
 
     // Tree branch
     var treeRoot = el("div", { className: "tree-root" });
@@ -644,8 +697,13 @@
     c.innerHTML = "";
     var theme = themes.art;
 
-    // Main staircase: Năm 0–6
-    c.appendChild(renderSnake(artCourses, "art"));
+    // Roadmap + Special panel side by side
+    var row = el("div", { className: "roadmap-with-special" });
+    var mainCol = el("div", { className: "roadmap-main-col" });
+    mainCol.appendChild(renderSnake(artCourses, "art"));
+    row.appendChild(mainCol);
+    row.appendChild(renderSpecialPanel("art"));
+    c.appendChild(row);
 
     // Tree branch after Năm 6
     var treeRoot = el("div", { className: "tree-root" });

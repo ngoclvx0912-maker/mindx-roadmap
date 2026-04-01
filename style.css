@@ -687,6 +687,48 @@ body.admin-mode .editable-field:focus { background: #FFECB3; border-color: var(-
 }
 .toast.error { background: #DC3545; }
 
+/* ===== SPECIAL PROGRAMS PANEL ===== */
+.roadmap-with-special {
+  display: flex; gap: 20px; align-items: flex-start;
+}
+.roadmap-main-col { flex: 1; min-width: 0; overflow-x: auto; }
+.special-panel {
+  flex: 0 0 180px; position: sticky; top: 12px;
+  background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 12px;
+  padding: 12px; max-height: calc(100vh - 160px); overflow-y: auto;
+}
+.special-panel-title {
+  font-size: 0.6rem; font-weight: 800; color: var(--text);
+  margin-bottom: 10px; padding-bottom: 8px;
+  border-bottom: 2px solid var(--red); text-align: center;
+}
+.special-card {
+  background: #fff; border: 1px solid #E5E7EB;
+  border-left: 3px solid #ccc; border-radius: 8px;
+  padding: 8px 10px; margin-bottom: 8px;
+  transition: all 0.15s;
+}
+.special-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.08); transform: translateY(-1px); }
+.special-card:last-child { margin-bottom: 0; }
+.special-card-header {
+  display: flex; align-items: center; gap: 6px; margin-bottom: 4px;
+}
+.special-card-icon { font-size: 0.7rem; }
+.special-card-name { font-size: 0.55rem; font-weight: 700; color: var(--text); }
+.special-card-desc {
+  font-size: 0.45rem; color: var(--text-secondary); line-height: 1.4;
+}
+
+@media (max-width: 1024px) {
+  .roadmap-with-special { flex-direction: column; }
+  .special-panel {
+    flex: none; width: 100%; position: static;
+    display: flex; flex-wrap: wrap; gap: 8px; max-height: none;
+  }
+  .special-panel-title { width: 100%; }
+  .special-card { flex: 1; min-width: 140px; }
+}
+
 /* ===== PRICING BUTTON & POPUP (Năm 0) ===== */
 .node-pricing-btn {
   display: inline-flex; align-items: center; gap: 3px;
