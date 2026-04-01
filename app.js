@@ -408,13 +408,16 @@
       node.appendChild(uspDiv);
     }
 
-    // Output tags
+    // Output tags (hide empty ones)
     if (course.outputs && course.outputs.length) {
       var outWrap = el("div", { className: "node-output" });
       course.outputs.forEach(function(o, oi) {
-        outWrap.appendChild(el("span", { className: "node-output-item" }, [editableSpan("out_" + course.id + "_" + oi, o)]));
+        var val = getEV("out_" + course.id + "_" + oi, o);
+        if (val && val.trim()) {
+          outWrap.appendChild(el("span", { className: "node-output-item" }, [editableSpan("out_" + course.id + "_" + oi, o)]));
+        }
       });
-      node.appendChild(outWrap);
+      if (outWrap.children.length) node.appendChild(outWrap);
     }
 
     return node;
