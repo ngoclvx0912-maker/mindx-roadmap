@@ -33,9 +33,9 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { 
   /* Responsive root font-size: auto-scale based on viewport width
-     iPad (768px) = 17px, Laptop (1366px) = 20px, PC (1920px+) = 22px
+     iPad (768px) = 22px, Laptop (1366px) = 28px, PC (1920px+) = 32px
      All rem values throughout the app scale proportionally */
-  font-size: clamp(17px, 1.1vw + 8px, 23px);
+  font-size: clamp(22px, 1.5vw + 12px, 32px);
   -webkit-font-smoothing: antialiased; 
 }
 
@@ -696,7 +696,7 @@ img, video, iframe, table { max-width: 100%; height: auto; }
 
 /* iPad landscape & small laptops */
 @media (max-width: 1024px) {
-  html { font-size: clamp(15px, 1.5vw + 4px, 19px); }
+  html { font-size: clamp(20px, 2vw + 6px, 26px); }
   .roadmap-wrapper { padding: 12px; }
   .course-node { width: 120px; min-height: 80px; padding: 6px; }
   .course-node.compact { width: 100px; }
