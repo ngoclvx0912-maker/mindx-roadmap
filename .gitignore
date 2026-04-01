@@ -21,3 +21,19 @@ Thumbs.db
 # Temp
 *.tmp
 *.bak
+
+# Apps Script backend (contains API keys)
+apps-script/
+
+# Server files (not needed for static hosting)
+api_server.py
+expert_server.py
+cgi-bin/
+
+# Apps Script backend (contains API keys)
+apps-script/
+
+# Server files (not needed for static hosting)
+api_server.py
+expert_server.py
+cgi-bin/
