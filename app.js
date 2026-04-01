@@ -597,15 +597,12 @@
     c.innerHTML = "";
     var theme = themes.coding;
 
-    // Roadmap + Special panel side by side
+    // Roadmap + Special panel side by side (panel spans full height)
     var row = el("div", { className: "roadmap-with-special" });
     var mainCol = el("div", { className: "roadmap-main-col" });
     mainCol.appendChild(renderSnake(codingCourses, "coding"));
-    row.appendChild(mainCol);
-    row.appendChild(renderSpecialPanel("coding"));
-    c.appendChild(row);
 
-    // Tree branch
+    // Tree branch (inside main col)
     var treeRoot = el("div", { className: "tree-root" });
     treeRoot.appendChild(el("div", { className: "tree-trunk", style: "background:" + theme.accent }));
     treeRoot.appendChild(el("div", { className: "tree-fork-label", style: "background:" + theme.accent }, [editableSpan("fork_label_coding", "Ch\u1ECDn h\u01B0\u1EDBng ph\u00E1t tri\u1EC3n")]));
@@ -699,7 +696,12 @@
 
     treeFork.appendChild(branches);
     treeRoot.appendChild(treeFork);
-    c.appendChild(treeRoot);
+    mainCol.appendChild(treeRoot);
+
+    // Close layout: mainCol + special panel
+    row.appendChild(mainCol);
+    row.appendChild(renderSpecialPanel("coding"));
+    c.appendChild(row);
   }
 
   // ===== RENDER: ART (branch after Năm 6) =====
@@ -708,15 +710,12 @@
     c.innerHTML = "";
     var theme = themes.art;
 
-    // Roadmap + Special panel side by side
+    // Roadmap + Special panel side by side (panel spans full height)
     var row = el("div", { className: "roadmap-with-special" });
     var mainCol = el("div", { className: "roadmap-main-col" });
     mainCol.appendChild(renderSnake(artCourses, "art"));
-    row.appendChild(mainCol);
-    row.appendChild(renderSpecialPanel("art"));
-    c.appendChild(row);
 
-    // Tree branch after Năm 6
+    // Tree branch after Năm 6 (inside main col)
     var treeRoot = el("div", { className: "tree-root" });
     treeRoot.appendChild(el("div", { className: "tree-trunk", style: "background:" + theme.accent }));
     treeRoot.appendChild(el("div", { className: "tree-fork-label", style: "background:" + theme.accent }, [editableSpan("fork_label_art", "Ch\u1ECDn h\u01B0\u1EDBng ph\u00E1t tri\u1EC3n")]));
@@ -782,7 +781,12 @@
 
     treeFork.appendChild(branches);
     treeRoot.appendChild(treeFork);
-    c.appendChild(treeRoot);
+    mainCol.appendChild(treeRoot);
+
+    // Close layout: mainCol + special panel
+    row.appendChild(mainCol);
+    row.appendChild(renderSpecialPanel("art"));
+    c.appendChild(row);
   }
 
   // ===== DRAWERS =====
