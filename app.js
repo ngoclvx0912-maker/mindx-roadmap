@@ -977,9 +977,9 @@
       headers.forEach(function(h, hi) {
         var th = el("th", { textContent: h });
         // Add "L\u01B0u \u00fd" button next to "Ph\u00ed B\u1ea3n quy\u1ec1n" header
-        if (hasLicense && hi === headers.length - 1) {
+        if (hasLicense && hi === headers.length - 1 && si === 0) {
           var noteBtn = el("button", { className: "license-note-btn", onClick: function(e) { e.stopPropagation(); showLicenseNote(prefix); } });
-          noteBtn.innerHTML = ' \u26A0 L\u01B0u \u00fd';
+          noteBtn.innerHTML = '\u26A0 L\u01B0u \u00fd';
           th.appendChild(noteBtn);
         }
         tr.appendChild(th);
