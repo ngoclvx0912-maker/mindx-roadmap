@@ -787,11 +787,12 @@ body.admin-mode .editable-field:focus { background: #FFECB3; border-color: var(-
 .special-detail-body .editable-field { display: block; }
 
 .license-note-btn {
-  background: none; border: none; color: rgba(255,255,255,0.8);
-  cursor: pointer; font-size: 0.7rem; vertical-align: middle;
-  margin-left: 4px; transition: color 0.15s;
+  background: rgba(255,255,255,0.25); border: 1px solid rgba(255,255,255,0.4);
+  color: #fff; cursor: pointer; font-size: 0.45rem; font-weight: 700;
+  padding: 2px 6px; border-radius: 4px; vertical-align: middle;
+  margin-left: 6px; transition: all 0.15s;
 }
-.license-note-btn:hover { color: #fff; }
+.license-note-btn:hover { background: rgba(255,255,255,0.4); }
 .license-note-textarea {
   width: 100%; padding: 12px; border: 1px solid #E5E7EB; border-radius: 8px;
   font-family: inherit; font-size: 0.7rem; line-height: 1.5;
