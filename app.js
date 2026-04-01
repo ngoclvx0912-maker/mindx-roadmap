@@ -985,19 +985,30 @@
   }
   function saveData() {
     var btn = $("#saveBtn"); btn.disabled = true; btn.textContent = "\u0110ang l\u01B0u...";
-    // Build GET params: key_0=xxx&val_0=yyy&key_1=...
-    var url = APPS_SCRIPT_URL + '?action=save_edits';
-    var keys = Object.keys(state.editedData);
-    keys.forEach(function(k, i) {
-      url += '&key_' + i + '=' + encodeURIComponent(k);
-      url += '&val_' + i + '=' + encodeURIComponent(state.editedData[k]);
-    });
-    fetch(url)
-      .then(function(r) { return r.json(); })
-      .then(function(d) {
+    var allKeys = Object.keys(state.editedData);
+    if (allKeys.length === 0) { btn.disabled = false; btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2h9l3 3v9H2V2z" stroke="currentColor" stroke-width="1.2"/><path d="M5 2v4h5V2M5 14v-4h6v4" stroke="currentColor" stroke-width="1.2"/></svg> L\u01B0u'; showToast("Kh\u00F4ng c\u00F3 thay \u0111\u1ED5i"); return; }
+
+    // Split into batches of 10 keys to keep URL short
+    var batches = [];
+    for (var i = 0; i < allKeys.length; i += 10) {
+      var batch = {};
+      allKeys.slice(i, i + 10).forEach(function(k) { batch[k] = state.editedData[k]; });
+      batches.push(batch);
+    }
+
+    var totalSaved = 0;
+    var batchPromises = batches.map(function(batch) {
+      var url = APPS_SCRIPT_URL + '?action=save_edits&data=' + encodeURIComponent(JSON.stringify(batch));
+      return fetch(url).then(function(r) { return r.json(); }).then(function(d) {
         if (d.error) throw new Error(d.error);
-        showToast("\u0110\u00E3 l\u01B0u " + (d.saved || keys.length) + " thay \u0111\u1ED5i!");
-        keys.forEach(function(k) { state.serverData[k] = state.editedData[k]; });
+        totalSaved += (d.saved || 0);
+      });
+    });
+
+    Promise.all(batchPromises)
+      .then(function() {
+        showToast("\u0110\u00E3 l\u01B0u " + totalSaved + " thay \u0111\u1ED5i!");
+        allKeys.forEach(function(k) { state.serverData[k] = state.editedData[k]; });
         state.editedData = {};
       })
       .catch(function(err) { showToast("L\u1ED7i l\u01B0u! " + err.message, true); })
