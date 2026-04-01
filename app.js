@@ -1010,6 +1010,8 @@
         showToast("\u0110\u00E3 l\u01B0u " + totalSaved + " thay \u0111\u1ED5i!");
         allKeys.forEach(function(k) { state.serverData[k] = state.editedData[k]; });
         state.editedData = {};
+        // Re-render roadmap to reflect changes on cards
+        switchRoadmap(state.currentRoadmap);
       })
       .catch(function(err) { showToast("L\u1ED7i l\u01B0u! " + err.message, true); })
       .finally(function() { btn.disabled = false; btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2h9l3 3v9H2V2z" stroke="currentColor" stroke-width="1.2"/><path d="M5 2v4h5V2M5 14v-4h6v4" stroke="currentColor" stroke-width="1.2"/></svg> L\u01B0u'; });
