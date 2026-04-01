@@ -1074,6 +1074,7 @@
       .finally(function() { btn.disabled = false; btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2h9l3 3v9H2V2z" stroke="currentColor" stroke-width="1.2"/><path d="M5 2v4h5V2M5 14v-4h6v4" stroke="currentColor" stroke-width="1.2"/></svg> L\u01B0u'; });
   }
   function loadServerData() {
+    // Load edits from server — don't render until data arrives
     fetch(APPS_SCRIPT_URL + '?action=load_edits')
       .then(function(r) { return r.json(); })
       .then(function(d) {
@@ -1102,7 +1103,8 @@
     $("#drawerClose").addEventListener("click", closeDrawer);
     $("#drawerOverlay").addEventListener("click", closeDrawer);
     var hm = { "#coding": "coding", "#art": "art", "#robotics": "robotics" };
-    switchRoadmap(hm[window.location.hash] || "robotics");
+    state.currentRoadmap = hm[window.location.hash] || "robotics";
+    // Don't render yet — wait for server data to load first
     loadServerData();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
