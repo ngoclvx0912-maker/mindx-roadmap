@@ -79,7 +79,7 @@
       basic: { name: "H\u00E0nh tr\u00ECnh sao h\u1ECFa", desc: "VEX GO Kit, VEXcode GO, l\u1EADp tr\u00ECnh c\u01A1 b\u1EA3n." },
       advanced: { name: "Th\u00E0nh ph\u1ED1 hi\u1EC7n \u0111\u1EA1i", desc: "Robot b\u00E1n t\u1EF1 \u0111\u1ED9ng, 2 \u0111\u1ED9ng c\u01A1, if-else." },
       intensive: { name: "Th\u1EED th\u00E1ch Robot", desc: "Robot t\u1EF1 \u0111\u1ED9ng, to\u00E1n t\u1EED, repeat until." } },
-    { id: "robo_nam3", name: "S\u00E1ng t\u1EA1o Robot", year: "N\u0103m 3", age: "10+", group: "Robot Innovators", levels: 3, duration: "3 HP \u00D7 14 bu\u1ED5i", phase: 1, pivot: true,
+    { id: "robo_nam3", name: "S\u00E1ng t\u1EA1o Robot", year: "N\u0103m 3", age: "10+", group: "Robot Innovators", levels: 3, duration: "3 HP \u00D7 14 bu\u1ED5i", phase: 1,
       value: "\u2022 T\u01B0 duy: T\u01B0 duy h\u1EC7 th\u1ED1ng, t\u1ED1i \u01B0u h\u00F3a \u2014 gi\u1EA3i quy\u1EBFt b\u00E0i to\u00E1n ph\u1EE9c t\u1EA1p\n\u2022 K\u1EF9 n\u0103ng: Thi\u1EBFt k\u1EBF robot t\u1EF1 \u0111\u1ED9ng, \u0111i\u1EC1u khi\u1EC3n PID controller, My Blocks\n\u2022 Ki\u1EBFn th\u1EE9c: Thu\u1EADt to\u00E1n d\u00F2 line, b\u00E1m t\u01B0\u1EDDng, VEX IQ \u2014 chu\u1EA9n thi \u0111\u1EA5u VEX World Championship (60+ qu\u1ED1c gia)\n\u21D2 R\u00E8n t\u01B0 duy gi\u1EA3i quy\u1EBFt v\u1EA5n \u0111\u1EC1 c\u1EA5p cao, chu\u1EA9n b\u1ECB n\u1EC1n t\u1EA3ng cho c\u00E1c cu\u1ED9c thi STEM qu\u1ED1c t\u1EBF v\u00E0 \u0111\u1ECBnh h\u01B0\u1EDBng ngh\u1EC1 nghi\u1EC7p k\u1EF9 thu\u1EADt",
       outputs: ["VEX IQ Kit", "PID controller", "Thu\u1EADt to\u00E1n"],
       content: "1. T\u00ECm hi\u1EC3u t\u1EF1 \u0111\u1ED9ng h\u00F3a.\n2. N\u00E2ng cao l\u1EAFp r\u00E1p v\u00E0 l\u1EADp tr\u00ECnh.\n3. Thu\u1EADt to\u00E1n l\u1EADp tr\u00ECnh Robot.",
