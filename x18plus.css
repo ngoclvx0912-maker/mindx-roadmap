@@ -1,3 +1,5 @@
+/* Auto-responsive: prevent horizontal overflow */
+.xm-overlay, .xa-overlay, .x18-overlay, .xm2-overlay { overflow-x: hidden; max-width: 100vw; }
 /* x18plus.css — MindX 18+ Module (Sinh viên & Người đi làm) */
 /* All classes prefixed with .x18- */
 

@@ -31,7 +31,13 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+html { 
+  /* Responsive root font-size: auto-scale based on viewport width
+     iPad (768px) = 17px, Laptop (1366px) = 20px, PC (1920px+) = 22px
+     All rem values throughout the app scale proportionally */
+  font-size: clamp(17px, 1.1vw + 8px, 23px);
+  -webkit-font-smoothing: antialiased; 
+}
 
 body {
   font-family: 'Be Vietnam Pro', system-ui, sans-serif;
@@ -682,6 +688,32 @@ body.admin-mode .editable-field:focus { background: #FFECB3; border-color: var(-
 .toast.error { background: #DC3545; }
 
 /* ===== RESPONSIVE ===== */
+/* ── Responsive breakpoints ────────────────────────────── */
+
+/* Prevent horizontal overflow globally */
+*, *::before, *::after { max-width: 100%; }
+img, video, iframe, table { max-width: 100%; height: auto; }
+
+/* iPad landscape & small laptops */
+@media (max-width: 1024px) {
+  html { font-size: clamp(15px, 1.5vw + 4px, 19px); }
+  .roadmap-wrapper { padding: 12px; }
+  .course-node { width: 120px; min-height: 80px; padding: 6px; }
+  .course-node.compact { width: 100px; }
+  .stair-illustration { width: 55px; height: 55px; }
+  .stair-unit.compact .stair-illustration { width: 42px; height: 42px; }
+  .pricing-section { padding: 0 12px 20px; }
+  .pricing-section table { font-size: 0.7rem; }
+  .pricing-section th, .pricing-section td { padding: 4px 6px; }
+  .tree-branches { gap: 12px; }
+  .sidebar { width: 180px; }
+  .main-content { margin-left: 180px; }
+  .snake-row { flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .stair-unit { margin-bottom: 0 !important; }
+  .stair-unit-wrapper { margin-bottom: 0 !important; }
+}
+
+/* iPad portrait & mobile */
 @media (max-width: 768px) {
   .sidebar { transform: translateX(-100%); }
   .sidebar.open { transform: translateX(0); }

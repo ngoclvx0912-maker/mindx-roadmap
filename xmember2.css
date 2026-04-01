@@ -1,3 +1,5 @@
+/* Auto-responsive: prevent horizontal overflow */
+.xm-overlay, .xa-overlay, .x18-overlay, .xm2-overlay { overflow-x: hidden; max-width: 100vw; }
 /* X-member2 — Du Học Presentation (CNTT + Art) */
 
 /* ===== NAV BUTTON ===== */
@@ -12,7 +14,7 @@
   border: 2px solid transparent;
   border-radius: 8px;
   font-family: inherit;
-  font-size: 13px;
+  font-size: clamp(13px, 1vw + 5px, 17px);
   font-weight: 700;
   cursor: pointer;
   margin: 8px 12px;
@@ -94,7 +96,7 @@
   border: none;
   border-radius: 10px;
   font-family: inherit;
-  font-size: 14px;
+  font-size: clamp(14px, 1.1vw + 5px, 18px);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -119,7 +121,7 @@
   display: flex; align-items: center; gap: 6px;
   padding: 8px 16px;
   background: rgba(0,0,0,0.06); border: none; border-radius: 8px;
-  font-family: inherit; font-size: 13px; font-weight: 500;
+  font-family: inherit; font-size: clamp(13px, 1vw + 5px, 17px); font-weight: 500;
   color: #666; cursor: pointer; transition: background 0.2s;
 }
 .xm2-exit-btn:hover { background: rgba(0,0,0,0.1); }
@@ -545,7 +547,7 @@
 .xm2-detail-close {
   position: absolute; top: 16px; right: 16px;
   width: 32px; height: 32px; border-radius: 50%;
-  background: #F0F0F0; border: none; font-size: 14px;
+  background: #F0F0F0; border: none; font-size: clamp(14px, 1.1vw + 5px, 18px);
   cursor: pointer; display: flex; align-items: center;
   justify-content: center; transition: background 0.2s;
 }
@@ -578,7 +580,7 @@
   border: none;
   border-radius: 8px;
   font-family: inherit;
-  font-size: 13px;
+  font-size: clamp(13px, 1vw + 5px, 17px);
   font-weight: 700;
   cursor: pointer;
   margin: 4px 12px;
@@ -593,7 +595,7 @@
   display: flex; align-items: center; justify-content: center;
   width: 26px; height: 26px;
   background: rgba(255,255,255,0.2);
-  border-radius: 6px; font-size: 13px; font-weight: 800;
+  border-radius: 6px; font-size: clamp(13px, 1vw + 5px, 17px); font-weight: 800;
 }
 
 /* ===== HEIGHT RESPONSIVE (small-height viewports) ===== */
