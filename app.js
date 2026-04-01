@@ -908,6 +908,10 @@
       var tbody = el("tbody");
       sec.rows.forEach(function(row, ri) {
         var k = prefix + "_" + si + "_" + ri;
+        // Skip row if route was deleted (empty in server data)
+        var routeVal = getEV(k + "_route", row.route);
+        if (!routeVal || !routeVal.trim()) return;
+
         var goc, km, hp;
         if (pricingRegion === "hn") { goc = row.gocHN; km = row.kmHN; hp = row.hpHN; }
         else if (pricingRegion === "tinh") { goc = row.gocT; km = row.kmT; hp = row.hpT; }
