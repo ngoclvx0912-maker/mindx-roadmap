@@ -451,18 +451,28 @@
   // ===== SPECIAL PROGRAMS DATA =====
   var specialPrograms = {
     coding: [
-      { id: "sp_coding_ai4l", icon: "🤖", name: "AI4Learn", desc: "Khóa đệm chiến lược — học AI để học tốt hơn. 1 level × 6 buổi theo độ tuổi.", color: "#111827" },
-      { id: "sp_coding_nextgen", icon: "🚀", name: "NextGen", desc: "Khởi nghiệp & gọi vốn giả lập. 14 buổi × 3 lần (Game, App, Web).", color: "#E31F26" },
-      { id: "sp_coding_intern1", icon: "💼", name: "Internship 1", desc: "Tech Project + AI Foundation. 60h thực tập tại phòng ban MindX.", color: "#2563EB" },
-      { id: "sp_coding_intern2", icon: "📋", name: "Internship 2", desc: "Project Management + AI Core. Quản lý dự án công nghệ thực tế.", color: "#059669" },
-      { id: "sp_coding_internx", icon: "🏆", name: "Internship X", desc: "Thực tập tại doanh nghiệp đối tác. 30h + Job Guarantee.", color: "#7C3AED" }
+      { id: "sp_coding_ai4l", icon: "🤖", name: "AI4Learn", desc: "Khóa đệm chiến lược — học AI để học tốt hơn. 1 level × 6 buổi theo độ tuổi.", color: "#111827",
+        detail: "Dưới lớp 7 → Level 1: Sáng tạo nội dung (Nano Banana, Gamma, Flow)\nTrên lớp 7 → Level 2: Chatbot học tập (Gemini, NotebookLM)\n\nKhông bán lẻ — luôn nằm trong gói 24 tháng trở lên" },
+      { id: "sp_coding_nextgen", icon: "🚀", name: "NextGen", desc: "Khởi nghiệp & gọi vốn giả lập. 14 buổi × 3 lần.", color: "#E31F26",
+        detail: "Chương trình 14 buổi kết nối cuối mỗi khóa Intensive\nGhép nhóm, xây dựng sản phẩm thực tế và Go Live\nPhân tích thị trường: 5 Forces & SWOT\nXây dựng mô hình kinh doanh & dòng doanh thu\nĐịnh giá sản phẩm/dự án — có căn cứ logic\nThuyết trình gọi vốn trước hội đồng giả lập Shark Tank" },
+      { id: "sp_coding_intern1", icon: "💼", name: "Internship 1", desc: "Tech Project + AI Foundation. 60h.", color: "#2563EB",
+        detail: "60h thực tập tại các phòng ban thực tế của MindX\nModun 1 (20h): Chuyên môn/nghiệp vụ bộ phận\nModun 2 (20h): Nghiệp vụ nâng cao + AI hỗ trợ\nModun 3 (20h): Xây dựng giải pháp nâng cao hiệu suất\nVD: Chatbot AI, trang web nội bộ, hệ thống báo cáo tự động" },
+      { id: "sp_coding_intern2", icon: "📋", name: "Internship 2", desc: "Project Management + AI Core. 60h.", color: "#059669",
+        detail: "60h — Quản lý dự án công nghệ với Agile/Scrum\nỨng dụng AI Core vào quy trình quản lý & ra quyết định\nLập kế hoạch, phân công, theo dõi tiến độ\nPhối hợp đa phòng ban — Leadership & Teamwork\nNâng cao: Thực thi → Quản lý → Chiến lược" },
+      { id: "sp_coding_internx", icon: "🏆", name: "Internship X", desc: "Thực tập doanh nghiệp. 30h + Job Guarantee.", color: "#7C3AED",
+        detail: "Thực tập chuyên môn tại doanh nghiệp đối tác MindX\n30h thực tập thực tế\nLàm việc theo nhóm, quản lý dự án thực tế\nMentor hướng dẫn 1-1 suốt quá trình\nCam kết giới thiệu việc làm sau hoàn thành (Job Guarantee)" }
     ],
     art: [
-      { id: "sp_art_ai4l", icon: "🤖", name: "AI4Learn", desc: "Khóa đệm chiến lược — học AI để học tốt hơn. 1 level × 6 buổi theo độ tuổi.", color: "#111827" },
-      { id: "sp_art_cregen", icon: "🎨", name: "CreGen", desc: "Họa sĩ minh họa + Creative Workshop. 14 buổi + 4 buổi tư duy sáng tạo.", color: "#8B5CF6" },
-      { id: "sp_art_intern1", icon: "💼", name: "Intern 1", desc: "Creative Studio Intern. Làm việc nhóm, pipeline sáng tạo thực tế.", color: "#2563EB" },
-      { id: "sp_art_intern2", icon: "📋", name: "Intern 2", desc: "Creative PM Intern. Quản lý dự án sáng tạo, leadership.", color: "#E31F26" },
-      { id: "sp_art_internx", icon: "🏆", name: "Internship X", desc: "Thực tập tại studio/agency đối tác. Cam kết việc làm.", color: "#7C3AED" }
+      { id: "sp_art_ai4l", icon: "🤖", name: "AI4Learn", desc: "Khóa đệm chiến lược — học AI để học tốt hơn. 1 level × 6 buổi theo độ tuổi.", color: "#111827",
+        detail: "Trong lộ trình Art: trước Character & Mascot Design → Level 1, sau → Level 2\nLevel 1: Sáng tạo nội dung (Nano Banana, Gamma, Flow)\nLevel 2: Chatbot học tập (Gemini, NotebookLM)\n\nKhông bán lẻ — luôn nằm trong gói 24 tháng trở lên" },
+      { id: "sp_art_cregen", icon: "🎨", name: "CreGen", desc: "Họa sĩ minh họa + Creative Workshop.", color: "#8B5CF6",
+        detail: "Creative Thinking Workshop: 4 buổi tư duy sáng tạo có cấu trúc\nKhóa Họa sĩ minh họa — đồ án lớn 14 buổi\nLựa chọn đề tài, GV hướng dẫn định hướng nghề\nSản phẩm: Truyện tranh hoàn chỉnh + ấn phẩm tuyên truyền\nTriển lãm sản phẩm và gọi vốn trước hội đồng" },
+      { id: "sp_art_intern1", icon: "💼", name: "Intern 1", desc: "Creative Studio Intern.", color: "#2563EB",
+        detail: "Hiểu cách một đội sáng tạo cùng làm ra sản phẩm hoàn chỉnh\nLàm việc nhóm, phân vai, giao tiếp & phản biện\n4 vai trò: Project Coordinator, Visual Designer, Content Builder, Reviewer/QA\nHV luân phiên vai trò — hiểu toàn bộ pipeline sáng tạo\nSản phẩm: Bộ poster + Mini brand cho CLB giả định" },
+      { id: "sp_art_intern2", icon: "📋", name: "Intern 2", desc: "Creative PM Intern.", color: "#E31F26",
+        detail: "Quản lý dự án sáng tạo — từ thực thi đến dẫn dắt\nLập kế hoạch, chia việc, theo dõi tiến độ, tổng hợp kết quả\n4 vai trò nâng cao: Creative PM, Visual Designer, Content Builder, Reviewer/QA\nNâng cao: Thực thi → Quản lý → Dẫn dắt dự án" },
+      { id: "sp_art_internx", icon: "🏆", name: "Internship X", desc: "Thực tập studio/agency. Cam kết việc làm.", color: "#7C3AED",
+        detail: "Thực tập tại studio/agency đối tác MindX\nLàm việc thực tế trong môi trường chuyên nghiệp\nMentor hướng dẫn 1-1\nCam kết giới thiệu việc làm sau hoàn thành" }
     ]
   };
 
@@ -481,8 +491,9 @@
     panel.appendChild(title);
 
     programs.forEach(function(prog) {
-      var card = el("div", { className: "special-card" });
+      var card = el("div", { className: "special-card", onClick: function() { showSpecialDetail(prog); } });
       card.style.borderLeftColor = prog.color;
+      card.style.cursor = "pointer";
       var header = el("div", { className: "special-card-header" });
       header.innerHTML = '<span class="special-card-icon">' + prog.icon + '</span>';
       header.appendChild(el("span", { className: "special-card-name" }, [editableSpan("sp_name_" + prog.id, prog.name)]));
@@ -1039,6 +1050,34 @@
     else if (name === "art") renderArtRoadmap();
     renderPricing();
     closeSidebar();
+  }
+
+  // ===== SPECIAL PROGRAM DETAIL POPUP =====
+  function showSpecialDetail(prog) {
+    var old = document.getElementById('specialDetailPopup');
+    if (old) old.remove();
+
+    var overlay = el('div', { id: 'specialDetailPopup', className: 'pricing-popup-overlay' });
+    var popup = el('div', { className: 'pricing-popup', style: 'max-width:550px' });
+
+    var header = el('div', { className: 'pricing-popup-header' });
+    header.style.borderBottomColor = prog.color;
+    header.innerHTML = '<h3>' + prog.icon + ' ' + getEV('sp_name_' + prog.id, prog.name) + '</h3>';
+    var closeBtn = el('button', { className: 'pricing-popup-close', onClick: function() { overlay.remove(); } });
+    closeBtn.innerHTML = '\u2715';
+    header.appendChild(closeBtn);
+    popup.appendChild(header);
+
+    var detailKey = 'sp_detail_' + prog.id;
+    var content = getEV(detailKey, prog.detail || prog.desc);
+    var body = el('div', { className: 'special-detail-body' });
+    body.style.whiteSpace = 'pre-line';
+    body.appendChild(editableSpan(detailKey, content));
+    popup.appendChild(body);
+
+    overlay.appendChild(popup);
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
+    document.body.appendChild(overlay);
   }
 
   // ===== LICENSE NOTE POPUP =====

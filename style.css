@@ -775,6 +775,12 @@ body.admin-mode .editable-field:focus { background: #FFECB3; border-color: var(-
 .pricing-popup-table tr:last-child td { border-bottom: none; }
 .pricing-popup-table tr:hover td { background: #FFF5F5; }
 
+.special-detail-body {
+  font-size: 0.65rem; line-height: 1.6; color: var(--text-secondary);
+  padding: 4px 0;
+}
+.special-detail-body .editable-field { display: block; }
+
 .license-note-btn {
   background: none; border: none; color: rgba(255,255,255,0.8);
   cursor: pointer; font-size: 0.7rem; vertical-align: middle;
