@@ -44,19 +44,19 @@
         "Sản phẩm": "Đủ sức thi Scratch cấp trường/quận/TP",
         "Thời lượng": "3 HP × 14 buổi"
       }},
-      { year: "Năm 2", name: "Game Maker", color: "#059669", keywords: ["Game 2D", "Làm việc nhóm", "AI4Learn"], items: {
+      { year: "Năm 2", name: "Game Maker", color: "#059669", keywords: ["Game 2D", "Làm việc nhóm"], items: {
         "Tư duy": "Tư duy hệ thống (game design), quản lý dự án",
         "Kỹ năng": "Game 2D hoàn chỉnh, làm việc nhóm, thuyết trình & gọi vốn",
-        "Kiến thức": "Game loop, sprite, physics, AI4Learn",
+        "Kiến thức": "Game loop, sprite, physics",
         "Sản phẩm": "Game 2D upload được lên CH Play / App Store",
-        "Thời lượng": "3 HP × 14 buổi + AI4Learn"
+        "Thời lượng": "3 HP × 14 buổi"
       }},
-      { year: "Năm 3", name: "App Producer", color: "#D97706", keywords: ["Python", "Ứng dụng thực tế", "NextGen"], items: {
+      { year: "Năm 3", name: "App Producer", color: "#D97706", keywords: ["Python", "Ứng dụng thực tế"], items: {
         "Tư duy": "Tư duy sản phẩm — từ ý tưởng → phát triển → phát hành",
-        "Kỹ năng": "Python, xây dựng ứng dụng, NextGen & Internship 60h",
+        "Kỹ năng": "Python, xây dựng ứng dụng",
         "Kiến thức": "Python — ngôn ngữ phổ biến nhất thế giới, API, CSDL",
         "Sản phẩm": "App thực tế + kinh nghiệm khởi nghiệp sớm",
-        "Thời lượng": "3 HP × 14 buổi + NextGen + Intern 60h"
+        "Thời lượng": "3 HP × 14 buổi"
       }},
       { year: "Năm 4", name: "Web Creator", color: "#8B5CF6", keywords: ["JavaScript", "Website", "UI/UX"], items: {
         "Tư duy": "Tư duy thiết kế (UI/UX), giải quyết vấn đề phức tạp",
@@ -70,7 +70,7 @@
         "Kỹ năng": "Thu thập & phân tích dữ liệu, quản lý dự án công nghệ",
         "Kiến thức": "Giải thuật, cấu trúc dữ liệu, AI core, khoa học máy tính",
         "Sản phẩm": "Sẵn sàng du học, thi SAT CS, ứng tuyển junior developer",
-        "Thời lượng": "3 HP × 14 buổi + Intern 60h"
+        "Thời lượng": "3 HP × 14 buổi"
       }},
       { year: "18+", name: "Business Foundation", color: "#7D0005", isPost18: true, keywords: ["Marketing", "Sales", "Finance"], items: {
         "Tư duy": "Tư duy kinh doanh toàn diện — hiểu cách doanh nghiệp vận hành",
@@ -104,14 +104,14 @@
       ]},
       { emoji: "⚡", name: "Kỹ năng", items: [
         "Năm 1–2: Lập trình kéo thả → Game 2D, thuyết trình sản phẩm",
-        "Năm 3: Python + App thực tế + NextGen & Internship 60h",
+        "Năm 3: Python + App thực tế",
         "Năm 4: JavaScript + Website + Portfolio cá nhân",
         "Năm 5: Data Analysis + AI + Quản lý dự án",
         "BF & Domain: Kỹ năng kinh doanh toàn diện + Chuyên sâu 1 ngành"
       ]},
       { emoji: "📚", name: "Kiến thức", items: [
         "Năm 1: Scratch — biến, vòng lặp, sự kiện, điều kiện",
-        "Năm 2: GML, game loop, sprite, physics, AI4Learn",
+        "Năm 2: GML, game loop, sprite, physics",
         "Năm 3: Python, API, CSDL cơ bản",
         "Năm 4: HTML, CSS, JavaScript, DOM",
         "Năm 5: Giải thuật, cấu trúc dữ liệu, AI core",
@@ -212,10 +212,10 @@
     ],
     slide11: [
       { name: "5 năm nền tảng", items: [
-        "Scratch (8+) → Game Maker (9+) → App Producer (11+) → Web Creator (12+) → CS (14+)",
+        "Scratch (10+) → Game Maker (11+) → App Producer (12+) → Web Creator (13+) → CS (14+)",
         "Mỗi năm 3 học phần × 14 buổi, tổng ~210 buổi",
         "Từ kéo thả đến code chuyên nghiệp",
-        "Kèm AI4Learn, NextGen, Internship 60h"
+        "Kèm chương trình đặc biệt: AI4Learn, NextGen, Internship"
       ]},
       { name: "Business Foundation", items: [
         "Lv1: MKT & Communication — 14 buổi",

@@ -231,8 +231,8 @@
     },
     slide11: [
       { name: "7 năm nền tảng", items: [
-        "Little Artist (4+) → KidsArt (6+) → Visual Art (8+) → Game Art (11+)",
-        "→ Character & Mascot (12+) → Graphic Design (13+) → Multimedia (14+)",
+        "Little Artist (4+) → KidsArt (7+) → Visual Art (9+) → Game Art (10+)",
+        "→ Character & Mascot (11+) → Graphic Design (13+) → Multimedia (14+)",
         "Mỗi năm 3 học phần × 14 buổi, tổng ~294 buổi",
         "Từ vẽ tay đến thiết kế chuyên nghiệp",
         "Kèm Cregen I, II + Intern 1 (Studio) + Intern 2 (PM)"
