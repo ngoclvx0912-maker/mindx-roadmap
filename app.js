@@ -2,7 +2,7 @@
 (function () {
   "use strict";
 
-  var API_ENDPOINT = "./cgi-bin/data.py";
+  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbySnPbdLFoA2GSQ1g7u0JbGCdFP2Dt0pz31FQ5LbeRf3XVbVbQUoPkTZIaNuDPH_RuR/exec';
   var ADMIN_PASSWORD = "mindx2026";
 
   var state = {
@@ -985,17 +985,32 @@
   }
   function saveData() {
     var btn = $("#saveBtn"); btn.disabled = true; btn.textContent = "\u0110ang l\u01B0u...";
-    fetch(API_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ data: state.editedData }) })
-      .then(function(r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-      .then(function() { showToast("\u0110\u00E3 l\u01B0u!"); Object.keys(state.editedData).forEach(function(k) { state.serverData[k] = state.editedData[k]; }); })
+    // Build GET params: key_0=xxx&val_0=yyy&key_1=...
+    var url = APPS_SCRIPT_URL + '?action=save_edits';
+    var keys = Object.keys(state.editedData);
+    keys.forEach(function(k, i) {
+      url += '&key_' + i + '=' + encodeURIComponent(k);
+      url += '&val_' + i + '=' + encodeURIComponent(state.editedData[k]);
+    });
+    fetch(url)
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        if (d.error) throw new Error(d.error);
+        showToast("\u0110\u00E3 l\u01B0u " + (d.saved || keys.length) + " thay \u0111\u1ED5i!");
+        keys.forEach(function(k) { state.serverData[k] = state.editedData[k]; });
+        state.editedData = {};
+      })
       .catch(function(err) { showToast("L\u1ED7i l\u01B0u! " + err.message, true); })
       .finally(function() { btn.disabled = false; btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2h9l3 3v9H2V2z" stroke="currentColor" stroke-width="1.2"/><path d="M5 2v4h5V2M5 14v-4h6v4" stroke="currentColor" stroke-width="1.2"/></svg> L\u01B0u'; });
   }
   function loadServerData() {
-    fetch(API_ENDPOINT).then(function(r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); }).then(function(d) {
-      state.serverData = d;
-      switchRoadmap(state.currentRoadmap);
-    }).catch(function() { switchRoadmap(state.currentRoadmap); });
+    fetch(APPS_SCRIPT_URL + '?action=load_edits')
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        if (!d.error) state.serverData = d;
+        switchRoadmap(state.currentRoadmap);
+      })
+      .catch(function() { switchRoadmap(state.currentRoadmap); });
   }
   function showToast(msg, isErr) {
     var t = el("div", { className: "toast" + (isErr ? " error" : ""), textContent: msg });
