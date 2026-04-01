@@ -959,7 +959,16 @@
       var table = el("table", { className: tableClass });
       var thead = el("thead");
       var tr = el("tr");
-      headers.forEach(function(h) { tr.appendChild(el("th", { textContent: h })); });
+      headers.forEach(function(h, hi) {
+        var th = el("th", { textContent: h });
+        // Add "L\u01B0u \u00fd" button next to "Ph\u00ed B\u1ea3n quy\u1ec1n" header
+        if (hasLicense && hi === headers.length - 1) {
+          var noteBtn = el("button", { className: "license-note-btn", onClick: function(e) { e.stopPropagation(); showLicenseNote(prefix); } });
+          noteBtn.innerHTML = ' \u24D8';
+          th.appendChild(noteBtn);
+        }
+        tr.appendChild(th);
+      });
       thead.appendChild(tr);
       table.appendChild(thead);
 
@@ -1030,6 +1039,38 @@
     else if (name === "art") renderArtRoadmap();
     renderPricing();
     closeSidebar();
+  }
+
+  // ===== LICENSE NOTE POPUP =====
+  function showLicenseNote(prefix) {
+    var old = document.getElementById('licenseNotePopup');
+    if (old) old.remove();
+
+    var overlay = el('div', { id: 'licenseNotePopup', className: 'pricing-popup-overlay' });
+    var popup = el('div', { className: 'pricing-popup' });
+
+    var header = el('div', { className: 'pricing-popup-header' });
+    header.innerHTML = '<h3>L\u01B0u \u00fd v\u1ec1 Ph\u00ed B\u1ea3n quy\u1ec1n</h3>';
+    var closeBtn = el('button', { className: 'pricing-popup-close', onClick: function() { overlay.remove(); } });
+    closeBtn.innerHTML = '\u2715';
+    header.appendChild(closeBtn);
+    popup.appendChild(header);
+
+    var noteKey = 'license_note_' + prefix;
+    var defaultNote = 'Ph\u00ed b\u1ea3n quy\u1ec1n ch\u1ec9 \u00e1p d\u1ee5ng cho c\u00e1c kh\u00f3a s\u1eed d\u1ee5ng ph\u1ea7n m\u1ec1m Adobe (t\u1eeb Visual Creation tr\u1edf l\u00ean). C\u00e1c kh\u00f3a Little Artist, KidsArt, Visual Art kh\u00f4ng c\u1ea7n ph\u00ed b\u1ea3n quy\u1ec1n.';
+    var currentNote = getEV(noteKey, defaultNote);
+
+    var textarea = el('textarea', { className: 'license-note-textarea', rows: 6 });
+    textarea.value = currentNote;
+    textarea.addEventListener('input', function() {
+      state.editedData[noteKey] = textarea.value;
+    });
+    if (!state.isAdmin) textarea.readOnly = true;
+    popup.appendChild(textarea);
+
+    overlay.appendChild(popup);
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
+    document.body.appendChild(overlay);
   }
 
   // ===== PRICING POPUP (Năm 0 special) =====
