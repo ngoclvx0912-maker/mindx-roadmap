@@ -183,7 +183,7 @@
       basic: { name: "N\u1EC1n t\u1EA3ng Th\u1ECB gi\u00E1c", desc: "L\u00FD thuy\u1EBFt m\u00E0u, \u00E1nh s\u00E1ng, b\u1ED1 c\u1EE5c c\u01A1 b\u1EA3n." },
       advanced: { name: "Minh h\u1ECDa N\u00E2ng cao", desc: "Digital painting, ph\u1ED1i c\u1EA3nh, d\u1EF1ng series tranh." },
       intensive: { name: "D\u1EF1 \u00E1n Portfolio", desc: "X\u00E2y d\u1EF1ng portfolio c\u00E1 nh\u00E2n v\u1EDBi series t\u00E1c ph\u1EA9m ho\u00E0n ch\u1EC9nh." } },
-    { id: "art_nam3", name: "Game Art", year: "N\u0103m 3", age: "11\u201314", phase: 1, pivot: true,
+    { id: "art_nam3", name: "Game Art", year: "N\u0103m 3", age: "11\u201314", phase: 1,
       value: "\u2022 T\u01B0 duy: T\u01B0 duy x\u00E2y d\u1EF1ng th\u1EBF gi\u1EDBi (worldbuilding) \u2014 t\u01B0 duy k\u1EC3 chuy\u1EC7n b\u1EB1ng h\u00ECnh \u1EA3nh\n\u2022 K\u1EF9 n\u0103ng: Thi\u1EBFt k\u1EBF nh\u00E2n v\u1EADt, b\u1ED1i c\u1EA3nh game theo quy tr\u00ECnh chuy\u00EAn nghi\u1EC7p\n\u2022 Ki\u1EBFn th\u1EE9c: Game Art pipeline, character design, environment art\n\u21D2 K\u1EBFt h\u1EE3p AI4Learn. B\u01B0\u1EDBc \u0111\u1EA7u \u0111\u1ECBnh h\u01B0\u1EDBng ngh\u1EC1 nghi\u1EC7p: Game Artist hay Graphic Designer?",
       outputs: ["World Moodboard", "Character Sheet", "AI4Learn"],
       content: "X\u00E2y d\u1EF1ng th\u1EBF gi\u1EDBi game, nh\u00E2n v\u1EADt, b\u1ED1i c\u1EA3nh.", objectives: "K\u1EF9 n\u0103ng Game Artist chuy\u00EAn nghi\u1EC7p",
@@ -512,7 +512,7 @@
     var container = el("div", { className: "snake-timeline" });
 
     var compact = courses.length > 6;
-    var stairStep = compact ? 18 : 28;
+    var stairStep = compact ? 12 : 18;
 
     // Detect phase boundaries
     var currentPhase = -1;
