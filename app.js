@@ -724,7 +724,7 @@
     body.innerHTML = "";
     if (course.age) {
       var ageBadge = el("div", { className: "drawer-age-badge" });
-      ageBadge.appendChild(editableSpan("drawer_age_" + course.id, "\u0110\u1ED9 tu\u1ED5i: " + course.age));
+      ageBadge.appendChild(editableSpan("age_" + course.id, course.age + " tu\u1ED5i"));
       body.appendChild(ageBadge);
     }
     if (course.duration) {
