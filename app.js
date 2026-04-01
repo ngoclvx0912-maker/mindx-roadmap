@@ -62,7 +62,11 @@
       objectives: "- L\u00E0m quen v\u1EDBi kh\u00E1i ni\u1EC7m Robot.\n- Nh\u1EADn bi\u1EBFt c\u00E1c b\u1ED9 ph\u1EADn c\u01A1 b\u1EA3n.\n- Ti\u1EBFp c\u1EADn t\u01B0 duy l\u1EADp tr\u00ECnh tr\u1EF1c quan.\n- Ph\u00E1t tri\u1EC3n k\u1EF9 n\u0103ng quan s\u00E1t.",
       basic: { name: "Ch\u1EA1m v\u00E0o th\u1EBF gi\u1EDBi Robot", desc: "L\u00E0m quen b\u1ED9 Kit LEGO Spike, l\u1EADp tr\u00ECnh Block Icon tr\u1EF1c quan." },
       advanced: { name: "Th\u1EBF gi\u1EDBi \u0111\u1ED9ng v\u1EADt", desc: "M\u00F4 ph\u1ECFng h\u00E0nh vi \u0111\u1ED9ng v\u1EADt, \u0111i\u1EC1u khi\u1EC3n 2 \u0111\u1ED9ng c\u01A1, c\u00E2u l\u1EC7nh l\u1EB7p." },
-      intensive: { name: "Ki\u1EBFn t\u1EA1o Robot", desc: "D\u1EF1 \u00E1n ph\u1EE9c t\u1EA1p: \u0111\u00E0i ph\u00E1t thanh, tr\u1EF1c th\u0103ng c\u1EE9u h\u1ED9. Message Block." } },
+      intensive: { name: "Ki\u1EBFn t\u1EA1o Robot", desc: "D\u1EF1 \u00E1n ph\u1EE9c t\u1EA1p: \u0111\u00E0i ph\u00E1t thanh, tr\u1EF1c th\u0103ng c\u1EE9u h\u1ED9. Message Block." },
+      pricing: [
+        { route: "4 th\u00E1ng (1 HP)", goc: "4.5M", km: "", hp: "4.5M" },
+        { route: "12 th\u00E1ng (3 HP)", goc: "13.5M", km: "10%", hp: "12.15M" }
+      ] },
     { id: "robo_nam1", name: "Nh\u1EADp m\u00F4n Robotics", year: "N\u0103m 1", age: "6+", group: "Robot Explorers", levels: 3, duration: "3 HP \u00D7 14 bu\u1ED5i", phase: 0,
       value: "\u2022 T\u01B0 duy: Logic tu\u1EA7n t\u1EF1, nh\u1EADn di\u1EC7n nguy\u00EAn nh\u00E2n-k\u1EBFt qu\u1EA3 qua l\u1EADp tr\u00ECnh robot\n\u2022 K\u1EF9 n\u0103ng: L\u1EAFp r\u00E1p c\u01A1 kh\u00ED v\u1EDBi VEX GO Kit, l\u1EADp tr\u00ECnh Block Icon & Word Block\n\u2022 Ki\u1EBFn th\u1EE9c: C\u01A1 c\u1EA5u truy\u1EC1n \u0111\u1ED9ng, c\u1EA3m bi\u1EBFn m\u00F4i tr\u01B0\u1EDDng, VEXcode GO\n\u21D2 MindX l\u00E0 \u0111\u01A1n v\u1ECB \u0111\u1EA7u ti\u00EAn t\u1EA1i Vi\u1EC7t Nam \u0111\u01B0a VEX GO v\u00E0o gi\u1EA3ng d\u1EA1y. X\u00E2y d\u1EF1ng n\u1EC1n t\u1EA3ng STEM v\u1EEFng ch\u1EAFc",
       outputs: ["VEX GO Kit", "Block Icon & Word Block"],
@@ -160,7 +164,11 @@
       content: "M\u1EF9 thu\u1EADt truy\u1EC1n th\u1ED1ng, c\u1EA3m nh\u1EADn m\u00E0u s\u1EAFc qua \u0111\u1EA5t s\u00E9t, m\u00E0u n\u01B0\u1EDBc.", objectives: "Kh\u01A1i g\u1EE3i c\u1EA3m x\u00FAc s\u00E1ng t\u1EA1o",
       basic: { name: "L\u00E0m quen M\u1EF9 thu\u1EADt", desc: "V\u1EBD tay, t\u00F4 m\u00E0u, nh\u1EADn bi\u1EBFt h\u00ECnh kh\u1ED1i c\u01A1 b\u1EA3n." },
       advanced: { name: "Kh\u00E1m ph\u00E1 Ch\u1EA5t li\u1EC7u", desc: "\u0110\u1EA5t s\u00E9t, m\u00E0u n\u01B0\u1EDBc, collage \u2014 ph\u1ED1i h\u1EE3p ch\u1EA5t li\u1EC7u \u0111a d\u1EA1ng." },
-      intensive: { name: "S\u00E1ng t\u1EA1o T\u00E1c ph\u1EA9m", desc: "D\u1EF1 \u00E1n tranh Canvas c\u00E1 nh\u00E2n, tri\u1EC3n l\u00E3m mini cu\u1ED1i k\u1EF3." } },
+      intensive: { name: "S\u00E1ng t\u1EA1o T\u00E1c ph\u1EA9m", desc: "D\u1EF1 \u00E1n tranh Canvas c\u00E1 nh\u00E2n, tri\u1EC3n l\u00E3m mini cu\u1ED1i k\u1EF3." },
+      pricing: [
+        { route: "4 th\u00E1ng (1 HP)", goc: "4.5M", km: "", hp: "4.5M" },
+        { route: "12 th\u00E1ng (3 HP)", goc: "13.5M", km: "10%", hp: "12.15M" }
+      ] },
     { id: "art_nam1", name: "KidsArt", year: "N\u0103m 1", age: "6\u20139", phase: 0,
       value: "\u2022 T\u01B0 duy: T\u01B0 duy th\u1ECB gi\u00E1c s\u1ED1 \u2014 chuy\u1EC3n t\u1EEB gi\u1EA5y sang digital\n\u2022 K\u1EF9 n\u0103ng: V\u1EBD digital b\u1EB1ng iPad/b\u1EA3ng v\u1EBD chuy\u00EAn d\u1EE5ng, t\u1EA1o sticker & sketchnote\n\u2022 Ki\u1EBFn th\u1EE9c: Digital Art c\u01A1 b\u1EA3n, phong c\u00E1ch v\u1EBD qu\u1ED1c t\u1EBF, b\u1ED1 c\u1EE5c c\u01A1 b\u1EA3n\n\u21D2 Con l\u00E0m quen c\u00F4ng c\u1EE5 s\u1ED1, x\u00E2y n\u1EC1n t\u1EA3ng cho c\u00E1c n\u0103m h\u1ECDc n\u00E2ng cao ti\u1EBFp theo",
       outputs: ["Sticker Pack", "Sketchnote"],
@@ -406,6 +414,13 @@
       uspSpan.style.whiteSpace = "pre-line";
       uspDiv.appendChild(uspSpan);
       node.appendChild(uspDiv);
+    }
+
+    // Pricing button (for Năm 0 courses with special pricing)
+    if (course.pricing) {
+      var pBtn = el("button", { className: "node-pricing-btn", onClick: function(e) { e.stopPropagation(); showPricingPopup(course); } });
+      pBtn.innerHTML = '💰 H\u1ECDc ph\u00ED';
+      node.appendChild(pBtn);
     }
 
     // Output tags (hide empty ones)
@@ -953,6 +968,45 @@
     else if (name === "art") renderArtRoadmap();
     renderPricing();
     closeSidebar();
+  }
+
+  // ===== PRICING POPUP (Năm 0 special) =====
+  function showPricingPopup(course) {
+    // Remove existing popup
+    var old = document.getElementById('pricingPopup');
+    if (old) old.remove();
+
+    var overlay = el('div', { id: 'pricingPopup', className: 'pricing-popup-overlay' });
+    var popup = el('div', { className: 'pricing-popup' });
+
+    // Header
+    var header = el('div', { className: 'pricing-popup-header' });
+    header.innerHTML = '<h3>' + getEV('name_' + course.id, course.name) + ' \u2014 H\u1ECDc ph\u00ED</h3>';
+    var closeBtn = el('button', { className: 'pricing-popup-close', onClick: function() { overlay.remove(); } });
+    closeBtn.innerHTML = '\u2715';
+    header.appendChild(closeBtn);
+    popup.appendChild(header);
+
+    // Table
+    var table = el('table', { className: 'pricing-popup-table' });
+    var thead = '<tr><th>L\u1ED9 tr\u00ECnh</th><th>HP G\u1ED1c</th><th>CTKM</th><th>H\u1ECDc ph\u00ED</th></tr>';
+    table.innerHTML = thead;
+
+    course.pricing.forEach(function(row, ri) {
+      var tr = el('tr');
+      var fields = ['route', 'goc', 'km', 'hp'];
+      fields.forEach(function(f) {
+        var td = el('td');
+        td.appendChild(editableSpan('price_' + course.id + '_' + ri + '_' + f, row[f]));
+        tr.appendChild(td);
+      });
+      table.appendChild(tr);
+    });
+    popup.appendChild(table);
+
+    overlay.appendChild(popup);
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
+    document.body.appendChild(overlay);
   }
 
   // ===== SIDEBAR =====

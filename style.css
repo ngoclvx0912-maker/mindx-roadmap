@@ -687,6 +687,55 @@ body.admin-mode .editable-field:focus { background: #FFECB3; border-color: var(-
 }
 .toast.error { background: #DC3545; }
 
+/* ===== PRICING BUTTON & POPUP (Năm 0) ===== */
+.node-pricing-btn {
+  display: inline-flex; align-items: center; gap: 3px;
+  padding: 3px 8px; margin-top: 4px;
+  background: #FEF3C7; border: 1px solid #F59E0B; border-radius: 6px;
+  color: #92400E; font-size: 0.48rem; font-weight: 700;
+  cursor: pointer; transition: all 0.15s;
+}
+.node-pricing-btn:hover { background: #FDE68A; transform: scale(1.05); }
+
+.pricing-popup-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999; animation: fadeIn 0.2s;
+}
+.pricing-popup {
+  background: #fff; border-radius: 14px; padding: 24px;
+  min-width: 340px; max-width: 500px; width: 90%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  animation: slideUp 0.25s;
+}
+.pricing-popup-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid #E31F26;
+}
+.pricing-popup-header h3 { font-size: 0.9rem; font-weight: 800; color: #E31F26; }
+.pricing-popup-close {
+  width: 28px; height: 28px; border-radius: 50%; border: none;
+  background: #f3f4f6; cursor: pointer; font-size: 0.7rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.pricing-popup-close:hover { background: #e5e7eb; }
+.pricing-popup-table {
+  width: 100%; border-collapse: collapse; font-size: 0.7rem;
+}
+.pricing-popup-table th {
+  background: #E31F26; color: #fff; padding: 8px 12px;
+  text-align: center; font-weight: 700; font-size: 0.65rem;
+}
+.pricing-popup-table td {
+  padding: 8px 12px; text-align: center; border-bottom: 1px solid #eee;
+  font-weight: 600;
+}
+.pricing-popup-table tr:last-child td { border-bottom: none; }
+.pricing-popup-table tr:hover td { background: #FFF5F5; }
+
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
 /* ===== RESPONSIVE ===== */
 /* ── Responsive breakpoints ────────────────────────────── */
 
