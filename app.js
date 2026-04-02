@@ -968,7 +968,7 @@
 
       var hasLicense = dataHasLicense;
       var headers = ["L\u1ed9 tr\u00ecnh", "HP G\u1ed1c", "CTKM", "H\u1ecdc ph\u00ed"];
-      if (hasLicense) headers.push("Ph\u00ed BQ");
+      if (hasLicense) headers.push("Ph\u00ed B\u1ea3n quy\u1ec1n");
 
       var tableClass = "pricing-table" + (hasLicense ? " cols-5" : "");
       var table = el("table", { className: tableClass });
