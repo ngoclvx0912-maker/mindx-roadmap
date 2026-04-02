@@ -1000,7 +1000,14 @@
         else { goc = row.gocONL || ""; km = row.kmONL || ""; hp = row.hpONL || ""; }
 
         var r = el("tr", { className: row.featured ? "featured" : "" });
-        r.appendChild(el("td", {}, [editableSpan(k + "_route", row.route)]));
+        var routeTd = el("td", {}, [editableSpan(k + "_route", row.route)]);
+        // Art 24T note button
+        if (prefix === "ar" && si === 0 && ri === 2) {
+          var art24Btn = el("button", { className: "license-note-btn", onClick: function(e) { e.stopPropagation(); showArt24TNote(); } });
+          art24Btn.innerHTML = '\u26A0 L\u01B0u \u00fd';
+          routeTd.appendChild(art24Btn);
+        }
+        r.appendChild(routeTd);
         r.appendChild(el("td", {}, [editableSpan(k + "_goc_" + pricingRegion, goc)]));
         r.appendChild(el("td", { className: "pricing-note" }, [editableSpan(k + "_km_" + pricingRegion, km)]));
         r.appendChild(el("td", { className: "pricing-value" }, [editableSpan(k + "_hp_" + pricingRegion, hp)]));
@@ -1110,6 +1117,49 @@
     });
     if (!state.isAdmin) textarea.readOnly = true;
     popup.appendChild(textarea);
+
+    overlay.appendChild(popup);
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
+    document.body.appendChild(overlay);
+  }
+
+  // ===== ART 24T NOTE POPUP =====
+  function showArt24TNote() {
+    var old = document.getElementById('art24tNotePopup');
+    if (old) old.remove();
+
+    var overlay = el('div', { id: 'art24tNotePopup', className: 'pricing-popup-overlay' });
+    var popup = el('div', { className: 'pricing-popup' });
+
+    var header = el('div', { className: 'pricing-popup-header' });
+    header.innerHTML = '<h3>L\u01B0u \u00fd \u2014 L\u1ED9 tr\u00ECnh 24 th\u00E1ng Art</h3>';
+    var closeBtn = el('button', { className: 'pricing-popup-close', onClick: function() { overlay.remove(); } });
+    closeBtn.innerHTML = '\u2715';
+    header.appendChild(closeBtn);
+    popup.appendChild(header);
+
+    var table = el('table', { className: 'pricing-popup-table' });
+    var thead = el('thead');
+    var htr = el('tr');
+    ['L\u1ED9 tr\u00ECnh', 'HP G\u1ED1c', 'CTKM', 'H\u1ECDc ph\u00ED'].forEach(function(h) {
+      htr.appendChild(el('th', { textContent: h }));
+    });
+    thead.appendChild(htr);
+    table.appendChild(thead);
+
+    var tbody = el('tbody');
+    for (var i = 0; i < 2; i++) {
+      var row = el('tr');
+      for (var j = 0; j < 4; j++) {
+        var cellKey = 'art24t_' + i + '_' + j;
+        var td = el('td');
+        td.appendChild(editableSpan(cellKey, getEV(cellKey, '')));
+        row.appendChild(td);
+      }
+      tbody.appendChild(row);
+    }
+    table.appendChild(tbody);
+    popup.appendChild(table);
 
     overlay.appendChild(popup);
     overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
