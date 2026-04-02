@@ -541,19 +541,18 @@ body {
 .pricing-table th:nth-child(4),
 .pricing-table td:nth-child(4) { width: 26%; text-align: center; }
 /* 5-col table (Art with license) */
-.pricing-table.cols-5 { min-width: 520px; }
 .pricing-table.cols-5 th,
 .pricing-table.cols-5 td { padding: 9px 8px; }
 .pricing-table.cols-5 th:nth-child(1),
-.pricing-table.cols-5 td:nth-child(1) { width: 30%; text-align: left; }
+.pricing-table.cols-5 td:nth-child(1) { width: 32%; text-align: left; }
 .pricing-table.cols-5 th:nth-child(2),
-.pricing-table.cols-5 td:nth-child(2) { width: 16%; }
+.pricing-table.cols-5 td:nth-child(2) { width: 18%; }
 .pricing-table.cols-5 th:nth-child(3),
 .pricing-table.cols-5 td:nth-child(3) { width: 13%; }
 .pricing-table.cols-5 th:nth-child(4),
 .pricing-table.cols-5 td:nth-child(4) { width: 22%; }
 .pricing-table.cols-5 th:nth-child(5),
-.pricing-table.cols-5 td:nth-child(5) { width: 19%; text-align: center; }
+.pricing-table.cols-5 td:nth-child(5) { width: 15%; text-align: center; }
 .pricing-table th {
   padding: 10px 14px; font-weight: 600;
   color: var(--text-secondary); background: var(--surface-2);
