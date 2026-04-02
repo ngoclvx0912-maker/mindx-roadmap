@@ -561,8 +561,8 @@
     s.innerHTML =
       '<div class="xa-title-large">Ngành Sáng tạo — <span class="xa-accent">Không AI nào thay thế được</span></div>' +
       '<div class="xa-stats" id="xaMarketCStats" style="cursor:pointer">' +
-        '<div class="xa-stat" style="flex:1.8">' +
-          '<div class="xa-stat-number">$205B → $1,345B</div>' +
+        '<div class="xa-stat" style="flex:1.5">' +
+          '<div class="xa-stat-number">$205B<br>→ $1,345B</div>' +
           '<div class="xa-stat-label">kinh tế sáng tạo toàn cầu<br>CAGR 23.3%</div>' +
         '</div>' +
         '<div class="xa-stat">' +
