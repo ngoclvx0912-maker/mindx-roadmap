@@ -467,42 +467,42 @@ const TRAINING_DATA = {
   </div>
 </div>
 <div class="product-card">
-  <div class="product-header art1"><span class="product-year">NĂM 1</span><h4>KidsArt (7+)</h4></div>
+  <div class="product-header art1"><span class="product-year">NĂM 1</span><h4>Digital Art Foundations (7+)</h4></div>
   <div class="product-body">
     <p><strong>Mô tả:</strong> Nền tảng mỹ thuật: phối màu, bố cục, vẽ nhân vật đơn giản.</p>
     <p><strong>Key Points:</strong> Trẻ bắt đầu có "tác phẩm" đầu tiên, tự tin thể hiện bản thân qua nghệ thuật.</p>
   </div>
 </div>
 <div class="product-card">
-  <div class="product-header art2"><span class="product-year">NĂM 2</span><h4>Visual Art (9+)</h4></div>
+  <div class="product-header art2"><span class="product-year">NĂM 2</span><h4>Visual Thinking (9+)</h4></div>
   <div class="product-body">
     <p><strong>Mô tả:</strong> Nghệ thuật thị giác: vẽ digital, illustration cơ bản, sử dụng tablet.</p>
     <p><strong>Key Points:</strong> Chuyển từ vẽ tay sang digital art. Làm quen với công cụ thiết kế chuyên nghiệp.</p>
   </div>
 </div>
 <div class="product-card">
-  <div class="product-header art3"><span class="product-year">NĂM 3</span><h4>Game Art (10+)</h4></div>
+  <div class="product-header art3"><span class="product-year">NĂM 3</span><h4>Game Art (11+)</h4></div>
   <div class="product-body">
     <p><strong>Mô tả:</strong> Thiết kế nhân vật game, background, UI cho game.</p>
     <p><strong>Key Points:</strong> Kết hợp nghệ thuật + công nghệ. Trẻ thấy tác phẩm mình "sống" trong game.</p>
   </div>
 </div>
 <div class="product-card">
-  <div class="product-header art4"><span class="product-year">NĂM 4</span><h4>Character & Mascot Design (11+)</h4></div>
+  <div class="product-header art4"><span class="product-year">NĂM 4</span><h4>Character & Mascot Design (12+)</h4></div>
   <div class="product-body">
     <p><strong>Mô tả:</strong> Chuyên sâu thiết kế nhân vật: concept art, character sheet, storytelling qua hình ảnh.</p>
     <p><strong>Key Points:</strong> Kỹ năng chuyên nghiệp, có thể tham gia cuộc thi thiết kế.</p>
   </div>
 </div>
 <div class="product-card">
-  <div class="product-header art5"><span class="product-year">NĂM 5</span><h4>Graphic Design (13+)</h4></div>
+  <div class="product-header art5"><span class="product-year">NĂM 5</span><h4>Visual Communication (13+)</h4></div>
   <div class="product-body">
     <p><strong>Mô tả:</strong> Thiết kế đồ họa chuyên nghiệp: logo, poster, branding, social media design.</p>
     <p><strong>Key Points:</strong> Portfolio chuyên nghiệp. Có thể nhận freelance thiết kế.</p>
   </div>
 </div>
 <div class="product-card">
-  <div class="product-header art6"><span class="product-year">NĂM 6</span><h4>Multimedia Design (14+)</h4></div>
+  <div class="product-header art6"><span class="product-year">NĂM 6</span><h4>Motion & Video (14+)</h4></div>
   <div class="product-body">
     <p><strong>Mô tả:</strong> Thiết kế đa phương tiện: motion graphics, video editing, 3D modeling.</p>
     <p><strong>Key Points:</strong> Sẵn sàng cho đại học ngành Design hoặc làm việc thực tế.</p>
@@ -514,13 +514,13 @@ const TRAINING_DATA = {
               questions: [
                 { q: "Trẻ có thể bắt đầu lộ trình Art & Design từ bao nhiêu tuổi?", options: ["3 tuổi", "4 tuổi", "6 tuổi", "8 tuổi"], correct: 1, explanation: "Little Artist (Năm 0) dành cho trẻ từ 4 tuổi." },
                 { q: "Lộ trình Art & Design có tổng cộng bao nhiêu năm?", options: ["4 năm", "5 năm", "6 năm", "7 năm"], correct: 3, explanation: "Lộ trình Art có 7 năm: Năm 0 đến Năm 6." },
-                { q: "Khóa nào bắt đầu sử dụng digital art?", options: ["Little Artist", "KidsArt", "Visual Art", "Game Art"], correct: 2, explanation: "Visual Art (Năm 2, 9+) bắt đầu chuyển sang digital art." },
-                { q: "Game Art phù hợp cho trẻ từ mấy tuổi?", options: ["6+", "8+", "10+", "12+"], correct: 2, explanation: "Game Art dành cho trẻ 10+ — thiết kế nhân vật và UI game." },
-                { q: "Khóa nào tập trung vào Graphic Design chuyên nghiệp?", options: ["Năm 3", "Năm 4", "Năm 5", "Năm 6"], correct: 2, explanation: "Năm 5 (13+) là Graphic Design: logo, poster, branding." },
-                { q: "Character Design nằm ở năm thứ mấy?", options: ["Năm 2", "Năm 3", "Năm 4", "Năm 5"], correct: 2, explanation: "Character & Mascot Design ở Năm 4 (11+)." },
-                { q: "Multimedia Design bao gồm kỹ năng nào?", options: ["Vẽ tay", "Motion graphics, video editing, 3D", "Chỉ thiết kế logo", "Vẽ truyện tranh"], correct: 1, explanation: "Multimedia Design: motion graphics, video editing, 3D modeling." },
-                { q: "Trẻ có thể nhận freelance thiết kế từ khóa nào?", options: ["Visual Art", "Game Art", "Character Design", "Graphic Design"], correct: 3, explanation: "Từ Graphic Design (Năm 5), trẻ có portfolio đủ để nhận freelance." },
-                { q: "KidsArt phù hợp cho lứa tuổi nào?", options: ["4+", "7+", "8+", "10+"], correct: 1, explanation: "KidsArt (Năm 1) dành cho trẻ 7+." },
+                { q: "Khóa nào bắt đầu sử dụng digital art?", options: ["Little Artist", "Digital Art Foundations", "Visual Thinking", "Game Art"], correct: 2, explanation: "Visual Thinking (Năm 2, 9+) bắt đầu chuyển sang digital art." },
+                { q: "Game Art phù hợp cho trẻ từ mấy tuổi?", options: ["6+", "9+", "11+", "12+"], correct: 2, explanation: "Game Art dành cho trẻ 11+ — thiết kế nhân vật và UI game." },
+                { q: "Khóa nào tập trung vào Visual Communication chuyên nghiệp?", options: ["Năm 3", "Năm 4", "Năm 5", "Năm 6"], correct: 2, explanation: "Năm 5 (13+) là Visual Communication: logo, poster, branding." },
+                { q: "Character & Mascot Design nằm ở năm thứ mấy?", options: ["Năm 2", "Năm 3", "Năm 4", "Năm 5"], correct: 2, explanation: "Character & Mascot Design ở Năm 4 (12+)." },
+                { q: "Motion & Video bao gồm kỹ năng nào?", options: ["Vẽ tay", "Motion graphics, video editing, 3D", "Chỉ thiết kế logo", "Vẽ truyện tranh"], correct: 1, explanation: "Motion & Video: motion graphics, video editing, 3D modeling." },
+                { q: "Trẻ có thể nhận freelance thiết kế từ khóa nào?", options: ["Visual Thinking", "Game Art", "Character & Mascot Design", "Visual Communication"], correct: 3, explanation: "Từ Visual Communication (Năm 5), trẻ có portfolio đủ để nhận freelance." },
+                { q: "Digital Art Foundations phù hợp cho lứa tuổi nào?", options: ["4+", "7+", "8+", "10+"], correct: 1, explanation: "Digital Art Foundations (Năm 1) dành cho trẻ 7+." },
                 { q: "Điểm khác biệt chính của lộ trình Art so với học vẽ truyền thống?", options: ["Rẻ hơn", "Kết hợp nghệ thuật + công nghệ digital", "Chỉ vẽ tay", "Không cần giáo viên"], correct: 1, explanation: "MindX Art kết hợp nghệ thuật truyền thống + công nghệ digital — khác biệt hoàn toàn." }
               ]
             }
@@ -2746,7 +2746,7 @@ const TRAINING_DATA = {
 </div>
 
 <div class="product-card">
-  <div class="product-header art1"><span class="product-year">NĂM 1</span><h4>KidsArt (7+)</h4></div>
+  <div class="product-header art1"><span class="product-year">NĂM 1</span><h4>Digital Art Foundations (7+)</h4></div>
   <div class="product-body">
     <p><strong>Mục tiêu:</strong> Nền tảng mỹ thuật: phối màu, bố cục, vẽ nhân vật</p>
     <p><strong>CS cần biết:</strong> Trẻ bắt đầu có tác phẩm đầu tiên, tự tin thể hiện bản thân.</p>
@@ -2754,7 +2754,7 @@ const TRAINING_DATA = {
 </div>
 
 <div class="product-card">
-  <div class="product-header art2"><span class="product-year">NĂM 2</span><h4>Visual Art (9+)</h4></div>
+  <div class="product-header art2"><span class="product-year">NĂM 2</span><h4>Visual Thinking (9+)</h4></div>
   <div class="product-body">
     <p><strong>Mục tiêu:</strong> Vẽ digital, illustration cơ bản, sử dụng tablet</p>
     <p><strong>CS cần biết:</strong> Bước chuyển từ vẽ tay sang digital art. Làm quen công cụ thiết kế chuyên nghiệp.</p>
@@ -2762,7 +2762,7 @@ const TRAINING_DATA = {
 </div>
 
 <div class="product-card">
-  <div class="product-header art3"><span class="product-year">NĂM 3</span><h4>Game Art (10+)</h4></div>
+  <div class="product-header art3"><span class="product-year">NĂM 3</span><h4>Game Art (11+)</h4></div>
   <div class="product-body">
     <p><strong>Mục tiêu:</strong> Thiết kế nhân vật game, background, UI cho game</p>
     <p><strong>CS cần biết:</strong> Kết hợp nghệ thuật + công nghệ. HV thấy tác phẩm "sống" trong game.</p>
@@ -2770,17 +2770,17 @@ const TRAINING_DATA = {
 </div>
 
 <div class="product-card">
-  <div class="product-header art4"><span class="product-year">NĂM 4</span><h4>Character & Mascot Design (11+)</h4></div>
+  <div class="product-header art4"><span class="product-year">NĂM 4</span><h4>Character & Mascot Design (12+)</h4></div>
   <div class="product-body"><p><strong>Mục tiêu:</strong> Concept art, character sheet, storytelling qua hình ảnh</p></div>
 </div>
 
 <div class="product-card">
-  <div class="product-header art5"><span class="product-year">NĂM 5</span><h4>Graphic Design (13+)</h4></div>
+  <div class="product-header art5"><span class="product-year">NĂM 5</span><h4>Visual Communication (13+)</h4></div>
   <div class="product-body"><p><strong>Mục tiêu:</strong> Thiết kế đồ họa chuyên nghiệp: logo, poster, social media</p></div>
 </div>
 
 <div class="product-card">
-  <div class="product-header art5"><span class="product-year">NĂM 6</span><h4>Multimedia Design (14+)</h4></div>
+  <div class="product-header art6"><span class="product-year">NĂM 6</span><h4>Motion & Video (14+)</h4></div>
   <div class="product-body"><p><strong>Mục tiêu:</strong> Thiết kế đa phương tiện: video, motion graphics, portfolio chuyên nghiệp</p></div>
 </div>
 
@@ -2798,8 +2798,8 @@ const TRAINING_DATA = {
               title: "Quiz: Lộ trình Art & Design",
               questions: [
                 { q: "Lộ trình Art bắt đầu từ bao nhiêu tuổi?", options: ["6+", "5+", "4+", "8+"], correct: 2, explanation: "Little Artist dành cho trẻ từ 4 tuổi — sớm nhất trong các lộ trình MindX." },
-                { q: "Lộ trình Art & Design kéo dài bao nhiêu năm?", options: ["4 năm", "5 năm", "6 năm", "7 năm"], correct: 3, explanation: "Lộ trình Art & Design gồm 7 năm: từ Little Artist (4+) đến Multimedia Design (14+)." },
-                { q: "Khóa nào bắt đầu chuyển từ vẽ tay sang digital art?", options: ["KidsArt", "Visual Art", "Game Art", "Character Design"], correct: 1, explanation: "Visual Art (Năm 2, 9+) là bước chuyển từ vẽ tay sang vẽ digital, sử dụng tablet." },
+                { q: "Lộ trình Art & Design kéo dài bao nhiêu năm?", options: ["4 năm", "5 năm", "6 năm", "7 năm"], correct: 3, explanation: "Lộ trình Art & Design gồm 7 năm: từ Little Artist (4+) đến Motion & Video (14+)." },
+                { q: "Khóa nào bắt đầu chuyển từ vẽ tay sang digital art?", options: ["Digital Art Foundations", "Visual Thinking", "Game Art", "Character & Mascot Design"], correct: 1, explanation: "Visual Thinking (Năm 2, 9+) là bước chuyển từ vẽ tay sang vẽ digital, sử dụng tablet." },
                 { q: "Art phù hợp với tính cách nào hơn so với Coding?", options: ["Logic, giải quyết vấn đề", "Sáng tạo, thẩm mỹ", "Kỷ luật, chính xác", "Giao tiếp, ngoại giao"], correct: 1, explanation: "Art phù hợp với trẻ thiên về sáng tạo, thẩm mỹ; Coding phù hợp với tư duy logic." },
                 { q: "Khóa Game Art (Năm 3) có gì đặc biệt?", options: ["Học vẽ truyền thống", "Kết hợp nghệ thuật + công nghệ, tạo nhân vật game", "Học chụp ảnh", "Học làm phim"], correct: 1, explanation: "Game Art kết hợp nghệ thuật và công nghệ — HV thiết kế nhân vật, background, UI cho game." }
               ]
@@ -2991,10 +2991,12 @@ const TRAINING_DATA = {
       <tr><td style="padding:8px;border:1px solid #eee;">Nhập môn (VEX GO)</td><td style="padding:8px;border:1px solid #eee;">6–7 tuổi</td></tr>
       <tr><td style="padding:8px;border:1px solid #eee;">Truy tìm bí ẩn (VEX GO)</td><td style="padding:8px;border:1px solid #eee;">8–9 tuổi</td></tr>
       <tr><td style="padding:8px;border:1px solid #eee;">Sáng tạo Robot (VEX IQ)</td><td style="padding:8px;border:1px solid #eee;">9+ tuổi</td></tr>
-      <tr><td style="padding:8px;border:1px solid #eee;" rowspan="4">Art</td><td style="padding:8px;border:1px solid #eee;">Little Artist / Kids Art</td><td style="padding:8px;border:1px solid #eee;">4–7 tuổi</td></tr>
-      <tr><td style="padding:8px;border:1px solid #eee;">Visual Art / Visual Creation</td><td style="padding:8px;border:1px solid #eee;">9–10 tuổi</td></tr>
-      <tr><td style="padding:8px;border:1px solid #eee;">Art Illustration / Graphic Design</td><td style="padding:8px;border:1px solid #eee;">11–13 tuổi</td></tr>
-      <tr><td style="padding:8px;border:1px solid #eee;">Multimedia Design</td><td style="padding:8px;border:1px solid #eee;">14+ tuổi</td></tr>
+      <tr><td style="padding:8px;border:1px solid #eee;" rowspan="6">Art</td><td style="padding:8px;border:1px solid #eee;">Little Artist</td><td style="padding:8px;border:1px solid #eee;">4–6 tuổi</td></tr>
+      <tr><td style="padding:8px;border:1px solid #eee;">Digital Art Foundations</td><td style="padding:8px;border:1px solid #eee;">7–8 tuổi</td></tr>
+      <tr><td style="padding:8px;border:1px solid #eee;">Visual Thinking</td><td style="padding:8px;border:1px solid #eee;">9–10 tuổi</td></tr>
+      <tr><td style="padding:8px;border:1px solid #eee;">Game Art</td><td style="padding:8px;border:1px solid #eee;">11 tuổi</td></tr>
+      <tr><td style="padding:8px;border:1px solid #eee;">Character & Mascot Design</td><td style="padding:8px;border:1px solid #eee;">12 tuổi</td></tr>
+      <tr><td style="padding:8px;border:1px solid #eee;">Visual Communication → Motion & Video</td><td style="padding:8px;border:1px solid #eee;">13–14+ tuổi</td></tr>
     </table>
   </div>
 </div>`,
@@ -3021,10 +3023,10 @@ const TRAINING_DATA = {
                   explanation: "8+ (Truy tìm bí ẩn) tập trung chuyên sâu vào cánh tay Robot Arm và hệ thống tự động hóa — phức tạp hơn nhiều so với 6+."
                 },
                 {
-                  q: "PH nói 'Con vẽ đẹp lắm, cho nhảy qua Graphic Design luôn được không?'",
+                  q: "PH nói 'Con vẽ đẹp lắm, cho nhảy qua Visual Communication luôn được không?'",
                   options: ["Được, nếu bé vẽ đẹp", "Không — vẽ truyền thống khác thiết kế số, mỗi môn dạy công cụ + tư duy khác nhau", "Tùy GV đánh giá", "Chỉ cần test đầu vào"],
                   correct: 1,
-                  explanation: "Vẽ truyền thống ≠ thiết kế số. Mỗi môn (Art Illustration → Graphic Design) dạy công cụ và tư duy riêng, không thể bỏ qua."
+                  explanation: "Vẽ truyền thống ≠ thiết kế số. Mỗi môn (Game Art → Visual Communication) dạy công cụ và tư duy riêng, không thể bỏ qua."
                 },
                 {
                   q: "Bé nghiện game, học Coding có giúp gì không?",

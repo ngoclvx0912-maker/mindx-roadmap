@@ -44,14 +44,14 @@
         "Sản phẩm": "Tranh canvas, tranh sáp, sản phẩm thủ công 3D",
         "Thời lượng": "3 HP × 14 buổi"
       }},
-      { year: "Năm 1", name: "KidsArt", color: "#2563EB", keywords: ["Digital Art", "iPad", "Sticker"], items: {
+      { year: "Năm 1", name: "Digital Art Foundations", color: "#2563EB", keywords: ["Digital Art", "iPad", "Sticker"], items: {
         "Tư duy": "Tư duy thị giác số — chuyển từ giấy sang digital",
         "Kỹ năng": "Vẽ digital bằng iPad/bảng vẽ, tạo sticker & sketchnote",
         "Kiến thức": "Digital Art cơ bản, Sketchbook, phong cách vẽ quốc tế",
         "Sản phẩm": "Digital Sketchbook, Sticker Pack, Bộ tranh 'My World'",
         "Thời lượng": "3 HP × 14 buổi"
       }},
-      { year: "Năm 2", name: "Visual Art", color: "#059669", keywords: ["Bố cục", "Illustration", "Digital Art"], items: {
+      { year: "Năm 2", name: "Visual Thinking", color: "#059669", keywords: ["Bố cục", "Illustration", "Digital Art"], items: {
         "Tư duy": "Tư duy mỹ thuật số có hệ thống — vẽ có chủ đích",
         "Kỹ năng": "Bố cục, phong cách hóa, tạo series tranh, phản biện sản phẩm",
         "Kiến thức": "Medibang, Canva, foreground/background, stylization",
@@ -72,14 +72,14 @@
         "Sản phẩm": "Mascot Design + Mini Style Guide",
         "Thời lượng": "3 HP × 14 buổi"
       }},
-      { year: "Năm 5", name: "Graphic Design", color: "#059669", keywords: ["Photoshop", "Poster", "Portfolio"], items: {
+      { year: "Năm 5", name: "Visual Communication", color: "#059669", keywords: ["Photoshop", "Poster", "Portfolio"], items: {
         "Tư duy": "Tư duy truyền thông — thiết kế để giao tiếp và thuyết phục",
         "Kỹ năng": "Adobe Photoshop & Illustrator, dựng chiến dịch 360°",
         "Kiến thức": "Layout, Poster, Logo, Branding chuẩn nghề chuyên nghiệp",
         "Sản phẩm": "Chiến dịch truyền thông + Portfolio chuẩn ngành",
         "Thời lượng": "3 HP × 14 buổi"
       }},
-      { year: "Năm 6", name: "Multimedia Design", color: "#E31F26", keywords: ["Motion", "After Effects", "Video"], items: {
+      { year: "Năm 6", name: "Motion & Video", color: "#E31F26", keywords: ["Motion", "After Effects", "Video"], items: {
         "Tư duy": "Tư duy storytelling — kể chuyện bằng chuyển động & thời gian",
         "Kỹ năng": "After Effects, Premiere Pro, Motion Graphics, Stop Motion",
         "Kiến thức": "Video editing, animation principles, sound design",
@@ -111,22 +111,22 @@
         "Năm 7: Tư duy sản phẩm số — UX/UI Design"
       ]},
       { emoji: "⚡", name: "Kỹ năng", items: [
-        "Năm 0–1: Vẽ tay + Digital Art cơ bản (iPad, Sketchbook)",
-        "Năm 2: Medibang + Bố cục + Stylization + Phản biện sản phẩm",
+        "Năm 0–1: Vẽ tay + Digital Art Foundations (iPad, Sketchbook)",
+        "Năm 2: Visual Thinking — Medibang + Bố cục + Stylization + Phản biện sản phẩm",
         "Năm 3: Concept Art + Character Design + Environment Art",
         "Năm 4: Adobe Illustrator + Vector + Mascot Design",
-        "Năm 5: Photoshop + Illustrator + Branding + Chiến dịch truyền thông",
-        "Năm 6: After Effects + Premiere + Motion Graphics",
+        "Năm 5: Visual Communication — Photoshop + Illustrator + Branding + Chiến dịch truyền thông",
+        "Năm 6: Motion & Video — After Effects + Premiere + Motion Graphics",
         "Năm 7: Figma + UX Research + Product Design"
       ]},
       { emoji: "📚", name: "Kiến thức", items: [
         "Năm 0: Chất liệu mỹ thuật truyền thống, hình khối, màu sắc",
-        "Năm 1: Digital Art foundation, công cụ số, phong cách quốc tế",
+        "Năm 1: Digital Art Foundations — công cụ số, phong cách quốc tế",
         "Năm 2: Bố cục, phối cảnh, phong cách hóa, series tranh",
         "Năm 3: Game Art pipeline, worldbuilding, character sheet",
         "Năm 4: Brand identity, typography, style guide, vector",
-        "Năm 5: Layout, poster, logo, branding chuẩn nghề",
-        "Năm 6: Animation, video editing, motion graphic",
+        "Năm 5: Visual Communication — layout, poster, logo, branding chuẩn nghề",
+        "Năm 6: Motion & Video — animation, video editing, motion graphic",
         "Năm 7: Figma, UX/UI, Agile/Scrum, Product Thinking"
       ]}
     ],
@@ -143,7 +143,7 @@
         "Hồ sơ du học: CV, Portfolio, Motivation Letter chuyên nghiệp",
         "Thực tập chuyên môn tại studio/doanh nghiệp thiết kế",
         "Hỗ trợ phỏng vấn & chọn trường phù hợp năng lực",
-        "Các ngành đích: Graphic Design, Animation, Game Art, UI/UX tại các trường quốc tế"
+        "Các ngành đích: Visual Communication, Animation, Game Art, UI/UX tại các trường quốc tế"
       ]}
     ],
     slideSpecial: [
@@ -151,7 +151,7 @@
         "Lộ trình AI dành riêng cho học sinh K12 — khóa học đệm chiến lược",
         "Giúp con học tập hiệu quả hơn trên trường phổ thông thông qua AI",
         "Học sinh học 1 level phù hợp độ tuổi (dưới lớp 7 → Lv1, trên lớp 7 → Lv2)",
-        "Trong lộ trình Art: trước Character & Mascot Design → Level 1, sau → Level 2",
+        "Trong lộ trình Art: trước Character & Mascot Design (12+) → Level 1, sau → Level 2",
         "Hình thành năng lực sử dụng AI đúng cách và có trách nhiệm",
         "Xây dựng công cụ học tập cá nhân hóa bằng AI cho mỗi học sinh",
         "Không bán lẻ — luôn nằm trong gói lộ trình 24 tháng trở lên"
@@ -159,7 +159,7 @@
         { name: "Level 1", desc: "Sáng tạo nội dung với AI (6 buổi) — Dành cho HV dưới lớp 7 (Little Artist → Game Art). Tạo hình ảnh bằng Nano Banana, slide bằng Gamma, video bằng Flow. Học viết prompt hiệu quả. Sản phẩm: Bộ hình + Slide + Video.", icon: "🌟" },
         { name: "Level 2", desc: "Chatbot học tập (6 buổi) — Dành cho HV trên lớp 7 (Character & Mascot Design trở lên). Xây chatbot ôn bài với Gemini & NotebookLM. Tạo Study Pack cá nhân: quiz, flashcard, chatbot Q&A. Sản phẩm: Bộ công cụ ôn tập.", icon: "🚀" }
       ]},
-      { icon: "🎨", name: "Cregen I", subtitle: "Họa sĩ minh họa & Creative Workshop", color: "#8B5CF6", duration: "14 buổi + 4 buổi", timing: "Kết nối cuối Visual Art, Game Art", items: [
+      { icon: "🎨", name: "Cregen I", subtitle: "Họa sĩ minh họa & Creative Workshop", color: "#8B5CF6", duration: "14 buổi + 4 buổi", timing: "Kết nối cuối Visual Thinking, Game Art", items: [
         "Creative Thinking Workshop (4 buổi): Tư duy sáng tạo có cấu trúc",
         "Tạo ý tưởng không chờ cảm hứng — phát triển 1 ý tưởng thành nhiều hướng",
         "Khóa học Họa sĩ minh họa — đồ án lớn",
@@ -179,7 +179,7 @@
         "Sản phẩm: Nhân vật + ấn phẩm tuyên truyền hoàn chỉnh",
         "Định hướng nghề: Game Art & Branding"
       ]},
-      { icon: "🎬", name: "Intern 1", subtitle: "Creative Studio Intern — Thực tập sáng tạo", color: "#2563EB", duration: "Năm 5", timing: "Kết nối cuối Graphic Design", items: [
+      { icon: "🎬", name: "Intern 1", subtitle: "Creative Studio Intern — Thực tập sáng tạo", color: "#2563EB", duration: "Năm 5", timing: "Kết nối cuối Visual Communication", items: [
         "Giá trị nổi bật: Hiểu cách một đội sáng tạo cùng làm ra sản phẩm hoàn chỉnh",
         "Hiểu studio sáng tạo hoạt động thế nào — không chỉ vẽ",
         "Làm việc nhóm, phân vai, giao tiếp & phản biện",
@@ -187,7 +187,7 @@
         "Học viên luân phiên vai trò — hiểu toàn bộ pipeline sáng tạo",
         "Sản phẩm: Bộ poster cho sự kiện + Mini brand cho CLB giả định"
       ]},
-      { icon: "📋", name: "Intern 2", subtitle: "Creative PM Intern — Quản lý dự án sáng tạo", color: "#E31F26", duration: "Năm 6", timing: "Kết nối cuối Multimedia Design", items: [
+      { icon: "📋", name: "Intern 2", subtitle: "Creative PM Intern — Quản lý dự án sáng tạo", color: "#E31F26", duration: "Năm 6", timing: "Kết nối cuối Motion & Video", items: [
         "Chương trình thực tập nâng cao — học cách dẫn dắt dự án",
         "Không phải ai cũng làm designer, nhưng ai cũng cần hiểu quản lý dự án",
         "Lập kế hoạch dự án, chia việc, theo dõi tiến độ, tổng hợp kết quả",
@@ -231,8 +231,8 @@
     },
     slide11: [
       { name: "7 năm nền tảng", items: [
-        "Little Artist (4+) → KidsArt (7+) → Visual Art (9+) → Game Art (10+)",
-        "→ Character & Mascot (11+) → Graphic Design (13+) → Multimedia (14+)",
+        "Little Artist (4+) → Digital Art Foundations (7+) → Visual Thinking (9+) → Game Art (11+)",
+        "→ Character & Mascot (12+) → Visual Communication (13+) → Motion & Video (14+)",
         "Mỗi năm 3 học phần × 14 buổi, tổng ~294 buổi",
         "Từ vẽ tay đến thiết kế chuyên nghiệp",
         "Kèm chương trình đặc biệt: Cregen I, II + Intern 1, 2"
@@ -1071,7 +1071,7 @@
       if (!tl) return;
 
       var tlLabels = ["7 năm nền tảng", "Năm 7: UX/UI", "Internship X", "Vị trí nghề"];
-      var tlDescs = ["Little Artist → Multimedia<br>Nghệ thuật vững chắc", "UI → UX → Product<br>Thiết kế sản phẩm", "Thực tập + Việc làm<br>Cam kết đầu ra", "Graphic · Motion<br>UI/UX · Product"];
+      var tlDescs = ["Little Artist → Motion & Video<br>Nghệ thuật vững chắc", "UI → UX → Product<br>Thiết kế sản phẩm", "Thực tập + Việc làm<br>Cam kết đầu ra", "Graphic · Motion<br>UI/UX · Product"];
 
       detailData.slide11.forEach(function(item, i) {
         var tlItem = document.createElement("div");
