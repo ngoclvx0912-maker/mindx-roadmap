@@ -999,7 +999,7 @@
         var r = el("tr", { className: row.featured ? "featured" : "" });
         var routeTd = el("td", {}, [editableSpan(k + "_route", row.route)]);
         // Art 24T note button
-        if (prefix === "ar" && si === 0 && ri === 2) {
+        if (prefix === "ar" && si === 0 && ri === 1) {
           var art24Btn = el("button", { className: "license-note-btn", onClick: function(e) { e.stopPropagation(); showArt24TNote(); } });
           art24Btn.innerHTML = '\u26A0 L\u01B0u \u00fd';
           routeTd.appendChild(art24Btn);
