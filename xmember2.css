@@ -242,7 +242,7 @@
   background: #FAFAFA;
   border: 1px solid #F0F0F0;
   border-radius: 16px;
-  padding: clamp(14px, 2vh, 24px) clamp(12px, 1.5vw, 20px);
+  padding: clamp(10px, 1.5vh, 18px) clamp(10px, 1.2vw, 16px);
   text-align: center;
   position: relative;
   transition: all 0.2s ease;
@@ -289,17 +289,17 @@
 }
 .xm2-phase-badge.green { background: #059669; }
 .xm2-phase-name {
-  font-size: 1.2rem; font-weight: 800; color: #1A1A1A; margin-bottom: 4px;
+  font-size: 0.88rem; font-weight: 800; color: #1A1A1A; margin-bottom: 4px;
 }
 .xm2-phase-meta {
-  font-size: 0.85rem; color: #E31F26; font-weight: 600; margin-bottom: 8px;
+  font-size: 0.72rem; color: #E31F26; font-weight: 600; margin-bottom: 6px;
 }
 .xm2-phase-desc {
-  font-size: 0.9rem; color: #666; margin-bottom: 16px;
+  font-size: 0.75rem; color: #666; margin-bottom: 10px;
 }
-.xm2-phase-steps { display: flex; flex-direction: column; gap: 8px; }
+.xm2-phase-steps { display: flex; flex-direction: column; gap: 6px; }
 .xm2-step {
-  font-size: 0.85rem; color: #444;
+  font-size: 0.72rem; color: #444;
   padding: 8px 12px; background: #FFFFFF;
   border-radius: 8px; border: 1px solid #F0F0F0;
 }
