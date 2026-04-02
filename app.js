@@ -227,7 +227,6 @@
   var roboticsPricingRegions = {
     sections: [
       { title: "Lộ trình thông thường", rows: [
-        { route: "4 tháng (1 HP)", gocHN: "6M", kmHN: "", hpHN: "6M", gocT: "6M", kmT: "", hpT: "6M" },
         { route: "12 tháng (3 HP)", gocHN: "18M", kmHN: "10%", hpHN: "16.2M", gocT: "18M", kmT: "15%", hpT: "15.3M" },
         { route: "24 tháng (6 HP)", gocHN: "36M", kmHN: "30%", hpHN: "25.2M", gocT: "36M", kmT: "35%", hpT: "23.4M" },
         { route: "Toàn bộ lộ trình", gocHN: "Liên hệ tư vấn", kmHN: "", hpHN: "Ưu đãi", gocT: "Liên hệ tư vấn", kmT: "", hpT: "Ưu đãi", featured: true }
@@ -249,7 +248,6 @@
   var codingPricingRegions = {
     sections: [
       { title: "Lộ trình thông thường", rows: [
-        { route: "4 tháng", gocHN: "6M", kmHN: "", hpHN: "6M", gocT: "6M", kmT: "", hpT: "6M", gocONL: "5.5M", kmONL: "", hpONL: "5.5M" },
         { route: "12 tháng", gocHN: "18M", kmHN: "10%", hpHN: "16.2M", gocT: "18M", kmT: "15%", hpT: "15.3M", gocONL: "16.5M", kmONL: "20%", hpONL: "13.2M", note: "Thêm 1 AI4Learn" },
         { route: "24 tháng", gocHN: "51.5M", kmHN: "35%", hpHN: "33.5M", gocT: "51.5M", kmT: "40%", hpT: "30.9M", gocONL: "48.5M", kmONL: "45%", hpONL: "26.7M", note: "Thêm 1 AI4Learn" }
       ]},
@@ -285,7 +283,6 @@
   var artPricingRegions = {
     sections: [
       { title: "Lộ trình thông thường", rows: [
-        { route: "4 tháng", gocHN: "6M", kmHN: "", hpHN: "6M", gocT: "6M", kmT: "", hpT: "6M", gocONL: "5.5M", kmONL: "", hpONL: "5.5M", license: "500K" },
         { route: "12 tháng", gocHN: "18M", kmHN: "10%", hpHN: "16.2M", gocT: "18M", kmT: "15%", hpT: "15.3M", gocONL: "16.5M", kmONL: "20%", hpONL: "13.2M", license: "1M" },
         { route: "24 tháng", gocHN: "51.5M", kmHN: "35%", hpHN: "33.5M", gocT: "51.5M", kmT: "40%", hpT: "30.9M", gocONL: "48.5M", kmONL: "45%", hpONL: "26.7M", license: "2M" }
       ]},
