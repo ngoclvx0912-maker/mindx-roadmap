@@ -1188,11 +1188,10 @@
 
     var contentKey = noteKey + '_note';
     var saved = getEV(contentKey, '');
-    var ta = el('textarea', {
-      className: 'bt-note-textarea',
-      placeholder: 'Nh\u1EADp l\u01B0u \u00fd cho Sale...',
-      value: saved
-    });
+    var ta = document.createElement('textarea');
+    ta.className = 'bt-note-textarea';
+    ta.placeholder = 'Nh\u1EADp l\u01B0u \u00fd cho Sale...';
+    ta.value = saved;
     ta.style.cssText = 'width:100%;min-height:120px;border:1px solid #ddd;border-radius:8px;padding:12px;font-size:0.85rem;font-family:inherit;resize:vertical;';
     ta.addEventListener('input', function() {
       state.editedData[contentKey] = ta.value;
