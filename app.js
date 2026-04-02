@@ -1007,6 +1007,14 @@
           art24Btn.innerHTML = '\u26A0 L\u01B0u \u00fd';
           routeTd.appendChild(art24Btn);
         }
+        // BT note button (Cam kết bảo trợ / Bảo trợ du học rows)
+        if (row.featured && sec.title && (sec.title.indexOf('Cam k\u1EBFt') >= 0 || sec.title.indexOf('B\u1EA3o tr\u1EE3') >= 0)) {
+          (function(noteKey) {
+            var btBtn = el("button", { className: "license-note-btn", onClick: function(e) { e.stopPropagation(); showBTNote(noteKey); } });
+            btBtn.innerHTML = '\u26A0 L\u01B0u \u00fd';
+            routeTd.appendChild(btBtn);
+          })(prefix + '_bt_' + si + '_' + ri);
+        }
         r.appendChild(routeTd);
         r.appendChild(el("td", {}, [editableSpan(k + "_goc_" + pricingRegion, goc)]));
         r.appendChild(el("td", { className: "pricing-note" }, [editableSpan(k + "_km_" + pricingRegion, km)]));
@@ -1160,6 +1168,41 @@
     }
     table.appendChild(tbody);
     popup.appendChild(table);
+
+    overlay.appendChild(popup);
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
+    document.body.appendChild(overlay);
+  }
+
+  // ===== BT NOTE POPUP =====
+  function showBTNote(noteKey) {
+    var old = document.getElementById('btNotePopup');
+    if (old) old.remove();
+
+    var overlay = el('div', { id: 'btNotePopup', className: 'pricing-popup-overlay' });
+    var popup = el('div', { className: 'pricing-popup' });
+
+    var header = el('div', { className: 'pricing-popup-header' });
+    header.innerHTML = '<h3>L\u01B0u \u00fd cho Sale</h3>';
+    var closeBtn = el('button', { className: 'pricing-popup-close', onClick: function() { overlay.remove(); } });
+    closeBtn.innerHTML = '\u2715';
+    header.appendChild(closeBtn);
+    popup.appendChild(header);
+
+    var contentKey = noteKey + '_note';
+    var saved = getEV(contentKey, '');
+    var ta = el('textarea', {
+      className: 'bt-note-textarea',
+      placeholder: 'Nh\u1EADp l\u01B0u \u00fd cho Sale...',
+      value: saved
+    });
+    ta.style.cssText = 'width:100%;min-height:120px;border:1px solid #ddd;border-radius:8px;padding:12px;font-size:0.85rem;font-family:inherit;resize:vertical;';
+    ta.setAttribute('data-key', contentKey);
+    ta.addEventListener('input', function() {
+      pendingEdits[contentKey] = ta.value;
+      scheduleSave();
+    });
+    popup.appendChild(ta);
 
     overlay.appendChild(popup);
     overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
