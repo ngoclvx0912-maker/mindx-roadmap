@@ -586,18 +586,34 @@ const TRAINING_DATA = {
             title: "Bảng giá & Chương trình khuyến mãi",
             icon: "💰",
             content: `<h3>Bảng giá & Ưu đãi</h3>
-<p>Giá áp dụng <strong>giống nhau cho cả 3 bộ môn</strong> Coding, Art, Robotics. Khác nhau theo khu vực.</p>
+<p>Giá khác nhau theo <strong>bộ môn</strong> và <strong>khu vực</strong>. Dưới đây là giá HN/HCM.</p>
 
 <div class="pricing-info">
-  <h4>📍 Lộ trình thông thường (Coding / Robotics)</h4>
+  <h4>📍 Robotics — Lộ trình thông thường</h4>
   <table style="width:100%;border-collapse:collapse;font-size:0.85em;margin:8px 0;">
-    <tr style="background:#E31F26;color:#fff;"><th style="padding:8px;">Lộ trình</th><th style="padding:8px;">HP Gốc (HN/HCM)</th><th style="padding:8px;">CTKM</th><th style="padding:8px;">Học phí</th></tr>
+    <tr style="background:#E31F26;color:#fff;"><th style="padding:8px;">Lộ trình</th><th style="padding:8px;">HP Gốc</th><th style="padding:8px;">CTKM</th><th style="padding:8px;">Học phí</th></tr>
     <tr><td style="padding:8px;border:1px solid #eee;">12 tháng (3 HP)</td><td style="padding:8px;border:1px solid #eee;text-align:center;">18M</td><td style="padding:8px;border:1px solid #eee;text-align:center;">10%</td><td style="padding:8px;border:1px solid #eee;text-align:center;font-weight:700;color:#E31F26;">16.2M</td></tr>
     <tr><td style="padding:8px;border:1px solid #eee;">24 tháng (6 HP)</td><td style="padding:8px;border:1px solid #eee;text-align:center;">36M</td><td style="padding:8px;border:1px solid #eee;text-align:center;">30%</td><td style="padding:8px;border:1px solid #eee;text-align:center;font-weight:700;color:#E31F26;">25.2M</td></tr>
   </table>
-  <p style="font-size:0.8em;color:#666;">Tỉnh/TP khác: CTKM cao hơn (12T: 15%, 24T: 35%). Coding 12T/24T thêm 1 AI4Learn.</p>
+  <p style="font-size:0.8em;color:#666;">Tỉnh: 12T giảm 15%, 24T giảm 35%.</p>
 
-  <h4 style="margin-top:15px;">📍 Lộ trình Coding — Cam kết bảo trợ</h4>
+  <h4 style="margin-top:15px;">📍 Coding — Lộ trình thông thường</h4>
+  <table style="width:100%;border-collapse:collapse;font-size:0.85em;margin:8px 0;">
+    <tr style="background:#E31F26;color:#fff;"><th style="padding:8px;">Lộ trình</th><th style="padding:8px;">HP Gốc</th><th style="padding:8px;">CTKM</th><th style="padding:8px;">Học phí</th></tr>
+    <tr><td style="padding:8px;border:1px solid #eee;">12 tháng</td><td style="padding:8px;border:1px solid #eee;text-align:center;">18M</td><td style="padding:8px;border:1px solid #eee;text-align:center;">10%</td><td style="padding:8px;border:1px solid #eee;text-align:center;font-weight:700;color:#E31F26;">16.2M</td></tr>
+    <tr><td style="padding:8px;border:1px solid #eee;">24 tháng</td><td style="padding:8px;border:1px solid #eee;text-align:center;">51.5M</td><td style="padding:8px;border:1px solid #eee;text-align:center;">35%</td><td style="padding:8px;border:1px solid #eee;text-align:center;font-weight:700;color:#E31F26;">33.5M</td></tr>
+  </table>
+  <p style="font-size:0.8em;color:#666;">Tỉnh: 12T giảm 15%, 24T giảm 40%. Online: 12T giảm 20%, 24T giảm 45%. Coding 12T/24T thêm 1 AI4Learn.</p>
+
+  <h4 style="margin-top:15px;">📍 Art — Lộ trình thông thường (+ Phí bản quyền)</h4>
+  <table style="width:100%;border-collapse:collapse;font-size:0.85em;margin:8px 0;">
+    <tr style="background:#E31F26;color:#fff;"><th style="padding:8px;">Lộ trình</th><th style="padding:8px;">HP Gốc</th><th style="padding:8px;">CTKM</th><th style="padding:8px;">Học phí</th><th style="padding:8px;">Phí BQ</th></tr>
+    <tr><td style="padding:8px;border:1px solid #eee;">12 tháng</td><td style="padding:8px;border:1px solid #eee;text-align:center;">18M</td><td style="padding:8px;border:1px solid #eee;text-align:center;">10%</td><td style="padding:8px;border:1px solid #eee;text-align:center;font-weight:700;color:#E31F26;">16.2M</td><td style="padding:8px;border:1px solid #eee;text-align:center;">1M</td></tr>
+    <tr><td style="padding:8px;border:1px solid #eee;">24 tháng</td><td style="padding:8px;border:1px solid #eee;text-align:center;">51.5M</td><td style="padding:8px;border:1px solid #eee;text-align:center;">35%</td><td style="padding:8px;border:1px solid #eee;text-align:center;font-weight:700;color:#E31F26;">33.5M</td><td style="padding:8px;border:1px solid #eee;text-align:center;">2M</td></tr>
+  </table>
+  <p style="font-size:0.8em;color:#666;">Tỉnh: 12T giảm 15%, 24T giảm 40%. Online: 12T giảm 20%, 24T giảm 45%.</p>
+
+  <h4 style="margin-top:15px;">📍 Coding — Cam kết bảo trợ</h4>
   <table style="width:100%;border-collapse:collapse;font-size:0.85em;margin:8px 0;">
     <tr style="background:#7D0005;color:#fff;"><th style="padding:8px;">Lộ trình</th><th style="padding:8px;">HP Gốc</th><th style="padding:8px;">CTKM</th><th style="padding:8px;">Học phí</th></tr>
     <tr style="background:#FFF5F5;"><td style="padding:8px;border:1px solid #eee;font-weight:600;">BT đa ngành HS THPT</td><td style="padding:8px;border:1px solid #eee;text-align:center;">100M</td><td style="padding:8px;border:1px solid #eee;text-align:center;">15%</td><td style="padding:8px;border:1px solid #eee;text-align:center;font-weight:700;color:#E31F26;">85M</td></tr>
@@ -630,7 +646,7 @@ const TRAINING_DATA = {
               title: "Quiz: Bảng giá",
               questions: [
                 { q: "Giá lộ trình 12 tháng (3 HP) tại HN/HCM sau CTKM là bao nhiêu?", options: ["14M", "15M", "16.2M", "18M"], correct: 2, explanation: "12T: 18M gốc, giảm 10% = 16.2M tại HN/HCM." },
-                { q: "Lộ trình 24 tháng Coding/Robotics tại HN/HCM được giảm bao nhiêu %?", options: ["10%", "20%", "30%", "35%"], correct: 2, explanation: "24T tại HN/HCM: giảm 30%. Tỉnh/TP khác: giảm 35%." },
+                { q: "Lộ trình 24 tháng Robotics tại HN/HCM được giảm bao nhiêu %?", options: ["10%", "20%", "30%", "35%"], correct: 2, explanation: "RBT 24T tại HN/HCM: giảm 30%. Coding/Art 24T: giảm 35%." },
                 { q: "Art khác Coding/Robotics ở điểm nào về giá?", options: ["Đắt hơn", "Rẻ hơn", "Có thêm phí bản quyền phần mềm", "Giống hoàn toàn"], correct: 2, explanation: "Art có thêm phí bản quyền phần mềm (500K-2M tùy lộ trình)." },
                 { q: "Gói BT đa ngành HS THCS giá bao nhiêu tại HN/HCM?", options: ["85M", "110M", "125M", "145M"], correct: 2, explanation: "BT đa ngành HS THCS: 155M gốc, giảm ~19% = 125M. Bao gồm AI4Learn + Business Foundation." },
                 { q: "Khi báo giá, nên dùng kỹ thuật gì?", options: ["Báo giá thấp nhất trước", "Anchoring: báo 24T trước → 12T sau", "Chỉ báo giá 4T", "Không báo giá, chờ PH hỏi"], correct: 1, explanation: "Anchoring: báo 24T trước (giá cao) → 12T sau → PH thấy 12T hợp lý hơn." }
