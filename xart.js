@@ -51,40 +51,40 @@
         "Sản phẩm": "Digital Sketchbook, Sticker Pack, Bộ tranh 'My World'",
         "Thời lượng": "3 HP × 14 buổi"
       }},
-      { year: "Năm 2", name: "Visual Art", color: "#059669", keywords: ["Bố cục", "Illustration", "Cregen I"], items: {
+      { year: "Năm 2", name: "Visual Art", color: "#059669", keywords: ["Bố cục", "Illustration", "Digital Art"], items: {
         "Tư duy": "Tư duy mỹ thuật số có hệ thống — vẽ có chủ đích",
         "Kỹ năng": "Bố cục, phong cách hóa, tạo series tranh, phản biện sản phẩm",
         "Kiến thức": "Medibang, Canva, foreground/background, stylization",
         "Sản phẩm": "Illustration Series + Bộ nhân vật truyện + Sticker",
-        "Thời lượng": "3 HP × 14 buổi + Cregen I"
+        "Thời lượng": "3 HP × 14 buổi"
       }},
       { year: "Năm 3", name: "Game Art", color: "#D97706", keywords: ["Nhân vật", "Bối cảnh", "Concept Art"], items: {
         "Tư duy": "Tư duy worldbuilding — kể chuyện bằng hệ thống hình ảnh",
         "Kỹ năng": "Thiết kế nhân vật, bối cảnh game, visual pitch chuyên nghiệp",
         "Kiến thức": "Concept Art, Character Design, Environment Art, Pipeline",
         "Sản phẩm": "Game Art Construction Mini (PDF 8–12 trang)",
-        "Thời lượng": "3 HP × 14 buổi + Cregen I"
+        "Thời lượng": "3 HP × 14 buổi"
       }},
-      { year: "Năm 4", name: "Character & Mascot", color: "#8B5CF6", keywords: ["Illustrator", "Brand IP", "Cregen II"], items: {
+      { year: "Năm 4", name: "Character & Mascot", color: "#8B5CF6", keywords: ["Illustrator", "Brand IP", "Mascot"], items: {
         "Tư duy": "Tư duy thương hiệu — xây dựng IP cá nhân",
         "Kỹ năng": "Thành thạo Vector với Adobe Illustrator, tạo mascot độc đáo",
         "Kiến thức": "Brand identity, typography, style guide cơ bản",
-        "Sản phẩm": "Mascot Design + Mini Style Guide + Cregen II",
-        "Thời lượng": "3 HP × 14 buổi + Cregen II"
+        "Sản phẩm": "Mascot Design + Mini Style Guide",
+        "Thời lượng": "3 HP × 14 buổi"
       }},
       { year: "Năm 5", name: "Graphic Design", color: "#059669", keywords: ["Photoshop", "Poster", "Portfolio"], items: {
         "Tư duy": "Tư duy truyền thông — thiết kế để giao tiếp và thuyết phục",
         "Kỹ năng": "Adobe Photoshop & Illustrator, dựng chiến dịch 360°",
         "Kiến thức": "Layout, Poster, Logo, Branding chuẩn nghề chuyên nghiệp",
         "Sản phẩm": "Chiến dịch truyền thông + Portfolio chuẩn ngành",
-        "Thời lượng": "3 HP × 14 buổi + Intern 1"
+        "Thời lượng": "3 HP × 14 buổi"
       }},
       { year: "Năm 6", name: "Multimedia Design", color: "#E31F26", keywords: ["Motion", "After Effects", "Video"], items: {
         "Tư duy": "Tư duy storytelling — kể chuyện bằng chuyển động & thời gian",
         "Kỹ năng": "After Effects, Premiere Pro, Motion Graphics, Stop Motion",
         "Kiến thức": "Video editing, animation principles, sound design",
-        "Sản phẩm": "Video Motion Graphic (15–30s) + Intern 1 & 2",
-        "Thời lượng": "3 HP × 14 buổi + Intern 1 + Intern 2"
+        "Sản phẩm": "Video Motion Graphic (15–30s)",
+        "Thời lượng": "3 HP × 14 buổi"
       }},
       { year: "18+", name: "Interaction Design", color: "#4A1D96", isPost18: true, keywords: ["Figma", "UX/UI", "Product"], items: {
         "Tư duy": "Tư duy sản phẩm số — UX/UI Design & Product Thinking",
@@ -235,7 +235,7 @@
         "→ Character & Mascot (11+) → Graphic Design (13+) → Multimedia (14+)",
         "Mỗi năm 3 học phần × 14 buổi, tổng ~294 buổi",
         "Từ vẽ tay đến thiết kế chuyên nghiệp",
-        "Kèm Cregen I, II + Intern 1 (Studio) + Intern 2 (PM)"
+        "Kèm chương trình đặc biệt: Cregen I, II + Intern 1, 2"
       ]},
       { name: "Năm 7: UX/UI", items: [
         "4 học kì chuyên sâu: UI → UX → Product → Career",
