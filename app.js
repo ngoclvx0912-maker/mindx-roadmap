@@ -1005,7 +1005,7 @@
           routeTd.appendChild(art24Btn);
         }
         // BT note button (Cam kết bảo trợ / Bảo trợ du học rows)
-        if (row.featured && sec.title && (sec.title.indexOf('Cam k\u1EBFt') >= 0 || sec.title.indexOf('B\u1EA3o tr\u1EE3') >= 0)) {
+        if (row.featured && sec.title && (sec.title.indexOf('Cam kết') >= 0 || sec.title.indexOf('Bảo trợ') >= 0)) {
           (function(noteKey) {
             var btBtn = el("button", { className: "license-note-btn", onClick: function(e) { e.stopPropagation(); showBTNote(noteKey); } });
             btBtn.innerHTML = '\u26A0 L\u01B0u \u00fd';
