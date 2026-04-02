@@ -1008,6 +1008,33 @@
             "Quán quân KPMG Ideation Challenge",
             "Thực tập tại KPMG Big4 — Tư vấn Đổi mới Số",
             "Hiện là PM tại Startup Singapore — quản lý platform 5+ tỷ giao dịch"
+          ]},
+        { icon: "🏅", name: "Trần Trọng Nghĩa", highlight: "12 tuổi — 8 ngôn ngữ lập trình", desc: "Giải nhất App Jamming Summit 2019, Top 20/60000 Codelearn", color: "#E31F26",
+          detail: [
+            "12 tuổi đã thành thạo 8 ngôn ngữ lập trình",
+            "Giải nhất App Jamming Summit 2019",
+            "Top 20/60000 thành viên trên Codelearn",
+            "Ra mắt các bài viết kỹ thuật về SQL injection"
+          ]},
+        { icon: "🚀", name: "Phạm Minh Phú", highlight: "HCV HKICO Quốc tế", desc: "Giải Đặc Biệt Coding Olympic 2023, Giải Nhất iLINIC", color: "#059669",
+          detail: [
+            "Huy chương vàng HKICO Vòng Quốc tế",
+            "Giải nhì Quốc Gia App Jamming Summit 2019",
+            "Giải Đặc Biệt Coding Olympic 2023",
+            "Giải Nhất khoa học kĩ thuật quốc tế iLINIC Carnival 2022"
+          ]},
+        { icon: "📚", name: "Đào Phương Quỳnh", highlight: "Học bổng 4 tỷ Grinnell College", desc: "Học bổng 4 tỷ tại Grinnell College, Mỹ — Top Liberal Arts", color: "#8B5CF6",
+          detail: [
+            "Học bổng 4 tỷ VNĐ tại Grinnell College, Mỹ",
+            "Grinnell College — Top Liberal Arts College danh giá",
+            "Nền tảng lập trình tại MindX giúp xây dựng hồ sơ nổi bật"
+          ]},
+        { icon: "❤️", name: "Huỳnh Lê Diễm Quí", highlight: "HB 85% VinUni + Quán quân Shecodes", desc: "HB 50% RMIT, 85% VinUni, Quán quân Shecodes Hackathon 2023", color: "#D97706",
+          detail: [
+            "Đạt Học bổng 50% tại Đại học RMIT",
+            "Học bổng 85% của VinUniversity",
+            "Quán quân Shecodes Hackathon 2023",
+            "Đam mê công nghệ và khởi nghiệp từ sớm"
           ]}
       ];
       cases.forEach(function(c) {
