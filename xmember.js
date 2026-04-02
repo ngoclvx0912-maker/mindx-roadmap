@@ -44,11 +44,11 @@
         "Sản phẩm": "Đủ sức thi Scratch cấp trường/quận/TP",
         "Thời lượng": "3 HP × 14 buổi"
       }},
-      { year: "Năm 2", name: "Game Maker", color: "#059669", keywords: ["Game 2D", "Làm việc nhóm"], items: {
-        "Tư duy": "Tư duy hệ thống (game design), quản lý dự án",
-        "Kỹ năng": "Game 2D hoàn chỉnh, làm việc nhóm, thuyết trình & gọi vốn",
-        "Kiến thức": "Game loop, sprite, physics",
-        "Sản phẩm": "Game 2D upload được lên CH Play / App Store",
+      { year: "Năm 2", name: "Game Creator", color: "#059669", keywords: ["Game 2D", "AI", "GameMaker Studio"], items: {
+        "Tư duy": "Tư duy hệ thống — game design, AI hỗ trợ kịch bản",
+        "Kỹ năng": "GameMaker Studio 2, GML, AI tạo nguyên liệu game, NPC có AI",
+        "Kiến thức": "Game loop, sprite, physics, Finite State Machine, thuật toán AI mini",
+        "Sản phẩm": "Mini game → Game nhiều cấp độ → Game AI chuyên sâu xuất bản web",
         "Thời lượng": "3 HP × 14 buổi"
       }},
       { year: "Năm 3", name: "App Producer", color: "#D97706", keywords: ["Python", "Ứng dụng thực tế"], items: {
@@ -58,18 +58,18 @@
         "Sản phẩm": "App thực tế + kinh nghiệm khởi nghiệp sớm",
         "Thời lượng": "3 HP × 14 buổi"
       }},
-      { year: "Năm 4", name: "Web Creator", color: "#8B5CF6", keywords: ["JavaScript", "Website", "UI/UX"], items: {
-        "Tư duy": "Tư duy thiết kế (UI/UX), giải quyết vấn đề phức tạp",
-        "Kỹ năng": "Thành thạo JavaScript, xây website responsive đa mục đích",
-        "Kiến thức": "HTML, CSS, JavaScript, DOM, API — bộ công cụ web developer",
-        "Sản phẩm": "Website cá nhân, portfolio, khởi đầu freelance",
+      { year: "Năm 4", name: "Web Developer", color: "#8B5CF6", keywords: ["JavaScript", "Website", "API", "Firebase"], items: {
+        "Tư duy": "Tư duy sản phẩm số — thiết kế & lập trình website chuyên nghiệp",
+        "Kỹ năng": "HTML, CSS, JavaScript, Bootstrap, API, GitHub, Firebase, chatbot AI",
+        "Kiến thức": "Responsive design, DOM, deploy website, cloud data, tích hợp AI",
+        "Sản phẩm": "Website tĩnh → Website động + AI → Website quản lý + chatbot",
         "Thời lượng": "3 HP × 14 buổi"
       }},
-      { year: "Năm 5", name: "Computer Science", color: "#E31F26", keywords: ["Giải thuật", "AI Core", "Data Science"], items: {
-        "Tư duy": "Phản biện, phân tích dữ liệu — ra quyết định dựa trên data",
-        "Kỹ năng": "Thu thập & phân tích dữ liệu, quản lý dự án công nghệ",
-        "Kiến thức": "Giải thuật, cấu trúc dữ liệu, AI core, khoa học máy tính",
-        "Sản phẩm": "Sẵn sàng du học, thi SAT CS, ứng tuyển junior developer",
+      { year: "Năm 5", name: "Computer Scientist", color: "#E31F26", keywords: ["Python", "AI", "Data Science", "ML"], items: {
+        "Tư duy": "Tư duy khoa học máy tính — phân tích dữ liệu & AI chuyên sâu",
+        "Kỹ năng": "Python nâng cao, pandas, data analysis, Machine Learning, chatbot, NLP",
+        "Kiến thức": "Thuật toán, cấu trúc dữ liệu, AI nhận diện hình ảnh, prompt engineering",
+        "Sản phẩm": "App + thuật toán → Data analysis + dashboard → AI project hoàn chỉnh",
         "Thời lượng": "3 HP × 14 buổi"
       }},
       { year: "18+", name: "Business Foundation", color: "#7D0005", isPost18: true, keywords: ["Marketing", "Sales", "Finance"], items: {
@@ -170,7 +170,7 @@
         "Lộ trình AI dành riêng cho học sinh K12 — khóa học đệm chiến lược",
         "Giúp con học tập hiệu quả hơn trên trường phổ thông thông qua AI",
         "Học sinh học 1 level phù hợp độ tuổi (dưới lớp 7 → Lv1, trên lớp 7 → Lv2)",
-        "Trong lộ trình Coding: Scratch/Game Maker → Level 1, App/Web → Level 2",
+        "Trong lộ trình Coding: Scratch/Game Creator → Level 1, App/Web → Level 2",
         "Hình thành năng lực sử dụng AI đúng cách và có trách nhiệm",
         "Xây dựng công cụ học tập cá nhân hóa bằng AI cho mỗi học sinh",
         "Không bán lẻ — luôn nằm trong gói lộ trình 24 tháng trở lên"
@@ -178,7 +178,7 @@
         { name: "Level 1", desc: "Sáng tạo nội dung với AI (6 buổi) — Dành cho HV dưới lớp 7. Tạo hình ảnh bằng Nano Banana, slide bằng Gamma, video bằng Flow. Học viết prompt hiệu quả. Sản phẩm: Bộ hình + Slide + Video.", icon: "🌟" },
         { name: "Level 2", desc: "Chatbot học tập (6 buổi) — Dành cho HV trên lớp 7. Xây chatbot ôn bài với Gemini & NotebookLM. Tạo Study Pack cá nhân: quiz, flashcard, chatbot Q&A. Sản phẩm: Bộ công cụ ôn tập.", icon: "🚀" }
       ]},
-      { icon: "🚀", name: "NextGen", subtitle: "Khởi nghiệp & Gọi vốn giả lập", color: "#E31F26", duration: "14 buổi × 3 lần", timing: "Kết nối cuối Gamemaker, App Producer, Web Creator", items: [
+      { icon: "🚀", name: "NextGen", subtitle: "Khởi nghiệp & Gọi vốn giả lập", color: "#E31F26", duration: "14 buổi × 3 lần", timing: "Kết nối cuối Game Creator, App Producer, Web Developer", items: [
         "Học sinh ghép nhóm, xây dựng sản phẩm thực tế và Go Live",
         "Phân tích thị trường qua mô hình 5 Forces & SWOT",
         "Xây dựng mô hình kinh doanh & dòng doanh thu",
@@ -192,7 +192,7 @@
         { name: "NextGen App", desc: "Sản phẩm cá nhân/nhóm 2 người, quản lý code với GitHub. Quy trình phát triển sản phẩm tiêu chuẩn. Gọi vốn cho DỰ ÁN — phải định giá được dự án.", icon: "📱" },
         { name: "NextGen Web", desc: "Go Live web đa mức độ: ẩn danh → authen tài khoản → authen + phân quyền. Sản phẩm phục vụ ý tưởng kinh doanh. Gọi vốn + định giá dự án.", icon: "🌐" }
       ]},
-      { icon: "🏢", name: "Internship 1", subtitle: "Tech Project with AI Foundation", color: "#2563EB", duration: "60 giờ", timing: "Giai đoạn Web Creator", items: [
+      { icon: "🏢", name: "Internship 1", subtitle: "Tech Project with AI Foundation", color: "#2563EB", duration: "60 giờ", timing: "Giai đoạn Web Developer", items: [
         "Thực tập tại các phòng ban thực tế của MindX (nhóm ≥3 thành viên)",
         "Modun 1 (20h): Học chuyên môn/nghiệp vụ bộ phận + kiểm tra lý thuyết + thực tập",
         "Modun 2 (20h): Chuyên môn nghiệp vụ nâng cao + AI hỗ trợ học tập & thực tập",
@@ -201,7 +201,7 @@
         "Xây dựng tài liệu đặc tả sản phẩm, mô tả vận hành sản phẩm",
         "VD: Xây dựng chatbot AI, trang web nội bộ, hệ thống báo cáo tự động"
       ]},
-      { icon: "📋", name: "Internship 2", subtitle: "Project Management with AI Core", color: "#059669", duration: "60 giờ", timing: "Giai đoạn Web Creator → CS", items: [
+      { icon: "📋", name: "Internship 2", subtitle: "Project Management with AI Core", color: "#059669", duration: "60 giờ", timing: "Giai đoạn Web Developer → Computer Scientist", items: [
         "Quản lý dự án công nghệ với phương pháp Agile/Scrum",
         "Ứng dụng AI Core vào quy trình quản lý và ra quyết định",
         "Lập kế hoạch, phân công, theo dõi tiến độ dự án thực tế",
@@ -212,7 +212,7 @@
     ],
     slide11: [
       { name: "5 năm nền tảng", items: [
-        "Scratch (10+) → Game Maker (11+) → App Producer (12+) → Web Creator (13+) → CS (14+)",
+        "Scratch Creator (10+) → Game Creator (11+) → App Producer (12+) → Web Developer (14+) → Computer Scientist (15+)",
         "Mỗi năm 3 học phần × 14 buổi, tổng ~210 buổi",
         "Từ kéo thả đến code chuyên nghiệp",
         "Kèm chương trình đặc biệt: AI4Learn, NextGen, Internship"
@@ -1075,7 +1075,7 @@
       if (!tl) return;
 
       var tlLabels = ["5 năm nền tảng", "Business Foundation", "Chuyên sâu 12T", "Internship X"];
-      var tlDescs = ["Scratch → CS<br>Công nghệ vững chắc", "MKT + Sale + Finance<br>Kinh doanh toàn diện", "1 ngành + AI<br>Sâu và ứng dụng", "Thực tập + Việc làm<br>Cam kết đầu ra"];
+      var tlDescs = ["Scratch → Computer Scientist<br>Công nghệ vững chắc", "MKT + Sale + Finance<br>Kinh doanh toàn diện", "1 ngành + AI<br>Sâu và ứng dụng", "Thực tập + Việc làm<br>Cam kết đầu ra"];
 
       detailData.slide11.forEach(function(item, i) {
         var tlItem = document.createElement("div");

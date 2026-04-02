@@ -338,7 +338,7 @@ const TRAINING_DATA = {
             title: "Lộ trình Coding (5 năm)",
             icon: "💻",
             content: `<h3>Lộ trình Coding — 5 năm kiến tạo tương lai</h3>
-<p>Lộ trình Coding của MindX được thiết kế cho trẻ từ 10 tuổi, đi từ tư duy logic cơ bản đến Computer Science chuyên sâu trong 5 năm.</p>
+<p>Lộ trình Coding của MindX được thiết kế cho trẻ từ 10 tuổi, đi từ tư duy logic cơ bản đến Computer Scientist chuyên sâu trong 5 năm.</p>
 
 <div class="product-card">
   <div class="product-header year1">
@@ -362,7 +362,7 @@ const TRAINING_DATA = {
 <div class="product-card">
   <div class="product-header year2">
     <span class="product-year">NĂM 2</span>
-    <h4>Game Maker (11+)</h4>
+    <h4>Game Creator (11+)</h4>
   </div>
   <div class="product-body">
     <p><strong>Mô tả:</strong> Chuyển từ người chơi game sang người làm game chuyên nghiệp. Sử dụng GameMaker Studio 2.0 — công cụ tạo game chuyên nghiệp.</p>
@@ -400,7 +400,7 @@ const TRAINING_DATA = {
 <div class="product-card">
   <div class="product-header year4">
     <span class="product-year">NĂM 4</span>
-    <h4>Web Creator (13+)</h4>
+    <h4>Web Developer (14+)</h4>
   </div>
   <div class="product-body">
     <p><strong>Mô tả:</strong> Tự tay xây dựng website tương tác từ trang bán hàng đến mạng xã hội. HTML, CSS, JavaScript, Bootstrap, Firebase, Figma.</p>
@@ -419,7 +419,7 @@ const TRAINING_DATA = {
 <div class="product-card">
   <div class="product-header year5">
     <span class="product-year">NĂM 5</span>
-    <h4>Computer Science (14+) — AI & Data Science</h4>
+    <h4>Computer Scientist (15+) — AI & Data Science</h4>
   </div>
   <div class="product-body">
     <p><strong>Mô tả:</strong> Đi sâu vào "xương sống" ngành CNTT. Python chuyên sâu, mô hình AI, Machine Learning, trực quan hóa dữ liệu.</p>
@@ -439,15 +439,15 @@ const TRAINING_DATA = {
               title: "Quiz: Lộ trình Coding",
               questions: [
                 { q: "Năm 1 của lộ trình Coding sử dụng ngôn ngữ gì?", options: ["Python", "JavaScript", "Scratch — kéo thả block", "C++"], correct: 2, explanation: "Năm 1 dùng Scratch — lập trình kéo thả trực quan, phù hợp trẻ 10+." },
-                { q: "Game Maker (Năm 2) sử dụng công cụ gì?", options: ["Python", "JavaScript", "GameMaker Studio 2.0", "Scratch"], correct: 2, explanation: "Năm 2 dùng GameMaker Studio 2.0 — công cụ tạo game chuyên nghiệp + AI tools." },
+                { q: "Game Creator (Năm 2) sử dụng công cụ gì?", options: ["Python", "JavaScript", "GameMaker Studio 2.0", "Scratch"], correct: 2, explanation: "Năm 2 dùng GameMaker Studio 2.0 — công cụ tạo game chuyên nghiệp + AI tools." },
                 { q: "Khóa App Producer phù hợp cho trẻ từ bao nhiêu tuổi?", options: ["8+", "9+", "12+", "14+"], correct: 2, explanation: "App Producer dành cho trẻ 12+ — phát triển ứng dụng hoàn chỉnh." },
-                { q: "Output của khóa Web Creator là gì?", options: ["Game Python", "Ứng dụng mobile", "Website hoàn chỉnh + portfolio online", "AI project"], correct: 2, explanation: "Web Creator tạo ra 5+ website hoàn chỉnh và portfolio online." },
+                { q: "Output của khóa Web Developer là gì?", options: ["Game Python", "Ứng dụng mobile", "Website hoàn chỉnh + portfolio online", "AI project"], correct: 2, explanation: "Web Developer tạo ra 5+ website hoàn chỉnh và portfolio online." },
                 { q: "AI4Learn gồm bao nhiêu level và bao nhiêu giờ?", options: ["1 level, 12h", "2 levels, 24h", "3 levels, 36h", "4 levels, 48h"], correct: 1, explanation: "AI4Learn gồm 2 levels × 6 buổi × 2h = 24h. Đầu vào: sau Scratch. Không bán lẻ." },
-                { q: "Lộ trình Coding có tổng cộng bao nhiêu năm?", options: ["3 năm", "4 năm", "5 năm", "6 năm"], correct: 2, explanation: "Lộ trình Coding gồm 5 năm: Scratch → Game Maker → App Producer → Web Creator → CS." },
+                { q: "Lộ trình Coding có tổng cộng bao nhiêu năm?", options: ["3 năm", "4 năm", "5 năm", "6 năm"], correct: 2, explanation: "Lộ trình Coding gồm 5 năm: Scratch → Game Creator → App Producer → Web Developer → Computer Scientist." },
                 { q: "Mỗi năm học cơ bản có bao nhiêu buổi?", options: ["28 buổi", "36 buổi", "42 buổi", "48 buổi"], correct: 2, explanation: "Mỗi năm cơ bản gồm 3 HP × 14 = 42 buổi." },
-                { q: "Khóa nào nhấn mạnh UI/UX Design?", options: ["Game Maker", "App Producer", "Web Creator", "Computer Science"], correct: 2, explanation: "Web Creator (Năm 4) kết hợp JavaScript và UI/UX Design." },
+                { q: "Khóa nào nhấn mạnh UI/UX Design?", options: ["Game Creator", "App Producer", "Web Developer", "Computer Scientist"], correct: 2, explanation: "Web Developer (Năm 4) kết hợp JavaScript và UI/UX Design." },
                 { q: "Trẻ có thể bắt đầu lộ trình Coding từ bao nhiêu tuổi?", options: ["5 tuổi", "6 tuổi", "8 tuổi", "10 tuổi"], correct: 3, explanation: "Lộ trình Coding bắt đầu từ 10 tuổi với Scratch Creator." },
-                { q: "Computer Science (Năm 5) tập trung vào lĩnh vực nào?", options: ["Web development", "Mobile app", "AI & Data Science", "Game development"], correct: 2, explanation: "CS (Năm 5) chuyên sâu về AI, Machine Learning, và Data Science." }
+                { q: "Computer Scientist (Năm 5) tập trung vào lĩnh vực nào?", options: ["Web development", "Mobile app", "AI & Data Science", "Game development"], correct: 2, explanation: "Computer Scientist (Năm 5) chuyên sâu về AI, Machine Learning, và Data Science." }
               ]
             }
           },
@@ -557,7 +557,7 @@ const TRAINING_DATA = {
   </div>
 </div>
 <div class="product-card">
-  <div class="product-header robo3"><span class="product-year">NĂM 3</span><h4>Sáng tạo Robot (9+) — VEX IQ + VEXcode IQ</h4></div>
+  <div class="product-header robo3"><span class="product-year">NĂM 3</span><h4>Sáng tạo Robot (10+) — VEX IQ + VEXcode IQ</h4></div>
   <div class="product-body">
     <p><strong>Mô tả:</strong> Làm chủ thuật toán & sẵn sàng thi đấu. VEX IQ Kit chuẩn quốc tế + VEXcode IQ (Block nâng cao → tư duy văn bản).</p>
     <p><strong>Công cụ:</strong> VEX IQ Kit + VEXcode IQ</p>
@@ -569,9 +569,9 @@ const TRAINING_DATA = {
               title: "Quiz: Lộ trình Robotics",
               questions: [
                 { q: "Robotics Năm 0 sử dụng bộ kit nào?", options: ["VEX IQ", "Arduino", "LEGO Spike Essential", "Raspberry Pi"], correct: 2, explanation: "Năm 0 dùng LEGO Spike Essential — phù hợp trẻ 4+." },
-                { q: "VEX GO Kit được giới thiệu vào năm thứ mấy?", options: ["Năm 0", "Năm 1", "Năm 2", "Năm 3"], correct: 1, explanation: "VEX GO Kit bắt đầu từ Năm 1 (6+). VEX IQ bắt đầu từ Năm 3 (9+) — chuẩn thi đấu quốc tế." },
+                { q: "VEX GO Kit được giới thiệu vào năm thứ mấy?", options: ["Năm 0", "Năm 1", "Năm 2", "Năm 3"], correct: 1, explanation: "VEX GO Kit bắt đầu từ Năm 1 (6+). VEX IQ bắt đầu từ Năm 3 (10+) — chuẩn thi đấu quốc tế." },
                 { q: "Năm 2 Robotics tập trung vào khái niệm lập trình nào?", options: ["Biến số", "If-else và vòng lặp", "OOP", "Machine Learning"], correct: 1, explanation: "Năm 2 dạy if-else, vòng lặp, hàm qua robot thực tế." },
-                { q: "PID controller được dạy vào năm nào?", options: ["Năm 1", "Năm 2", "Năm 3", "Không có"], correct: 2, explanation: "PID controller được dạy ở Năm 3 (9+) — Sáng tạo Robot." },
+                { q: "PID controller được dạy vào năm nào?", options: ["Năm 1", "Năm 2", "Năm 3", "Không có"], correct: 2, explanation: "PID controller được dạy ở Năm 3 (10+) — Sáng tạo Robot." },
                 { q: "Lộ trình Robotics có tổng cộng bao nhiêu năm?", options: ["3 năm", "4 năm", "5 năm", "6 năm"], correct: 1, explanation: "Lộ trình Robotics gồm 4 năm: Năm 0 đến Năm 3." },
                 { q: "Trẻ nhỏ nhất có thể bắt đầu học Robotics từ mấy tuổi?", options: ["3 tuổi", "4 tuổi", "6 tuổi", "8 tuổi"], correct: 1, explanation: "Robot nhí (Năm 0) dành cho trẻ từ 4 tuổi." },
                 { q: "Cuộc thi Robotics quốc tế mà MindX hướng tới là gì?", options: ["FIRST Robotics", "VEX World Championship", "RoboCup", "WRO"], correct: 1, explanation: "MindX hướng tới VEX World Championship — cuộc thi robotics lớn nhất thế giới." },
@@ -1156,9 +1156,9 @@ const TRAINING_DATA = {
               questions: [
                 { q: "MindX được thành lập năm nào?", options: ["2013", "2015", "2017", "2019"], correct: 1, explanation: "MindX thành lập năm 2015." },
                 { q: "Bao nhiêu % PH lo con nghiện game?", options: ["45%", "57%", "67%", "78%"], correct: 2, explanation: "67% PH lo con nghiện game." },
-                { q: "Lộ trình Coding có bao nhiêu năm?", options: ["3", "4", "5", "6"], correct: 2, explanation: "5 năm: Scratch → Game Maker → App Producer → Web Creator → CS." },
+                { q: "Lộ trình Coding có bao nhiêu năm?", options: ["3", "4", "5", "6"], correct: 2, explanation: "5 năm: Scratch → Game Creator → App Producer → Web Developer → Computer Scientist." },
                 { q: "Scratch Creator dành cho trẻ từ mấy tuổi?", options: ["6+", "7+", "8+", "10+"], correct: 3, explanation: "Scratch Creator dành cho trẻ 10+." },
-                { q: "Python được dạy ở năm thứ mấy của Coding?", options: ["1", "2", "3", "4"], correct: 1, explanation: "Năm 2: Game Maker — Python." },
+                { q: "Python được dạy ở năm thứ mấy của Coding?", options: ["1", "2", "3", "4"], correct: 1, explanation: "Năm 2: Game Creator — Python." },
                 { q: "Little Artist (Art) dành cho trẻ từ mấy tuổi?", options: ["3+", "4+", "6+", "8+"], correct: 1, explanation: "Little Artist: 4+." },
                 { q: "Robot nhí dùng kit nào?", options: ["VEX IQ", "Arduino", "LEGO Spike Essential", "mBot"], correct: 2, explanation: "LEGO Spike Essential." },
                 { q: "Combo 24 tháng được giảm bao nhiêu %?", options: ["10%", "15%", "20%", "25%"], correct: 2, explanation: "Combo 24 tháng giảm 20%." },
@@ -1179,7 +1179,7 @@ const TRAINING_DATA = {
                 { q: "Con type 'Phản đối', TVTS nên?", options: ["Ép con", "Kết bạn, cho con thử thoải mái", "Bỏ qua con", "Mắng con"], correct: 1, explanation: "Kết bạn + cho con chơi thoải mái." },
                 { q: "MindX có bao nhiêu học viên?", options: ["10,000+", "50,000+", "100,000+", "200,000+"], correct: 2, explanation: "100,000+ học viên." },
                 { q: "Anchoring effect trong báo giá là?", options: ["Báo giá thấp trước", "Báo combo 24 tháng trước, 12 tháng sau", "Chỉ báo giá 1 tháng", "Không báo giá"], correct: 1, explanation: "Báo 24T trước → 12T sau — PH thấy 12T hợp lý hơn." },
-                { q: "Computer Science (Coding Năm 5) focus vào?", options: ["Scratch", "Web development", "AI & Data Science", "Mobile app"], correct: 2, explanation: "AI, Machine Learning, Data Science." },
+                { q: "Computer Scientist (Coding Năm 5) focus vào?", options: ["Scratch", "Web development", "AI & Data Science", "Mobile app"], correct: 2, explanation: "AI, Machine Learning, Data Science." },
                 { q: "Lương ngành CNTT VN cao hơn TB bao nhiêu lần?", options: ["1.5x", "2-3x", "4-5x", "6x"], correct: 1, explanation: "2-3 lần mức trung bình." },
                 { q: "Demo Scratch cho PH, con có thể làm gì trong 10 phút?", options: ["Không làm gì", "Game cơ bản", "Website", "App mobile"], correct: 1, explanation: "Con tạo game cơ bản trong 10 phút — PH WOW." },
                 { q: "Checklist gọi điện có bao nhiêu tiêu chí?", options: ["5", "8", "10", "15"], correct: 2, explanation: "10 tiêu chí đánh giá cuộc gọi." },
@@ -2670,7 +2670,7 @@ const TRAINING_DATA = {
 </div>
 
 <div class="product-card">
-  <div class="product-header year2"><span class="product-year">NĂM 2</span><h4>Game Maker (11+)</h4></div>
+  <div class="product-header year2"><span class="product-year">NĂM 2</span><h4>Game Creator (11+)</h4></div>
   <div class="product-body">
     <p><strong>Mục tiêu:</strong> Chuyển từ người chơi game sang người làm game chuyên nghiệp</p>
     <p><strong>Thời lượng:</strong> 3 HP × 14 buổi | <strong>Output:</strong> Game 2D hoàn chỉnh</p>
@@ -2689,7 +2689,7 @@ const TRAINING_DATA = {
 </div>
 
 <div class="product-card">
-  <div class="product-header year4"><span class="product-year">NĂM 4</span><h4>Web Creator (13+)</h4></div>
+  <div class="product-header year4"><span class="product-year">NĂM 4</span><h4>Web Developer (14+)</h4></div>
   <div class="product-body">
     <p><strong>Mục tiêu:</strong> Xây dựng website chuyên nghiệp với JavaScript</p>
     <p><strong>Thời lượng:</strong> 12 tháng (48 buổi) | <strong>Output:</strong> 5+ website, portfolio online</p>
@@ -2698,7 +2698,7 @@ const TRAINING_DATA = {
 </div>
 
 <div class="product-card">
-  <div class="product-header year5"><span class="product-year">NĂM 5</span><h4>Computer Science (14+) — AI & Data Science</h4></div>
+  <div class="product-header year5"><span class="product-year">NĂM 5</span><h4>Computer Scientist (15+) — AI & Data Science</h4></div>
   <div class="product-body">
     <p><strong>Mục tiêu:</strong> Chuyên sâu AI, Machine Learning, Data Science</p>
     <p><strong>Thời lượng:</strong> 12 tháng (48 buổi) | <strong>Output:</strong> AI project, Data analysis, Research paper</p>
@@ -2722,7 +2722,7 @@ const TRAINING_DATA = {
               title: "Quiz: Lộ trình Coding",
               questions: [
                 { q: "Năm 1 của lộ trình Coding dành cho trẻ từ bao nhiêu tuổi?", options: ["5+", "6+", "8+", "10+"], correct: 3, explanation: "Scratch Creator dành cho trẻ từ 10 tuổi — bắt đầu với lập trình kéo thả." },
-                { q: "Ngôn ngữ Python được giới thiệu ở năm thứ mấy?", options: ["Năm 1", "Năm 2", "Năm 3", "Năm 4"], correct: 2, explanation: "Python được dạy từ Năm 3 — App Producer. Năm 2 (Game Maker) dùng GameMaker Studio 2.0." },
+                { q: "Ngôn ngữ Python được giới thiệu ở năm thứ mấy?", options: ["Năm 1", "Năm 2", "Năm 3", "Năm 4"], correct: 2, explanation: "Python được dạy từ Năm 3 — App Producer. Năm 2 (Game Creator) dùng GameMaker Studio 2.0." },
                 { q: "Output nổi bật nhất của khóa App Producer là gì?", options: ["Game trên máy tính", "Ứng dụng cài được trên điện thoại", "Website portfolio", "AI project"], correct: 1, explanation: "App Producer tạo 3-5 app cài được trên điện thoại thật — rất ấn tượng với PH." },
                 { q: "AI4Learn gồm bao nhiêu level?", options: ["1 level", "2 levels", "3 levels", "4 levels"], correct: 1, explanation: "AI4Learn gồm 2 levels × 6 buổi = 24h. Level 1: Sáng tạo AI. Level 2: Chatbot học tập." },
                 { q: "Khi PH hỏi 'Con 8 tuổi có sớm không?', CS nên trả lời?", options: ["Đúng, nên chờ 10 tuổi", "Scratch rất phù hợp, kéo thả trực quan, không cần biết code", "Nên học Art trước", "Để con tự quyết định"], correct: 1, explanation: "Scratch Creator thiết kế riêng cho trẻ 10+, kéo thả block trực quan, không cần biết đọc code." }
@@ -2838,7 +2838,7 @@ const TRAINING_DATA = {
 </div>
 
 <div class="product-card">
-  <div class="product-header year4"><span class="product-year">NĂM 3</span><h4>Sáng tạo Robot (9+)</h4></div>
+  <div class="product-header year4"><span class="product-year">NĂM 3</span><h4>Sáng tạo Robot (10+)</h4></div>
   <div class="product-body">
     <p><strong>Mục tiêu:</strong> Thiết kế và lập trình robot phức tạp, thi đấu quốc tế</p>
     <p><strong>Thiết bị:</strong> VEX EXP / VEX V5</p>
@@ -2866,7 +2866,7 @@ const TRAINING_DATA = {
                 { q: "Thiết bị nào được sử dụng cho Pre-Robotics (6+)?", options: ["VEX IQ", "LEGO Spike Essential", "Arduino", "Raspberry Pi"], correct: 1, explanation: "Pre-Robotics sử dụng LEGO Spike Essential — phù hợp trẻ 6+." },
                 { q: "HV Robotics có thể tham gia cuộc thi quốc tế nào?", options: ["Google Code Jam", "VEX Robotics Competition, FIRST LEGO League", "Hackathon online", "Math Olympiad"], correct: 1, explanation: "VEX Robotics Competition và FIRST LEGO League là các cuộc thi quốc tế dành cho HV Robotics." },
                 { q: "Khi PH hỏi 'có cần mua thiết bị riêng không?', CS trả lời?", options: ["Có, PH cần mua LEGO", "Không, MindX cung cấp đầy đủ thiết bị tại lớp", "Chỉ mua khi lên level cao", "Tùy khóa học"], correct: 1, explanation: "MindX cung cấp đầy đủ thiết bị LEGO/VEX tại lớp, PH không cần mua riêng." },
-                { q: "Lộ trình Robotics kéo dài bao nhiêu năm?", options: ["3 năm", "4 năm", "5 năm", "6 năm"], correct: 1, explanation: "Lộ trình Robotics gồm 4 năm: Robot nhí (4+) → Nhập môn (6+) → Truy tìm bí ẩn (8+) → Sáng tạo (9+)." }
+                { q: "Lộ trình Robotics kéo dài bao nhiêu năm?", options: ["3 năm", "4 năm", "5 năm", "6 năm"], correct: 1, explanation: "Lộ trình Robotics gồm 4 năm: Robot nhí (4+) → Nhập môn (6+) → Truy tìm bí ẩn (8+) → Sáng tạo (10+)." }
               ]
             }
           },
@@ -2958,7 +2958,7 @@ const TRAINING_DATA = {
     <h4>📌 Về điều kiện & khó khăn</h4>
     <div style="margin:8px 0;">
       <p><strong>Q: Điều kiện để học Coding là gì?</strong></p>
-      <p style="padding-left:15px;">A: Scratch (10+): biết đọc hiểu tiếng Việt cơ bản. Game Maker (11+): đã qua Scratch hoặc tương đương. Python (12+): đã qua Game Maker.</p>
+      <p style="padding-left:15px;">A: Scratch (10+): biết đọc hiểu tiếng Việt cơ bản. Game Creator (11+): đã qua Scratch hoặc tương đương. Python (12+): đã qua Game Creator.</p>
     </div>
     <div style="margin:8px 0;">
       <p><strong>Q: Chưa biết chữ có học Robotics được không?</strong></p>
@@ -2971,7 +2971,7 @@ const TRAINING_DATA = {
     <p style="color:#7D0005;font-weight:600;">Đây là câu hỏi PH hỏi rất nhiều — CS cần trả lời rõ ràng:</p>
     <table style="width:100%;border-collapse:collapse;margin:10px 0;font-size:0.9em;">
       <tr style="background:#FFF5F5;"><th style="padding:8px;border:1px solid #eee;">Câu hỏi</th><th style="padding:8px;border:1px solid #eee;">Giải đáp</th></tr>
-      <tr><td style="padding:8px;border:1px solid #eee;">Sao Scratch phải lên Game, không lên thẳng Python?</td><td style="padding:8px;border:1px solid #eee;">Game Maker là bước đệm chuyển từ kéo-thả sang tư duy thuật toán phức tạp. Nhảy thẳng Python sẽ quá khó.</td></tr>
+      <tr><td style="padding:8px;border:1px solid #eee;">Sao Scratch phải lên Game, không lên thẳng Python?</td><td style="padding:8px;border:1px solid #eee;">Game Creator là bước đệm chuyển từ kéo-thả sang tư duy thuật toán phức tạp. Nhảy thẳng Python sẽ quá khó.</td></tr>
       <tr><td style="padding:8px;border:1px solid #eee;">6+ và 8+ đều dùng VEX GO, sao phải chia lớp?</td><td style="padding:8px;border:1px solid #eee;">8+ tập trung vào cơ khí phức tạp + cánh tay Robot Arm. Mức độ tư duy và lập trình cao hơn hẳn 6+.</td></tr>
       <tr><td style="padding:8px;border:1px solid #eee;">12 tuổi rồi, sao không học luôn Multimedia?</td><td style="padding:8px;border:1px solid #eee;">Art Illustration dạy nền tảng thiết kế 2D (Adobe AI) — không có nền này, HV không thể tạo asset cho video/motion.</td></tr>
       <tr><td style="padding:8px;border:1px solid #eee;">Con vẽ đẹp sẵn, muốn nhảy cóc được không?</td><td style="padding:8px;border:1px solid #eee;">Vẽ truyền thống ≠ thiết kế số. Mỗi môn dạy công cụ + tư duy khác nhau, không thể bỏ qua.</td></tr>
@@ -2983,14 +2983,14 @@ const TRAINING_DATA = {
     <table style="width:100%;border-collapse:collapse;margin:10px 0;font-size:0.9em;">
       <tr style="background:#E31F26;color:#fff;"><th style="padding:8px;">Bộ môn</th><th style="padding:8px;">Khóa</th><th style="padding:8px;">Độ tuổi</th></tr>
       <tr><td style="padding:8px;border:1px solid #eee;" rowspan="5">Coding</td><td style="padding:8px;border:1px solid #eee;">Scratch</td><td style="padding:8px;border:1px solid #eee;">10–11 tuổi</td></tr>
-      <tr><td style="padding:8px;border:1px solid #eee;">Game Maker</td><td style="padding:8px;border:1px solid #eee;">11–12 tuổi</td></tr>
+      <tr><td style="padding:8px;border:1px solid #eee;">Game Creator</td><td style="padding:8px;border:1px solid #eee;">11–13 tuổi</td></tr>
       <tr><td style="padding:8px;border:1px solid #eee;">Python</td><td style="padding:8px;border:1px solid #eee;">12–13 tuổi</td></tr>
-      <tr><td style="padding:8px;border:1px solid #eee;">Web</td><td style="padding:8px;border:1px solid #eee;">13–14 tuổi</td></tr>
-      <tr><td style="padding:8px;border:1px solid #eee;">Computer Science</td><td style="padding:8px;border:1px solid #eee;">14–18 tuổi</td></tr>
+      <tr><td style="padding:8px;border:1px solid #eee;">Web Developer</td><td style="padding:8px;border:1px solid #eee;">14–16 tuổi</td></tr>
+      <tr><td style="padding:8px;border:1px solid #eee;">Computer Scientist</td><td style="padding:8px;border:1px solid #eee;">15–17 tuổi</td></tr>
       <tr><td style="padding:8px;border:1px solid #eee;" rowspan="4">Robotics</td><td style="padding:8px;border:1px solid #eee;">Robot nhí (LEGO)</td><td style="padding:8px;border:1px solid #eee;">4–5 tuổi</td></tr>
       <tr><td style="padding:8px;border:1px solid #eee;">Nhập môn (VEX GO)</td><td style="padding:8px;border:1px solid #eee;">6–7 tuổi</td></tr>
       <tr><td style="padding:8px;border:1px solid #eee;">Truy tìm bí ẩn (VEX GO)</td><td style="padding:8px;border:1px solid #eee;">8–9 tuổi</td></tr>
-      <tr><td style="padding:8px;border:1px solid #eee;">Sáng tạo Robot (VEX IQ)</td><td style="padding:8px;border:1px solid #eee;">9+ tuổi</td></tr>
+      <tr><td style="padding:8px;border:1px solid #eee;">Sáng tạo Robot (VEX IQ)</td><td style="padding:8px;border:1px solid #eee;">10+ tuổi</td></tr>
       <tr><td style="padding:8px;border:1px solid #eee;" rowspan="6">Art</td><td style="padding:8px;border:1px solid #eee;">Little Artist</td><td style="padding:8px;border:1px solid #eee;">4–6 tuổi</td></tr>
       <tr><td style="padding:8px;border:1px solid #eee;">Digital Art Foundations</td><td style="padding:8px;border:1px solid #eee;">7–8 tuổi</td></tr>
       <tr><td style="padding:8px;border:1px solid #eee;">Visual Thinking</td><td style="padding:8px;border:1px solid #eee;">9–10 tuổi</td></tr>
@@ -3005,10 +3005,10 @@ const TRAINING_DATA = {
               title: "Quiz: FAQ Sản phẩm",
               questions: [
                 {
-                  q: "Tại sao học xong Scratch phải lên Game Maker, không lên thẳng Python?",
-                  options: ["Vì Game Maker rẻ hơn", "Game Maker là bước đệm chuyển từ kéo-thả sang tư duy thuật toán phức tạp", "Không có lý do, PH có thể chọn", "Vì Python quá dễ"],
+                  q: "Tại sao học xong Scratch phải lên Game Creator, không lên thẳng Python?",
+                  options: ["Vì Game Creator rẻ hơn", "Game Creator là bước đệm chuyển từ kéo-thả sang tư duy thuật toán phức tạp", "Không có lý do, PH có thể chọn", "Vì Python quá dễ"],
                   correct: 1,
-                  explanation: "Game Maker giúp HV chuyển từ lập trình kéo-thả sang tư duy thuật toán — nhảy thẳng Python sẽ quá khó và dễ bỏ cuộc."
+                  explanation: "Game Creator giúp HV chuyển từ lập trình kéo-thả sang tư duy thuật toán — nhảy thẳng Python sẽ quá khó và dễ bỏ cuộc."
                 },
                 {
                   q: "Bé 4 tuổi chưa biết chữ có thể học Robotics được không?",
@@ -3829,7 +3829,7 @@ const TRAINING_DATA = {
                 { q: "Có bao nhiêu tư duy dịch vụ cốt lõi của CS MindX?", options: ["4", "5", "6", "8"], correct: 2, explanation: "6 tư duy: Lấy HV làm trung tâm, Đồng hành, Chủ động & Giải pháp, Cải tiến, Hơn cả mong đợi, Gắn kết sứ mệnh." },
                 { q: "Lộ trình Coding bắt đầu từ bao nhiêu tuổi?", options: ["4+", "6+", "8+", "10+"], correct: 3, explanation: "Coding bắt đầu từ 10+ với Scratch Creator." },
                 { q: "Lộ trình nào bắt đầu sớm nhất (4+)?", options: ["Coding", "Art & Design", "Robotics", "Cả Art và Robotics"], correct: 3, explanation: "Cả Art (Little Artist 4+) và Robotics (Kỹ sư Robot nhí 4+) đều bắt đầu từ 4 tuổi." },
-                { q: "Python được dạy ở năm thứ mấy của lộ trình Coding?", options: ["Năm 1", "Năm 2", "Năm 3", "Năm 4"], correct: 1, explanation: "Python: Game Maker — Năm 2." },
+                { q: "Python được dạy ở năm thứ mấy của lộ trình Coding?", options: ["Năm 1", "Năm 2", "Năm 3", "Năm 4"], correct: 1, explanation: "Python: Game Creator — Năm 2." },
                 { q: "Thiết bị nào dùng cho Robotics cấp cao?", options: ["LEGO Education", "LEGO Spike", "VEX IQ/EXP/V5", "Arduino"], correct: 2, explanation: "VEX IQ/EXP/V5 dùng cho ARM Robotics và Sáng tạo Robot." },
                 { q: "Combo 24T có ưu đãi đặc biệt gì?", options: ["Free 3 tháng", "Giá tốt nhất + tặng áo MindX", "Giảm 50%", "Học thêm 1 lộ trình"], correct: 1, explanation: "Combo 24T: giá tốt nhất, tặng áo MindX, ưu tiên lớp." },
                 { q: "Format tên Zalo group lớp học?", options: ["Tên GV + lớp", "MINDX-[Mã lớp]-[Tên CS]", "MindX Class", "Tùy CS"], correct: 1, explanation: "Chuẩn: MINDX-[Mã lớp]-[Tên CS phụ trách]." },
