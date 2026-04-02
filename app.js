@@ -1183,7 +1183,7 @@
     var popup = el('div', { className: 'pricing-popup' });
 
     var header = el('div', { className: 'pricing-popup-header' });
-    header.innerHTML = '<h3>L\u01B0u \u00fd cho Sale</h3>';
+    header.innerHTML = '<h3>C\u00E1c ch\u01B0\u01A1ng tr\u00ECnh \u0111\u1EB7c bi\u1EC7t</h3>';
     var closeBtn = el('button', { className: 'pricing-popup-close', onClick: function() { overlay.remove(); } });
     closeBtn.innerHTML = '\u2715';
     header.appendChild(closeBtn);
