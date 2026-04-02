@@ -357,41 +357,41 @@
       if (!grid) return;
 
       var usps = [
-        { icon: "🤖", title: "Dẫn Đầu Xu Hướng AI", desc: "Tích hợp AI/AI Agent vào sản phẩm — hồ sơ bật lên sự hiện đại, tư duy đột phá, đạt chuẩn quốc tế", detail: [
+        { icon: "📂", title: "Hồ Sơ Độc Bản", desc: "Tech Portfolio thực chiến (GitHub/Dashboard/Figma) giải quyết vấn đề xã hội — thứ trường Top tìm kiếm", detail: [
+          "Tech Portfolio thực chiến: Web/Dashboard/App Concept trên GitHub/Figma",
+          "Dự án giải quyết vấn đề xã hội cụ thể — không phải bài tập demo",
+          "Thay thế giấy chứng nhận phong trào bằng sản phẩm \"sống\" có link truy cập",
+          "Đúng chuẩn quốc tế: chính xác những gì hội đồng tuyển sinh đang tìm kiếm"
+        ]},
+        { icon: "🤖", title: "Học Thật - Làm Thật - Đón Đầu AI", desc: "Kỹ năng Prompting + AI Agent — không gõ code truyền thống, tư duy đột phá", detail: [
           "Tích hợp AI/AI Agent trực tiếp vào sản phẩm của học viên",
-          "Hồ sơ bật lên sự hiện đại, tư duy đột phá",
-          "Đạt chuẩn quốc tế — nổi bật giữa hàng ngàn ứng viên",
+          "Kỹ năng Prompting + AI Agent — không chỉ gõ code truyền thống",
+          "Hồ sơ bật lên sự hiện đại, tư duy đột phá, đạt chuẩn quốc tế",
           "Chứng minh khả năng ứng dụng công nghệ tiên tiến vào thực tế"
         ]},
-        { icon: "🚀", title: "Sản Phẩm Thực Tế, Người Dùng Thật", desc: "Deploy lên AWS/App Store/CH Play với tối thiểu 20 người dùng thật", detail: [
-          "Sản phẩm triển khai thực tế trên AWS / App Store / CH Play",
-          "Tối thiểu 20 người dùng thật — chứng minh tính ứng dụng",
-          "Link sản phẩm \"sống\" (Live Demo) đính kèm trực tiếp vào hồ sơ",
-          "Không phải bài tập demo nằm trên máy tính"
+        { icon: "💎", title: "Đầu Tư 1 Được 2", desc: "PH không chỉ trả cho hồ sơ — mua năng lực: Code/Data/Design + Storytelling", detail: [
+          "Không chỉ được hồ sơ du học — con có năng lực thực: Code/Data/Design",
+          "Kỹ năng Storytelling: kể câu chuyện cá nhân thuyết phục",
+          "Dù không đi du học, năng lực kỹ thuật + AI vẫn là vũ khí suốt đời",
+          "Portfolio hoàn chỉnh phục vụ cả xin việc, khởi nghiệp, học bổng trong nước"
         ]},
-        { icon: "👑", title: "Kỹ Năng Lãnh Đạo (Leadership)", desc: "Đóng vai trò ban tổ chức vận hành Hackathon & Demo Day, nhận giấy chứng nhận", detail: [
-          "Đóng vai trò ban tổ chức vận hành Hackathon & Demo Day",
-          "Nhận giấy chứng nhận hoạt động ngoại khóa",
-          "Rèn kỹ năng lãnh đạo, điều phối sự kiện thực tế",
-          "Chứng minh tinh thần Leadership — khác biệt với hồ sơ kỹ thuật thuần túy"
+        { icon: "📍", title: "A-Z Tracking", desc: "Từ ý tưởng dự án → bàn giao hồ sơ → theo dõi đến Visa", detail: [
+          "Phase 1: Chốt Scope — chọn vấn đề xã hội + ý tưởng dự án",
+          "Phase 2-3: Build sản phẩm + Hackathon → đóng gói portfolio",
+          "Phase 4: Bàn giao — Link Web/Dashboard/Figma, GitHub, Bài luận, LOR, Chứng nhận",
+          "Phase 5: Check-in & Tracking — cập nhật Visa, vinh danh khi nhận kết quả"
         ]},
-        { icon: "📝", title: "Chứng Thực Năng Lực (LOR)", desc: "Thư giới thiệu từ chuyên gia công nghệ, Quản lý học thuật, hoặc CEO MindX", detail: [
-          "Letter of Recommendation từ chuyên gia công nghệ",
-          "Thư từ Quản lý học thuật hoặc CEO MindX (chỉ dành cho HV xuất sắc)",
-          "Bảo chứng năng lực kỹ thuật thực tế — uy tín hơn khen chung chung",
-          "Có giá trị đặc biệt với hội đồng tuyển sinh quốc tế"
+        { icon: "🏆", title: "Chứng Nhận KÉP tại Hackathon", desc: "Học viên vừa BTC vừa Thí sinh → minh chứng Leadership mạnh mẽ", detail: [
+          "Vai trò KÉP: Ban Tổ Chức + Thí sinh trong cùng một sự kiện",
+          "BTC: Ứng dụng AI lập kế hoạch, truyền thông, điều phối sự kiện thực tế",
+          "Thí sinh: Hoàn thiện dự án, thuyết trình tiếng Anh, phản biện trước Hội đồng",
+          "Chứng nhận BTC + Giải thưởng Hackathon — minh chứng Leadership mạnh mẽ"
         ]},
-        { icon: "💼", title: "Thực Tập Chuyên Môn Thực Tế (Internship)", desc: "Thực tập tại các phòng ban MindX, mentor đồng hành, đánh giá từ Trưởng bộ phận", detail: [
-          "Thực tập tại các phòng ban MindX (R&D, Tech, Marketing...)",
-          "Mentor đồng hành suốt quá trình thực tập",
-          "Đánh giá từ Trưởng bộ phận — giấy xác nhận thực tập chính thức",
-          "Trải nghiệm môi trường doanh nghiệp, rèn tác phong chuyên nghiệp"
-        ]},
-        { icon: "📊", title: "Bảng Điểm Kỹ Thuật (Tech-focused Transcript)", desc: "Nổi bật Tech Stack, ngôn ngữ lập trình, công cụ đã làm chủ", detail: [
-          "Bảng điểm chi tiết theo chuẩn quốc tế",
-          "Nổi bật Tech Stack, ngôn ngữ lập trình, công cụ đã làm chủ",
-          "Đánh đúng vào điều hội đồng tuyển sinh ngành kỹ thuật tìm kiếm",
-          "Khác biệt so với bảng điểm trường phổ thông truyền thống"
+        { icon: "🤝", title: "Bảo Trợ Kết Nối Việc Làm 06 Tháng", desc: "Sau khi tốt nghiệp ĐH và trở về VN — Career Coaching + mạng lưới tuyển dụng", detail: [
+          "Bảo trợ kết nối việc làm 06 tháng sau tốt nghiệp ĐH",
+          "Career Coaching 1-1: tối ưu CV/Portfolio theo chuẩn quốc tế",
+          "Mạng lưới tuyển dụng chuyên biệt (Group Zalo theo ngành)",
+          "Cộng đồng MindX Alumni đang du học & làm việc toàn cầu"
         ]}
       ];
 
@@ -415,53 +415,57 @@
   function buildSlide5() {
     var s = el("div", "xm2-slide");
     s.innerHTML =
-      '<div class="xm2-title-large">Lộ trình ươm tạo <span class="xm2-accent-red">~2.5 tháng</span></div>' +
-      '<p class="xm2-subtitle">Giai đoạn 1: Build & Polish — 48 giờ · 16 buổi</p>' +
+      '<div class="xm2-title-large">Lộ trình ươm tạo <span class="xm2-accent-red">5 giai đoạn</span></div>' +
+      '<p class="xm2-subtitle">Từ ý tưởng → sản phẩm → Hackathon → bàn giao hồ sơ → theo dõi đến Visa</p>' +
       '<div class="xm2-phases">' +
         '<div class="xm2-phase" id="xm2Phase1">' +
           '<div class="xm2-phase-badge">Phase 1</div>' +
-          '<div class="xm2-phase-name">Product Foundation</div>' +
-          '<div class="xm2-phase-meta">Buổi 1-2</div>' +
+          '<div class="xm2-phase-name">Onboarding & Chốt Scope</div>' +
           '<div class="xm2-phase-steps">' +
-            '<div class="xm2-step">🎯 Định hướng & tư duy MVP</div>' +
-            '<div class="xm2-step">🏗️ Kiến trúc hệ thống & Kế hoạch dự án</div>' +
+            '<div class="xm2-step">🎯 Phân tích pool dự án, chọn vấn đề xã hội</div>' +
+            '<div class="xm2-step">💡 Chốt ý tưởng + ngách chuyên môn (Web/Data/UI-UX)</div>' +
           '</div>' +
         '</div>' +
         '<div class="xm2-phase-connector">→</div>' +
         '<div class="xm2-phase" id="xm2Phase2">' +
           '<div class="xm2-phase-badge green">Phase 2</div>' +
-          '<div class="xm2-phase-name">Core Development & MVP</div>' +
-          '<div class="xm2-phase-meta">Buổi 3-9</div>' +
+          '<div class="xm2-phase-name">Build & Storytelling cùng AI</div>' +
           '<div class="xm2-phase-steps">' +
-            '<div class="xm2-step">💻 Phát triển MVP tích hợp AI Agent</div>' +
-            '<div class="xm2-step">🔍 Code Review / Design Review / Data Validation</div>' +
-            '<div class="xm2-step">✅ Hoàn thiện 100% tính năng cốt lõi</div>' +
+            '<div class="xm2-step">💻 Thực thi dự án Web/Data/UI-UX tích hợp AI Agent</div>' +
+            '<div class="xm2-step">🎤 Mock Interview & AI brainstorming Personal Statement</div>' +
+            '<div class="xm2-step">📝 Viết bài luận + nhận Letter of Recommendation</div>' +
           '</div>' +
         '</div>' +
         '<div class="xm2-phase-connector">→</div>' +
         '<div class="xm2-phase">' +
           '<div class="xm2-phase-badge" style="background:#D97706;color:#fff">Phase 3</div>' +
-          '<div class="xm2-phase-name">Global Portfolio & Go-to-Market</div>' +
-          '<div class="xm2-phase-meta">Buổi 10-14</div>' +
+          '<div class="xm2-phase-name">Capstone Hackathon</div>' +
           '<div class="xm2-phase-steps">' +
-            '<div class="xm2-step">📦 Đóng gói Portfolio chuẩn quốc tế (CV, Motivation Letter)</div>' +
-            '<div class="xm2-step">🚀 Deploy & Go-to-Market (20 real users)</div>' +
-            '<div class="xm2-step">🎤 Mock Interview & Chốt hồ sơ</div>' +
-            '<div class="xm2-step">📝 Nhận Letter of Recommendation</div>' +
+            '<div class="xm2-step">🏆 Vai trò KÉP: BTC + Thí sinh trong cùng sự kiện</div>' +
+            '<div class="xm2-step">🎬 Media ghi hình toàn bộ quá trình → tư liệu hồ sơ</div>' +
+            '<div class="xm2-step">🎤 Thuyết trình tiếng Anh, phản biện trước Hội đồng</div>' +
           '</div>' +
         '</div>' +
         '<div class="xm2-phase-connector">→</div>' +
         '<div class="xm2-phase">' +
           '<div class="xm2-phase-badge" style="background:#DB2777;color:#fff">Phase 4</div>' +
-          '<div class="xm2-phase-name">Final Sprint & Demo Day</div>' +
-          '<div class="xm2-phase-meta">Buổi 15-16</div>' +
+          '<div class="xm2-phase-name">Bàn Giao Hồ Sơ</div>' +
           '<div class="xm2-phase-steps">' +
-            '<div class="xm2-step">🔧 Hotfix Checklist & Sprint cuối</div>' +
-            '<div class="xm2-step">🏆 Hackathon Day: 90 phút Final Sprint + Pitching</div>' +
+            '<div class="xm2-step">📦 Đóng gói: Link Web/Dashboard/Figma, GitHub, Bài luận</div>' +
+            '<div class="xm2-step">📝 LOR, Chứng nhận BTC + Giải thưởng Hackathon</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="xm2-phase-connector">→</div>' +
+        '<div class="xm2-phase">' +
+          '<div class="xm2-phase-badge" style="background:#6D28D9;color:#fff">Phase 5</div>' +
+          '<div class="xm2-phase-name">Check-in & Tracking</div>' +
+          '<div class="xm2-phase-steps">' +
+            '<div class="xm2-step">📍 Cập nhật Visa, hỗ trợ hồ sơ bổ sung</div>' +
+            '<div class="xm2-step">🎉 Vinh danh khi nhận kết quả + Case Study</div>' +
           '</div>' +
         '</div>' +
       '</div>' +
-      '<div class="xm2-quote">Giai đoạn 2: <strong>Launch — Thực tập 15 buổi</strong> tại phòng ban MindX (R&D, Tech, Marketing...)</div>';
+      '<div class="xm2-quote">Kèm <strong>Thực tập 15 buổi</strong> tại phòng ban MindX (R&D, Tech, Marketing...) + <strong>Bảo trợ việc làm 06 tháng</strong> sau tốt nghiệp ĐH</div>';
     return s;
   }
 
@@ -478,8 +482,11 @@
       if (!grid) return;
 
       var specs = [
-        { icon: "🌐", name: "Lập trình (Web)", color: "#2563EB", desc: "Xây dựng & triển khai Web/App tích hợp AI Agent",
+        { icon: "🌐", name: "Web Coding", color: "#2563EB", desc: "Xây dựng & triển khai Web/App tích hợp AI Agent",
           detail: [
+            "<strong>Lớp 8-9:</strong> Website tĩnh nâng cao nhận thức xã hội (HTML/CSS/JS + AI hỗ trợ)",
+            "<strong>Lớp 10-12:</strong> Web Application MVP có logic JS, API, GitHub",
+            "",
             "Chốt Stack & Kiến trúc (React, Node.js, Python)",
             "System Design, Database Schema, GitHub",
             "Backend (RESTful API) + Frontend (UI, Data binding)",
@@ -487,16 +494,21 @@
             "Deploy lên AWS, Vercel, Firebase",
             "Clean Code, Security audit (SQL Injection, XSS)"
           ]},
-        { icon: "📈", name: "Dữ liệu (Data Analyst)", color: "#059669", desc: "Phân tích dữ liệu & xuất bản Data Blog trên Medium/LinkedIn",
+        { icon: "📈", name: "Data Analysis", color: "#059669", desc: "Phân tích dữ liệu & trực quan hóa — từ Infographic đến Interactive Dashboard",
           detail: [
+            "<strong>Lớp 8-9:</strong> Infographic/Báo cáo tĩnh trực quan hóa (Google Sheets)",
+            "<strong>Lớp 10-12:</strong> Interactive Dashboard hoàn chỉnh (BI Tools: PowerBI/Tableau)",
+            "",
             "Thu thập dữ liệu (Web Scraping, API, Kaggle)",
             "EDA, Missing values, Feature Engineering",
             "AI detect outliers, viết truy vấn phức tạp",
-            "Dashboard tương tác PowerBI/Tableau",
             "Xuất bản Data Blog trên Medium/LinkedIn"
           ]},
-        { icon: "🎨", name: "Thiết kế (UI/UX)", color: "#8B5CF6", desc: "Case study trọn gói từ Research đến Usability Test",
+        { icon: "🎨", name: "UI/UX Design", color: "#8B5CF6", desc: "Case study trọn gói từ Research đến Usability Test",
           detail: [
+            "<strong>Lớp 8-9:</strong> App Concept (bản thiết kế ứng dụng giải quyết vấn đề xã hội)",
+            "<strong>Lớp 10-12:</strong> Interactive Prototype Figma, luồng người dùng phức tạp",
+            "",
             "User Persona, UX Research, Information Architecture",
             "Hi-Fi Design với Design System",
             "AI gen ảnh minh họa (Midjourney/DALL-E)",
@@ -576,12 +588,12 @@
         '<div class="xm2-compare-vs">VS</div>' +
         '<div class="xm2-compare-col mindx">' +
           '<div class="xm2-compare-header mindx">Hồ sơ MindX</div>' +
-          '<div class="xm2-compare-item">✅ Sản phẩm thật, 20 user thật</div>' +
-          '<div class="xm2-compare-item">✅ Điều phối sự kiện + Trợ giảng</div>' +
-          '<div class="xm2-compare-item">✅ Letter từ chuyên gia / CEO MindX</div>' +
-          '<div class="xm2-compare-item">✅ Bảng điểm kỹ thuật (Tech Stack)</div>' +
-          '<div class="xm2-compare-item">✅ Internship tại DN thực tế</div>' +
-          '<div class="xm2-compare-item">✅ Live Demo + Portfolio link</div>' +
+          '<div class="xm2-compare-item">✅ Tech Portfolio thực chiến (Web/Dashboard/App trên GitHub/Figma)</div>' +
+          '<div class="xm2-compare-item">✅ Chứng nhận KÉP Hackathon (BTC + Thí sinh)</div>' +
+          '<div class="xm2-compare-item">✅ Bài luận Personal Statement được AI brainstorm</div>' +
+          '<div class="xm2-compare-item">✅ LOR từ Mentor/Giảng viên MindX bảo chứng năng lực</div>' +
+          '<div class="xm2-compare-item">✅ Media tư liệu hình ảnh/video toàn bộ quá trình</div>' +
+          '<div class="xm2-compare-item">✅ Internship tại DN thực tế + Bảng điểm kỹ thuật</div>' +
         '</div>' +
       '</div>';
     return s;
@@ -591,8 +603,8 @@
   function buildSlide9() {
     var s = el("div", "xm2-slide");
     s.innerHTML =
-      '<div class="xm2-title-large">Hackathon & <span class="xm2-accent-red">Demo Day</span></div>' +
-      '<p class="xm2-subtitle">Mô hình: 2 ca thi đấu (Sáng/Chiều) — HV đổi vai: Thí sinh ↔ Ban Tổ Chức</p>' +
+      '<div class="xm2-title-large">Capstone Hackathon — <span class="xm2-accent-red">Vai Trò KÉP</span></div>' +
+      '<p class="xm2-subtitle">HV vừa BTC vừa Thí sinh — minh chứng Leadership mạnh mẽ nhất cho hồ sơ du học</p>' +
       '<div class="xm2-usp-grid" id="xm2HackGrid"></div>';
 
     setTimeout(function() {
@@ -600,26 +612,29 @@
       if (!grid) return;
 
       var roles = [
-        { icon: "⚙️", title: "Ban Kỹ thuật & Dữ liệu", desc: "Quản lý hệ thống, nhập điểm live, AI tóm tắt", detail: [
-          "Quản lý hệ thống chấm điểm và hạ tầng kỹ thuật",
-          "Nhập điểm live trong suốt sự kiện",
-          "AI tóm tắt kết quả và phân tích dữ liệu real-time"
+        { icon: "👔", title: "Vai trò BTC", desc: "Ứng dụng AI lập kế hoạch, truyền thông, điều phối sự kiện thực tế", detail: [
+          "Ứng dụng AI lập kế hoạch & truyền thông sự kiện",
+          "Điều phối sự kiện thực tế: hệ thống chấm điểm, check-in QR, sân khấu",
+          "Phân công: Ban Kỹ thuật (nhập điểm live), Ban Trải nghiệm (Booth), Ban Sân khấu (MC song ngữ)",
+          "Chứng nhận Ban Tổ Chức — minh chứng Leadership cho hồ sơ"
         ]},
-        { icon: "🎪", title: "Ban Trải nghiệm", desc: "Check-in QR, hướng dẫn khách Booth, chụp ảnh", detail: [
-          "Check-in QR cho khách tham dự",
-          "Hướng dẫn khách tham quan Booth trưng bày",
-          "Chụp ảnh, ghi nhận hoạt động sự kiện"
+        { icon: "🏆", title: "Vai trò Thí sinh", desc: "Hoàn thiện dự án, thuyết trình tiếng Anh, phản biện trước Hội đồng", detail: [
+          "Hoàn thiện dự án trong 90 phút Final Sprint",
+          "Thuyết trình tiếng Anh (Pitching) trước Ban Giám khảo",
+          "Phản biện và bảo vệ sản phẩm trước Hội đồng",
+          "Giải thưởng Hackathon — điểm cộng hồ sơ du học"
         ]},
-        { icon: "🎤", title: "Ban Sân khấu", desc: "MC song ngữ, time-keeper, điều phối chương trình", detail: [
-          "MC song ngữ (Việt - Anh) dẫn chương trình",
-          "Time-keeper đảm bảo đúng lịch trình",
-          "Điều phối toàn bộ flow sân khấu"
+        { icon: "🎬", title: "Media & Tư liệu", desc: "Ghi hình toàn bộ quá trình (BTC + thi đấu) → tư liệu hồ sơ", detail: [
+          "Ghi hình toàn bộ quá trình: vai trò BTC + thi đấu",
+          "Video highlight cá nhân — đính kèm hồ sơ du học",
+          "Ảnh hoạt động chuyên nghiệp cho Portfolio/LinkedIn",
+          "Tư liệu chứng minh năng lực toàn diện trước hội đồng tuyển sinh"
         ]},
-        { icon: "🏆", title: "Agenda sự kiện", desc: "Khai mạc → 90\' Final Sprint → Pitching → Booth Tour", detail: [
-          "Khai mạc và giới thiệu sự kiện",
-          "90 phút Final Sprint — hoàn thiện sản phẩm",
-          "Pitching trước Ban Giám khảo",
-          "Booth Tour — trưng bày và giới thiệu sản phẩm"
+        { icon: "📦", title: "Sản phẩm đầu ra", desc: "Chứng nhận BTC + Giải thưởng Hackathon + Media package", detail: [
+          "Chứng nhận Ban Tổ Chức (Leadership proof)",
+          "Giải thưởng Hackathon (Technical proof)",
+          "Video/Ảnh tư liệu toàn bộ quá trình",
+          "Booth Tour — trưng bày sản phẩm trước khách mời & phụ huynh"
         ]}
       ];
 
@@ -644,19 +659,25 @@
   function buildSlide10() {
     var s = el("div", "xm2-slide");
     s.innerHTML =
-      '<div class="xm2-title-large">Chính sách <span class="xm2-accent-red">hỗ trợ hồ sơ du học</span></div>' +
+      '<div class="xm2-title-large">Chính sách <span class="xm2-accent-red">hỗ trợ & cam kết</span></div>' +
       '<div class="xm2-compare">' +
         '<div class="xm2-compare-col mindx">' +
-          '<div class="xm2-compare-header mindx">MindX Cam Kết Cung Cấp</div>' +
-          '<div class="xm2-compare-item">✅ Mạng lưới tối thiểu 05 đối tác tư vấn du học chất lượng cao</div>' +
-          '<div class="xm2-compare-item">✅ Bảng so sánh chi phí minh bạch & đánh giá chi tiết về các đối tác</div>' +
-          '<div class="xm2-compare-item">✅ Bộ thông tin tổng hợp 50 trường ĐH Top đầu (chọn lọc từ đối tác)</div>' +
+          '<div class="xm2-compare-header mindx">MindX Cam Kết</div>' +
+          '<div class="xm2-compare-item">✅ Kết nối tối thiểu 05 đối tác du học uy tín</div>' +
+          '<div class="xm2-compare-item">✅ Danh sách 20 trường Top ngành Tech</div>' +
+          '<div class="xm2-compare-item">✅ Sổ tay du học các quốc gia</div>' +
+          '<div class="xm2-compare-item">✅ Cộng đồng MindX Alumni đang du học & làm việc toàn cầu</div>' +
+          '<div class="xm2-compare-item">✅ Workshop du học cùng đối tác/đại diện trường</div>' +
+          '<div class="xm2-compare-item">✅ Bảo trợ kết nối việc làm 06 tháng sau tốt nghiệp ĐH</div>' +
+          '<div class="xm2-compare-item">✅ Career Coaching 1-1: tối ưu CV/Portfolio chuẩn quốc tế</div>' +
+          '<div class="xm2-compare-item">✅ Mạng lưới tuyển dụng chuyên biệt (Group Zalo theo ngành)</div>' +
         '</div>' +
         '<div class="xm2-compare-vs"></div>' +
         '<div class="xm2-compare-col normal">' +
-          '<div class="xm2-compare-header">MindX Không Thực Hiện & Không Cam Kết</div>' +
-          '<div class="xm2-compare-item">❌ Không thu hộ phí dịch vụ — chỉ giới thiệu & kết nối</div>' +
-          '<div class="xm2-compare-item">❌ Không cam kết đỗ du học 100% — phụ thuộc gia đình & visa</div>' +
+          '<div class="xm2-compare-header">MindX Không Cam Kết</div>' +
+          '<div class="xm2-compare-item">❌ Không cam kết tỷ lệ đỗ 100%</div>' +
+          '<div class="xm2-compare-item">❌ Không chịu trách nhiệm thay đổi chính sách nhập cư</div>' +
+          '<div class="xm2-compare-item">❌ Không cam kết thay khả năng tài chính gia đình</div>' +
         '</div>' +
       '</div>' +
       '<div class="xm2-quote">MindX đồng hành xây dựng <span class="xm2-accent-red">hồ sơ năng lực</span> — kết nối đối tác du học uy tín để gia đình lựa chọn.</div>';
@@ -735,13 +756,27 @@
           '<div class="xm2-cta-check">✔ <strong>Kỹ năng</strong> — Xây dựng portfolio, sẵn sàng du học</div>' +
           '<div class="xm2-cta-check">✔ <strong>Kiến thức</strong> — Nền tảng công nghệ &amp; nghệ thuật số chuẩn quốc tế</div>' +
         '</div>' +
-        '<div class="xm2-cta-btn">ĐĂNG KÝ NGAY — Bắt đầu hành trình</div>' +
+      '</div>' +
+      '<div style="display:flex;gap:12px;justify-content:center;margin:16px 0;flex-wrap:wrap">' +
+        '<div style="background:#F0FDF4;border:2px solid #16A34A;border-radius:12px;padding:14px 20px;text-align:center;flex:1;min-width:180px;max-width:240px">' +
+          '<div style="font-size:0.8rem;color:#16A34A;font-weight:700;margin-bottom:4px">Lộ trình Bảo trợ</div>' +
+          '<div style="font-size:1.4rem;font-weight:800;color:#16A34A">Miễn phí 100%</div>' +
+        '</div>' +
+        '<div style="background:#EFF6FF;border:2px solid #2563EB;border-radius:12px;padding:14px 20px;text-align:center;flex:1;min-width:180px;max-width:240px">' +
+          '<div style="font-size:0.8rem;color:#2563EB;font-weight:700;margin-bottom:4px">HV đang học MindX</div>' +
+          '<div style="font-size:1.4rem;font-weight:800;color:#2563EB">21.000.000 VNĐ</div>' +
+          '<div style="font-size:0.75rem;color:#2563EB">Giảm 30%</div>' +
+        '</div>' +
+        '<div style="background:#FFF7ED;border:2px solid #EA580C;border-radius:12px;padding:14px 20px;text-align:center;flex:1;min-width:180px;max-width:240px">' +
+          '<div style="font-size:0.8rem;color:#EA580C;font-weight:700;margin-bottom:4px">Khách mới</div>' +
+          '<div style="font-size:1.4rem;font-weight:800;color:#EA580C">30.000.000 VNĐ</div>' +
+        '</div>' +
       '</div>' +
       '<div class="xm2-cta-tracks">' +
         '<div class="xm2-cta-track blue">💻 CNTT — X-Global Tech Seed</div>' +
         '<div class="xm2-cta-track purple">🎨 Art — X-Global Art Seed</div>' +
       '</div>' +
-      '<p class="xm2-subtitle" style="margin-top:16px;margin-bottom:0;font-size:0.95rem;color:#999">Anh/chị đã thấy lộ trình — hãy để con bước vào hành trình du học sớm nhất có thể.</p>';
+      '<p class="xm2-subtitle" style="margin-top:12px;margin-bottom:0;font-size:0.95rem;color:#999">Anh/chị đã thấy lộ trình — hãy để con bước vào hành trình du học sớm nhất có thể.</p>';
     return s;
   }
 
