@@ -1115,7 +1115,7 @@
     popup.appendChild(header);
 
     var noteKey = 'license_note_' + prefix;
-    var defaultNote = 'Ph\u00ed b\u1ea3n quy\u1ec1n ch\u1ec9 \u00e1p d\u1ee5ng cho c\u00e1c kh\u00f3a s\u1eed d\u1ee5ng ph\u1ea7n m\u1ec1m Adobe (t\u1eeb Visual Creation tr\u1edf l\u00ean). C\u00e1c kh\u00f3a Little Artist, KidsArt, Visual Art kh\u00f4ng c\u1ea7n ph\u00ed b\u1ea3n quy\u1ec1n.';
+    var defaultNote = 'Ph\u00ed b\u1ea3n quy\u1ec1n ch\u1ec9 \u00e1p d\u1ee5ng cho c\u00e1c kh\u00f3a s\u1eed d\u1ee5ng ph\u1ea7n m\u1ec1m Adobe (t\u1eeb Character & Mascot Design tr\u1edf l\u00ean). C\u00e1c kh\u00f3a Little Artist, Digital Art Foundations, Visual Thinking, Game Art kh\u00f4ng c\u1ea7n ph\u00ed b\u1ea3n quy\u1ec1n.';
     var currentNote = getEV(noteKey, defaultNote);
 
     var textarea = el('textarea', { className: 'license-note-textarea', rows: 6 });
