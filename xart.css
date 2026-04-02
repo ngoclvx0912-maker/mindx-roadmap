@@ -61,14 +61,14 @@
 
 /* ===== SLIDES CONTAINER ===== */
 .xa-slides {
-  flex: 1; position: relative; overflow: hidden;
+  flex: 1; position: relative; overflow: visible;
 }
 .xa-slide {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  padding: clamp(24px, 5vh, 60px) clamp(24px, 8vw, 120px);
+  padding: clamp(20px, 4vh, 48px) clamp(24px, 8vw, 120px) clamp(60px, 8vh, 80px);
   box-sizing: border-box;
   display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
+  justify-content: flex-start; align-items: center;
   text-align: center;
   visibility: hidden; opacity: 0; pointer-events: none;
   transition: opacity 0.4s, visibility 0.4s;
