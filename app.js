@@ -1194,11 +1194,10 @@
       value: saved
     });
     ta.style.cssText = 'width:100%;min-height:120px;border:1px solid #ddd;border-radius:8px;padding:12px;font-size:0.85rem;font-family:inherit;resize:vertical;';
-    ta.setAttribute('data-key', contentKey);
     ta.addEventListener('input', function() {
-      pendingEdits[contentKey] = ta.value;
-      scheduleSave();
+      state.editedData[contentKey] = ta.value;
     });
+    if (!state.isAdmin) ta.readOnly = true;
     popup.appendChild(ta);
 
     overlay.appendChild(popup);
