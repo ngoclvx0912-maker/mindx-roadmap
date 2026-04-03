@@ -1,6 +1,6 @@
 /* ============================================================
    MindX Training Module — All Training Content Data
-   Version: 1.0 | March 2026
+   Version: 2.0 | April 2026 — Major Content Upgrade
    ============================================================ */
 
 const TRAINING_DATA = {
@@ -338,21 +338,28 @@ const TRAINING_DATA = {
             title: "Lộ trình Coding (5 năm)",
             icon: "💻",
             content: `<h3>Lộ trình Coding — 5 năm kiến tạo tương lai</h3>
-<p>Lộ trình Coding của MindX được thiết kế cho trẻ từ 10 tuổi, đi từ tư duy logic cơ bản đến Computer Scientist chuyên sâu trong 5 năm.</p>
+<p>Lộ trình Coding của MindX được thiết kế cho trẻ từ 9 tuổi, đi từ tư duy logic cơ bản đến Computer Scientist chuyên sâu trong 5 năm. Mỗi năm 3 level (Basic → Advanced → Intensive), 42 buổi/năm, 1 buổi/tuần × 2h.</p>
 
 <div class="product-card">
   <div class="product-header year1">
     <span class="product-year">NĂM 1</span>
-    <h4>Scratch — App Creator (10+)</h4>
+    <h4>Scratch Creator (9-11)</h4>
   </div>
   <div class="product-body">
-    <p><strong>Mô tả:</strong> Tư duy logic cơ bản qua lập trình kéo thả block. Trẻ tạo trò chơi, animation, và câu chuyện tương tác.</p>
-    <p><strong>Thời lượng:</strong> 3 HP × 14 buổi (42 buổi)</p>
-    <p><strong>Output:</strong> 10+ project game/animation hoàn chỉnh</p>
+    <p><strong>Mô tả:</strong> Học lập trình kéo thả và làm game với AI. Trẻ tạo trò chơi, animation, và câu chuyện tương tác bằng Scratch + Teachable Machine.</p>
+    <p><strong>Thời lượng:</strong> 3 Level × 14 buổi = 42 buổi (1 buổi/tuần, 2h/buổi) | Lớp 6-8 bạn</p>
+    <p><strong>Công cụ:</strong> Scratch 3.0, Teachable Machine (AI nhận diện hình ảnh)</p>
+    <p><strong>Output theo level:</strong></p>
+    <ul>
+      <li><strong>Basic:</strong> Mini game sáng tạo — tư duy logic cơ bản, kéo thả block</li>
+      <li><strong>Advanced:</strong> Game có AI — ứng dụng Teachable Machine nhận diện hình ảnh, cảm biến âm thanh</li>
+      <li><strong>Intensive:</strong> Game tích hợp AI + yếu tố xã hội — dự án hoàn chỉnh, gắn chủ đề thực tế</li>
+    </ul>
+    <p><strong>Soft skills:</strong> Thuyết trình, tư duy sáng tạo, lắng nghe, tranh luận</p>
     <p><strong>Key Selling Points:</strong></p>
     <ul>
-      <li>Không cần biết đọc code — kéo thả trực quan, phù hợp trẻ 10+</li>
-      <li>Phát triển tư duy logic, sáng tạo, giải quyết vấn đề</li>
+      <li>Không cần biết đọc code — kéo thả trực quan, phù hợp trẻ 9-11 tuổi</li>
+      <li>Tích hợp AI từ năm đầu tiên — con học cách dùng AI sáng tạo</li>
       <li>Trẻ hào hứng vì được TẠO GAME thay vì CHƠI GAME</li>
       <li>Nền tảng vững chắc cho các năm tiếp theo</li>
     </ul>
@@ -362,17 +369,24 @@ const TRAINING_DATA = {
 <div class="product-card">
   <div class="product-header year2">
     <span class="product-year">NĂM 2</span>
-    <h4>Game Creator (11+)</h4>
+    <h4>Game Creator (11-13)</h4>
   </div>
   <div class="product-body">
-    <p><strong>Mô tả:</strong> Chuyển từ người chơi game sang người làm game chuyên nghiệp. Sử dụng GameMaker Studio 2.0 — công cụ tạo game chuyên nghiệp.</p>
-    <p><strong>Thời lượng:</strong> 3 HP × 14 buổi (42 buổi)</p>
-    <p><strong>Output:</strong> Game 2D hoàn chỉnh (Mario Run, Maze), cốt truyện + tính năng độc đáo</p>
+    <p><strong>Mô tả:</strong> Lập trình game chuyên nghiệp và AI nâng cao. Sử dụng GameMaker Studio 2.0 + GML — công cụ tạo game chuyên nghiệp.</p>
+    <p><strong>Thời lượng:</strong> 3 Level × 14 buổi = 42 buổi (1 buổi/tuần, 2h/buổi) | Lớp 6-8 bạn</p>
+    <p><strong>Công cụ:</strong> GameMaker Studio 2.0, GML (GameMaker Language)</p>
+    <p><strong>Output theo level:</strong></p>
+    <ul>
+      <li><strong>Basic:</strong> Mini game phiêu lưu — làm quen GameMaker, kéo thả, AI tạo nguyên liệu</li>
+      <li><strong>Advanced:</strong> Game nhiều màn — AI hỗ trợ kịch bản, NPC có AI, nhiều cấp độ</li>
+      <li><strong>Intensive:</strong> Game AI chuyên sâu — xuất bản web, bảng xếp hạng, sản phẩm hoàn chỉnh</li>
+    </ul>
+    <p><strong>Soft skills:</strong> Tự tin, quản lý thời gian, làm việc nhóm, quản lý dự án, lãnh đạo</p>
     <p><strong>Key Selling Points:</strong></p>
     <ul>
-      <li>GameMaker Studio 2.0 — công cụ tạo game chuyên nghiệp</li>
+      <li>GameMaker Studio 2.0 + GML — công cụ tạo game chuyên nghiệp</li>
       <li>Trẻ chuyển từ CHƠI GAME sang LÀM GAME — cực kỳ hào hứng</li>
-      <li>Tích hợp AI tạo hình ảnh/cốt truyện — xu hướng game hiện đại</li>
+      <li>Tích hợp AI tạo hình ảnh/kịch bản/NPC — xu hướng game hiện đại</li>
       <li>Làm chủ thuật toán phức tạp qua game thực tế</li>
     </ul>
   </div>
@@ -381,18 +395,25 @@ const TRAINING_DATA = {
 <div class="product-card">
   <div class="product-header year3">
     <span class="product-year">NĂM 3</span>
-    <h4>App Producer (12+)</h4>
+    <h4>App Producer (12-14)</h4>
   </div>
   <div class="product-body">
-    <p><strong>Mô tả:</strong> Phát triển ứng dụng hoàn chỉnh. Trẻ học toàn bộ quy trình từ ý tưởng → thiết kế → lập trình → publish.</p>
-    <p><strong>Thời lượng:</strong> 3 HP × 14 buổi (42 buổi)</p>
-    <p><strong>Output:</strong> Ứng dụng hoàn chỉnh, sản phẩm thực tế + portfolio</p>
+    <p><strong>Mô tả:</strong> Lập trình ứng dụng di động kết hợp AI. Python + PyQt + Qt Designer. Từ ý tưởng → thiết kế → lập trình → publish.</p>
+    <p><strong>Thời lượng:</strong> 3 Level × 14 buổi = 42 buổi (1 buổi/tuần, 2h/buổi) | Lớp 6-8 bạn</p>
+    <p><strong>Công cụ:</strong> Python, PyQt, Qt Designer, API Google, AI nhận diện giọng nói</p>
+    <p><strong>Output theo level:</strong></p>
+    <ul>
+      <li><strong>Basic:</strong> App đơn giản — làm quen Python, kiểu dữ liệu, vòng lặp, hàm</li>
+      <li><strong>Advanced:</strong> Phần mềm có GUI hoàn chỉnh — OOP, PyQt, giao diện chuyên nghiệp</li>
+      <li><strong>Intensive:</strong> App quản lý + AI — JSON, API Google, AI nhận diện giọng nói, dự án tổng hợp</li>
+    </ul>
+    <p><strong>Soft skills:</strong> Thuyết trình, phân biệt đúng sai khi dùng AI, tư duy NextGen, gọi vốn, đàm phán</p>
     <p><strong>Key Selling Points:</strong></p>
     <ul>
-      <li>Trẻ tạo app thật, cài được trên điện thoại — PH rất ấn tượng</li>
-      <li>Học quy trình phát triển phần mềm chuyên nghiệp</li>
-      <li>Kỹ năng teamwork, quản lý project</li>
-      <li>Portfolio ấn tượng cho tương lai</li>
+      <li>Trẻ tạo app thật với Python — PH rất ấn tượng</li>
+      <li>Học Python — ngôn ngữ #1 thế giới, nền tảng cho AI/Data Science</li>
+      <li>Tích hợp AI nhận diện giọng nói, API Google — ứng dụng thực tế</li>
+      <li>Portfolio ấn tượng cho tương lai du học/việc làm</li>
     </ul>
   </div>
 </div>
@@ -400,18 +421,25 @@ const TRAINING_DATA = {
 <div class="product-card">
   <div class="product-header year4">
     <span class="product-year">NĂM 4</span>
-    <h4>Web Developer (14+)</h4>
+    <h4>Web Developer (14-16)</h4>
   </div>
   <div class="product-body">
-    <p><strong>Mô tả:</strong> Tự tay xây dựng website tương tác từ trang bán hàng đến mạng xã hội. HTML, CSS, JavaScript, Bootstrap, Firebase, Figma.</p>
-    <p><strong>Thời lượng:</strong> 3 HP × 14 buổi (42 buổi)</p>
-    <p><strong>Output:</strong> Website hoàn chỉnh go-live, portfolio online</p>
+    <p><strong>Mô tả:</strong> Lập trình website kết hợp AI. HTML, CSS, JavaScript, Bootstrap, API, GitHub, Firebase, chatbot AI.</p>
+    <p><strong>Thời lượng:</strong> 3 Level × 14 buổi = 42 buổi (1 buổi/tuần, 2h/buổi) | Lớp 6-8 bạn</p>
+    <p><strong>Công cụ:</strong> HTML, CSS, JavaScript, Bootstrap, API, GitHub, Firebase</p>
+    <p><strong>Output theo level:</strong></p>
+    <ul>
+      <li><strong>Basic:</strong> Website giới thiệu/portfolio — HTML, CSS, responsive, Bootstrap</li>
+      <li><strong>Advanced:</strong> Website thương mại điện tử + AI — JavaScript, DOM, API, GitHub</li>
+      <li><strong>Intensive:</strong> Website quản lý + chatbot + AI — Deploy, cloud data, team work, dự án thực tế</li>
+    </ul>
+    <p><strong>Soft skills:</strong> Thuyết trình, quản lý dự án, giải quyết vấn đề</p>
     <p><strong>Key Selling Points:</strong></p>
     <ul>
-      <li>Web development — kỹ năng có nhu cầu cao nhất thị trường</li>
-      <li>JavaScript — ngôn ngữ phổ biến nhất cho web</li>
-      <li>UI/UX — kỹ năng thiết kế trải nghiệm người dùng</li>
-      <li>Có thể làm freelance kiếm tiền từ năm 14-15 tuổi</li>
+      <li>Web development — kỹ năng có nhu cầu cao nhất thị trường hiện nay</li>
+      <li>JavaScript — ngôn ngữ phổ biến nhất cho web + full-stack</li>
+      <li>Tích hợp AI chatbot — xu hướng mới nhất trong web development</li>
+      <li>Có thể làm freelance kiếm tiền từ năm 14-15 tuổi, deploy lên cloud thật</li>
     </ul>
   </div>
 </div>
@@ -419,18 +447,25 @@ const TRAINING_DATA = {
 <div class="product-card">
   <div class="product-header year5">
     <span class="product-year">NĂM 5</span>
-    <h4>Computer Scientist (15+) — AI & Data Science</h4>
+    <h4>Computer Scientist (15-17) — AI & Data Science</h4>
   </div>
   <div class="product-body">
-    <p><strong>Mô tả:</strong> Đi sâu vào "xương sống" ngành CNTT. Python chuyên sâu, mô hình AI, Machine Learning, trực quan hóa dữ liệu.</p>
-    <p><strong>Thời lượng:</strong> 3 HP × 14 buổi (42 buổi)</p>
-    <p><strong>Output:</strong> Mô hình ML, Chatbot thông minh, dự án phân tích dữ liệu</p>
+    <p><strong>Mô tả:</strong> Lập trình Python & AI chuyên sâu. Python OOP, thuật toán, data analysis, Machine Learning, NLP, chatbot, prompt engineering.</p>
+    <p><strong>Thời lượng:</strong> 3 Level × 14 buổi = 42 buổi (1 buổi/tuần, 2h/buổi) | Lớp 6-8 bạn</p>
+    <p><strong>Công cụ:</strong> Python, pandas, CSV, matplotlib, scikit-learn, AI APIs</p>
+    <p><strong>Output theo level:</strong></p>
+    <ul>
+      <li><strong>Basic:</strong> App học tập/giải trí — Python OOP, thuật toán, cấu trúc dữ liệu</li>
+      <li><strong>Advanced:</strong> Dashboard phân tích — Data analysis, pandas, biểu đồ, dự đoán dữ liệu</li>
+      <li><strong>Intensive:</strong> App AI hoàn chỉnh — AI nhận diện hình ảnh, chatbot, NLP, prompt engineering</li>
+    </ul>
+    <p><strong>Soft skills:</strong> Làm việc nhóm, quản lý dự án, kinh doanh, lãnh đạo</p>
     <p><strong>Key Selling Points:</strong></p>
     <ul>
       <li>AI/ML — lĩnh vực hot nhất hiện tại, lương khởi điểm $2000+/tháng</li>
-      <li>Chuẩn bị portfolio cạnh tranh cho du học và việc làm</li>
-      <li>Tham gia hackathon, cuộc thi quốc tế</li>
-      <li>Bảo trợ du học & việc làm từ MindX</li>
+      <li>Chuẩn bị portfolio cạnh tranh cho du học (holistic review coi trọng project thực tế)</li>
+      <li>Tham gia hackathon, cuộc thi quốc tế — MindX hỗ trợ hồ sơ dự thi</li>
+      <li>Kết nối trực tiếp với chương trình Bảo trợ du học & Bảo trợ việc làm đa ngành MindX</li>
     </ul>
   </div>
 </div>`,
@@ -438,7 +473,7 @@ const TRAINING_DATA = {
               id: "quiz_day2_coding",
               title: "Quiz: Lộ trình Coding",
               questions: [
-                { q: "Năm 1 của lộ trình Coding sử dụng ngôn ngữ gì?", options: ["Python", "JavaScript", "Scratch — kéo thả block", "C++"], correct: 2, explanation: "Năm 1 dùng Scratch — lập trình kéo thả trực quan, phù hợp trẻ 10+." },
+                { q: "Năm 1 của lộ trình Coding sử dụng ngôn ngữ gì?", options: ["Python", "JavaScript", "Scratch — kéo thả block", "C++"], correct: 2, explanation: "Năm 1 dùng Scratch — lập trình kéo thả trực quan, phù hợp trẻ 9-11 tuổi." },
                 { q: "Game Creator (Năm 2) sử dụng công cụ gì?", options: ["Python", "JavaScript", "GameMaker Studio 2.0", "Scratch"], correct: 2, explanation: "Năm 2 dùng GameMaker Studio 2.0 — công cụ tạo game chuyên nghiệp + AI tools." },
                 { q: "Khóa App Producer phù hợp cho trẻ từ bao nhiêu tuổi?", options: ["8+", "9+", "12+", "14+"], correct: 2, explanation: "App Producer dành cho trẻ 12+ — phát triển ứng dụng hoàn chỉnh." },
                 { q: "Output của khóa Web Developer là gì?", options: ["Game Python", "Ứng dụng mobile", "Website hoàn chỉnh + portfolio online", "AI project"], correct: 2, explanation: "Web Developer tạo ra 5+ website hoàn chỉnh và portfolio online." },
@@ -446,7 +481,7 @@ const TRAINING_DATA = {
                 { q: "Lộ trình Coding có tổng cộng bao nhiêu năm?", options: ["3 năm", "4 năm", "5 năm", "6 năm"], correct: 2, explanation: "Lộ trình Coding gồm 5 năm: Scratch → Game Creator → App Producer → Web Developer → Computer Scientist." },
                 { q: "Mỗi năm học cơ bản có bao nhiêu buổi?", options: ["28 buổi", "36 buổi", "42 buổi", "48 buổi"], correct: 2, explanation: "Mỗi năm cơ bản gồm 3 HP × 14 = 42 buổi." },
                 { q: "Khóa nào nhấn mạnh UI/UX Design?", options: ["Game Creator", "App Producer", "Web Developer", "Computer Scientist"], correct: 2, explanation: "Web Developer (Năm 4) kết hợp JavaScript và UI/UX Design." },
-                { q: "Trẻ có thể bắt đầu lộ trình Coding từ bao nhiêu tuổi?", options: ["5 tuổi", "6 tuổi", "8 tuổi", "10 tuổi"], correct: 3, explanation: "Lộ trình Coding bắt đầu từ 10 tuổi với Scratch Creator." },
+                { q: "Trẻ có thể bắt đầu lộ trình Coding từ bao nhiêu tuổi?", options: ["5 tuổi", "6 tuổi", "8 tuổi", "10 tuổi"], correct: 3, explanation: "Lộ trình Coding bắt đầu từ 9 tuổi với Scratch Creator." },
                 { q: "Computer Scientist (Năm 5) tập trung vào lĩnh vực nào?", options: ["Web development", "Mobile app", "AI & Data Science", "Game development"], correct: 2, explanation: "Computer Scientist (Năm 5) chuyên sâu về AI, Machine Learning, và Data Science." }
               ]
             }
@@ -459,53 +494,72 @@ const TRAINING_DATA = {
 <p>Lộ trình Art & Design đưa trẻ từ 4 tuổi đi qua hành trình từ nét vẽ đầu tiên đến thiết kế đa phương tiện chuyên nghiệp.</p>
 
 <div class="product-card">
-  <div class="product-header art0"><span class="product-year">NĂM 0</span><h4>Little Artist (4+)</h4></div>
+  <div class="product-header art0"><span class="product-year">NĂM 0</span><h4>Little Artist — Họa sĩ nhí (4+)</h4></div>
   <div class="product-body">
-    <p><strong>Mô tả:</strong> Khơi dậy sáng tạo thông qua vẽ, tô màu, và hoạt động nghệ thuật vui nhộn.</p>
-    <p><strong>Đối tượng:</strong> Trẻ 4-5 tuổi</p>
+    <p><strong>Mô tả:</strong> Khơi dậy sáng tạo thông qua vẽ, tô màu, và hoạt động nghệ thuật vui nhộn. 3 levels: Basic → Advanced → Intensive.</p>
+    <p><strong>Đối tượng:</strong> Trẻ 4+ tuổi | Lớp 6-8 bạn | Offline</p>
+    <p><strong>Thời lượng:</strong> 42 buổi/khóa, 14 buổi/level, 1 buổi/tuần, 2h/buổi</p>
+    <p><strong>Công cụ:</strong> Họa cụ truyền thống</p>
+    <p><strong>Output:</strong> Tranh canvas, tranh màu sáp/nước, sản phẩm thủ công 3D</p>
     <p><strong>Key Points:</strong> Phát triển khả năng quan sát, nhận biết màu sắc, hình khối. Xây nền tảng sáng tạo từ sớm.</p>
   </div>
 </div>
 <div class="product-card">
-  <div class="product-header art1"><span class="product-year">NĂM 1</span><h4>Digital Art Foundations (7+)</h4></div>
+  <div class="product-header art1"><span class="product-year">NĂM 1</span><h4>Digital Art Foundations — Nền tảng Mỹ thuật số (6+)</h4></div>
   <div class="product-body">
-    <p><strong>Mô tả:</strong> Nền tảng mỹ thuật: phối màu, bố cục, vẽ nhân vật đơn giản.</p>
-    <p><strong>Key Points:</strong> Trẻ bắt đầu có "tác phẩm" đầu tiên, tự tin thể hiện bản thân qua nghệ thuật.</p>
+    <p><strong>Mô tả:</strong> Nền tảng mỹ thuật số: phối màu, bố cục, vẽ nhân vật. Kết hợp họa cụ truyền thống + thiết bị công nghệ.</p>
+    <p><strong>Thời lượng:</strong> 42 buổi/khóa | Lớp 6-8 bạn | Offline</p>
+    <p><strong>Output:</strong> Digital Sketchbook → Bộ tranh "My World" → Sketchnote cá nhân</p>
+    <p><strong>Key Points:</strong> Trẻ bắt đầu có "tác phẩm" đầu tiên, làm quen với thiết bị công nghệ trong sáng tạo nghệ thuật.</p>
   </div>
 </div>
 <div class="product-card">
-  <div class="product-header art2"><span class="product-year">NĂM 2</span><h4>Visual Thinking (9+)</h4></div>
+  <div class="product-header art2"><span class="product-year">NĂM 2</span><h4>Visual Thinking — Tư duy hình ảnh (8+)</h4></div>
   <div class="product-body">
-    <p><strong>Mô tả:</strong> Nghệ thuật thị giác: vẽ digital, illustration cơ bản, sử dụng tablet.</p>
-    <p><strong>Key Points:</strong> Chuyển từ vẽ tay sang digital art. Làm quen với công cụ thiết kế chuyên nghiệp.</p>
+    <p><strong>Mô tả:</strong> Tư duy hình ảnh: vẽ digital, illustration, tạo nhân vật/sticker. Sử dụng Sketchbook, Medibang, bút cảm ứng.</p>
+    <p><strong>Thời lượng:</strong> 42 buổi/khóa | Lớp 6-10 bạn | Online/Offline</p>
+    <p><strong>Output:</strong> Series 3 nhân vật → Bộ nhân vật truyện/sticker → Series tranh minh họa</p>
+    <p><strong>Key Points:</strong> Bước chuyển quan trọng từ vẽ tay sang digital art. Làm quen với phần mềm thiết kế chuyên nghiệp.</p>
   </div>
 </div>
 <div class="product-card">
-  <div class="product-header art3"><span class="product-year">NĂM 3</span><h4>Game Art (11+)</h4></div>
+  <div class="product-header art3"><span class="product-year">NĂM 3</span><h4>Game Art — Họa sĩ Game tập sự (11+)</h4></div>
   <div class="product-body">
-    <p><strong>Mô tả:</strong> Thiết kế nhân vật game, background, UI cho game.</p>
-    <p><strong>Key Points:</strong> Kết hợp nghệ thuật + công nghệ. Trẻ thấy tác phẩm mình "sống" trong game.</p>
+    <p><strong>Mô tả:</strong> Thiết kế nhân vật game, background, UI cho game. Worldbuilding → Character + Asset → Mini Project.</p>
+    <p><strong>Thời lượng:</strong> 42 buổi/khóa | Lớp 6-10 bạn | Online/Offline</p>
+    <p><strong>Công cụ:</strong> MediBang/Sketchbook</p>
+    <p><strong>Output:</strong> World concept → Character sheet + Asset pack → Game Art mini project</p>
+    <p><strong>Key Points:</strong> Kết hợp nghệ thuật + công nghệ. Trẻ thấy tác phẩm mình "sống" trong game thật.</p>
   </div>
 </div>
 <div class="product-card">
-  <div class="product-header art4"><span class="product-year">NĂM 4</span><h4>Character & Mascot Design (12+)</h4></div>
+  <div class="product-header art4"><span class="product-year">NĂM 4</span><h4>Character & Mascot Design — Nhân vật thương hiệu (12+)</h4></div>
   <div class="product-body">
-    <p><strong>Mô tả:</strong> Chuyên sâu thiết kế nhân vật: concept art, character sheet, storytelling qua hình ảnh.</p>
-    <p><strong>Key Points:</strong> Kỹ năng chuyên nghiệp, có thể tham gia cuộc thi thiết kế.</p>
+    <p><strong>Mô tả:</strong> Chuyên sâu thiết kế nhân vật: vector basics, sticker, mascot design, illustration project.</p>
+    <p><strong>Thời lượng:</strong> 42 buổi/khóa | Lớp 6-10 bạn | Online/Offline</p>
+    <p><strong>Công cụ:</strong> Adobe Illustrator</p>
+    <p><strong>Output:</strong> Icon + Sticker → Mascot hoàn chỉnh → Dự án minh họa cá nhân</p>
+    <p><strong>Key Points:</strong> Kỹ năng chuyên nghiệp với Adobe Illustrator, có thể tham gia cuộc thi thiết kế.</p>
   </div>
 </div>
 <div class="product-card">
-  <div class="product-header art5"><span class="product-year">NĂM 5</span><h4>Visual Communication (13+)</h4></div>
+  <div class="product-header art5"><span class="product-year">NĂM 5</span><h4>Visual Communication — Thiết kế đồ họa (13+)</h4></div>
   <div class="product-body">
-    <p><strong>Mô tả:</strong> Thiết kế đồ họa chuyên nghiệp: logo, poster, branding, social media design.</p>
-    <p><strong>Key Points:</strong> Portfolio chuyên nghiệp. Có thể nhận freelance thiết kế.</p>
+    <p><strong>Mô tả:</strong> Thiết kế đồ họa chuyên nghiệp: print design, campaign sáng tạo, portfolio chuẩn ngành.</p>
+    <p><strong>Thời lượng:</strong> 42 buổi/khóa | Lớp 6-10 bạn</p>
+    <p><strong>Công cụ:</strong> Adobe Photoshop & Illustrator</p>
+    <p><strong>Output:</strong> Print design → Campaign sáng tạo → Portfolio chuẩn ngành</p>
+    <p><strong>Key Points:</strong> Portfolio chuyên nghiệp. Có thể nhận freelance thiết kế logo, poster, branding.</p>
   </div>
 </div>
 <div class="product-card">
-  <div class="product-header art6"><span class="product-year">NĂM 6</span><h4>Motion & Video (14+)</h4></div>
+  <div class="product-header art6"><span class="product-year">NĂM 6</span><h4>Motion & Video — Đồ họa chuyển động (14+)</h4></div>
   <div class="product-body">
-    <p><strong>Mô tả:</strong> Thiết kế đa phương tiện: motion graphics, video editing, 3D modeling.</p>
-    <p><strong>Key Points:</strong> Sẵn sàng cho đại học ngành Design hoặc làm việc thực tế.</p>
+    <p><strong>Mô tả:</strong> Đồ họa chuyển động: motion graphics, video editing, showreel chuyên nghiệp.</p>
+    <p><strong>Thời lượng:</strong> 42 buổi/khóa | Lớp 6-10 bạn</p>
+    <p><strong>Công cụ:</strong> After Effects, Premiere Pro</p>
+    <p><strong>Output:</strong> Motion poster → Video ngắn → Showreel/Portfolio</p>
+    <p><strong>Key Points:</strong> Sẵn sàng cho đại học ngành Design hoặc nhận việc thực tế. Showreel là "CV sống" của designer.</p>
   </div>
 </div>`,
             quiz: {
@@ -533,7 +587,7 @@ const TRAINING_DATA = {
 <p>Lộ trình Robotics kết hợp STEM và lập trình, giúp trẻ từ 4 tuổi học cách xây dựng và điều khiển robot thực tế.</p>
 
 <div class="product-card">
-  <div class="product-header robo0"><span class="product-year">NĂM 0</span><h4>Kỹ sư Robot nhí (4+) — LEGO Spike Essential</h4></div>
+  <div class="product-header robo0"><span class="product-year">NĂM 0</span><h4>Kỹ sư Robot nhí (4+) — LEGO Education</h4></div>
   <div class="product-body">
     <p><strong>Mô tả:</strong> Lắp ráp robot LEGO cơ bản, lập trình đơn giản qua icon. Phát triển tư duy STEM đầu đời.</p>
     <p><strong>Công cụ:</strong> LEGO Spike Essential Kit</p>
@@ -586,7 +640,7 @@ const TRAINING_DATA = {
             title: "Bảng giá & Chương trình khuyến mãi",
             icon: "💰",
             content: `<h3>Bảng giá & Ưu đãi</h3>
-<p>Giá khác nhau theo <strong>bộ môn</strong> và <strong>khu vực</strong>. Dưới đây là giá HN/HCM.</p>
+<p>Giá khác nhau theo <strong>bộ môn</strong>, <strong>khu vực</strong> và <strong>thời điểm</strong>. TVTS tham khảo <strong>bảng học phí chi tiết trên roadmap</strong> để có thông tin chính xác nhất.</p>
 
 <div class="pricing-info">
   <h4>📍 Robotics — Lộ trình thông thường</h4>
@@ -762,6 +816,41 @@ const TRAINING_DATA = {
       <li>Follow-up sau 1 tháng: "Con có vui khi đi học không ạ?"</li>
       <li>Xin referral: "Anh/chị có bạn bè nào quan tâm không, mình có chương trình ưu đãi giới thiệu ạ"</li>
     </ul>
+  </div>
+</div>
+
+<h3>Framework SPIN Selling — Áp dụng cho MindX</h3>
+<p>SPIN Selling là phương pháp bán hàng tư vấn hiệu quả cho sản phẩm giáo dục giá trị cao. 4 loại câu hỏi:</p>
+
+<div class="step-card">
+  <div class="step-number">S</div>
+  <div class="step-body">
+    <h4>Situation — Câu hỏi tình huống</h4>
+    <p>"Con bé năm nay học lớp mấy?", "Con có đang học thêm gì?", "Con hay dùng máy tính để làm gì?"</p>
+  </div>
+</div>
+
+<div class="step-card">
+  <div class="step-number">P</div>
+  <div class="step-body">
+    <h4>Problem — Câu hỏi vấn đề</h4>
+    <p>"Anh/chị có lo con dùng thiết bị điện tử nhiều?", "Con có gặp khó khăn với tư duy logic?", "Anh/chị quan ngại gì về tương lai nghề nghiệp?"</p>
+  </div>
+</div>
+
+<div class="step-card">
+  <div class="step-number">I</div>
+  <div class="step-body">
+    <h4>Implication — Câu hỏi tác động</h4>
+    <p>"Nếu con tiếp tục chỉ chơi game, 3-5 năm nữa sẽ thế nào?", "65% trẻ sẽ làm nghề chưa tồn tại — nếu không chuẩn bị?", "Bạn bè con đã bắt đầu học STEM — chờ thêm con có bị tụt lại?"</p>
+  </div>
+</div>
+
+<div class="step-card">
+  <div class="step-number">N</div>
+  <div class="step-body">
+    <h4>Need-payoff — Câu hỏi giá trị</h4>
+    <p>"Nếu con biến đam mê game thành kỹ năng tạo game, anh/chị thấy có giá trị không?" → PH tự thuyết phục mình! Sau đó chỉ cần: "Đó chính xác là điều MindX mang lại."</p>
   </div>
 </div>`,
             quiz: {
@@ -1344,7 +1433,12 @@ const TRAINING_DATA = {
       { id: "tip2", week: "Tuần 2", title: "Rule of 3 trong Pitch", content: "Khi giới thiệu sản phẩm, chỉ nêu 3 điểm mạnh — không hơn. Não người nhớ tốt nhất khi thông tin gói gọn trong 3. VD: '3 lý do PH nên chọn MindX: Lộ trình 5 năm, Giáo trình AI, Bảo trợ việc làm.'", read: false },
       { id: "tip3", week: "Tuần 3", title: "Giờ vàng gọi điện", content: "Thời điểm gọi điện tốt nhất: 9:30-11:00 sáng (PH đã ổn định công việc) và 14:00-16:00 chiều (PH relaxed). Tránh: 12:00-13:30 (nghỉ trưa), sau 20:00 (gia đình).", read: false },
       { id: "tip4", week: "Tuần 4", title: "Kỹ thuật 'Feel-Felt-Found'", content: "Khi PH từ chối: 'Em HIỂU anh/chị CẢM THẤY [lo ngại] (Feel). Nhiều PH khác ban đầu cũng CẢM THẤY vậy (Felt). Nhưng sau khi cho con thử, họ NHẬN THẤY [kết quả tích cực] (Found).' → Framework cực kỳ hiệu quả!", read: false },
-      { id: "tip5", week: "Tuần 5", title: "Power of Silence", content: "Sau khi báo giá hoặc đặt câu hỏi close — IM LẶNG. Đừng nói thêm. Người nào nói trước = người yếu thế hơn. Để PH tự xử lý thông tin. 5-10 giây im lặng có thể tạo ra magic.", read: false }
+      { id: "tip5", week: "Tuần 5", title: "Power of Silence", content: "Sau khi báo giá hoặc đặt câu hỏi close — IM LẶNG. Đừng nói thêm. Người nào nói trước = người yếu thế hơn. Để PH tự xử lý thông tin. 5-10 giây im lặng có thể tạo ra magic.", read: false },
+      { id: "tip6", week: "Tuần 6", title: "Kỹ thuật 'Yes Ladder'", content: "Trước khi đặt câu hỏi close lớn, hãy đặt 3-4 câu hỏi nhỏ mà PH sẽ trả lời 'Có': 'Con thích buổi thử chứ ạ?' → 'Có'. 'Anh/chị thấy lộ trình phù hợp không?' → 'Có'. 'Anh/chị muốn con phát triển kỹ năng này chứ?' → 'Có'. Khi não đã nói 'Có' 3 lần, câu 'Có' thứ 4 (đăng ký) dễ dàng hơn rất nhiều.", read: false },
+      { id: "tip7", week: "Tuần 7", title: "Storytelling — Kể chuyện bằng FAB", content: "Đừng liệt kê tính năng — hãy KỂ CHUYỆN. Feature: 'Lộ trình 5 năm'. Advantage: 'Con có career path rõ ràng từ Scratch đến AI'. Benefit: 'Con 15 tuổi đã có portfolio ấn tượng, sẵn sàng du học hoặc freelance'. PH không mua tính năng — PH mua TƯƠNG LAI cho con.", read: false },
+      { id: "tip8", week: "Tuần 8", title: "Giải mã ngôn ngữ cơ thể PH", content: "Quan sát PH khi tư vấn: Khoanh tay = phòng thủ → cần phá băng thêm. Gật đầu + nghiêng người về phía bạn = đang hứng thú → thời điểm pitch. Nhìn đồng hồ/điện thoại = đang mất kiên nhẫn → cần đi thẳng vào trọng tâm. Hỏi con = đang cân nhắc nghiêm túc → cho con trải nghiệm demo.", read: false },
+      { id: "tip9", week: "Tuần 9", title: "Kỹ thuật Anchoring nâng cao", content: "Không chỉ anchoring giá (24T trước, 12T sau). Áp dụng anchoring KẾT QUẢ: 'Lương Senior Developer 50-100 triệu/tháng. Với 42 buổi/năm, mỗi buổi chỉ bằng 1 bữa ăn ngoài — nhưng giá trị thì theo con CẢ ĐỜI.' So sánh chi phí nhỏ với kết quả lớn = reframe cực mạnh.", read: false },
+      { id: "tip10", week: "Tuần 10", title: "Follow-up: 5 lần mới chốt", content: "Thống kê: 80% deal chốt sau follow-up lần 2-5. Nhưng 44% TVTS bỏ cuộc sau lần 1! Mỗi lần follow-up phải ADD VALUE: Lần 1: Gửi video project HV. Lần 2: Mời trial miễn phí. Lần 3: Share case study phù hợp. Lần 4: Thông báo ưu đãi sắp hết. Lần 5: Nhắc lại pain point + giải pháp. KHÔNG BAO GIỜ gọi chỉ để hỏi 'Anh/chị suy nghĩ thế nào?'", read: false }
     ],
     caseStudies: [
       {
@@ -1394,6 +1488,30 @@ const TRAINING_DATA = {
 <strong>Kết quả:</strong> PH thấy hợp lý → đăng ký 24 tháng.
 
 <strong>Bài học:</strong> Chia nhỏ + so sánh = reframe giá trị. Không bao giờ nói "giảm giá" trước — hãy reframe giá trị trước.`
+      },
+      {
+        id: "cs5",
+        title: "Case Study: CS giữ chân HV muốn nghỉ bằng EQ",
+        type: "success",
+        content: `<strong>Bối cảnh:</strong> Bé An, 11 tuổi, học Game Creator được 8 buổi. PH gọi nói "con không muốn học nữa, nói khó quá."
+
+<strong>Diễn biến:</strong> CS Linh không vội đồng ý cho nghỉ. Gọi hỏi GV: "Bé An gặp khó ở phần nào?" GV nói bé stuck ở bài thuật toán game. CS gọi PH: "Em đã trao đổi với GV. Bé An gặp khó ở phần thuật toán — đây là giai đoạn nhiều bé gặp. Em đề xuất: GV sẽ hỗ trợ riêng cho bé 15 phút đầu buổi tới. Cho bé thử thêm 2 buổi nữa nhé?"
+
+<strong>Kết quả:</strong> Bé An vượt qua giai đoạn khó, hào hứng trở lại. PH cảm ơn CS vì "kiên nhẫn và tận tâm." Bé hoàn thành khóa và đăng ký tiếp App Producer.
+
+<strong>Bài học:</strong> CS có EQ = lắng nghe → khai thác lý do thật → đề xuất giải pháp cụ thể → follow-up. Không vội từ bỏ HV.`
+      },
+      {
+        id: "cs6",
+        title: "Case Study: Upsale combo 24T nhờ Demo Day ấn tượng",
+        type: "success",
+        content: `<strong>Bối cảnh:</strong> PH đăng ký 12T Scratch Creator cho bé Khang, 10 tuổi. Sắp hết khóa, PH chưa quyết định re-enroll.
+
+<strong>Diễn biến:</strong> CS Đức chuẩn bị Demo Day kỹ lưỡng: nhờ GV cho bé Khang demo project game AI tích hợp Teachable Machine. CS quay video riêng gửi PH trước buổi Demo. Tại Demo Day, bé Khang thuyết trình tự tin, PH rất ấn tượng khi thấy con demo game nhận diện hình ảnh. CS tiếp cận: "Bé Khang tiến bộ rất nhiều! Game Creator sẽ nâng cấp kỹ năng con lên level pro — dùng GameMaker Studio chuyên nghiệp."
+
+<strong>Kết quả:</strong> PH đăng ký combo 24T ngay tại chỗ. Sau đó giới thiệu thêm 1 bạn.
+
+<strong>Bài học:</strong> Demo Day = cơ hội vàng cho re-enroll. CS chuẩn bị kỹ + video riêng cho PH + close ngay khi PH ấn tượng = công thức thành công.`
       }
     ],
     quizFriday: [
@@ -1776,6 +1894,32 @@ const TRAINING_DATA = {
   </div>
 </div>
 
+
+
+<h3>Premium Pathways — Bảo trợ đa ngành & Du học</h3>
+
+<div class="product-card">
+  <div class="product-header year5"><span class="product-year">PREMIUM</span><h4>Bảo trợ đa ngành — Career Kickstart</h4></div>
+  <div class="product-body">
+    <p><strong>Mô tả:</strong> Sau khi hoàn thành lộ trình chuyên môn (Coding/Data/ITBA...), học viên được tham gia chương trình Bảo trợ đa ngành: trải nghiệm làm việc thực tế tại doanh nghiệp đối tác, mentorship 1-1, và cam kết kết nối việc làm.</p>
+    <p><strong>Bao gồm:</strong> Business Foundation + Internship: Career Kickstart + 200+ đối tác tuyển dụng</p>
+    <p><strong>Giá trị:</strong> Không chỉ biết kỹ thuật — HV hiểu business, có kinh nghiệm thực tế, và được giới thiệu việc làm.</p>
+    <p><strong>Selling tip:</strong> <em>"Đăng ký combo + Bảo trợ = con đường ngắn nhất từ zero đến có việc làm IT chất lượng."</em></p>
+  </div>
+</div>
+
+<div class="product-card">
+  <div class="product-header art0"><span class="product-year">PREMIUM</span><h4>Bảo trợ Du học — X-Global Tech Seed</h4></div>
+  <div class="product-body">
+    <p><strong>Mô tả:</strong> Chương trình xây hồ sơ du học ngành công nghệ. MindX là "Lò luyện Portfolio Công nghệ và Storytelling" — giúp học viên tạo hồ sơ ĐỘC BẢN cho các trường quốc tế.</p>
+    <p><strong>Bao gồm:</strong> Tech Portfolio (Web/Data/UI-UX), Leadership Portfolio (Hackathon KÉP), Personal Statement (AI brainstorm), Letter of Recommendation (từ Mentor MindX)</p>
+    <p><strong>3 Track:</strong> Web Coding | Data Analysis | UI/UX Design</p>
+    <p><strong>Giá trị:</strong> Trường Top sử dụng holistic review — Portfolio Công nghệ là yếu tố quyết định, vượt trên GPA/IELTS.</p>
+    <p><strong>Tham khảo bảng học phí chi tiết trên roadmap.</strong></p>
+    <p><strong>Selling tip:</strong> <em>"35% sinh viên trúng tuyển Caltech nộp dự án thực tế. MindX giúp anh/chị xây đúng loại hồ sơ mà trường Top tìm kiếm."</em></p>
+  </div>
+</div>
+
 <h3>📊 Bảng so sánh tổng hợp 7 sản phẩm 18+</h3>
 <div class="pricing-info">
   <table class="pricing-table">
@@ -1911,7 +2055,50 @@ const TRAINING_DATA = {
             id: "k18_day3_s2",
             title: "Xử lý từ chối 18+ — 5 tình huống phổ biến",
             icon: "🛡️",
-            content: `<h3>Xử lý từ chối 18+ — 5 tình huống phổ biến nhất</h3>
+            content: `
+
+<h3>Framework Consultative Selling cho K18</h3>
+<p>Người lớn không muốn bị "bán hàng" — họ muốn được TƯ VẤN bởi chuyên gia. Áp dụng framework sau:</p>
+
+<div class="insight-card">
+  <div class="insight-number">1</div>
+  <div class="insight-body">
+    <h4>🔍 Diagnose — Chẩn đoán nhu cầu thật</h4>
+    <p>Hỏi sâu để hiểu: Khách muốn gì THẬT SỰ? Chuyển ngành? Tăng lương? Portfolio? An toàn việc làm?</p>
+    <p><em>"Anh/chị muốn thay đổi điều gì nhất trong sự nghiệp hiện tại?"</em></p>
+    <p><em>"Nếu có thể bắt đầu lại, anh/chị sẽ chọn ngành gì?"</em></p>
+  </div>
+</div>
+
+<div class="insight-card">
+  <div class="insight-number">2</div>
+  <div class="insight-body">
+    <h4>💊 Prescribe — Đề xuất giải pháp cá nhân hóa</h4>
+    <p>Dựa trên chẩn đoán → đề xuất SẢN PHẨM + LỘ TRÌNH phù hợp RIÊNG cho họ.</p>
+    <p><em>"Với background [ngành] của anh/chị, em đề xuất [sản phẩm] vì [lý do cá nhân hóa]."</em></p>
+    <p><em>"Không phải ai cũng cần học Coding. Với anh/chị, ITBA sẽ tận dụng được kinh nghiệm business hiện có."</em></p>
+  </div>
+</div>
+
+<div class="insight-card">
+  <div class="insight-number">3</div>
+  <div class="insight-body">
+    <h4>📊 Prove — Chứng minh bằng dữ liệu & case study</h4>
+    <p>Người lớn cần BẰNG CHỨNG. Cung cấp: case study, số liệu lương, testimonial, tỷ lệ có việc.</p>
+    <p><em>"Bạn A, 28 tuổi, trước đó làm kế toán, sau 8 tháng tại MindX đã chuyển sang BA tại Techcombank, lương tăng 70%."</em></p>
+  </div>
+</div>
+
+<div class="insight-card">
+  <div class="insight-number">4</div>
+  <div class="insight-body">
+    <h4>🤝 Partner — Trở thành đối tác, không phải người bán</h4>
+    <p>Cung cấp giá trị ngay cả khi chưa đăng ký: chia sẻ tài liệu, insight ngành, career advice.</p>
+    <p><em>"Dù anh/chị chưa quyết định, em gửi bài phân tích xu hướng IT 2026 để anh/chị tham khảo nhé."</em></p>
+  </div>
+</div>
+
+<h3>Xử lý từ chối 18+ — 10 tình huống phổ biến nhất</h3>
 
 <div class="objection-card">
   <div class="objection-header"><span class="obj-num">1</span>"Tôi tự học trên YouTube được"</div>
@@ -2660,17 +2847,17 @@ const TRAINING_DATA = {
 <p>CS cần nắm vững lộ trình Coding để trả lời PH khi hỏi về tiến độ, mục tiêu, và output từng năm.</p>
 
 <div class="product-card">
-  <div class="product-header year1"><span class="product-year">NĂM 1</span><h4>Scratch — App Creator (10+)</h4></div>
+  <div class="product-header year1"><span class="product-year">NĂM 1</span><h4>Scratch Creator (9-11)</h4></div>
   <div class="product-body">
     <p><strong>Mục tiêu:</strong> Tư duy logic cơ bản qua lập trình kéo thả block</p>
     <p><strong>Thời lượng:</strong> 12 tháng (48 buổi) | <strong>Output:</strong> 10+ project game/animation</p>
     <p><strong>Tools:</strong> Scratch 3.0</p>
-    <p><strong>CS cần biết:</strong> Đây là bước khởi đầu, trẻ 10+ không cần biết code. PH thường lo con nhỏ không theo được — hãy trấn an rằng Scratch là kéo thả, rất trực quan.</p>
+    <p><strong>CS cần biết:</strong> Đây là bước khởi đầu, trẻ 9-11 tuổi không cần biết code. PH thường lo con nhỏ không theo được — hãy trấn an rằng Scratch là kéo thả, rất trực quan.</p>
   </div>
 </div>
 
 <div class="product-card">
-  <div class="product-header year2"><span class="product-year">NĂM 2</span><h4>Game Creator (11+)</h4></div>
+  <div class="product-header year2"><span class="product-year">NĂM 2</span><h4>Game Creator (11-13)</h4></div>
   <div class="product-body">
     <p><strong>Mục tiêu:</strong> Chuyển từ người chơi game sang người làm game chuyên nghiệp</p>
     <p><strong>Thời lượng:</strong> 3 HP × 14 buổi | <strong>Output:</strong> Game 2D hoàn chỉnh</p>
@@ -2680,7 +2867,7 @@ const TRAINING_DATA = {
 </div>
 
 <div class="product-card">
-  <div class="product-header year3"><span class="product-year">NĂM 3</span><h4>App Producer (12+)</h4></div>
+  <div class="product-header year3"><span class="product-year">NĂM 3</span><h4>App Producer (12-14)</h4></div>
   <div class="product-body">
     <p><strong>Mục tiêu:</strong> Phát triển ứng dụng hoàn chỉnh từ ý tưởng → thiết kế → publish</p>
     <p><strong>Thời lượng:</strong> 12 tháng (48 buổi) | <strong>Output:</strong> 3-5 app cài được trên điện thoại</p>
@@ -2689,7 +2876,7 @@ const TRAINING_DATA = {
 </div>
 
 <div class="product-card">
-  <div class="product-header year4"><span class="product-year">NĂM 4</span><h4>Web Developer (14+)</h4></div>
+  <div class="product-header year4"><span class="product-year">NĂM 4</span><h4>Web Developer (14-16)</h4></div>
   <div class="product-body">
     <p><strong>Mục tiêu:</strong> Xây dựng website chuyên nghiệp với JavaScript</p>
     <p><strong>Thời lượng:</strong> 12 tháng (48 buổi) | <strong>Output:</strong> 5+ website, portfolio online</p>
@@ -2698,7 +2885,7 @@ const TRAINING_DATA = {
 </div>
 
 <div class="product-card">
-  <div class="product-header year5"><span class="product-year">NĂM 5</span><h4>Computer Scientist (15+) — AI & Data Science</h4></div>
+  <div class="product-header year5"><span class="product-year">NĂM 5</span><h4>Computer Scientist (15-17) — AI & Data Science</h4></div>
   <div class="product-body">
     <p><strong>Mục tiêu:</strong> Chuyên sâu AI, Machine Learning, Data Science</p>
     <p><strong>Thời lượng:</strong> 12 tháng (48 buổi) | <strong>Output:</strong> AI project, Data analysis, Research paper</p>
@@ -2746,7 +2933,7 @@ const TRAINING_DATA = {
 </div>
 
 <div class="product-card">
-  <div class="product-header art1"><span class="product-year">NĂM 1</span><h4>Digital Art Foundations (7+)</h4></div>
+  <div class="product-header art1"><span class="product-year">NĂM 1</span><h4>Digital Art Foundations (6+)</h4></div>
   <div class="product-body">
     <p><strong>Mục tiêu:</strong> Nền tảng mỹ thuật: phối màu, bố cục, vẽ nhân vật</p>
     <p><strong>CS cần biết:</strong> Trẻ bắt đầu có tác phẩm đầu tiên, tự tin thể hiện bản thân.</p>
@@ -2754,7 +2941,7 @@ const TRAINING_DATA = {
 </div>
 
 <div class="product-card">
-  <div class="product-header art2"><span class="product-year">NĂM 2</span><h4>Visual Thinking (9+)</h4></div>
+  <div class="product-header art2"><span class="product-year">NĂM 2</span><h4>Visual Thinking (8+)</h4></div>
   <div class="product-body">
     <p><strong>Mục tiêu:</strong> Vẽ digital, illustration cơ bản, sử dụng tablet</p>
     <p><strong>CS cần biết:</strong> Bước chuyển từ vẽ tay sang digital art. Làm quen công cụ thiết kế chuyên nghiệp.</p>
@@ -3443,6 +3630,37 @@ const TRAINING_DATA = {
   <p><strong>Sản phẩm cuối khóa:</strong> [Mô tả SP — VD: Game/Website/Robot]</p>
   <p>Để bé tiếp tục phát triển, lộ trình tiếp theo là khóa [Tên khóa tiếp]. Anh/chị muốn em tư vấn chi tiết không ạ?</p>
   <p>Nếu đăng ký tiếp, bé sẽ được [ưu đãi/giảm giá nếu có]. Em có thể giữ chỗ cho bé ngay ạ!"</p>
+</div>
+<h3>Kỹ thuật De-escalation — Hạ nhiệt bằng HEAT</h3>
+<p>Khi PH nổi giận, áp dụng quy trình HEAT:</p>
+<div class="step-card">
+  <div class="step-number">H</div>
+  <div class="step-body"><h4>Hear — Lắng nghe hoàn toàn</h4><p>Để PH nói hết, không ngắt lời. Gật đầu, "dạ", "em hiểu". PH cần được NGHE trước khi được giải quyết.</p></div>
+</div>
+<div class="step-card">
+  <div class="step-number">E</div>
+  <div class="step-body"><h4>Empathize — Đồng cảm thật lòng</h4><p>"Em hoàn toàn hiểu sự khó chịu của anh/chị." KHÔNG NÊN: "Chuyện này nhỏ thôi", "Chị lo hơi quá."</p></div>
+</div>
+<div class="step-card">
+  <div class="step-number">A</div>
+  <div class="step-body"><h4>Apologize — Xin lỗi đúng cách</h4><p>"Em xin lỗi vì sự bất tiện anh/chị đã gặp phải." Xin lỗi về TRẢI NGHIỆM, không nhận lỗi cá nhân.</p></div>
+</div>
+<div class="step-card">
+  <div class="step-number">T</div>
+  <div class="step-body"><h4>Take action — Hành động cụ thể</h4><p>"Em sẽ trao đổi với GV và cập nhật anh/chị trước 5h chiều nay." Đưa ra 2 phương án để PH chọn. PHẢI follow-up đúng hẹn.</p></div>
+</div>
+
+<h3>Trí tuệ cảm xúc (EQ) trong CS</h3>
+<div class="insight-card">
+  <div class="insight-number">🧠</div>
+  <div class="insight-body">
+    <h4>3 Kỹ năng EQ cốt lõi cho CS</h4>
+    <ul>
+      <li><strong>Tự nhận thức:</strong> Nhận biết khi bản thân đang stress → hít thở 3 giây trước khi phản hồi</li>
+      <li><strong>Đọc vị PH:</strong> PH giận = thường lo lắng/thất vọng bên trong. PH lạnh nhạt = có thể đã mất niềm tin. PH hỏi nhiều = đang quan tâm thật sự</li>
+      <li><strong>Quản lý năng lượng:</strong> Micro-break sau mỗi cuộc gọi khó. Peer support — chia sẻ với đồng nghiệp. Cảm xúc tiêu cực của PH KHÔNG hướng vào bạn</li>
+    </ul>
+  </div>
 </div>`,
             quiz: {
               id: "quiz_csk12_d4_s2",
