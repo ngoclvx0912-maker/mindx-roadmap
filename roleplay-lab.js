@@ -1169,12 +1169,13 @@ CTA mong đợi: ${scenario.desiredCTA}`;
 
     const overlay = document.createElement('div');
     overlay.className = 'rpl-modal-overlay';
+    overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;width:100vw;height:100vh;background:rgba(0,0,0,0.65);z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;';
 
     function renderModal() {
       const persona = findPersona(chosenPersonaId);
       overlay.innerHTML = `
-        <div class="rpl-modal">
-          <button class="rpl-modal-close" id="rplPreClose">✕</button>
+        <div class="rpl-modal" style="background:#fff;border-radius:16px;max-width:500px;width:100%;max-height:85vh;overflow-y:auto;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.3);position:relative;">
+          <button class="rpl-modal-close" id="rplPreClose" style="position:absolute;top:12px;right:12px;background:none;border:none;font-size:20px;cursor:pointer;">✕</button>
           <h2 style="margin:0 0 4px;font-size:18px">🎯 Thiết lập phiên Role-Play</h2>
           <p class="rpl-text-sm rpl-text-muted rpl-mb-16">${esc(scenario.name)}</p>
 
