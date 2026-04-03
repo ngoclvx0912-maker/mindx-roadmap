@@ -1470,10 +1470,17 @@ CTA mong đợi: ${scenario.desiredCTA}`;
     }, 50);
 
     try {
-      // Build conversation for API
-      var apiMessages = state.messages.map(function(m) {
-        return { role: m.role, content: m.content };
+      // Build conversation for API — ensure alternating user/assistant after system
+      var apiMessages = [];
+      state.messages.forEach(function(m) {
+        if (m.role === 'system') return; // skip system messages in chat
+        apiMessages.push({ role: m.role, content: m.content });
       });
+      // Perplexity API requires first message after system to be 'user'
+      // If first msg is 'assistant' (opening), prepend a dummy user greeting
+      if (apiMessages.length > 0 && apiMessages[0].role === 'assistant') {
+        apiMessages.unshift({ role: 'user', content: 'Xin ch\u00e0o' });
+      }
 
       var response = await callAI(apiMessages, buildRoleplaySystemPrompt());
 
