@@ -23,13 +23,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./style.css?v=20260403c">
-<link rel="stylesheet" href="./xmember.css?v=20260403c">
-<link rel="stylesheet" href="./xmember2.css?v=20260403c">
+<link rel="stylesheet" href="./style.css?v=20260403d">
+<link rel="stylesheet" href="./xmember.css?v=20260403d">
+<link rel="stylesheet" href="./xmember2.css?v=20260403d">
 <!-- Badges removed: special programs now in sidebar panel -->
-<link rel="stylesheet" href="./xart.css?v=20260403c">
+<link rel="stylesheet" href="./xart.css?v=20260403d">
 <link rel="stylesheet" href="./expert.css">
-<link rel="stylesheet" href="./x18plus.css?v=20260403c">
+<link rel="stylesheet" href="./x18plus.css?v=20260403d">
 <link rel="stylesheet" href="./training-embed.css">
 </head>
 <body>
@@ -159,16 +159,17 @@
   <div class="drawer-body" id="drawerBody"></div>
 </div>
 
-<!-- Training password modal -->
+<!-- Training employee login modal -->
 <div class="modal-overlay hidden" id="trainingPasswordModal">
   <div class="modal-content modal-small">
     <h3>Training nội bộ</h3>
-    <p class="modal-desc">Nhập mật khẩu để truy cập hệ thống training</p>
-    <input type="password" id="trainingPassword" placeholder="Mật khẩu" class="admin-input" autocomplete="off">
-    <p class="error-msg hidden" id="trainingError">Mật khẩu không đúng</p>
+    <p class="modal-desc">Nhập Mã nhân viên để đăng nhập</p>
+    <input type="text" id="trainingMSNV" placeholder="Nhập Mã NV (VD: I0820)..." class="admin-input" autocomplete="off" style="text-transform:uppercase">
+    <p class="error-msg hidden" id="trainingError">Không tìm thấy mã nhân viên</p>
+    <div id="trainingLoading" class="hidden" style="text-align:center;padding:8px 0;color:#666;font-size:0.85rem">Đang kiểm tra...</div>
     <div class="modal-actions">
       <button class="btn-secondary" id="trainingCancel">Hủy</button>
-      <button class="btn-primary" id="trainingSubmit">Xác nhận</button>
+      <button class="btn-primary" id="trainingSubmit">Đăng nhập</button>
     </div>
   </div>
 </div>
@@ -187,24 +188,91 @@
   </div>
 </div>
 
-<script src="./app.js?v=20260403c"></script>
-<script src="./xmember.js?v=20260403c"></script>
-<script src="./xmember2.js?v=20260403c"></script>
+<script src="./app.js?v=20260403d"></script>
+<script src="./xmember.js?v=20260403d"></script>
+<script src="./xmember2.js?v=20260403d"></script>
 <!-- Badges JS removed: special programs now in sidebar panel -->
-<script src="./xart.js?v=20260403c"></script>
-<script src="./expert.js?v=20260403c"></script>
-<script src="./x18plus.js?v=20260403c"></script>
-<link rel="stylesheet" href="./roleplay-lab.css?v=20260403c">
-<script src="./training-data.js?v=20260403c" defer></script>
+<script src="./xart.js?v=20260403d"></script>
+<script src="./expert.js?v=20260403d"></script>
+<script src="./x18plus.js?v=20260403d"></script>
+<link rel="stylesheet" href="./roleplay-lab.css?v=20260403d">
+<script src="./training-data.js?v=20260403d" defer></script>
 <script src="./training-embed.js" defer></script>
-<script src="./roleplay-data.js?v=20260403c" defer></script>
-<script src="./roleplay-lab.js?v=20260403c" defer></script>
+<script src="./roleplay-data.js?v=20260403d" defer></script>
+<script src="./roleplay-lab.js?v=20260403d" defer></script>
 <script>
-/* Nav Group Toggle + Training handler */
+/* Nav Group Toggle + Training handler — Employee ID login */
 (function(){
-  var TRAINING_PW = 'mindx2026';
+  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbySnPbdLFoA2GSQ1g7u0JbGCdFP2Dt0pz31FQ5LbeRf3XVbVbQUoPkTZIaNuDPH_RuR/exec';
+  var SESSION_KEY = 'mindx_employee_session';
+  var SESSION_EXPIRY = 24 * 60 * 60 * 1000; // 24h
   var trainingUnlocked = false;
   var trainingActive = false;
+
+  function getEmployeeSession() {
+    try {
+      var raw = localStorage.getItem(SESSION_KEY);
+      if (!raw) return null;
+      var session = JSON.parse(raw);
+      if (Date.now() - session.loginAt > SESSION_EXPIRY) {
+        localStorage.removeItem(SESSION_KEY);
+        return null;
+      }
+      return session;
+    } catch(e) { return null; }
+  }
+
+  function saveEmployeeSession(employee) {
+    var session = {
+      msnv: employee.msnv,
+      name: employee.name,
+      bu: employee.bu,
+      position: employee.position,
+      region: employee.region,
+      loginAt: Date.now()
+    };
+    localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+    return session;
+  }
+
+  function showEmployeeInfo() {
+    var session = getEmployeeSession();
+    if (!session) return;
+    var topbar = document.querySelector('.topbar-actions');
+    if (!topbar) return;
+    var existing = document.getElementById('employeeInfo');
+    if (existing) existing.remove();
+    var info = document.createElement('div');
+    info.id = 'employeeInfo';
+    info.style.cssText = 'display:flex;align-items:center;gap:8px;font-size:0.8rem;color:#555;';
+    info.innerHTML = '<span>\ud83d\udc64 ' + session.name + ' \u2014 ' + session.bu + '</span>' +
+      '<button id="logoutBtn" style="background:none;border:1px solid #ddd;border-radius:4px;padding:2px 8px;font-size:0.75rem;cursor:pointer;color:#999" title="\u0110\u0103ng xu\u1ea5t">\u2716</button>';
+    topbar.insertBefore(info, topbar.firstChild);
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+      localStorage.removeItem(SESSION_KEY);
+      trainingUnlocked = false;
+      trainingActive = false;
+      info.remove();
+      /* Reset to roadmap view */
+      var rw = document.getElementById('roadmapWrapper');
+      var ps = document.getElementById('pricingSection');
+      var tc = document.getElementById('trainingContainer');
+      var rc = document.getElementById('roleplayContainer');
+      if(rw) rw.style.display='';
+      if(ps) ps.style.display='';
+      if(tc) tc.style.display='none';
+      if(rc) rc.style.display='none';
+      var trnBtn2 = document.getElementById('trainingBtn');
+      if(trnBtn2) trnBtn2.classList.remove('active');
+      var ch = document.getElementById('navGroupTrainingChildren');
+      if(ch) { ch.classList.remove('open'); ch.innerHTML=''; }
+      var pt = document.getElementById('pageTitle');
+      if(pt) pt.textContent = 'L\u1ed9 tr\u00ecnh Robotics';
+      document.querySelectorAll('.nav-group-header').forEach(function(h){ h.classList.remove('active'); });
+      var k12Header = document.querySelector('#navGroupK12 .nav-group-header');
+      if(k12Header) k12Header.classList.add('active');
+    });
+  }
 
   document.addEventListener('DOMContentLoaded', function(){
     /* ---- Training group click handler ---- */
@@ -213,6 +281,14 @@
       trnGroupBtn.onclick = function(e) {
         e.preventDefault();
         if(!trainingUnlocked) {
+          /* Check for existing session first */
+          var session = getEmployeeSession();
+          if(session) {
+            trainingUnlocked = true;
+            showEmployeeInfo();
+            activateTraining();
+            return;
+          }
           showTrainingModal();
           return;
         }
@@ -229,10 +305,11 @@
       };
     }
 
-    /* ---- Training password ---- */
+    /* ---- Employee ID login ---- */
     var modal = document.getElementById('trainingPasswordModal');
-    var pwInput = document.getElementById('trainingPassword');
+    var msnvInput = document.getElementById('trainingMSNV');
     var errMsg = document.getElementById('trainingError');
+    var loadingEl = document.getElementById('trainingLoading');
     var submitBtn = document.getElementById('trainingSubmit');
     var cancelBtn = document.getElementById('trainingCancel');
     var trnBtn = document.getElementById('trainingBtn');
@@ -240,9 +317,37 @@
     function showTrainingModal(){
       if(!modal) return;
       modal.classList.remove('hidden');
-      pwInput.value='';
+      msnvInput.value='';
       errMsg.classList.add('hidden');
-      pwInput.focus();
+      if(loadingEl) loadingEl.classList.add('hidden');
+      submitBtn.disabled = false;
+      msnvInput.focus();
+    }
+
+    async function doLogin() {
+      var msnv = (msnvInput.value || '').trim().toUpperCase();
+      if(!msnv) { errMsg.textContent='Vui l\u00f2ng nh\u1eadp M\u00e3 NV'; errMsg.classList.remove('hidden'); return; }
+      errMsg.classList.add('hidden');
+      if(loadingEl) loadingEl.classList.remove('hidden');
+      submitBtn.disabled = true;
+      try {
+        var resp = await fetch(APPS_SCRIPT_URL + '?action=lookup_employee&msnv=' + encodeURIComponent(msnv));
+        var result = await resp.json();
+        if(result.ok && result.employee) {
+          saveEmployeeSession(result.employee);
+          modal.classList.add('hidden');
+          showEmployeeInfo();
+          activateTraining();
+        } else {
+          errMsg.textContent = result.error || 'Kh\u00f4ng t\u00ecm th\u1ea5y m\u00e3 nh\u00e2n vi\u00ean';
+          errMsg.classList.remove('hidden');
+        }
+      } catch(e) {
+        errMsg.textContent = 'L\u1ed7i k\u1ebft n\u1ed1i. Vui l\u00f2ng th\u1eed l\u1ea1i.';
+        errMsg.classList.remove('hidden');
+      }
+      if(loadingEl) loadingEl.classList.add('hidden');
+      submitBtn.disabled = false;
     }
 
     function activateTraining(){
@@ -387,15 +492,8 @@
       if(window.TrainingEmbed) window.TrainingEmbed.init();
     }
 
-    if(submitBtn) submitBtn.addEventListener('click', function(){
-      if(pwInput.value===TRAINING_PW){
-        modal.classList.add('hidden');
-        activateTraining();
-      } else {
-        errMsg.classList.remove('hidden');
-      }
-    });
-    if(pwInput) pwInput.addEventListener('keydown', function(e){ if(e.key==='Enter') submitBtn.click(); });
+    if(submitBtn) submitBtn.addEventListener('click', function(){ doLogin(); });
+    if(msnvInput) msnvInput.addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
     if(cancelBtn) cancelBtn.addEventListener('click', function(){ modal.classList.add('hidden'); });
     if(modal) modal.addEventListener('click', function(e){ if(e.target===modal) modal.classList.add('hidden'); });
 
@@ -406,9 +504,11 @@
           var rw = document.getElementById('roadmapWrapper');
           var ps = document.getElementById('pricingSection');
           var tc = document.getElementById('trainingContainer');
+          var rc = document.getElementById('roleplayContainer');
           if(rw) rw.style.display='';
           if(ps) ps.style.display='';
           if(tc) tc.style.display='none';
+          if(rc) rc.style.display='none';
           trnBtn.classList.remove('active');
           trainingActive = false;
         }

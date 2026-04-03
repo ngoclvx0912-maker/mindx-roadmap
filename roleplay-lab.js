@@ -48,6 +48,22 @@ window.RolePlayLab = (function() {
   })();
 
   // ===================================================================
+  // 2B. EMPLOYEE SESSION HELPER
+  // ===================================================================
+  const EMPLOYEE_SESSION_KEY = 'mindx_employee_session';
+  const EMPLOYEE_SESSION_EXPIRY = 24 * 60 * 60 * 1000;
+
+  function getEmployeeSession() {
+    try {
+      var raw = safeStorage.getItem(EMPLOYEE_SESSION_KEY);
+      if (!raw) return null;
+      var session = JSON.parse(raw);
+      if (Date.now() - session.loginAt > EMPLOYEE_SESSION_EXPIRY) return null;
+      return session;
+    } catch (e) { return null; }
+  }
+
+  // ===================================================================
   // 3. STATE
   // ===================================================================
   let state = {
@@ -315,9 +331,165 @@ CTA mong đợi: ${scenario.desiredCTA}`;
     } catch(e) { /* silent */ }
   }
 
+  function logSessionRemote(scoreData) {
+    try {
+      var employee = getEmployeeSession();
+      var scenario = findScenario(state.selectedScenario);
+      var persona = findPersona(state.selectedPersona);
+      var academy = findAcademy(state.selectedAcademy);
+      var chiTiet = scoreData.chiTiet || {};
+
+      var transcriptSummary = '';
+      if (state.messages.length > 0) {
+        transcriptSummary = state.messages.slice(0, 6).map(function(m) {
+          return (m.role === 'user' ? 'TVTS' : 'PH') + ': ' + (m.content || '').substring(0, 80);
+        }).join(' | ').substring(0, 500);
+      }
+
+      var payload = {
+        action: 'log_roleplay',
+        sessionId: state.sessionId,
+        timestampStart: state.sessionStartTime,
+        timestampEnd: new Date().toISOString(),
+        employeeId: employee ? employee.msnv : 'unknown',
+        employeeName: employee ? employee.name : 'unknown',
+        bu: employee ? employee.bu : '',
+        academyId: state.selectedAcademy || '',
+        academyName: academy ? academy.name : '',
+        productType: state.selectedAcademy || '',
+        scenarioId: state.selectedScenario || '',
+        scenarioTitle: scenario ? scenario.name : '',
+        personaId: state.selectedPersona || '',
+        personaName: persona ? persona.name : '',
+        mode: state.chatMode,
+        totalMessages: state.messages.length,
+        totalScore: scoreData.diemTongKet || 0,
+        needDiscoveryScore: (chiTiet.khai_thac_nhu_cau || {}).diem || 0,
+        questioningScore: (chiTiet.ky_thuat_hoi || {}).diem || 0,
+        valueCommunicationScore: (chiTiet.truyen_tai_gia_tri || {}).diem || 0,
+        scopeAccuracyScore: (chiTiet.chinh_xac_scope || {}).diem || 0,
+        objectionHandlingScore: (chiTiet.xu_ly_tu_choi || {}).diem || 0,
+        trustBuildingScore: (chiTiet.xay_dung_niem_tin || {}).diem || 0,
+        ctaNavigationScore: (chiTiet.dan_dat_cta || {}).diem || 0,
+        communicationQualityScore: (chiTiet.chat_luong_giao_tiep || {}).diem || 0,
+        finalVerdict: scoreData.xepLoai || '',
+        strengths: scoreData.diemManhNhat || '',
+        weaknesses: scoreData.diemYeuNhat || '',
+        recommendedNextScenario: scoreData.loiKhuyenSoMot || '',
+        transcriptSummary: transcriptSummary,
+        rawTranscriptJson: JSON.stringify(state.messages),
+        rawScoreJson: JSON.stringify(scoreData),
+        status: 'completed',
+        deviceInfo: navigator.userAgent.substring(0, 200),
+        appVersion: '1.1'
+      };
+
+      fetch(LOG_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(payload)
+      }).catch(function() {
+        // Save to retry queue
+        try {
+          var queue = JSON.parse(safeStorage.getItem('rpl_retry_queue') || '[]');
+          queue.push(payload);
+          if (queue.length > 20) queue = queue.slice(-20);
+          safeStorage.setItem('rpl_retry_queue', JSON.stringify(queue));
+        } catch(e) { /* silent */ }
+      });
+    } catch(e) {
+      console.warn('[RolePlayLab] Remote log failed:', e);
+    }
+  }
+
+  function retryPendingLogs() {
+    try {
+      var raw = safeStorage.getItem('rpl_retry_queue');
+      if (!raw) return;
+      var queue = JSON.parse(raw);
+      if (!queue.length) return;
+      safeStorage.removeItem('rpl_retry_queue');
+      queue.forEach(function(payload) {
+        fetch(LOG_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify(payload)
+        }).catch(function() { /* give up on double-fail */ });
+      });
+    } catch(e) { /* silent */ }
+  }
+
   // ===================================================================
   // 8. NAVIGATION
   // ===================================================================
+  // ===================================================================
+  // 4B. SESSION RECOVERY (save/resume mid-chat on refresh)
+  // ===================================================================
+  var CHAT_STATE_KEY = 'rpl_chat_state';
+
+  function saveChatState() {
+    if (state.currentPage !== 'chat') return;
+    try {
+      safeStorage.setItem(CHAT_STATE_KEY, JSON.stringify({
+        selectedPersona: state.selectedPersona,
+        selectedScenario: state.selectedScenario,
+        selectedAcademy: state.selectedAcademy,
+        chatMode: state.chatMode,
+        messages: state.messages,
+        sessionId: state.sessionId,
+        sessionStartTime: state.sessionStartTime,
+        elapsedSeconds: state.elapsedSeconds,
+        savedAt: Date.now()
+      }));
+    } catch (e) { /* quota exceeded — ignore */ }
+  }
+
+  function clearChatState() {
+    safeStorage.removeItem(CHAT_STATE_KEY);
+  }
+
+  function getSavedChatState() {
+    try {
+      var raw = safeStorage.getItem(CHAT_STATE_KEY);
+      if (!raw) return null;
+      var saved = JSON.parse(raw);
+      // Expire after 2 hours
+      if (Date.now() - saved.savedAt > 2 * 60 * 60 * 1000) {
+        clearChatState();
+        return null;
+      }
+      return saved;
+    } catch (e) { return null; }
+  }
+
+  function resumeChatState(saved) {
+    state.selectedPersona = saved.selectedPersona;
+    state.selectedScenario = saved.selectedScenario;
+    state.selectedAcademy = saved.selectedAcademy;
+    state.chatMode = saved.chatMode;
+    state.messages = saved.messages;
+    state.sessionId = saved.sessionId;
+    state.sessionStartTime = saved.sessionStartTime;
+    state.elapsedSeconds = saved.elapsedSeconds;
+    state.isTyping = false;
+    state.scoreReport = null;
+    clearChatState();
+    navigate('chat');
+    // Resume timer
+    state.timerInterval = setInterval(function() {
+      state.elapsedSeconds++;
+      var timerEl = document.getElementById('rplTimer');
+      if (timerEl) timerEl.textContent = formatTime(state.elapsedSeconds);
+      if (data) {
+        var modeConfig = data.scoringRubric.modes[state.chatMode];
+        if (modeConfig.timeLimit && state.elapsedSeconds >= modeConfig.timeLimit) {
+          clearInterval(state.timerInterval);
+          endSession();
+        }
+      }
+    }, 1000);
+  }
+
   function navigate(page, opts) {
     opts = opts || {};
     // Clear timer if leaving chat
@@ -415,6 +587,17 @@ CTA mong đợi: ${scenario.desiredCTA}`;
   // ===================================================================
   function renderHome() {
     const frag = document.createElement('div');
+
+    // Employee greeting
+    var employee = getEmployeeSession();
+    if (employee) {
+      const empBar = document.createElement('div');
+      empBar.className = 'rpl-card';
+      empBar.style.cssText = 'padding:10px 16px;margin-bottom:12px;background:linear-gradient(135deg,#EEF2FF,#F0FDF4);border-left:3px solid #4F46E5';
+      empBar.innerHTML = '<div style="font-weight:600;font-size:13px">👋 Xin chào, ' + esc(employee.name) + '</div>' +
+        '<div class="rpl-text-sm rpl-text-muted">' + esc(employee.bu || '') + (employee.position ? ' • ' + esc(employee.position) : '') + '</div>';
+      frag.appendChild(empBar);
+    }
 
     // Hero
     const hero = document.createElement('div');
@@ -1083,6 +1266,7 @@ CTA mong đợi: ${scenario.desiredCTA}`;
     ];
 
     navigate('chat');
+    saveChatState();
 
     // Start timer
     state.timerInterval = setInterval(function() {
@@ -1277,6 +1461,7 @@ CTA mong đợi: ${scenario.desiredCTA}`;
 
       state.messages.push({ role: 'assistant', content: response, time: new Date().toISOString() });
       state.isTyping = false;
+      saveChatState();
 
       // Check if max turns reached
       if (state.messages.length >= maxTurns) {
@@ -1329,6 +1514,7 @@ CTA mong đợi: ${scenario.desiredCTA}`;
   async function endSession() {
     clearInterval(state.timerInterval);
     state.isTyping = false;
+    clearChatState();
 
     // Show loading
     state.currentPage = 'score';
@@ -1392,7 +1578,7 @@ CTA mong đợi: ${scenario.desiredCTA}`;
       }
       saveProgress();
 
-      // Log to server
+      // Log to server (legacy)
       logSession({
         sessionId: state.sessionId,
         scenario: findScenario(state.selectedScenario).name,
@@ -1403,6 +1589,9 @@ CTA mong đợi: ${scenario.desiredCTA}`;
         duration: state.elapsedSeconds,
         transcript: state.messages
       });
+
+      // Log to RolePlaySessions sheet (production)
+      logSessionRemote(scoreData);
 
     } catch(err) {
       console.error('[RolePlayLab] Scoring failed:', err);
@@ -1755,7 +1944,60 @@ CTA mong đợi: ${scenario.desiredCTA}`;
     const sessions = state.progress.sessionsPlayed || [];
     const scored = sessions.filter(function(s) { return s.score > 0; });
 
-    frag.innerHTML = '<div class="rpl-section-title rpl-mb-16">📊 Dashboard</div>';
+    // Employee info + remote load button
+    var employee = getEmployeeSession();
+    var dashHeader = '<div class="rpl-section-title rpl-mb-16">📊 Dashboard</div>';
+    if (employee) {
+      dashHeader += '<div class="rpl-card" style="padding:10px 16px;margin-bottom:12px;background:#F8FAFC;display:flex;align-items:center;justify-content:space-between">' +
+        '<span class="rpl-text-sm">👤 ' + esc(employee.name) + ' — ' + esc(employee.bu || '') + '</span>' +
+        '<button class="rpl-btn rpl-btn--ghost rpl-btn--sm" id="rplLoadRemote" style="font-size:11px">☁️ Tải từ server</button></div>';
+    }
+    dashHeader += '<div id="rplRemoteStatus"></div>';
+    frag.innerHTML = dashHeader;
+
+    // Wire remote load button after DOM attach
+    setTimeout(function() {
+      var loadBtn = document.getElementById('rplLoadRemote');
+      if (loadBtn) {
+        loadBtn.addEventListener('click', function() {
+          loadBtn.disabled = true;
+          loadBtn.textContent = 'Đang tải...';
+          var statusEl = document.getElementById('rplRemoteStatus');
+          var emp = getEmployeeSession();
+          var isLeader = emp && (emp.position === 'STL' || emp.position === 'FM' || emp.position === 'CM');
+          var url = LOG_ENDPOINT + '?action=get_roleplay_sessions';
+          if (!isLeader && emp) {
+            url += '&employee_id=' + encodeURIComponent(emp.msnv);
+          } else if (isLeader && emp) {
+            url += '&bu=' + encodeURIComponent(emp.bu);
+          }
+          fetch(url).then(function(r) { return r.json(); }).then(function(result) {
+            if (result.ok && result.sessions && result.sessions.length > 0) {
+              var html = '<div class="rpl-section-title" style="margin:12px 0 8px">☁️ Dữ liệu từ server (' + result.sessions.length + ' phiên)</div>';
+              result.sessions.slice(0, 20).forEach(function(s) {
+                var scoreColor = s.totalScore >= 80 ? 'green' : s.totalScore >= 60 ? 'orange' : 'red';
+                html += '<div class="rpl-card" style="padding:10px 14px;margin-bottom:6px">' +
+                  '<div style="display:flex;align-items:center;gap:8px">' +
+                  '<div style="flex:1;min-width:0">' +
+                  '<div style="font-weight:600;font-size:12px">' + esc(s.scenarioTitle || s.scenarioId || '—') + '</div>' +
+                  '<div class="rpl-text-sm rpl-text-muted">' + esc(s.personaName || '') + ' • ' + esc(s.mode || '') + (isLeader ? ' • ' + esc(s.employeeName || '') : '') + '</div></div>' +
+                  '<div style="text-align:right"><div style="font-size:18px;font-weight:800;color:var(--rpl-' + scoreColor + ')">' + (s.totalScore || 0) + '</div>' +
+                  '<div class="rpl-text-sm rpl-text-muted">' + (s.timestampEnd ? new Date(s.timestampEnd).toLocaleDateString('vi-VN') : '') + '</div></div></div></div>';
+              });
+              if (statusEl) statusEl.innerHTML = html;
+            } else {
+              if (statusEl) statusEl.innerHTML = '<div class="rpl-text-sm rpl-text-muted" style="text-align:center;padding:8px">Chưa có dữ liệu từ server</div>';
+            }
+            loadBtn.textContent = '☁️ Tải từ server';
+            loadBtn.disabled = false;
+          }).catch(function() {
+            if (statusEl) statusEl.innerHTML = '<div class="rpl-text-sm" style="text-align:center;padding:8px;color:#DC2626">Lỗi kết nối server</div>';
+            loadBtn.textContent = '☁️ Tải từ server';
+            loadBtn.disabled = false;
+          });
+        });
+      }
+    }, 0);
 
     // Stats grid
     const grid = document.createElement('div');
@@ -1884,6 +2126,34 @@ CTA mong đợi: ${scenario.desiredCTA}`;
 
       loadProgress();
       initialized = true;
+
+      // Retry any failed remote logs from previous session
+      retryPendingLogs();
+
+      // Check for saved mid-chat session (recovery on refresh)
+      var savedChat = getSavedChatState();
+      if (savedChat) {
+        var persona = findPersona(savedChat.selectedPersona);
+        var scenario = findScenario(savedChat.selectedScenario);
+        if (persona && scenario) {
+          var resumeBar = document.createElement('div');
+          resumeBar.style.cssText = 'background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:12px 16px;margin:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;';
+          resumeBar.innerHTML = '<span>Bạn có phiên <b>' + scenario.name + '</b> chưa hoàn thành (' + savedChat.messages.length + ' tin nhắn). Tiếp tục?</span><span style="display:flex;gap:8px"><button id="rplResumeYes" style="background:#28a745;color:#fff;border:none;border-radius:6px;padding:6px 14px;cursor:pointer;font-size:13px">Tiếp tục</button><button id="rplResumeNo" style="background:#dc3545;color:#fff;border:none;border-radius:6px;padding:6px 14px;cursor:pointer;font-size:13px">Bỏ qua</button></span>';
+          container.appendChild(resumeBar);
+          document.getElementById('rplResumeYes').addEventListener('click', function() {
+            resumeBar.remove();
+            resumeChatState(savedChat);
+          });
+          document.getElementById('rplResumeNo').addEventListener('click', function() {
+            resumeBar.remove();
+            clearChatState();
+            render();
+          });
+          return;
+        }
+        clearChatState();
+      }
+
       render();
     },
 
