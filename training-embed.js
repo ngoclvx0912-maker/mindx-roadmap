@@ -36,6 +36,7 @@ window.TrainingEmbed = (function() {
     quizzes: {},
     lessonsViewed: {},
     tipsRead: {},
+    casesRead: {},
     timeSpent: {}
   };
 
@@ -79,6 +80,84 @@ window.TrainingEmbed = (function() {
     const div = document.createElement('div');
     div.textContent = str;
     return div.innerHTML;
+  }
+
+  function getEmployeeSession() {
+    try {
+      var raw = safeStorage.getItem('mindx_employee_session');
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch(e) { return null; }
+  }
+
+  function getLastIncompleteLesson() {
+    var programs = [
+      { data: TRAINING_DATA.onboard, prefix: 'day', label: 'K12 Sale' },
+      { data: TRAINING_DATA.onboardCSK12, prefix: 'csk12_day', label: 'CS K12' },
+      { data: TRAINING_DATA.onboardK18, prefix: 'k18_day', label: 'K18 Sale' }
+    ];
+    for (var p = 0; p < programs.length; p++) {
+      var prog = programs[p];
+      if (!prog.data) continue;
+      for (var d = 0; d < prog.data.days.length; d++) {
+        var day = prog.data.days[d];
+        for (var s = 0; s < day.sections.length; s++) {
+          if (!state.lessonsViewed[day.sections[s].id]) {
+            return { page: prog.prefix + day.day, label: prog.label + ' - Ngày ' + day.day + ': ' + day.title, section: day.sections[s].title };
+          }
+        }
+      }
+    }
+    return null;
+  }
+
+  function getRecentQuizScores(limit) {
+    var results = [];
+    var ids = Object.keys(state.quizzes);
+    ids.forEach(function(id) {
+      var q = state.quizzes[id];
+      results.push({ id: id, score: ((q.score / q.total) * 10).toFixed(1), total: q.total, correct: q.score, timestamp: q.timestamp });
+    });
+    results.sort(function(a, b) { return b.timestamp - a.timestamp; });
+    return results.slice(0, limit || 3);
+  }
+
+  function getUnreadTipCount() {
+    if (!TRAINING_DATA.microlearning || !TRAINING_DATA.microlearning.tips) return { read: 0, total: 0 };
+    var total = TRAINING_DATA.microlearning.tips.length;
+    var read = TRAINING_DATA.microlearning.tips.filter(function(t) { return state.tipsRead[t.id]; }).length;
+    return { read: read, total: total };
+  }
+
+  function getUnreadTip() {
+    if (!TRAINING_DATA.microlearning || !TRAINING_DATA.microlearning.tips) return null;
+    var unread = TRAINING_DATA.microlearning.tips.filter(function(t) { return !state.tipsRead[t.id]; });
+    if (unread.length === 0) return null;
+    return unread[Math.floor(Math.random() * unread.length)];
+  }
+
+  function getAllQuizzes() {
+    var quizzes = [];
+    TRAINING_DATA.onboard.days.forEach(function(day) {
+      day.sections.forEach(function(s) {
+        if (s.quiz) quizzes.push({ quiz: s.quiz, academy: 'K12 Sale', dayTitle: 'Ngày ' + day.day, icon: day.icon });
+      });
+    });
+    if (TRAINING_DATA.onboardCSK12) {
+      TRAINING_DATA.onboardCSK12.days.forEach(function(day) {
+        day.sections.forEach(function(s) {
+          if (s.quiz) quizzes.push({ quiz: s.quiz, academy: 'CS K12', dayTitle: 'Ngày ' + day.day, icon: day.icon });
+        });
+      });
+    }
+    if (TRAINING_DATA.onboardK18) {
+      TRAINING_DATA.onboardK18.days.forEach(function(day) {
+        day.sections.forEach(function(s) {
+          if (s.quiz) quizzes.push({ quiz: s.quiz, academy: 'K18 Sale', dayTitle: 'Ngày ' + day.day, icon: day.icon });
+        });
+      });
+    }
+    return quizzes;
   }
 
   /* ---- Init ---- */
@@ -366,30 +445,44 @@ window.TrainingEmbed = (function() {
     const rank = getOverallRank();
     const avgScore = getQuizAverage();
     const lessonsCount = getLessonsCompleted();
+    const emp = getEmployeeSession();
+    const displayName = emp && emp.name ? emp.name : state.userName;
+    const buLabel = emp && emp.bu ? emp.bu : '';
+    const nextLesson = getLastIncompleteLesson();
+    const recentQuizzes = getRecentQuizScores(3);
+    const tipInfo = getUnreadTipCount();
+    const randomTip = getUnreadTip();
+
+    // Leaderboard mini — top 5
+    var lbEntries = TRAINING_DATA.sampleLeaderboard ? [...TRAINING_DATA.sampleLeaderboard] : [];
+    var overallScore = getOverallScore();
+    if (overallScore !== null && displayName) {
+      var existing = lbEntries.findIndex(function(e) { return e.name === displayName; });
+      var userEntry = { name: displayName, score: parseFloat(overallScore), completion: completion, rank: getOverallRank() };
+      if (existing >= 0) lbEntries[existing] = userEntry; else lbEntries.push(userEntry);
+    }
+    lbEntries.sort(function(a,b) { return b.score - a.score; });
+    var top5 = lbEntries.slice(0, 5);
 
     let html = `
       <div class="trn-dash-welcome">
-        <h2>Xin chào, ${escHtml(state.userName)}! 👋</h2>
-        <p>Chào mừng bạn đến hệ thống đào tạo TVTS MindX. Hoàn thành các bài học và quiz để nâng cao kỹ năng tư vấn.</p>
+        <h2>Xin chào, ${escHtml(displayName)}! 👋</h2>
+        <p>${buLabel ? '<span style="display:inline-block;padding:3px 12px;background:rgba(255,255,255,0.2);border-radius:12px;font-size:0.75rem;font-weight:700;margin-right:8px;">' + escHtml(buLabel) + '</span>' : ''}Chào mừng bạn đến hệ thống đào tạo TVTS MindX</p>
         ${rank ? `<div class="trn-dash-rank-badge">${getRankIcon(rank)}</div>` : ''}
       </div>
 
+      ${nextLesson ? `
+      <div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;margin-bottom:20px;display:flex;align-items:center;gap:16px;cursor:pointer;" onclick="window._trnNavigate('${nextLesson.page}')">
+        <div style="width:48px;height:48px;border-radius:12px;background:#EFF6FF;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;">📖</div>
+        <div style="flex:1;">
+          <div style="font-size:0.72rem;font-weight:700;color:#2563EB;text-transform:uppercase;letter-spacing:0.05em;">Tiếp tục học</div>
+          <div style="font-size:0.92rem;font-weight:700;color:#1A202C;margin-top:2px;">${escHtml(nextLesson.label)}</div>
+          <div style="font-size:0.78rem;color:#A0AEC0;margin-top:2px;">${escHtml(nextLesson.section)}</div>
+        </div>
+        <div style="font-size:1.2rem;color:#2563EB;">→</div>
+      </div>` : ''}
+
       <div class="trn-dash-stats">
-        <div class="trn-stat-box">
-          <div class="trn-stat-box-icon">📊</div>
-          <div class="trn-stat-box-value">${completion}%</div>
-          <div class="trn-stat-box-label">K12 Onboard</div>
-        </div>
-        <div class="trn-stat-box">
-          <div class="trn-stat-box-icon">🎯</div>
-          <div class="trn-stat-box-value">${csk12completion}%</div>
-          <div class="trn-stat-box-label">CS K12 Onboard</div>
-        </div>
-        <div class="trn-stat-box">
-          <div class="trn-stat-box-icon">🚀</div>
-          <div class="trn-stat-box-value">${k18completion}%</div>
-          <div class="trn-stat-box-label">K18 Onboard</div>
-        </div>
         <div class="trn-stat-box">
           <div class="trn-stat-box-icon">📚</div>
           <div class="trn-stat-box-value">${lessonsCount}</div>
@@ -397,117 +490,154 @@ window.TrainingEmbed = (function() {
         </div>
         <div class="trn-stat-box">
           <div class="trn-stat-box-icon">📝</div>
+          <div class="trn-stat-box-value">${Object.keys(state.quizzes).length}</div>
+          <div class="trn-stat-box-label">Quiz đã làm</div>
+        </div>
+        <div class="trn-stat-box">
+          <div class="trn-stat-box-icon">⭐</div>
           <div class="trn-stat-box-value">${avgScore}</div>
           <div class="trn-stat-box-label">Điểm TB Quiz</div>
         </div>
+        <div class="trn-stat-box">
+          <div class="trn-stat-box-icon">💡</div>
+          <div class="trn-stat-box-value">${tipInfo.read}/${tipInfo.total}</div>
+          <div class="trn-stat-box-label">Tips đã đọc</div>
+        </div>
       </div>
 
-      <div class="trn-dash-progress">
-        <h3>Tiến độ K12 Onboard</h3>
-        ${TRAINING_DATA.onboard.days.map(day => {
-          const total = day.sections.length;
-          const done = day.sections.filter(s => state.lessonsViewed[s.id]).length;
-          const pct = total > 0 ? Math.round((done/total)*100) : 0;
-          const colors = { 1:'red', 2:'blue', 3:'green', 4:'orange', 5:'purple' };
-          return `
-            <div class="trn-progress-bar-container">
-              <div class="trn-progress-label">
-                <span>Ngày ${day.day}: ${day.title}</span>
-                <span>${done}/${total} (${pct}%)</span>
-              </div>
-              <div class="trn-progress-bar">
-                <div class="trn-progress-fill ${colors[day.day]}" style="width:${pct}%"></div>
-              </div>
-            </div>`;
-        }).join('')}
-      </div>
-
-      ${TRAINING_DATA.onboardCSK12 ? `
-      <div class="trn-dash-progress">
-        <h3>Tiến độ CS K12 Onboard</h3>
-        ${TRAINING_DATA.onboardCSK12.days.map(day => {
-          const total = day.sections.length;
-          const done = day.sections.filter(s => state.lessonsViewed[s.id]).length;
-          const pct = total > 0 ? Math.round((done/total)*100) : 0;
-          const colors = { 1:'red', 2:'blue', 3:'green', 4:'orange', 5:'purple' };
-          return `
-            <div class="trn-progress-bar-container">
-              <div class="trn-progress-label">
-                <span>CS K12 Ngày ${day.day}: ${day.title}</span>
-                <span>${done}/${total} (${pct}%)</span>
-              </div>
-              <div class="trn-progress-bar">
-                <div class="trn-progress-fill ${colors[day.day]}" style="width:${pct}%"></div>
-              </div>
-            </div>`;
-        }).join('')}
-      </div>
-      ` : ''}
-
-      ${TRAINING_DATA.onboardK18 ? `
-      <div class="trn-dash-progress">
-        <h3>Tiến độ K18 Onboard</h3>
-        ${TRAINING_DATA.onboardK18.days.map(day => {
-          const total = day.sections.length;
-          const done = day.sections.filter(s => state.lessonsViewed[s.id]).length;
-          const pct = total > 0 ? Math.round((done/total)*100) : 0;
-          const colors = { 1:'red', 2:'blue', 3:'green', 4:'orange', 5:'purple' };
-          return `
-            <div class="trn-progress-bar-container">
-              <div class="trn-progress-label">
-                <span>K18 Ngày ${day.day}: ${day.title}</span>
-                <span>${done}/${total} (${pct}%)</span>
-              </div>
-              <div class="trn-progress-bar">
-                <div class="trn-progress-fill ${colors[day.day]}" style="width:${pct}%"></div>
-              </div>
-            </div>`;
-        }).join('')}
-      </div>
-      ` : ''}
-
-      <h3 style="font-size:1rem;font-weight:700;margin-bottom:16px;">Lộ trình Onboard K12 (5 ngày)</h3>
-      <div class="trn-dash-days-grid">
-        ${TRAINING_DATA.onboard.days.map(day => `
-          <div class="trn-dash-day-card" onclick="window._trnNavigate('day${day.day}')">
-            <div class="trn-day-icon">${day.icon}</div>
-            <div class="trn-day-num" style="color:${day.color}">Ngày ${day.day}</div>
-            <div class="trn-day-title">${day.title}</div>
-            <div class="trn-day-subtitle">${day.subtitle}</div>
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:16px;">Lộ trình đào tạo</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:24px;">
+        <div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;cursor:pointer;" onclick="window._trnNavigate('day1')">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <span style="font-size:1.5rem;">🎯</span>
+            <div>
+              <div style="font-size:0.92rem;font-weight:700;color:#1A202C;">Sale K12 Onboard</div>
+              <div style="font-size:0.72rem;color:#A0AEC0;">5 ngày &bull; ${TRAINING_DATA.onboard.days.reduce(function(a,d){return a+d.sections.length;},0)} phần</div>
+            </div>
           </div>
-        `).join('')}
+          <div class="trn-progress-bar"><div class="trn-progress-fill red" style="width:${completion}%"></div></div>
+          <div style="font-size:0.75rem;color:#A0AEC0;margin-top:6px;">${completion}% hoàn thành</div>
+        </div>
+        ${TRAINING_DATA.onboardCSK12 ? `
+        <div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;cursor:pointer;" onclick="window._trnNavigate('csk12_day1')">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <span style="font-size:1.5rem;">💚</span>
+            <div>
+              <div style="font-size:0.92rem;font-weight:700;color:#1A202C;">CS K12 Onboard</div>
+              <div style="font-size:0.72rem;color:#A0AEC0;">5 ngày &bull; ${TRAINING_DATA.onboardCSK12.days.reduce(function(a,d){return a+d.sections.length;},0)} phần</div>
+            </div>
+          </div>
+          <div class="trn-progress-bar"><div class="trn-progress-fill green" style="width:${csk12completion}%"></div></div>
+          <div style="font-size:0.75rem;color:#A0AEC0;margin-top:6px;">${csk12completion}% hoàn thành</div>
+        </div>` : ''}
+        ${TRAINING_DATA.onboardK18 ? `
+        <div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;cursor:pointer;" onclick="window._trnNavigate('k18_day1')">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <span style="font-size:1.5rem;">🚀</span>
+            <div>
+              <div style="font-size:0.92rem;font-weight:700;color:#1A202C;">K18 Sale Onboard</div>
+              <div style="font-size:0.72rem;color:#A0AEC0;">5 ngày &bull; ${TRAINING_DATA.onboardK18.days.reduce(function(a,d){return a+d.sections.length;},0)} phần</div>
+            </div>
+          </div>
+          <div class="trn-progress-bar"><div class="trn-progress-fill blue" style="width:${k18completion}%"></div></div>
+          <div style="font-size:0.75rem;color:#A0AEC0;margin-top:6px;">${k18completion}% hoàn thành</div>
+        </div>` : ''}
       </div>
 
-      ${TRAINING_DATA.onboardCSK12 ? `
-      <h3 style="font-size:1rem;font-weight:700;margin:24px 0 16px;">Lộ trình Onboard CS K12 (5 ngày)</h3>
-      <div class="trn-dash-days-grid">
-        ${TRAINING_DATA.onboardCSK12.days.map(day => `
-          <div class="trn-dash-day-card" onclick="window._trnNavigate('csk12_day${day.day}')">
-            <div class="trn-day-icon">${day.icon}</div>
-            <div class="trn-day-num" style="color:${day.color}">CS Ngày ${day.day}</div>
-            <div class="trn-day-title">${day.title}</div>
-            <div class="trn-day-subtitle">${day.subtitle}</div>
-          </div>
-        `).join('')}
-      </div>
-      ` : ''}
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-bottom:24px;">
+        <div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;">
+          <h3 style="font-size:0.92rem;font-weight:700;margin-bottom:12px;">📝 Quiz gần đây</h3>
+          ${recentQuizzes.length === 0 ? '<p style="font-size:0.82rem;color:#A0AEC0;">Chưa có kết quả quiz nào</p>' :
+            recentQuizzes.map(function(r) {
+              var rk = getRank(parseFloat(r.score));
+              return '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #F1F5F9;">' +
+                '<div style="font-size:0.82rem;font-weight:500;">' + escHtml(r.id) + '</div>' +
+                '<div style="display:flex;align-items:center;gap:8px;">' +
+                '<span style="font-size:0.82rem;font-weight:700;">' + r.score + '/10</span>' +
+                '<span class="trn-lb-badge trn-rank-' + rk + '" style="font-size:0.68rem;">' + rk + '</span></div></div>';
+            }).join('')}
+          ${recentQuizzes.length > 0 ? '<button style="margin-top:10px;padding:6px 14px;background:#F8F9FA;border:1px solid #E2E8F0;border-radius:6px;font-family:inherit;font-size:0.75rem;font-weight:600;cursor:pointer;" onclick="window._trnNavigate(\'quiz_hub\')">Xem tất cả quiz →</button>' : ''}
+        </div>
 
-      ${TRAINING_DATA.onboardK18 ? `
-      <h3 style="font-size:1rem;font-weight:700;margin:24px 0 16px;">Lộ trình Onboard K18 Sale (5 ngày)</h3>
-      <div class="trn-dash-days-grid">
-        ${TRAINING_DATA.onboardK18.days.map(day => `
-          <div class="trn-dash-day-card" onclick="window._trnNavigate('k18_day${day.day}')">
-            <div class="trn-day-icon">${day.icon}</div>
-            <div class="trn-day-num" style="color:${day.color}">K18 Ngày ${day.day}</div>
-            <div class="trn-day-title">${day.title}</div>
-            <div class="trn-day-subtitle">${day.subtitle}</div>
-          </div>
-        `).join('')}
+        <div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;">
+          <h3 style="font-size:0.92rem;font-weight:700;margin-bottom:12px;">💡 Gợi ý Microlearning</h3>
+          ${randomTip ? `
+            <div style="font-size:0.68rem;font-weight:700;color:#2563EB;text-transform:uppercase;">${randomTip.week}</div>
+            <div style="font-size:0.88rem;font-weight:700;margin:4px 0 6px;">${escHtml(randomTip.title)}</div>
+            <div style="font-size:0.82rem;color:#4A5568;line-height:1.5;">${escHtml(randomTip.content).substring(0, 150)}...</div>
+            <button style="margin-top:10px;padding:6px 14px;background:#F8F9FA;border:1px solid #E2E8F0;border-radius:6px;font-family:inherit;font-size:0.75rem;font-weight:600;cursor:pointer;" onclick="window._trnNavigate('micro_tips')">Xem tất cả tips →</button>
+          ` : '<p style="font-size:0.82rem;color:#059669;font-weight:600;">Bạn đã đọc tất cả tips!</p>'}
+        </div>
       </div>
-      ` : ''}
+
+      <div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;margin-bottom:24px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+          <h3 style="font-size:0.92rem;font-weight:700;">🏆 Bảng xếp hạng</h3>
+          <button style="padding:4px 12px;background:#F8F9FA;border:1px solid #E2E8F0;border-radius:6px;font-family:inherit;font-size:0.72rem;font-weight:600;cursor:pointer;" onclick="window._trnNavigate('leaderboard')">Xem đầy đủ →</button>
+        </div>
+        <table style="width:100%;font-size:0.82rem;border-collapse:collapse;">
+          ${top5.map(function(e, i) {
+            var isMe = e.name === displayName;
+            var medals = ['🥇','🥈','🥉'];
+            return '<tr style="' + (isMe ? 'background:#FFF5F5;font-weight:600;' : '') + '">' +
+              '<td style="padding:6px 8px;width:30px;">' + (i < 3 ? medals[i] : (i+1)) + '</td>' +
+              '<td style="padding:6px 8px;">' + escHtml(e.name) + (isMe ? ' (Bạn)' : '') + '</td>' +
+              '<td style="padding:6px 8px;text-align:right;font-weight:700;">' + e.score.toFixed(1) + '</td></tr>';
+          }).join('')}
+        </table>
+      </div>
     `;
 
     pageContent.innerHTML = html;
+  }
+
+  /* ---- Helper: Day page navigation buttons ---- */
+  function buildDayNav(dayNum, totalDays, pagePrefix) {
+    var prev = dayNum > 1 ? `<button class="trn-quiz-btn-secondary" onclick="window._trnNavigate('${pagePrefix}${dayNum-1}')">← Ngày ${dayNum-1}</button>` : '<span></span>';
+    var next = dayNum < totalDays ? `<button class="trn-quiz-btn-primary" onclick="window._trnNavigate('${pagePrefix}${dayNum+1}')">Ngày ${dayNum+1} →</button>` : '<span></span>';
+    return `<div style="display:flex;justify-content:space-between;align-items:center;margin-top:24px;padding-top:16px;border-top:1px solid #F1F5F9;">${prev}${next}</div>`;
+  }
+
+  function buildDayProgressBar(dayData) {
+    var total = dayData.sections.length;
+    var done = dayData.sections.filter(function(s) { return state.lessonsViewed[s.id]; }).length;
+    var pct = total > 0 ? Math.round((done/total)*100) : 0;
+    return `<div style="background:#FFFFFF;border-radius:10px;padding:14px 20px;border:1px solid #F1F5F9;margin-bottom:16px;display:flex;align-items:center;gap:14px;">
+      <span style="font-size:0.82rem;font-weight:600;white-space:nowrap;">Tiến độ: ${done}/${total}</span>
+      <div class="trn-progress-bar" style="flex:1;"><div class="trn-progress-fill red" style="width:${pct}%"></div></div>
+      <span style="font-size:0.82rem;font-weight:700;color:${pct===100?'#059669':'#A0AEC0'};">${pct}%</span>
+    </div>`;
+  }
+
+  function buildSectionCards(dayData) {
+    return dayData.sections.map(function(section, idx) {
+      var isViewed = state.lessonsViewed[section.id];
+      var hasQuiz = section.quiz;
+      var quizPassed = hasQuiz && state.quizzes[section.quiz.id];
+      var sectionDone = isViewed && (!hasQuiz || quizPassed);
+      return `
+        <div class="trn-section-card" data-section="${section.id}">
+          <div class="trn-section-card-header" onclick="window._trnToggleSection('${section.id}')">
+            <span class="trn-sec-icon">${section.icon}</span>
+            <span class="trn-sec-title">${section.title}</span>
+            <span class="trn-sec-status ${sectionDone ? 'complete' : 'incomplete'}">${sectionDone ? '✓ Hoàn thành' : isViewed ? '📝 Chưa làm quiz' : 'Chưa xem'}</span>
+            <span class="trn-sec-arrow">▸</span>
+          </div>
+          <div class="trn-section-card-body" id="trnSecBody_${section.id}">
+            ${section.content}
+            ${hasQuiz ? `
+              <button class="trn-quiz-start-btn" onclick="window._trnStartQuiz('${section.quiz.id}')">
+                📝 ${quizPassed ? 'Làm lại' : 'Làm'} Quiz: ${section.quiz.title} (${section.quiz.questions.length} câu)
+              </button>
+              ${quizPassed ? '<span style="margin-left:12px;font-size:0.8rem;color:#059669;font-weight:600;">Điểm cao nhất: ' + getScore(section.quiz.id) + '/10</span>' : ''}
+            ` : ''}
+            <br>
+            <button class="trn-mark-complete-btn ${isViewed ? 'completed' : ''}" onclick="window._trnMarkComplete('${section.id}', this)" ${isViewed ? 'disabled' : ''}>
+              ${isViewed ? '✓ Đã hoàn thành' : '✓ Đánh dấu hoàn thành'}
+            </button>
+          </div>
+        </div>`;
+    }).join('');
   }
 
   /* ---- RENDER: DAY PAGE (K12) ---- */
@@ -515,43 +645,22 @@ window.TrainingEmbed = (function() {
     const dayNum = parseInt(dayId.replace('day',''));
     const dayData = TRAINING_DATA.onboard.days.find(d => d.day === dayNum);
     if (!dayData) { renderDashboard(); return; }
+    const totalDays = TRAINING_DATA.onboard.days.length;
 
     var pageTitle = document.getElementById('pageTitle');
     if (pageTitle) pageTitle.textContent = `Ngày ${dayData.day}: ${dayData.title}`;
 
     let html = `
       <div class="trn-day-header ${dayId}">
-        <div class="trn-day-badge">NGÀY ${dayData.day} / 5</div>
+        <div class="trn-day-badge">NGÀY ${dayData.day} / ${totalDays}</div>
         <h2>${dayData.icon} ${dayData.title}</h2>
         <p>${dayData.subtitle}</p>
       </div>
+      ${buildDayProgressBar(dayData)}
       <div class="trn-section-list">
-        ${dayData.sections.map((section, idx) => {
-          const isViewed = state.lessonsViewed[section.id];
-          return `
-            <div class="trn-section-card" data-section="${section.id}">
-              <div class="trn-section-card-header" onclick="window._trnToggleSection('${section.id}')">
-                <span class="trn-sec-icon">${section.icon}</span>
-                <span class="trn-sec-title">${section.title}</span>
-                <span class="trn-sec-status ${isViewed ? 'complete' : 'incomplete'}">${isViewed ? '✓ Hoàn thành' : 'Chưa xem'}</span>
-                <span class="trn-sec-arrow">▸</span>
-              </div>
-              <div class="trn-section-card-body" id="trnSecBody_${section.id}">
-                ${section.content}
-                ${section.quiz ? `
-                  <button class="trn-quiz-start-btn" onclick="window._trnStartQuiz('${section.quiz.id}')">
-                    📝 Làm Quiz: ${section.quiz.title} (${section.quiz.questions.length} câu)
-                  </button>
-                  ${state.quizzes[section.quiz.id] ? `<span style="margin-left:12px;font-size:0.8rem;color:#059669;font-weight:600;">Điểm cao nhất: ${getScore(section.quiz.id)}/10</span>` : ''}
-                ` : ''}
-                <br>
-                <button class="trn-mark-complete-btn ${isViewed ? 'completed' : ''}" onclick="window._trnMarkComplete('${section.id}', this)" ${isViewed ? 'disabled' : ''}>
-                  ${isViewed ? '✓ Đã hoàn thành' : '✓ Đánh dấu hoàn thành'}
-                </button>
-              </div>
-            </div>`;
-        }).join('')}
+        ${buildSectionCards(dayData)}
       </div>
+      ${buildDayNav(dayNum, totalDays, 'day')}
     `;
 
     pageContent.innerHTML = html;
@@ -562,43 +671,22 @@ window.TrainingEmbed = (function() {
     const dayNum = parseInt(dayId.replace('k18_day',''));
     const dayData = TRAINING_DATA.onboardK18 ? TRAINING_DATA.onboardK18.days.find(d => d.day === dayNum) : null;
     if (!dayData) { renderDashboard(); return; }
+    const totalDays = TRAINING_DATA.onboardK18.days.length;
 
     var pageTitle = document.getElementById('pageTitle');
     if (pageTitle) pageTitle.textContent = `K18 Ngày ${dayData.day}: ${dayData.title}`;
 
     let html = `
       <div class="trn-day-header" style="background: linear-gradient(135deg, ${dayData.color} 0%, ${dayData.color}dd 100%);">
-        <div class="trn-day-badge">K18 NGÀY ${dayData.day} / 5</div>
+        <div class="trn-day-badge">K18 NGÀY ${dayData.day} / ${totalDays}</div>
         <h2>${dayData.icon} ${dayData.title}</h2>
         <p>${dayData.subtitle}</p>
       </div>
+      ${buildDayProgressBar(dayData)}
       <div class="trn-section-list">
-        ${dayData.sections.map((section, idx) => {
-          const isViewed = state.lessonsViewed[section.id];
-          return `
-            <div class="trn-section-card" data-section="${section.id}">
-              <div class="trn-section-card-header" onclick="window._trnToggleSection('${section.id}')">
-                <span class="trn-sec-icon">${section.icon}</span>
-                <span class="trn-sec-title">${section.title}</span>
-                <span class="trn-sec-status ${isViewed ? 'complete' : 'incomplete'}">${isViewed ? '✓ Hoàn thành' : 'Chưa xem'}</span>
-                <span class="trn-sec-arrow">▸</span>
-              </div>
-              <div class="trn-section-card-body" id="trnSecBody_${section.id}">
-                ${section.content}
-                ${section.quiz ? `
-                  <button class="trn-quiz-start-btn" onclick="window._trnStartQuiz('${section.quiz.id}')">
-                    📝 Làm Quiz: ${section.quiz.title} (${section.quiz.questions.length} câu)
-                  </button>
-                  ${state.quizzes[section.quiz.id] ? `<span style="margin-left:12px;font-size:0.8rem;color:#059669;font-weight:600;">Điểm cao nhất: ${getScore(section.quiz.id)}/10</span>` : ''}
-                ` : ''}
-                <br>
-                <button class="trn-mark-complete-btn ${isViewed ? 'completed' : ''}" onclick="window._trnMarkComplete('${section.id}', this)" ${isViewed ? 'disabled' : ''}>
-                  ${isViewed ? '✓ Đã hoàn thành' : '✓ Đánh dấu hoàn thành'}
-                </button>
-              </div>
-            </div>`;
-        }).join('')}
+        ${buildSectionCards(dayData)}
       </div>
+      ${buildDayNav(dayNum, totalDays, 'k18_day')}
     `;
 
     pageContent.innerHTML = html;
@@ -609,43 +697,22 @@ window.TrainingEmbed = (function() {
     const dayNum = parseInt(dayId.replace('csk12_day',''));
     const dayData = TRAINING_DATA.onboardCSK12 ? TRAINING_DATA.onboardCSK12.days.find(d => d.day === dayNum) : null;
     if (!dayData) { renderDashboard(); return; }
+    const totalDays = TRAINING_DATA.onboardCSK12.days.length;
 
     var pageTitle = document.getElementById('pageTitle');
     if (pageTitle) pageTitle.textContent = `CS K12 Ngày ${dayData.day}: ${dayData.title}`;
 
     let html = `
       <div class="trn-day-header" style="background: linear-gradient(135deg, ${dayData.color} 0%, ${dayData.color}dd 100%);">
-        <div class="trn-day-badge">CS K12 NGÀY ${dayData.day} / 5</div>
+        <div class="trn-day-badge">CS K12 NGÀY ${dayData.day} / ${totalDays}</div>
         <h2>${dayData.icon} ${dayData.title}</h2>
         <p>${dayData.subtitle}</p>
       </div>
+      ${buildDayProgressBar(dayData)}
       <div class="trn-section-list">
-        ${dayData.sections.map((section, idx) => {
-          const isViewed = state.lessonsViewed[section.id];
-          return `
-            <div class="trn-section-card" data-section="${section.id}">
-              <div class="trn-section-card-header" onclick="window._trnToggleSection('${section.id}')">
-                <span class="trn-sec-icon">${section.icon}</span>
-                <span class="trn-sec-title">${section.title}</span>
-                <span class="trn-sec-status ${isViewed ? 'complete' : 'incomplete'}">${isViewed ? '✓ Hoàn thành' : 'Chưa xem'}</span>
-                <span class="trn-sec-arrow">▸</span>
-              </div>
-              <div class="trn-section-card-body" id="trnSecBody_${section.id}">
-                ${section.content}
-                ${section.quiz ? `
-                  <button class="trn-quiz-start-btn" onclick="window._trnStartQuiz('${section.quiz.id}')">
-                    📝 Làm Quiz: ${section.quiz.title} (${section.quiz.questions.length} câu)
-                  </button>
-                  ${state.quizzes[section.quiz.id] ? `<span style="margin-left:12px;font-size:0.8rem;color:#059669;font-weight:600;">Điểm cao nhất: ${getScore(section.quiz.id)}/10</span>` : ''}
-                ` : ''}
-                <br>
-                <button class="trn-mark-complete-btn ${isViewed ? 'completed' : ''}" onclick="window._trnMarkComplete('${section.id}', this)" ${isViewed ? 'disabled' : ''}>
-                  ${isViewed ? '✓ Đã hoàn thành' : '✓ Đánh dấu hoàn thành'}
-                </button>
-              </div>
-            </div>`;
-        }).join('')}
+        ${buildSectionCards(dayData)}
       </div>
+      ${buildDayNav(dayNum, totalDays, 'csk12_day')}
     `;
 
     pageContent.innerHTML = html;
@@ -688,26 +755,36 @@ window.TrainingEmbed = (function() {
     var pageTitle = document.getElementById('pageTitle');
     if (pageTitle) pageTitle.textContent = track.title;
 
-    let startBtn = '';
-    if (trackId === 'k12_sale') {
-      startBtn = `<button class="trn-quiz-start-btn" style="margin-top:20px" onclick="window._trnNavigate('day1')">Bắt đầu Onboard K12 Sale (5 ngày) →</button>`;
-    } else if (trackId === 'k12_cs') {
-      startBtn = `<button class="trn-quiz-start-btn" style="margin-top:20px" onclick="window._trnNavigate('csk12_day1')">Bắt đầu Onboard CS K12 (5 ngày) →</button>`;
-    } else if (trackId === 'k18_sale') {
-      startBtn = `<button class="trn-quiz-start-btn" style="margin-top:20px" onclick="window._trnNavigate('k18_day1')">Bắt đầu Onboard K18 (5 ngày) →</button>`;
-    }
+    var trackProgMap = {
+      k12_sale: { fn: getCompletionPercent, page: 'day1', label: 'Sale K12 Onboard', days: 5, color: 'red' },
+      k12_cs: { fn: getCSK12CompletionPercent, page: 'csk12_day1', label: 'CS K12 Onboard', days: 5, color: 'green' },
+      k18_sale: { fn: getK18CompletionPercent, page: 'k18_day1', label: 'K18 Sale Onboard', days: 5, color: 'blue' }
+    };
+    var prog = trackProgMap[trackId];
+    var pct = prog ? prog.fn() : 0;
+    var startPage = prog ? prog.page : '';
+    var btnLabel = pct > 0 ? 'Tiếp tục' : 'Bắt đầu';
 
     let html = `
       <div class="trn-track-header">
-        <div class="trn-track-icon">${track.icon}</div>
-        <h2>${track.title}</h2>
-        <p>${track.description}</p>
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;">
+          <div class="trn-track-icon" style="font-size:2.5rem;">${track.icon}</div>
+          <div>
+            <h2 style="margin:0;">${track.title}</h2>
+            <p style="margin:4px 0 0;font-size:0.82rem;color:#A0AEC0;">${track.description}</p>
+          </div>
+        </div>
+        ${prog ? `
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+          <div class="trn-progress-bar" style="flex:1;"><div class="trn-progress-fill ${prog.color}" style="width:${pct}%"></div></div>
+          <span style="font-size:0.82rem;font-weight:700;color:${pct===100?'#059669':'#A0AEC0'};">${pct}%</span>
+        </div>` : ''}
         <p style="font-size:0.85rem;color:#4A5568;line-height:1.6;">${track.detail}</p>
         <h4 style="margin-top:16px;margin-bottom:12px;font-size:0.92rem;">Các module đào tạo:</h4>
         <ul class="trn-track-modules">
           ${track.modules.map(m => `<li>${m}</li>`).join('')}
         </ul>
-        ${startBtn}
+        ${startPage ? `<button class="trn-quiz-start-btn" style="margin-top:20px" onclick="window._trnNavigate('${startPage}')">${btnLabel} ${track.title} (${prog ? prog.days : ''} ngày) →</button>` : ''}
       </div>
     `;
 
@@ -716,51 +793,62 @@ window.TrainingEmbed = (function() {
 
   /* ---- RENDER: QUIZ HUB ---- */
   function renderQuizHub() {
-    const quizzes = [];
+    var allQ = getAllQuizzes();
+    var totalQuizzes = allQ.length;
+    var completedQuizzes = allQ.filter(function(q) { return state.quizzes[q.quiz.id]; }).length;
+    var avgStr = getQuizAverage();
 
-    TRAINING_DATA.onboard.days.forEach(day => {
-      day.sections.forEach(s => {
-        if (s.quiz) {
-          quizzes.push({ ...s.quiz, dayTitle: `K12 Ngày ${day.day}`, sectionTitle: s.title, icon: day.icon });
-        }
-      });
+    // Group by academy
+    var groups = {};
+    allQ.forEach(function(q) {
+      if (!groups[q.academy]) groups[q.academy] = [];
+      groups[q.academy].push(q);
     });
 
-    if (TRAINING_DATA.onboardCSK12) {
-      TRAINING_DATA.onboardCSK12.days.forEach(day => {
-        day.sections.forEach(s => {
-          if (s.quiz) {
-            quizzes.push({ ...s.quiz, dayTitle: `CS K12 Ngày ${day.day}`, sectionTitle: s.title, icon: day.icon });
-          }
-        });
-      });
-    }
-
-    if (TRAINING_DATA.onboardK18) {
-      TRAINING_DATA.onboardK18.days.forEach(day => {
-        day.sections.forEach(s => {
-          if (s.quiz) {
-            quizzes.push({ ...s.quiz, dayTitle: `K18 Ngày ${day.day}`, sectionTitle: s.title, icon: day.icon });
-          }
-        });
-      });
+    // Add Quiz Friday
+    if (TRAINING_DATA.microlearning && TRAINING_DATA.microlearning.quizFriday) {
+      if (!groups['Microlearning']) groups['Microlearning'] = [];
+      groups['Microlearning'].push({ quiz: { id: 'quiz_friday', title: 'Quiz Friday', questions: TRAINING_DATA.microlearning.quizFriday }, academy: 'Microlearning', dayTitle: 'Hàng tuần', icon: '🎯' });
     }
 
     let html = `
-      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:16px;">Tất cả Quiz</h3>
-      <div class="trn-quiz-hub-grid">
-        ${quizzes.map(q => {
-          const score = getScore(q.id);
-          return `
-            <div class="trn-quiz-hub-card" onclick="window._trnStartQuiz('${q.id}')">
-              <div class="trn-qh-icon">${q.icon || '📝'}</div>
-              <div class="trn-qh-title">${q.title}</div>
-              <div class="trn-qh-meta">${q.dayTitle} — ${q.questions.length} câu</div>
-              ${score !== null ? `<div class="trn-qh-score">Điểm: ${score}/10 (Rank ${getRank(parseFloat(score))})</div>` : '<div class="trn-qh-meta" style="margin-top:8px;">Chưa làm</div>'}
-            </div>`;
-        }).join('')}
+      <div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;margin-bottom:20px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+        <div style="text-align:center;">
+          <div style="font-size:1.8rem;font-weight:800;color:#1A202C;">${completedQuizzes}/${totalQuizzes}</div>
+          <div style="font-size:0.72rem;color:#A0AEC0;">Quiz đã làm</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:1.8rem;font-weight:800;color:#1A202C;">${avgStr}</div>
+          <div style="font-size:0.72rem;color:#A0AEC0;">Điểm TB</div>
+        </div>
+        <div style="flex:1;">
+          <div class="trn-progress-bar" style="height:10px;"><div class="trn-progress-fill red" style="width:${totalQuizzes > 0 ? Math.round(completedQuizzes/totalQuizzes*100) : 0}%"></div></div>
+        </div>
       </div>
     `;
+
+    Object.keys(groups).forEach(function(academy) {
+      html += `<h3 style="font-size:0.95rem;font-weight:700;margin:20px 0 12px;color:#1A202C;">${academy}</h3>`;
+      html += '<div class="trn-quiz-hub-grid">';
+      groups[academy].forEach(function(q) {
+        var score = getScore(q.quiz.id);
+        var rk = score !== null ? getRank(parseFloat(score)) : null;
+        var statusIcon = rk ? (rk === 'F' ? '✗' : '✓') : '—';
+        var statusColor = rk ? (rk === 'F' ? '#E31F26' : '#059669') : '#A0AEC0';
+        html += `
+          <div class="trn-quiz-hub-card" onclick="window._trnStartQuiz('${q.quiz.id}')">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div class="trn-qh-icon">${q.icon || '📝'}</div>
+              <span style="font-size:0.72rem;font-weight:700;color:${statusColor};">${statusIcon} ${rk ? 'Rank ' + rk : 'Chưa làm'}</span>
+            </div>
+            <div class="trn-qh-title">${q.quiz.title}</div>
+            <div class="trn-qh-meta">${q.dayTitle} — ${q.quiz.questions.length} câu</div>
+            ${score !== null ? `<div class="trn-qh-score">Điểm cao nhất: ${score}/10</div>` : ''}
+            ${score !== null ? '<div style="margin-top:6px;"><button style="padding:4px 12px;background:#F8F9FA;border:1px solid #E2E8F0;border-radius:6px;font-family:inherit;font-size:0.72rem;font-weight:600;cursor:pointer;">Làm lại</button></div>' : ''}
+          </div>`;
+      });
+      html += '</div>';
+    });
 
     pageContent.innerHTML = html;
   }
@@ -801,13 +889,24 @@ window.TrainingEmbed = (function() {
 
   /* ---- RENDER: TIPS ---- */
   function renderTips() {
-    let html = `<h3 style="font-size:1.1rem;font-weight:700;margin-bottom:16px;">💡 Tips tư vấn hàng tuần</h3>`;
+    var tips = TRAINING_DATA.microlearning.tips;
+    var info = getUnreadTipCount();
 
-    TRAINING_DATA.microlearning.tips.forEach(tip => {
-      const isRead = state.tipsRead[tip.id];
+    let html = `
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+        <h3 style="font-size:1.1rem;font-weight:700;margin:0;">💡 Tips tư vấn hàng tuần</h3>
+        <span style="font-size:0.82rem;font-weight:600;color:${info.read === info.total ? '#059669' : '#A0AEC0'};">${info.read}/${info.total} đã đọc</span>
+      </div>
+    `;
+
+    tips.forEach(function(tip) {
+      var isRead = state.tipsRead[tip.id];
       html += `
-        <div class="trn-tip-card">
-          <div class="trn-tip-week">${tip.week}</div>
+        <div class="trn-tip-card" style="border-left:4px solid ${isRead ? '#059669' : '#2563EB'};">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+            <span class="trn-tip-week">${tip.week}</span>
+            ${isRead ? '<span style="font-size:0.68rem;font-weight:700;color:#059669;background:#ECFDF5;padding:2px 8px;border-radius:8px;">Đã đọc</span>' : ''}
+          </div>
           <div class="trn-tip-title">${tip.title}</div>
           <div class="trn-tip-content">${tip.content}</div>
           <button class="trn-tip-mark-btn ${isRead ? 'read' : ''}" onclick="window._trnMarkTipRead('${tip.id}', this)">
@@ -815,6 +914,10 @@ window.TrainingEmbed = (function() {
           </button>
         </div>`;
     });
+
+    if (info.read === info.total && info.total > 0) {
+      html += '<div style="text-align:center;padding:20px;font-size:0.88rem;color:#059669;font-weight:600;">Bạn đã đọc tất cả tips! Quay lại vào tuần tới.</div>';
+    }
 
     pageContent.innerHTML = html;
   }
@@ -828,27 +931,95 @@ window.TrainingEmbed = (function() {
 
   /* ---- RENDER: CASES ---- */
   function renderCases() {
-    let html = `<h3 style="font-size:1.1rem;font-weight:700;margin-bottom:16px;">📖 Case Study thực tế</h3>`;
+    var cases = TRAINING_DATA.microlearning.caseStudies;
+    var totalCases = cases.length;
+    var readCases = cases.filter(function(c) { return state.casesRead && state.casesRead[c.id]; }).length;
 
-    TRAINING_DATA.microlearning.caseStudies.forEach(cs => {
+    let html = `
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+        <h3 style="font-size:1.1rem;font-weight:700;margin:0;">📖 Case Study thực tế</h3>
+        <span style="font-size:0.82rem;font-weight:600;color:${readCases === totalCases ? '#059669' : '#A0AEC0'};">${readCases}/${totalCases} đã đọc</span>
+      </div>
+    `;
+
+    cases.forEach(function(cs) {
+      var isRead = state.casesRead && state.casesRead[cs.id];
+      // Extract key takeaway from content (last line after "Bài học:")
+      var takeaway = '';
+      var match = cs.content.match(/<strong>Bài học:<\/strong>\s*(.*?)$/s);
+      if (match) takeaway = match[1].replace(/<[^>]*>/g, '').trim();
+
       html += `
-        <div class="trn-case-card">
-          <span class="trn-case-type ${cs.type}">${cs.type === 'success' ? '✓ Thành công' : '✗ Thất bại'}</span>
+        <div class="trn-case-card" style="border-left:4px solid ${cs.type === 'success' ? '#059669' : '#E31F26'};">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <span class="trn-case-type ${cs.type}">${cs.type === 'success' ? '✓ Thành công' : '✗ Thất bại'}</span>
+            ${isRead ? '<span style="font-size:0.68rem;font-weight:700;color:#059669;background:#ECFDF5;padding:2px 8px;border-radius:8px;">Đã đọc</span>' : ''}
+          </div>
           <div class="trn-case-title">${cs.title}</div>
           <div class="trn-case-content">${cs.content}</div>
+          ${takeaway ? '<div style="margin-top:10px;padding:10px 14px;background:#FFFBEB;border-radius:6px;font-size:0.82rem;border-left:3px solid #D97706;"><strong>Bài học chính:</strong> ' + escHtml(takeaway.substring(0, 200)) + '</div>' : ''}
+          <button class="trn-tip-mark-btn ${isRead ? 'read' : ''}" onclick="window._trnMarkCaseRead('${cs.id}', this)" style="margin-top:12px;">
+            ${isRead ? '✓ Đã đọc' : 'Đánh dấu đã đọc'}
+          </button>
         </div>`;
     });
 
     pageContent.innerHTML = html;
   }
 
+  window._trnMarkCaseRead = function(caseId, btn) {
+    if (!state.casesRead) state.casesRead = {};
+    state.casesRead[caseId] = true;
+    saveState();
+    btn.textContent = '✓ Đã đọc';
+    btn.classList.add('read');
+  };
+
   /* ---- RENDER: QUIZ FRIDAY ---- */
   function renderFriday() {
+    var fridayScore = getScore('quiz_friday');
+    var fridayRank = fridayScore !== null ? getRank(parseFloat(fridayScore)) : null;
+    var tipInfo = getUnreadTipCount();
+    var casesTotal = TRAINING_DATA.microlearning.caseStudies.length;
+    var casesRead = TRAINING_DATA.microlearning.caseStudies.filter(function(c) { return state.casesRead && state.casesRead[c.id]; }).length;
+
     let html = `
-      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:8px;">🎯 Quiz Friday</h3>
-      <p style="font-size:0.85rem;color:#4A5568;margin-bottom:20px;">5 câu hỏi nhanh mỗi tuần — kiểm tra kiến thức tư vấn!</p>
-      <button class="trn-quiz-start-btn" onclick="window._trnStartQuiz('quiz_friday')">Bắt đầu Quiz Friday (5 câu)</button>
-      ${state.quizzes['quiz_friday'] ? `<span style="margin-left:12px;font-size:0.8rem;color:#059669;font-weight:600;">Điểm: ${getScore('quiz_friday')}/10</span>` : ''}
+      <div style="background:linear-gradient(135deg,#7C3AED,#6D28D9);border-radius:14px;padding:28px 32px;color:white;margin-bottom:24px;">
+        <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:6px;">🎯 Friday Learning</h2>
+        <p style="font-size:0.85rem;opacity:0.9;">Nội dung đào tạo cuối tuần — quiz nhanh, tips và case study</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:24px;">
+        <div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;">
+          <div style="font-size:1.3rem;margin-bottom:8px;">📝</div>
+          <div style="font-size:0.92rem;font-weight:700;margin-bottom:4px;">Quiz Friday</div>
+          <div style="font-size:0.78rem;color:#A0AEC0;margin-bottom:12px;">5 câu hỏi nhanh — kiểm tra kiến thức tư vấn</div>
+          ${fridayScore !== null ? `
+            <div style="font-size:0.82rem;font-weight:600;color:#059669;margin-bottom:8px;">Điểm: ${fridayScore}/10 <span class="trn-lb-badge trn-rank-${fridayRank}">${fridayRank}</span></div>
+            <button class="trn-quiz-start-btn" onclick="window._trnStartQuiz('quiz_friday')" style="font-size:0.82rem;padding:8px 18px;">Làm lại Quiz</button>
+          ` : `
+            <button class="trn-quiz-start-btn" onclick="window._trnStartQuiz('quiz_friday')" style="font-size:0.82rem;padding:8px 18px;">Bắt đầu Quiz (5 câu)</button>
+          `}
+        </div>
+
+        <div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;cursor:pointer;" onclick="window._trnNavigate('micro_tips')">
+          <div style="font-size:1.3rem;margin-bottom:8px;">💡</div>
+          <div style="font-size:0.92rem;font-weight:700;margin-bottom:4px;">Tips tuần này</div>
+          <div style="font-size:0.78rem;color:#A0AEC0;margin-bottom:8px;">${tipInfo.read}/${tipInfo.total} tips đã đọc</div>
+          <div class="trn-progress-bar" style="height:6px;"><div class="trn-progress-fill blue" style="width:${tipInfo.total > 0 ? Math.round(tipInfo.read/tipInfo.total*100) : 0}%"></div></div>
+        </div>
+
+        <div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;cursor:pointer;" onclick="window._trnNavigate('micro_cases')">
+          <div style="font-size:1.3rem;margin-bottom:8px;">📖</div>
+          <div style="font-size:0.92rem;font-weight:700;margin-bottom:4px;">Case Study</div>
+          <div style="font-size:0.78rem;color:#A0AEC0;margin-bottom:8px;">${casesRead}/${casesTotal} case đã đọc</div>
+          <div class="trn-progress-bar" style="height:6px;"><div class="trn-progress-fill green" style="width:${casesTotal > 0 ? Math.round(casesRead/casesTotal*100) : 0}%"></div></div>
+        </div>
+      </div>
+
+      <div style="background:#F8F9FA;border-radius:10px;padding:16px 20px;font-size:0.82rem;color:#4A5568;line-height:1.5;">
+        <strong>📅 Gợi ý:</strong> Mỗi thứ 6, hãy dành 15 phút để làm Quiz Friday, đọc 1 tip mới và 1 case study. Kiến thức tích lũy dần sẽ giúp bạn tư vấn chuyên nghiệp hơn!
+      </div>
     `;
 
     pageContent.innerHTML = html;
@@ -856,16 +1027,21 @@ window.TrainingEmbed = (function() {
 
   /* ---- RENDER: LEADERBOARD ---- */
   function renderLeaderboard() {
+    var emp = getEmployeeSession();
+    var displayName = emp && emp.name ? emp.name : state.userName;
+    var userBU = emp && emp.bu ? emp.bu : '';
+
     let entries = [...TRAINING_DATA.sampleLeaderboard];
     const overallScore = getOverallScore();
-    if (overallScore !== null && state.userName) {
-      const existing = entries.findIndex(e => e.name === state.userName);
+    if (overallScore !== null && displayName) {
+      const existing = entries.findIndex(e => e.name === displayName);
       const userEntry = {
-        name: state.userName,
+        name: displayName,
         score: parseFloat(overallScore),
         completion: getCompletionPercent(),
         rank: getOverallRank(),
-        date: new Date().toISOString().slice(0,10)
+        date: new Date().toISOString().slice(0,10),
+        bu: userBU
       };
       if (existing >= 0) entries[existing] = userEntry;
       else entries.push(userEntry);
@@ -873,8 +1049,27 @@ window.TrainingEmbed = (function() {
 
     entries.sort((a,b) => b.score - a.score);
 
+    // Find user rank
+    var userRankPos = entries.findIndex(function(e) { return e.name === displayName; });
+    var medals = ['🥇','🥈','🥉'];
+
     let html = `
+      ${overallScore !== null ? `
+      <div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;margin-bottom:20px;display:flex;align-items:center;gap:20px;">
+        <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#E31F26,#B91C22);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:800;">${userRankPos >= 0 ? userRankPos + 1 : '—'}</div>
+        <div>
+          <div style="font-size:0.92rem;font-weight:700;">Điểm của bạn: ${overallScore}/10</div>
+          <div style="font-size:0.78rem;color:#A0AEC0;">Xếp hạng ${userRankPos >= 0 ? '#' + (userRankPos+1) : '—'} trên ${entries.length} người ${userBU ? '&bull; BU: ' + escHtml(userBU) : ''}</div>
+        </div>
+        ${getOverallRank() ? '<span class="trn-lb-badge trn-rank-' + getOverallRank() + '" style="font-size:0.85rem;padding:6px 16px;">' + getOverallRank() + ' ' + getRankIcon(getOverallRank()) + '</span>' : ''}
+      </div>` : ''}
+
       <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:16px;">🏆 Bảng xếp hạng TVTS</h3>
+
+      <div style="background:#F8F9FA;border-radius:8px;padding:12px 16px;font-size:0.78rem;color:#4A5568;margin-bottom:16px;line-height:1.5;">
+        <strong>Cách tính điểm:</strong> Điểm = Trung bình tất cả quiz đã làm (thang 10). Rank: S (≥9) &bull; A (≥8) &bull; B (≥7) &bull; C (≥6) &bull; F (<6)
+      </div>
+
       <table class="trn-leaderboard-table">
         <thead>
           <tr>
@@ -883,21 +1078,19 @@ window.TrainingEmbed = (function() {
             <th>Điểm</th>
             <th>Hoàn thành</th>
             <th>Rank</th>
-            <th>Ngày</th>
           </tr>
         </thead>
         <tbody>
           ${entries.map((e, i) => {
-            const isMe = e.name === state.userName;
+            const isMe = e.name === displayName;
             const topClass = i === 0 ? 'top1' : i === 1 ? 'top2' : i === 2 ? 'top3' : '';
             return `
               <tr style="${isMe ? 'background:#FFF5F5;font-weight:600;' : ''}">
-                <td><span class="trn-lb-rank-num ${topClass}">${i+1}</span></td>
-                <td>${escHtml(e.name)} ${isMe ? '(Bạn)' : ''}</td>
-                <td>${e.score.toFixed(1)}</td>
+                <td><span class="trn-lb-rank-num ${topClass}">${i < 3 ? medals[i] : (i+1)}</span></td>
+                <td>${escHtml(e.name)} ${isMe ? '<span style="font-size:0.72rem;color:#E31F26;">(Bạn)</span>' : ''}</td>
+                <td style="font-weight:700;">${e.score.toFixed(1)}</td>
                 <td>${e.completion}%</td>
                 <td><span class="trn-lb-badge trn-rank-${e.rank}">${e.rank} ${getRankIcon(e.rank)}</span></td>
-                <td>${e.date}</td>
               </tr>`;
           }).join('')}
         </tbody>
@@ -911,46 +1104,83 @@ window.TrainingEmbed = (function() {
   function renderSettings() {
     const overallScore = getOverallScore();
     const overallRank = getOverallRank();
+    const emp = getEmployeeSession();
 
     let html = `
       <div class="trn-settings-section">
-        <h3>👤 Hồ sơ</h3>
+        <h3>👤 Thông tin nhân viên</h3>
         <div class="trn-settings-row">
-          <span class="trn-settings-label">Tên</span>
-          <span class="trn-settings-value">${escHtml(state.userName)}</span>
+          <span class="trn-settings-label">Mã NV</span>
+          <span class="trn-settings-value" style="font-weight:700;color:#1A202C;">${emp && emp.msnv ? escHtml(emp.msnv) : '—'}</span>
         </div>
         <div class="trn-settings-row">
+          <span class="trn-settings-label">Họ tên</span>
+          <span class="trn-settings-value" style="color:#1A202C;">${emp && emp.name ? escHtml(emp.name) : escHtml(state.userName)}</span>
+        </div>
+        <div class="trn-settings-row">
+          <span class="trn-settings-label">BU</span>
+          <span class="trn-settings-value">${emp && emp.bu ? escHtml(emp.bu) : '—'}</span>
+        </div>
+        <div class="trn-settings-row">
+          <span class="trn-settings-label">Vị trí</span>
+          <span class="trn-settings-value">${emp && emp.position ? escHtml(emp.position) : '—'}</span>
+        </div>
+        <div class="trn-settings-row">
+          <span class="trn-settings-label">Khu vực</span>
+          <span class="trn-settings-value">${emp && emp.region ? escHtml(emp.region) : '—'}</span>
+        </div>
+      </div>
+
+      <div class="trn-settings-section">
+        <h3>📊 Tiến độ đào tạo</h3>
+        <div class="trn-settings-row">
           <span class="trn-settings-label">Điểm trung bình</span>
-          <span class="trn-settings-value">${overallScore || '—'}</span>
+          <span class="trn-settings-value" style="font-weight:700;">${overallScore || '—'}/10</span>
         </div>
         <div class="trn-settings-row">
           <span class="trn-settings-label">Rank</span>
-          <span class="trn-settings-value">${overallRank ? overallRank + ' ' + getRankIcon(overallRank) : '—'}</span>
+          <span class="trn-settings-value">${overallRank ? '<span class="trn-lb-badge trn-rank-' + overallRank + '">' + overallRank + ' ' + getRankIcon(overallRank) + '</span>' : '—'}</span>
         </div>
         <div class="trn-settings-row">
-          <span class="trn-settings-label">K12 Hoàn thành</span>
+          <span class="trn-settings-label">K12 Sale Onboard</span>
           <span class="trn-settings-value">${getCompletionPercent()}%</span>
         </div>
         <div class="trn-settings-row">
-          <span class="trn-settings-label">CS K12 Hoàn thành</span>
+          <span class="trn-settings-label">CS K12 Onboard</span>
           <span class="trn-settings-value">${getCSK12CompletionPercent()}%</span>
         </div>
         <div class="trn-settings-row">
-          <span class="trn-settings-label">K18 Hoàn thành</span>
+          <span class="trn-settings-label">K18 Sale Onboard</span>
           <span class="trn-settings-value">${getK18CompletionPercent()}%</span>
+        </div>
+        <div class="trn-settings-row">
+          <span class="trn-settings-label">Bài học đã xem</span>
+          <span class="trn-settings-value">${getLessonsCompleted()}</span>
+        </div>
+        <div class="trn-settings-row">
+          <span class="trn-settings-label">Quiz đã làm</span>
+          <span class="trn-settings-value">${Object.keys(state.quizzes).length}</span>
         </div>
       </div>
 
       <div class="trn-settings-section">
         <h3>🔧 Tùy chọn</h3>
         <div class="trn-settings-row">
-          <span class="trn-settings-label">Đổi tên</span>
+          <span class="trn-settings-label">Đổi tên hiển thị</span>
           <button class="trn-settings-btn" onclick="window._trnChangeName()">Đổi tên</button>
         </div>
         <div class="trn-settings-row">
-          <span class="trn-settings-label">Xóa dữ liệu học tập</span>
+          <span class="trn-settings-label">Xóa cache đào tạo</span>
           <button class="trn-settings-btn danger" onclick="window._trnResetProgress()">Xóa toàn bộ</button>
         </div>
+        <div class="trn-settings-row">
+          <span class="trn-settings-label">Đăng xuất</span>
+          <button class="trn-settings-btn danger" onclick="window._trnLogout()">Đăng xuất</button>
+        </div>
+      </div>
+
+      <div style="text-align:center;padding:20px 0;font-size:0.72rem;color:#A0AEC0;">
+        MindX Training Platform v2.1 &bull; April 2026
       </div>
     `;
 
@@ -972,8 +1202,16 @@ window.TrainingEmbed = (function() {
       state.lessonsViewed = {};
       state.tipsRead = {};
       state.timeSpent = {};
+      state.casesRead = {};
       saveState();
       renderSettings();
+    }
+  };
+
+  window._trnLogout = function() {
+    if (confirm('Đăng xuất khỏi hệ thống đào tạo?')) {
+      try { safeStorage.removeItem('mindx_employee_session'); } catch(e) {}
+      window.location.reload();
     }
   };
 
