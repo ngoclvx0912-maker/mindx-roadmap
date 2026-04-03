@@ -75,6 +75,7 @@ window.RolePlayLab = (function() {
     chatMode: 'practice',
     messages: [],
     isTyping: false,
+    isScoring: false,
     sessionId: null,
     sessionStartTime: null,
     timerInterval: null,
@@ -374,14 +375,14 @@ CTA mong đợi: ${scenario.desiredCTA}`;
         mode: state.chatMode,
         totalMessages: state.messages.length,
         totalScore: scoreData.diemTongKet || 0,
-        needDiscoveryScore: (chiTiet.khai_thac_nhu_cau || {}).diem || 0,
-        questioningScore: (chiTiet.ky_thuat_hoi || {}).diem || 0,
-        valueCommunicationScore: (chiTiet.truyen_tai_gia_tri || {}).diem || 0,
-        scopeAccuracyScore: (chiTiet.chinh_xac_scope || {}).diem || 0,
-        objectionHandlingScore: (chiTiet.xu_ly_tu_choi || {}).diem || 0,
-        trustBuildingScore: (chiTiet.xay_dung_niem_tin || {}).diem || 0,
-        ctaNavigationScore: (chiTiet.dan_dat_cta || {}).diem || 0,
-        communicationQualityScore: (chiTiet.chat_luong_giao_tiep || {}).diem || 0,
+        needDiscoveryScore: (chiTiet.hieuNhuCau || {}).diem || 0,
+        questioningScore: (chiTiet.datCauHoi || {}).diem || 0,
+        valueCommunicationScore: (chiTiet.truyenTaiGiaTri || {}).diem || 0,
+        scopeAccuracyScore: (chiTiet.khongOverclaim || {}).diem || 0,
+        objectionHandlingScore: (chiTiet.xuLyObjection || {}).diem || 0,
+        trustBuildingScore: (chiTiet.taoNiemTin || {}).diem || 0,
+        ctaNavigationScore: (chiTiet.dieuHuongCTA || {}).diem || 0,
+        communicationQualityScore: (chiTiet.vanPhong || {}).diem || 0,
         finalVerdict: scoreData.xepLoai || '',
         strengths: scoreData.diemManhNhat || '',
         weaknesses: scoreData.diemYeuNhat || '',
@@ -1269,6 +1270,7 @@ CTA mong đợi: ${scenario.desiredCTA}`;
     state.sessionStartTime = Date.now();
     state.elapsedSeconds = 0;
     state.isTyping = false;
+    state.isScoring = false;
     state.scoreReport = null;
 
     // Initial message from persona (AI)
@@ -1443,6 +1445,11 @@ CTA mong đợi: ${scenario.desiredCTA}`;
   }
 
   async function sendUserMessage(text) {
+    // Guard: prevent double send while AI is typing
+    if (state.isTyping) return;
+    // Guard: prevent send during scoring
+    if (state.isScoring) return;
+
     const maxTurns = data.scoringRubric.modes[state.chatMode].maxTurns || MAX_MESSAGES;
     const totalMsgs = state.messages.length;
 
@@ -1524,7 +1531,11 @@ CTA mong đợi: ${scenario.desiredCTA}`;
   // 17. END SESSION & SCORING
   // ===================================================================
   async function endSession() {
-    clearInterval(state.timerInterval);
+    // Guard: prevent double scoring
+    if (state.isScoring) return;
+    state.isScoring = true;
+    // Clear timer
+    if (state.timerInterval) { clearInterval(state.timerInterval); state.timerInterval = null; }
     state.isTyping = false;
     clearChatState();
 
@@ -1558,14 +1569,20 @@ CTA mong đợi: ${scenario.desiredCTA}`;
         try {
           scoreData = JSON.parse(jsonMatch[0]);
         } catch(parseErr) {
-          // Try to fix common JSON issues
-          var cleaned = jsonMatch[0]
-            .replace(/,\s*}/g, '}')
-            .replace(/,\s*]/g, ']');
-          scoreData = JSON.parse(cleaned);
+          try {
+            var cleaned = jsonMatch[0]
+              .replace(/,\s*}/g, '}')
+              .replace(/,\s*]/g, ']')
+              .replace(/[\x00-\x1F]+/g, ' ');
+            scoreData = JSON.parse(cleaned);
+          } catch(parseErr2) {
+            console.error('[RolePlayLab] Score parse failed:', parseErr2, jsonMatch[0].substring(0,200));
+            scoreData = { diemTongKet: 50, xepLoai: 'Trung b\u00ecnh', nhanXetTongQuat: 'H\u1ec7 th\u1ed1ng kh\u00f4ng parse \u0111\u01b0\u1ee3c \u0111i\u1ec3m chi ti\u1ebft. Vui l\u00f2ng th\u1eed l\u1ea1i.', chiTiet: {} };
+          }
         }
       } else {
-        throw new Error('No JSON found in scoring response');
+        console.error('[RolePlayLab] No JSON in scoring response:', response.substring(0,300));
+        scoreData = { diemTongKet: 50, xepLoai: 'Trung b\u00ecnh', nhanXetTongQuat: 'H\u1ec7 th\u1ed1ng kh\u00f4ng nh\u1eadn \u0111\u01b0\u1ee3c k\u1ebft qu\u1ea3 ch\u1ea5m \u0111i\u1ec3m. Vui l\u00f2ng th\u1eed l\u1ea1i.', chiTiet: {} };
       }
 
       state.scoreReport = scoreData;
@@ -1610,14 +1627,17 @@ CTA mong đợi: ${scenario.desiredCTA}`;
       state.scoreReport = {
         diemTongKet: 0,
         xepLoai: 'Lỗi',
-        nhanXetTongQuat: 'Không thể chấm điểm phiên này. Lỗi: ' + err.message,
+        nhanXetTongQuat: 'Không thể chấm điểm phiên này. Lỗi: ' + (err.message || 'unknown'),
         chiTiet: {},
         diemManhNhat: '',
         diemYeuNhat: '',
         loiKhuyenSoMot: 'Hãy thử lại phiên khác.'
       };
+    } finally {
+      state.isScoring = false;
     }
 
+    navigate('score');
     render();
   }
 
