@@ -1111,17 +1111,17 @@
   function buildSlide12() {
     var s = el("div", "xa-slide");
     s.innerHTML =
-      '<div class="xa-title-large">Hành trình bắt đầu từ hôm nay</div>' +
+      '<div class="xa-title-large">Đặt lịch tư vấn — Mang theo 1 bức tranh con vẽ</div>' +
       '<div class="xa-cta-box xa-cta-enroll">' +
-        '<div class="xa-cta-title">Mỗi ngày chờ đợi là một ngày<br>con đi sau các bạn cùng trang lứa</div>' +
+        '<div class="xa-cta-title">Chúng tôi sẽ tư vấn lộ trình phù hợp — Miễn phí — 5 suất/tuần</div>' +
         '<div class="xa-cta-checks">' +
-          '<div class="xa-cta-check">✔ <strong>Tư duy</strong> — Tư duy sáng tạo &amp; thẩm mỹ từ sớm</div>' +
-          '<div class="xa-cta-check">✔ <strong>Kỹ năng</strong> — Thiết kế đồ họa, UI/UX, sản phẩm thực tế</div>' +
-          '<div class="xa-cta-check">✔ <strong>Kiến thức</strong> — Nền tảng nghệ thuật số vững chắc cho tương lai</div>' +
+          '<div class="xa-cta-check">✔ Đánh giá phong cách và năng lực hiện tại của con qua tác phẩm con mang đến (không phải bài kiểm tra)</div>' +
+          '<div class="xa-cta-check">✔ Thiết kế lộ trình cá nhân: bắt đầu từ đâu, mục tiêu gì, trong bao lâu</div>' +
+          '<div class="xa-cta-check">✔ Con được trải nghiệm 1 buổi vẽ thử miễn phí trước khi quyết định đăng ký</div>' +
         '</div>' +
-        '<div class="xa-cta-btn">ĐĂNG KÝ NGAY — Bắt đầu hành trình</div>' +
+        '<div class="xa-cta-btn">ĐẶT LỊCH TƯ VẤN MIỄN PHÍ</div>' +
       '</div>' +
-      '<p class="xa-subtitle" style="margin-top:24px;margin-bottom:0;font-size:0.95rem;color:#999">Anh/chị đã thấy cách MindX dạy — hãy để con bước vào lộ trình sớm nhất có thể.</p>';
+      '<p class="xa-subtitle" style="margin-top:24px;margin-bottom:0;font-size:0.95rem;color:#6B7280">Mỗi bức tranh con vẽ là một câu chuyện. Hãy để MindX giúp con kể câu chuyện đó cho cả thế giới nghe.</p>';
     return s;
   }
 

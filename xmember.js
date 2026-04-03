@@ -3,7 +3,7 @@
   "use strict";
 
   var currentSlide = 0;
-  var totalSlides = 18;
+  var totalSlides = 19;
   var container = null;
   var isActive = false;
   var detailOverlay = null;
@@ -261,6 +261,7 @@
       buildSlide2(),
       buildSlideMarket2(),
       buildSlideMarket3(),
+      buildSlideTransformation(),
       buildSlide3(),
       buildSlide4(),
       buildSlideSpecial(),
@@ -461,7 +462,7 @@
     s.innerHTML =
       '<img src="./mindx-logo.png" alt="MindX" class="xm-logo-large">' +
       '<div class="xm-title-hero">Chào mừng đến với<br><span class="xm-accent">MindX Technology School</span></div>' +
-      '<p class="xm-tagline">Kiến tạo thế hệ công dân số</p>';
+      '<p class="xm-tagline">Hành trình Kiến tạo số — 5 năm từ kéo thả đến AI</p>';
     return s;
   }
 
@@ -591,6 +592,37 @@
         showDetail("💰 Lương ngành IT Việt Nam", html);
       });
     }, 0);
+    return s;
+  }
+
+  function buildSlideTransformation() {
+    var s = el("div", "xm-slide");
+    s.innerHTML =
+      '<div class="xm-title-large">Từ người dùng → <span class="xm-accent">người kiến tạo</span></div>' +
+      '<div class="xm-quote" style="font-size:1.35rem;margin:20px 0">Từ “con chơi game” → “con TẠO game”.<br>Từ dùng internet → KIẾN TẠO internet.</div>' +
+      '<p class="xm-subtitle">Đây là sự khác biệt giữa một người dùng — và một người tạo ra tương lai.</p>' +
+      '<div class="xm-grid-4" style="margin-top:16px">' +
+        '<div class="xm-card" style="background:#F9FAFB;border:2px solid #E5E7EB">' +
+          '<span class="xm-card-icon">📱</span>' +
+          '<div class="xm-card-title" style="color:#6B7280">Hầu hết trẻ em</div>' +
+          '<div class="xm-card-desc">Dùng 4-6 tiếng/ngày với màn hình nhưng không biết những gì trên màn hình đến từ đâu</div>' +
+        '</div>' +
+        '<div class="xm-card" style="background:#EFF6FF;border:2px solid #2563EB">' +
+          '<span class="xm-card-icon">💻</span>' +
+          '<div class="xm-card-title" style="color:#2563EB">Học viên MindX</div>' +
+          '<div class="xm-card-desc">Sau 5 năm: có thể code website, tạo app, dạy AI học, giải quyết vấn đề thật bằng công nghệ thật</div>' +
+        '</div>' +
+        '<div class="xm-card">' +
+          '<span class="xm-card-icon">🧠</span>' +
+          '<div class="xm-card-title">Tư duy kiến tạo</div>' +
+          '<div class="xm-card-desc">Không chỉ dùng trong IT — thay đổi cách con tiếp cận mọi thách thức trong cuộc đời</div>' +
+        '</div>' +
+        '<div class="xm-card" style="background:#F0FDF4;border:2px solid #059669">' +
+          '<span class="xm-card-icon">🌟</span>' +
+          '<div class="xm-card-title" style="color:#059669">MindX hứa</div>' +
+          '<div class="xm-card-desc">Đây không phải khóa học thêm — đây là nền tảng để con trở thành ai trong 10 năm tới</div>' +
+        '</div>' +
+      '</div>';
     return s;
   }
 
@@ -1143,17 +1175,17 @@
   function buildSlide12() {
     var s = el("div", "xm-slide");
     s.innerHTML =
-      '<div class="xm-title-large">Hành trình bắt đầu từ hôm nay</div>' +
+      '<div class="xm-title-large">Đặt lịch tư vấn lộ trình cá nhân cho con</div>' +
       '<div class="xm-cta-box xm-cta-enroll">' +
-        '<div class="xm-cta-title">Mỗi ngày chờ đợi là một ngày<br>con đi sau các bạn cùng trang lứa</div>' +
+        '<div class="xm-cta-title">Miễn phí — 45 phút — Chỉ 5 suất/tuần tại mỗi cơ sở</div>' +
         '<div class="xm-cta-checks">' +
-          '<div class="xm-cta-check">✔ <strong>Tư duy</strong> — Giải quyết vấn đề &amp; tư duy logic từ sớm</div>' +
-          '<div class="xm-cta-check">✔ <strong>Kỹ năng</strong> — Lập trình, xây dựng sản phẩm thực tế</div>' +
-          '<div class="xm-cta-check">✔ <strong>Kiến thức</strong> — Nền tảng công nghệ vững chắc cho tương lai</div>' +
+          '<div class="xm-cta-check">✔ Đánh giá năng lực và sở thích hiện tại của con (cuộc trò chuyện tự nhiên)</div>' +
+          '<div class="xm-cta-check">✔ Thiết kế lộ trình riêng: bắt đầu từ đâu, đi đến đâu, trong bao lâu</div>' +
+          '<div class="xm-cta-check">✔ Con được trải nghiệm 1 buổi học thử miễn phí trước khi quyết định</div>' +
         '</div>' +
-        '<div class="xm-cta-btn">ĐĂNG KÝ NGAY — Bắt đầu hành trình</div>' +
+        '<div class="xm-cta-btn">ĐẶT LỊCH TƯ VẤN MIỄN PHÍ</div>' +
       '</div>' +
-      '<p class="xm-subtitle" style="margin-top:24px;margin-bottom:0;font-size:0.95rem;color:#999">Anh/chị đã thấy cách MindX dạy — hãy để con bước vào lộ trình sớm nhất có thể.</p>';
+      '<p class="xm-subtitle" style="margin-top:24px;margin-bottom:0;font-size:0.95rem;color:#6B7280">Mỗi ngày chờ đợi là một ngày con đi sau các bạn cùng trang lứa. Nhưng điều quan trọng hơn: mỗi ngày con chưa được tạo ra thứ gì đó là một ngày con chưa biết mình có thể.</p>';
     return s;
   }
 

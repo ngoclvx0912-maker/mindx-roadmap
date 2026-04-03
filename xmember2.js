@@ -748,35 +748,17 @@
   function buildSlide11() {
     var s = el("div", "xm2-slide");
     s.innerHTML =
-      '<div class="xm2-title-large">Hành trình bắt đầu từ hôm nay</div>' +
+      '<div class="xm2-title-large">Đặt lịch tư vấn scope du học</div>' +
       '<div class="xm2-cta-box xm2-cta-enroll">' +
-        '<div class="xm2-cta-title">Mỗi ngày chờ đợi là một ngày<br>con đi sau các bạn cùng trang lứa</div>' +
+        '<div class="xm2-cta-title">Mang theo mong muốn — MindX thiết kế lộ trình riêng cho con</div>' +
         '<div class="xm2-cta-checks">' +
-          '<div class="xm2-cta-check">✔ <strong>Tư duy</strong> — Tư duy toàn cầu, chuẩn quốc tế từ sớm</div>' +
-          '<div class="xm2-cta-check">✔ <strong>Kỹ năng</strong> — Xây dựng portfolio, sẵn sàng du học</div>' +
-          '<div class="xm2-cta-check">✔ <strong>Kiến thức</strong> — Nền tảng công nghệ &amp; nghệ thuật số chuẩn quốc tế</div>' +
+          '<div class="xm2-cta-check">✔ Xác định rõ mục tiêu: con muốn ngành gì, trường gì, quốc gia gì — và timeline thực tế</div>' +
+          '<div class="xm2-cta-check">✔ Đánh giá gap hiện tại: so sánh hồ sơ của con với yêu cầu của trường mục tiêu</div>' +
+          '<div class="xm2-cta-check">✔ Thiết kế lộ trình portfolio 8–12 tháng với deliverable cụ thể từng tháng</div>' +
         '</div>' +
+        '<div class="xm2-cta-btn">ĐẶT LỊCH TƯ VẤN MIỄN PHÍ</div>' +
       '</div>' +
-      '<div style="display:flex;gap:12px;justify-content:center;margin:16px 0;flex-wrap:wrap">' +
-        '<div style="background:#F0FDF4;border:2px solid #16A34A;border-radius:12px;padding:14px 20px;text-align:center;flex:1;min-width:180px;max-width:240px">' +
-          '<div style="font-size:0.8rem;color:#16A34A;font-weight:700;margin-bottom:4px">Lộ trình Bảo trợ</div>' +
-          '<div style="font-size:1.4rem;font-weight:800;color:#16A34A">Miễn phí 100%</div>' +
-        '</div>' +
-        '<div style="background:#EFF6FF;border:2px solid #2563EB;border-radius:12px;padding:14px 20px;text-align:center;flex:1;min-width:180px;max-width:240px">' +
-          '<div style="font-size:0.8rem;color:#2563EB;font-weight:700;margin-bottom:4px">HV đang học MindX</div>' +
-          '<div style="font-size:1.4rem;font-weight:800;color:#2563EB">21.000.000 VNĐ</div>' +
-          '<div style="font-size:0.75rem;color:#2563EB">Giảm 30%</div>' +
-        '</div>' +
-        '<div style="background:#FFF7ED;border:2px solid #EA580C;border-radius:12px;padding:14px 20px;text-align:center;flex:1;min-width:180px;max-width:240px">' +
-          '<div style="font-size:0.8rem;color:#EA580C;font-weight:700;margin-bottom:4px">Khách mới</div>' +
-          '<div style="font-size:1.4rem;font-weight:800;color:#EA580C">30.000.000 VNĐ</div>' +
-        '</div>' +
-      '</div>' +
-      '<div class="xm2-cta-tracks">' +
-        '<div class="xm2-cta-track blue">💻 CNTT — X-Global Tech Seed</div>' +
-        '<div class="xm2-cta-track purple">🎨 Art — X-Global Art Seed</div>' +
-      '</div>' +
-      '<p class="xm2-subtitle" style="margin-top:12px;margin-bottom:0;font-size:0.95rem;color:#999">Anh/chị đã thấy lộ trình — hãy để con bước vào hành trình du học sớm nhất có thể.</p>';
+      '<p class="xm2-subtitle" style="margin-top:24px;margin-bottom:0;font-size:0.95rem;color:#6B7280">Hồ sơ du học tốt nhất không phải hồ sơ nhiều giấy tờ — mà là hồ sơ có CÂU CHUYỆN. MindX giúp con viết câu chuyện đó bằng sản phẩm thật.</p>';
     return s;
   }
 
