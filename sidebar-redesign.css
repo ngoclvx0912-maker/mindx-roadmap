@@ -204,6 +204,29 @@
   color: inherit;
 }
 
+/* ===== 18+ NAV ITEMS ===== */
+.nav-x18-item {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  padding: 9px 20px 9px 24px;
+  background: none; border: none;
+  border-left: 2px solid transparent;
+  font-family: inherit; font-size: 13px; font-weight: 500;
+  color: #666; cursor: pointer; transition: all 0.15s ease;
+}
+.nav-x18-item:hover { background: rgba(0,0,0,0.03); color: #333; }
+.nav-x18-item.active {
+  color: var(--red); background: #FFF5F5;
+  border-left-color: var(--red); font-weight: 600;
+}
+.nav-x18-item .x18-nav-icon {
+  font-size: 14px; width: 20px; text-align: center; flex-shrink: 0;
+  opacity: 0.8;
+}
+.nav-x18-item.active .x18-nav-icon { opacity: 1; }
+.nav-x18-divider {
+  height: 1px; background: #EBEBEB; margin: 6px 20px;
+}
+
 /* ===== TRAINING SIDEBAR SUB-GROUPS ===== */
 .trn-sidebar-subgroup { margin: 0; }
 .trn-sidebar-subgroup-btn { position: relative; }
@@ -211,23 +234,24 @@
   font-size: 8px; color: #CCC; margin-left: auto; flex-shrink: 0;
 }
 .trn-sidebar-subgroup-children {
-  display: none; padding-left: 12px;
+  display: none; padding-left: 0;
 }
 .trn-sidebar-subgroup.open > .trn-sidebar-subgroup-children { display: block; }
 .trn-sidebar-child {
-  padding: 7px 20px 7px 36px !important;
+  padding: 7px 20px 7px 40px !important;
   font-size: 12px !important;
   gap: 0 !important;
-  color: #888 !important;
+  color: #999 !important;
+  border-left: 2px solid transparent !important;
 }
-.trn-sidebar-child:hover { color: #555 !important; }
+.trn-sidebar-child:hover { color: #555 !important; background: rgba(0,0,0,0.02) !important; }
 .trn-sidebar-child .nav-label { display: flex; align-items: center; gap: 6px; }
 .trn-sidebar-child .nav-label::before {
   content: ''; display: inline-block;
   width: 3px; height: 3px; border-radius: 50%;
   background: #CCC; flex-shrink: 0;
 }
-.trn-sidebar-child.active { color: var(--red) !important; }
+.trn-sidebar-child.active { color: var(--red) !important; border-left-color: var(--red) !important; background: #FFF5F5 !important; }
 .trn-sidebar-child.active .nav-label::before { background: var(--red); }
 
 /* ===== COMING SOON BADGE ===== */
