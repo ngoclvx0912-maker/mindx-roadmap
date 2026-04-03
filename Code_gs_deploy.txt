@@ -81,6 +81,12 @@ function doGet(e) {
     case 'force_poll':
       result = forcePoll();
       break;
+    case 'load_edits':
+      result = loadRoadmapEdits();
+      break;
+    case 'save_edits':
+      result = saveRoadmapEditsJSON(p.data || '{}');
+      break;
     case 'lookup_employee':
       result = lookupEmployee(p.msnv || '');
       break;
@@ -681,6 +687,66 @@ function cleanupDedupKeys() {
     }
   }
   logToSheet('cleanup', 'Removed ' + removed + ' old dedup keys', '');
+}
+
+// ── Roadmap Edits (load/save from "RoadmapEdits" sheet) ───────────────
+function getEditsSheet() {
+  var ss = SpreadsheetApp.openById(CONFIG.QA_SHEET_ID);
+  var sheet = ss.getSheetByName('RoadmapEdits');
+  if (!sheet) {
+    sheet = ss.insertSheet('RoadmapEdits');
+    sheet.appendRow(['key', 'value', 'updated_at']);
+  }
+  return sheet;
+}
+
+function loadRoadmapEdits() {
+  try {
+    var sheet = getEditsSheet();
+    var data = sheet.getDataRange().getValues();
+    var result = {};
+    for (var i = 1; i < data.length; i++) {
+      if (data[i][0]) result[data[i][0]] = data[i][1];
+    }
+    return result;
+  } catch (e) {
+    return { error: e.message };
+  }
+}
+
+function saveRoadmapEditsJSON(jsonStr) {
+  try {
+    var edits = JSON.parse(jsonStr);
+    var sheet = getEditsSheet();
+    var data = sheet.getDataRange().getValues();
+    var existingKeys = {};
+    for (var i = 1; i < data.length; i++) {
+      if (data[i][0]) existingKeys[data[i][0]] = i + 1;
+    }
+    var saved = 0;
+    var now = new Date().toISOString();
+    var keys = Object.keys(edits);
+    for (var idx = 0; idx < keys.length; idx++) {
+      var k = keys[idx];
+      var v = edits[k];
+      if (existingKeys[k]) {
+        var cell = sheet.getRange(existingKeys[k], 2);
+        cell.setNumberFormat("@");
+        cell.setValue(v);
+        sheet.getRange(existingKeys[k], 3).setValue(now);
+      } else {
+        var newRow = sheet.getLastRow() + 1;
+        sheet.appendRow([k, '', now]);
+        var newCell = sheet.getRange(newRow, 2);
+        newCell.setNumberFormat("@");
+        newCell.setValue(v);
+      }
+      saved++;
+    }
+    return { ok: true, saved: saved };
+  } catch (e) {
+    return { error: e.message };
+  }
 }
 
 // ── Employee Lookup (from "Nvien" sheet) ────────────────────────────
