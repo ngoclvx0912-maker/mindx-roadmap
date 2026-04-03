@@ -856,9 +856,11 @@
 /* ---- MODAL ---- */
 .rpl-modal-overlay {
   position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  z-index: 10000;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.65) !important;
+  z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -866,14 +868,14 @@
   animation: rplFadeIn 0.2s ease;
 }
 .rpl-modal {
-  background: var(--rpl-card);
-  border-radius: var(--rpl-radius-lg);
+  background: #ffffff !important;
+  border-radius: 16px;
   max-width: 500px;
   width: 100%;
   max-height: 85vh;
   overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
   padding: 24px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.2);
 }
 .rpl-modal-close {
   float: right;
