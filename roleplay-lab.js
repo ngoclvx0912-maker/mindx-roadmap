@@ -208,8 +208,10 @@ window.RolePlayLab = (function() {
   // ===================================================================
   async function callAI(messages, systemPrompt, opts) {
     opts = opts || {};
+    var controller = new AbortController();
+    var timeoutId = setTimeout(function() { controller.abort(); }, 30000);
     try {
-      const response = await fetch(API_URL, {
+      var response = await fetch(API_URL, {
         method: 'POST',
         headers: {
           'Authorization': 'Bearer ' + API_KEY,
@@ -219,13 +221,21 @@ window.RolePlayLab = (function() {
           model: 'sonar',
           messages: [{ role: 'system', content: systemPrompt }, ...messages],
           temperature: opts.temperature || 0.7,
-          max_tokens: opts.max_tokens || 500
-        })
+          max_tokens: opts.max_tokens || 500,
+          search_context: 'off'
+        }),
+        signal: controller.signal
       });
-      if (!response.ok) throw new Error('API Error: ' + response.status);
-      const result = await response.json();
+      clearTimeout(timeoutId);
+      if (!response.ok) {
+        var errText = await response.text();
+        console.error('[RolePlayLab] API response:', response.status, errText);
+        throw new Error('API ' + response.status + ': ' + errText.substring(0, 100));
+      }
+      var result = await response.json();
       return result.choices[0].message.content;
     } catch(e) {
+      clearTimeout(timeoutId);
       console.error('[RolePlayLab] AI call failed:', e);
       throw e;
     }
@@ -1480,8 +1490,9 @@ CTA mong đợi: ${scenario.desiredCTA}`;
         if (inputEl) inputEl.focus();
       }, 50);
     } catch(err) {
+      console.error('[RolePlayLab] Chat error:', err);
       state.isTyping = false;
-      state.messages.push({ role: 'assistant', content: 'Xin lỗi, hệ thống đang gặp trục trặc. Bạn thử gửi lại nhé.', time: new Date().toISOString() });
+      state.messages.push({ role: 'assistant', content: 'Xin lỗi, hệ thống đang gặp trục trặc (' + (err.message || 'unknown') + '). Bạn thử gửi lại nhé.', time: new Date().toISOString() });
       render();
     }
   }
