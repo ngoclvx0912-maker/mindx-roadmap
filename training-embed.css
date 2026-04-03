@@ -31,7 +31,7 @@
   display: flex; align-items: center; justify-content: center;
   padding: 20px;
 }
-#trainingContainer .trn-name-overlay.hidden { display: none !important; }
+#trainingContainer .trn-name-overlay.hidden, .trn-name-overlay.hidden { display: none !important; }
 #trainingContainer .trn-name-card {
   background: white; border-radius: 20px;
   padding: 48px 40px; max-width: 420px; width: 100%;

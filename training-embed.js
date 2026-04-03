@@ -53,6 +53,19 @@ window.TrainingEmbed = (function() {
         state = { ...state, ...parsed };
       }
     } catch(e) { console.warn('Failed to load state', e); }
+    // Auto-set userName from employee session if not already set
+    if (!state.userName) {
+      try {
+        var empRaw = localStorage.getItem('mindx_employee_session');
+        if (empRaw) {
+          var emp = JSON.parse(empRaw);
+          if (emp && emp.name) {
+            state.userName = emp.name;
+            saveState();
+          }
+        }
+      } catch(e) { /* ignore */ }
+    }
   }
 
   function saveState() {
