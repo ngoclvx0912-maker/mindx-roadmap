@@ -751,7 +751,7 @@ body.admin-mode .editable-field:focus { background: #FFECB3; border-color: var(-
 }
 .pricing-popup {
   background: #fff; border-radius: 14px; padding: 24px;
-  min-width: 340px; max-width: 500px; width: 90%;
+  min-width: 340px; max-width: 720px; width: 92%;
   box-shadow: 0 20px 60px rgba(0,0,0,0.2);
   animation: slideUp 0.25s;
 }
@@ -770,11 +770,11 @@ body.admin-mode .editable-field:focus { background: #FFECB3; border-color: var(-
   width: 100%; border-collapse: collapse; font-size: 0.7rem;
 }
 .pricing-popup-table th {
-  background: #E31F26; color: #fff; padding: 8px 12px;
-  text-align: center; font-weight: 700; font-size: 0.65rem;
+  background: #E31F26; color: #fff; padding: 6px 8px;
+  text-align: center; font-weight: 700; font-size: 0.6rem;
 }
 .pricing-popup-table td {
-  padding: 8px 12px; text-align: center; border-bottom: 1px solid #eee;
+  padding: 6px 8px; text-align: center; border-bottom: 1px solid #eee;
   font-weight: 600;
 }
 .pricing-popup-table tr:last-child td { border-bottom: none; }
