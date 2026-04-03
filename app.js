@@ -1146,7 +1146,7 @@
     var table = el('table', { className: 'pricing-popup-table' });
     var thead = el('thead');
     var htr = el('tr');
-    ['L\u1ED9 tr\u00ECnh', 'HP G\u1ED1c', 'CTKM', 'H\u1ECDc ph\u00ED'].forEach(function(h) {
+    ['L\u1ED9 tr\u00ECnh', 'HP G\u1ED1c', 'CTKM', 'H\u1ECDc ph\u00ED', 'CTKM T\u1EC9nh/ONL', 'HP T\u1EC9nh/ONL'].forEach(function(h) {
       htr.appendChild(el('th', { textContent: h }));
     });
     thead.appendChild(htr);
@@ -1155,7 +1155,7 @@
     var tbody = el('tbody');
     for (var i = 0; i < 2; i++) {
       var row = el('tr');
-      for (var j = 0; j < 4; j++) {
+      for (var j = 0; j < 6; j++) {
         var cellKey = 'art24t_' + i + '_' + j;
         var td = el('td');
         td.appendChild(editableSpan(cellKey, getEV(cellKey, '')));
