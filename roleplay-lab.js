@@ -1696,8 +1696,8 @@ CTA mong đợi: ${scenario.desiredCTA}`;
       const canvas = document.createElement('canvas');
       canvas.className = 'rpl-radar-canvas';
       canvas.id = 'rplRadarCanvas';
-      canvas.width = 350;
-      canvas.height = 350;
+      canvas.width = 450;
+      canvas.height = 450;
       radarWrap.appendChild(canvas);
       frag.appendChild(radarWrap);
 
@@ -1875,7 +1875,7 @@ CTA mong đợi: ${scenario.desiredCTA}`;
     var h = canvas.height;
     var cx = w / 2;
     var cy = h / 2;
-    var radius = Math.min(cx, cy) - 45;
+    var radius = Math.min(cx, cy) - 70;
     var n = labels.length;
     if (n === 0) return;
 
@@ -1947,8 +1947,8 @@ CTA mong đợi: ${scenario.desiredCTA}`;
     ctx.textBaseline = 'middle';
     for (var i = 0; i < n; i++) {
       var angle = (Math.PI * 2 * i / n) - Math.PI / 2;
-      var lx = cx + (radius + 28) * Math.cos(angle);
-      var ly = cy + (radius + 28) * Math.sin(angle);
+      var lx = cx + (radius + 35) * Math.cos(angle);
+      var ly = cy + (radius + 35) * Math.sin(angle);
       // Adjust alignment based on position
       if (Math.abs(Math.cos(angle)) > 0.5) {
         ctx.textAlign = Math.cos(angle) > 0 ? 'left' : 'right';

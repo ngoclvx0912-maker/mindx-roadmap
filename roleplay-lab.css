@@ -7,7 +7,7 @@
 /* ---- Namespace: all selectors prefixed .rpl- ---- */
 
 /* ---- CSS Variables ---- */
-.rpl-root {
+:root {
   --rpl-red: #E31F26;
   --rpl-dark: #7D0005;
   --rpl-light: #FFBCBF;
