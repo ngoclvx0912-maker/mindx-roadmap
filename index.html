@@ -23,13 +23,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./style.css?v=20260403b">
-<link rel="stylesheet" href="./xmember.css?v=20260403b">
-<link rel="stylesheet" href="./xmember2.css?v=20260403b">
+<link rel="stylesheet" href="./style.css?v=20260403c">
+<link rel="stylesheet" href="./xmember.css?v=20260403c">
+<link rel="stylesheet" href="./xmember2.css?v=20260403c">
 <!-- Badges removed: special programs now in sidebar panel -->
-<link rel="stylesheet" href="./xart.css?v=20260403b">
+<link rel="stylesheet" href="./xart.css?v=20260403c">
 <link rel="stylesheet" href="./expert.css">
-<link rel="stylesheet" href="./x18plus.css?v=20260403b">
+<link rel="stylesheet" href="./x18plus.css?v=20260403c">
 <link rel="stylesheet" href="./training-embed.css">
 </head>
 <body>
@@ -138,6 +138,9 @@
   <!-- Training container -->
   <div id="trainingContainer"></div>
 
+  <!-- Role-Play Lab container -->
+  <div id="roleplayContainer" style="display:none"></div>
+
   <!-- Footer -->
   <footer class="main-footer">
     <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
@@ -184,15 +187,18 @@
   </div>
 </div>
 
-<script src="./app.js?v=20260403b"></script>
-<script src="./xmember.js?v=20260403b"></script>
-<script src="./xmember2.js?v=20260403b"></script>
+<script src="./app.js?v=20260403c"></script>
+<script src="./xmember.js?v=20260403c"></script>
+<script src="./xmember2.js?v=20260403c"></script>
 <!-- Badges JS removed: special programs now in sidebar panel -->
-<script src="./xart.js?v=20260403b"></script>
-<script src="./expert.js?v=20260403b"></script>
-<script src="./x18plus.js?v=20260403b"></script>
-<script src="./training-data.js?v=20260403b" defer></script>
+<script src="./xart.js?v=20260403c"></script>
+<script src="./expert.js?v=20260403c"></script>
+<script src="./x18plus.js?v=20260403c"></script>
+<link rel="stylesheet" href="./roleplay-lab.css?v=20260403c">
+<script src="./training-data.js?v=20260403c" defer></script>
 <script src="./training-embed.js" defer></script>
+<script src="./roleplay-data.js?v=20260403c" defer></script>
+<script src="./roleplay-lab.js?v=20260403c" defer></script>
 <script>
 /* Nav Group Toggle + Training handler */
 (function(){
@@ -276,6 +282,7 @@
             {label:'K18 CS', page:'track_k18_cs'},
             {label:'Qu\u1ea3n l\u00fd', page:'track_manager'}
           ]},
+          {icon:'\ud83e\udd16', label:'AI Role-Play Lab', page:'roleplay_lab'},
           {icon:'\ud83d\udcdd', label:'Ki\u1ec3m tra', page:'quiz_hub'},
           {type:'sub', icon:'\ud83d\udca1', label:'Microlearning', children:[
             {label:'Tip of the Week', page:'micro_tips'},
@@ -339,7 +346,23 @@
             btn.innerHTML='<span class="nav-icon">'+it.icon+'</span><span class="nav-label">'+it.label+'</span>';
             btn.addEventListener('click',function(){
               ensureTrainingView();
-              if(window.TrainingEmbed) window.TrainingEmbed.navigate(it.page);
+              if(it.page === 'roleplay_lab') {
+                /* Switch to Role-Play Lab */
+                var tc = document.getElementById('trainingContainer');
+                var rc = document.getElementById('roleplayContainer');
+                if(tc) tc.style.display = 'none';
+                if(rc) rc.style.display = 'block';
+                if(window.RolePlayLab) window.RolePlayLab.init(rc);
+                var pt = document.getElementById('pageTitle');
+                if(pt) pt.textContent = 'AI Role-Play Lab';
+              } else {
+                /* Regular training page */
+                var tc2 = document.getElementById('trainingContainer');
+                var rc2 = document.getElementById('roleplayContainer');
+                if(tc2) tc2.style.display = 'block';
+                if(rc2) rc2.style.display = 'none';
+                if(window.TrainingEmbed) window.TrainingEmbed.navigate(it.page);
+              }
               markActive(it.page);
             });
             children.appendChild(btn);
