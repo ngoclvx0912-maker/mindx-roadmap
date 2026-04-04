@@ -1629,6 +1629,42 @@ CTA mong đợi: ${scenario.desiredCTA}`;
       // Log to RolePlaySessions sheet (production)
       logSessionRemote(scoreData);
 
+      // === Bridge to Training scoring system ===
+      // Convert 0-100 score to 0-10 scale and save as quiz result
+      // so it appears in Training leaderboard under "Upskill" tab
+      try {
+        var scenarioObj = findScenario(state.selectedScenario);
+        var scoreOut10 = Math.round(scoreData.diemTongKet) / 10; // 0-100 → 0-10
+        var empSession = getEmployeeSession();
+        if (empSession && empSession.msnv) {
+          var rpPayload = {
+            action: 'save_quiz_score',
+            employeeId: empSession.msnv,
+            employeeName: empSession.name || '',
+            bu: empSession.bu || '',
+            region: empSession.region || '',
+            quizId: 'roleplay_' + (state.selectedScenario || 'unknown'),
+            program: 'upskill',
+            quizTitle: 'Role-Play: ' + (scenarioObj ? scenarioObj.name : state.selectedScenario),
+            type: 'roleplay',
+            weight: 1.5,
+            score: Math.round(scoreOut10 * 10),
+            total: 100,
+            attempt: (state.progress.sessionsPlayed || []).filter(function(s) { return s.scenarioId === state.selectedScenario; }).length,
+            timeSeconds: state.elapsedSeconds || 0,
+            overallScore: '',
+            overallRank: '',
+            completion: 0
+          };
+          fetch(LOG_ENDPOINT, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(rpPayload)
+          }).catch(function() {});
+        }
+      } catch(e) { /* silent */ }
+
     } catch(err) {
       console.error('[RolePlayLab] Scoring failed:', err);
       state.scoreReport = {
