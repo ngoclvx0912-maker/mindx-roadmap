@@ -93,6 +93,9 @@ function doGet(e) {
     case 'get_roleplay_sessions':
       result = getRoleplaySessions(p.employee_id || '', p.bu || '', p.limit || '50');
       break;
+    case 'get_training_leaderboard':
+      result = getTrainingLeaderboard();
+      break;
     case 'set_offset':
       if (p.offset) {
         PropertiesService.getScriptProperties().setProperty('lastUpdateId', p.offset);
@@ -134,6 +137,9 @@ function doPost(e) {
       break;
     case 'log_roleplay':
       result = logRoleplaySession(body);
+      break;
+    case 'save_quiz_score':
+      result = saveQuizScore(body);
       break;
     default:
       return doGet(e);
@@ -848,6 +854,131 @@ function logRoleplaySession(body) {
 }
 
 // ── Get Role-Play Sessions (from "RolePlaySessions" sheet) ──────────
+// ── Training Quiz Score Save ─────────────────────────────────────
+function saveQuizScore(body) {
+  try {
+    var ss = SpreadsheetApp.openById(CONFIG.QA_SHEET_ID);
+    var sheet = ss.getSheetByName('TrainingScores');
+    if (!sheet) {
+      sheet = ss.insertSheet('TrainingScores');
+      sheet.appendRow([
+        'timestamp', 'employeeId', 'employeeName', 'BU', 'region',
+        'quizId', 'program', 'quizTitle', 'type', 'weight',
+        'score', 'total', 'scoreOutOf10', 'attempt', 'timeSeconds',
+        'overallScore', 'overallRank', 'completion'
+      ]);
+      sheet.setFrozenRows(1);
+      sheet.getRange('1:1').setFontWeight('bold');
+    }
+    var scoreOutOf10 = body.total > 0 ? ((body.score / body.total) * 10).toFixed(1) : '0';
+    sheet.appendRow([
+      new Date().toISOString(),
+      body.employeeId || '',
+      body.employeeName || '',
+      body.bu || '',
+      body.region || '',
+      body.quizId || '',
+      body.program || '',
+      body.quizTitle || '',
+      body.type || 'quiz',
+      body.weight || 1,
+      body.score || 0,
+      body.total || 0,
+      scoreOutOf10,
+      body.attempt || 1,
+      body.timeSeconds || 0,
+      body.overallScore || '',
+      body.overallRank || '',
+      body.completion || 0
+    ]);
+    return { ok: true };
+  } catch (e) {
+    return { ok: false, error: e.message };
+  }
+}
+
+// ── Training Leaderboard (aggregated from TrainingScores) ────────
+function getTrainingLeaderboard() {
+  try {
+    var ss = SpreadsheetApp.openById(CONFIG.QA_SHEET_ID);
+    var sheet = ss.getSheetByName('TrainingScores');
+    if (!sheet) return { ok: true, entries: [] };
+    var data = sheet.getDataRange().getValues();
+    if (data.length <= 1) return { ok: true, entries: [] };
+    var headers = data[0];
+    var ci = {};
+    for (var h = 0; h < headers.length; h++) ci[headers[h]] = h;
+
+    // Aggregate: per employee, per quiz → best score
+    var employees = {};
+    for (var i = 1; i < data.length; i++) {
+      var empId = data[i][ci['employeeId']] || '';
+      if (!empId) continue;
+      if (!employees[empId]) {
+        employees[empId] = {
+          employeeId: empId,
+          name: data[i][ci['employeeName']] || '',
+          bu: data[i][ci['BU']] || '',
+          region: data[i][ci['region']] || '',
+          quizBest: {},
+          lastOverallScore: '',
+          lastOverallRank: '',
+          lastCompletion: 0,
+          lastDate: ''
+        };
+      }
+      var emp = employees[empId];
+      var qId = data[i][ci['quizId']] || '';
+      var s10 = parseFloat(data[i][ci['scoreOutOf10']]) || 0;
+      var weight = parseFloat(data[i][ci['weight']]) || 1;
+      var program = data[i][ci['program']] || '';
+      if (!emp.quizBest[qId] || s10 > emp.quizBest[qId].score) {
+        emp.quizBest[qId] = { score: s10, weight: weight, program: program };
+      }
+      // Track latest overall
+      var ts = data[i][ci['timestamp']] || '';
+      if (ts > emp.lastDate) {
+        emp.lastDate = ts;
+        if (data[i][ci['overallScore']]) emp.lastOverallScore = data[i][ci['overallScore']];
+        if (data[i][ci['overallRank']]) emp.lastOverallRank = data[i][ci['overallRank']];
+        if (data[i][ci['completion']]) emp.lastCompletion = data[i][ci['completion']];
+      }
+    }
+
+    // Compute weighted average per employee
+    var entries = [];
+    var empKeys = Object.keys(employees);
+    for (var e = 0; e < empKeys.length; e++) {
+      var emp = employees[empKeys[e]];
+      var totalW = 0, sumWS = 0, quizCount = 0;
+      var qIds = Object.keys(emp.quizBest);
+      for (var q = 0; q < qIds.length; q++) {
+        var qb = emp.quizBest[qIds[q]];
+        sumWS += qb.score * qb.weight;
+        totalW += qb.weight;
+        quizCount++;
+      }
+      var avgScore = totalW > 0 ? (sumWS / totalW) : 0;
+      entries.push({
+        employeeId: emp.employeeId,
+        name: emp.name,
+        bu: emp.bu,
+        region: emp.region,
+        score: parseFloat(avgScore.toFixed(1)),
+        quizCount: quizCount,
+        completion: parseInt(emp.lastCompletion) || 0,
+        rank: emp.lastOverallRank || '',
+        lastDate: emp.lastDate
+      });
+    }
+
+    entries.sort(function(a, b) { return b.score - a.score; });
+    return { ok: true, entries: entries };
+  } catch (e) {
+    return { ok: false, error: e.message, entries: [] };
+  }
+}
+
 function getRoleplaySessions(employeeId, bu, limitStr) {
   try {
     var ss = SpreadsheetApp.openById(CONFIG.QA_SHEET_ID);

@@ -9,6 +9,7 @@ window.TrainingEmbed = (function() {
   'use strict';
 
   const STORAGE_KEY = 'mindx_training';
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbySnPbdLFoA2GSQ1g7u0JbGCdFP2Dt0pz31FQ5LbeRf3XVbVbQUoPkTZIaNuDPH_RuR/exec';
 
   /* ---- Safe Storage Wrapper ---- */
   const safeStorage = (() => {
@@ -91,6 +92,73 @@ window.TrainingEmbed = (function() {
       if (!raw) return null;
       return JSON.parse(raw);
     } catch(e) { return null; }
+  }
+
+  // ===== REMOTE SCORE SAVE (Google Sheets) =====
+  function saveQuizScoreRemote(quizId, score, total, attemptNum, timeSeconds) {
+    try {
+      var emp = getEmployeeSession();
+      if (!emp || !emp.msnv) return; // only save if logged in with MSNV
+      var entry = quizRegistry.find(function(q) { return q.id === quizId; });
+      var overallScore = getProgramScore(null);
+      var completion = 0;
+      var programs = getPrograms();
+      if (programs.length > 0) {
+        var totalComp = 0;
+        programs.forEach(function(p) { totalComp += getProgramCompletion(p.key); });
+        completion = Math.round(totalComp / programs.length);
+      }
+      var overallRank = overallScore ? getRank(parseFloat(overallScore), completion, checkAllFinalExams()) : '';
+      var payload = {
+        action: 'save_quiz_score',
+        employeeId: emp.msnv || '',
+        employeeName: emp.name || state.userName || '',
+        bu: emp.bu || '',
+        region: emp.region || '',
+        quizId: quizId,
+        program: entry ? entry.program : '',
+        quizTitle: entry ? entry.title : quizId,
+        type: entry ? entry.type : 'quiz',
+        weight: entry ? entry.weight : 1,
+        score: score,
+        total: total,
+        attempt: attemptNum,
+        timeSeconds: timeSeconds || 0,
+        overallScore: overallScore || '',
+        overallRank: overallRank || '',
+        completion: completion
+      };
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(function() { /* silent */ });
+    } catch(e) { /* silent */ }
+  }
+
+  // ===== REMOTE LEADERBOARD FETCH =====
+  var _cachedLeaderboard = null;
+  var _lbCacheTime = 0;
+  function fetchLeaderboard(callback) {
+    // Cache for 60 seconds
+    if (_cachedLeaderboard && (Date.now() - _lbCacheTime < 60000)) {
+      callback(_cachedLeaderboard);
+      return;
+    }
+    var url = APPS_SCRIPT_URL + '?action=get_training_leaderboard';
+    fetch(url)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data && data.ok && data.entries) {
+          _cachedLeaderboard = data.entries;
+          _lbCacheTime = Date.now();
+          callback(data.entries);
+        } else {
+          callback([]);
+        }
+      })
+      .catch(function() { callback(_cachedLeaderboard || []); });
   }
 
   function getLastIncompleteLesson() {
@@ -1278,27 +1346,49 @@ window.TrainingEmbed = (function() {
     // Expose re-render for tab clicks
     window._trnLbTab = function(tab) { renderLeaderboard(tab); };
 
-    // Build entries for the active tab
-    var baseEntries = TRAINING_DATA.sampleLeaderboard ? [...TRAINING_DATA.sampleLeaderboard] : [];
+    // Show loading state while fetching remote leaderboard
+    pageContent.innerHTML = '<div style="text-align:center;padding:60px 20px;color:#A0AEC0;"><div style="font-size:2rem;margin-bottom:12px;">⏳</div>Đang tải bảng xếp hạng...</div>';
 
-    // Inject current user
-    if (overallScore !== null && displayName) {
-      var totalCompletion = Math.round((getCompletionPercent() + getK18CompletionPercent() + getCSK12CompletionPercent()) / 3);
-      var existing = baseEntries.findIndex(function(e) { return e.name === displayName; });
-      var userEntry = {
+    // Fetch real data from Google Sheets
+    var userMSNV = emp && emp.msnv ? emp.msnv : '';
+    fetchLeaderboard(function(remoteEntries) {
+      _renderLeaderboardWithData(remoteEntries, activeTab, tabs, displayName, userMSNV, userBU, overallScore, overallRank);
+    });
+  }
+
+  function _renderLeaderboardWithData(remoteEntries, activeTab, tabs, displayName, userMSNV, userBU, overallScore, overallRank) {
+    var medals = ['🥇','🥈','🥉'];
+    var baseEntries = remoteEntries.slice();
+
+    // Inject current user's LOCAL score if not in remote yet (just finished quiz, hasn't synced)
+    if (overallScore !== null && userMSNV) {
+      var totalCompletion = 0;
+      var programs = getPrograms();
+      if (programs.length > 0) {
+        var tc = 0;
+        programs.forEach(function(p) { tc += getProgramCompletion(p.key); });
+        totalCompletion = Math.round(tc / programs.length);
+      }
+      var found = baseEntries.findIndex(function(e) { return e.employeeId === userMSNV; });
+      var localEntry = {
+        employeeId: userMSNV,
         name: displayName,
         score: parseFloat(overallScore),
         completion: totalCompletion,
         rank: overallRank,
-        date: new Date().toISOString().slice(0,10),
         bu: userBU
       };
-      if (existing >= 0) baseEntries[existing] = userEntry;
-      else baseEntries.push(userEntry);
+      if (found >= 0) {
+        // Use higher score between remote and local
+        if (localEntry.score > baseEntries[found].score) baseEntries[found] = localEntry;
+      } else {
+        baseEntries.push(localEntry);
+      }
     }
 
     baseEntries.sort(function(a,b) { return b.score - a.score; });
-    var userRankPos = baseEntries.findIndex(function(e) { return e.name === displayName; });
+    var userRankPos = baseEntries.findIndex(function(e) { return e.employeeId === userMSNV || e.name === displayName; });
+    var totalPeople = baseEntries.length;
 
     // Tabs HTML
     var tabsHtml = '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">' +
@@ -1341,21 +1431,49 @@ window.TrainingEmbed = (function() {
       '<th style="width:60px;">#</th><th>Họ tên</th><th>BU</th><th>Điểm</th><th>Hoàn thành</th><th>Rank</th>' +
       '</tr></thead><tbody>';
 
-    baseEntries.forEach(function(e, i) {
-      var isMe = e.name === displayName;
+    // Show top 20 + current user if outside top 20
+    var MAX_SHOW = 20;
+    var userShown = false;
+    var top20 = baseEntries.slice(0, MAX_SHOW);
+
+    top20.forEach(function(e, i) {
+      var isMe = (e.employeeId && e.employeeId === userMSNV) || e.name === displayName;
+      if (isMe) userShown = true;
       var topClass = i === 0 ? 'top1' : i === 1 ? 'top2' : i === 2 ? 'top3' : '';
-      var rankBadge = e.rank ? '<span class="trn-lb-badge trn-rank-' + e.rank + '">' + e.rank + ' ' + getRankIcon(e.rank) + '</span>' : '—';
+      var rk = e.rank || getRank(e.score, e.completion || 0, false);
+      var rankBadge = rk ? '<span class="trn-lb-badge trn-rank-' + rk + '">' + rk + ' ' + getRankIcon(rk) + '</span>' : '—';
       html += '<tr style="' + (isMe ? 'background:#FFF5F5;font-weight:600;' : '') + '">' +
         '<td><span class="trn-lb-rank-num ' + topClass + '">' + (i < 3 ? medals[i] : (i+1)) + '</span></td>' +
-        '<td>' + escHtml(e.name) + (isMe ? ' <span style="font-size:0.72rem;color:#E31F26;">(Bạn)</span>' : '') + '</td>' +
+        '<td>' + escHtml(e.name || '') + (isMe ? ' <span style="font-size:0.72rem;color:#E31F26;">(Bạn)</span>' : '') + '</td>' +
         '<td style="font-size:0.78rem;color:#4A5568;">' + (e.bu ? escHtml(e.bu) : '—') + '</td>' +
-        '<td style="font-weight:700;">' + e.score.toFixed(1) + '</td>' +
-        '<td>' + e.completion + '%</td>' +
+        '<td style="font-weight:700;">' + (e.score != null ? e.score.toFixed(1) : '—') + '</td>' +
+        '<td>' + (e.completion || 0) + '%</td>' +
         '<td>' + rankBadge + '</td>' +
         '</tr>';
     });
 
+    // If current user is outside top 20, add separator + their row
+    if (!userShown && userRankPos >= MAX_SHOW) {
+      html += '<tr style="border-top:2px dashed #E2E8F0;"><td colspan="6" style="text-align:center;color:#A0AEC0;font-size:0.75rem;padding:6px 0;">&#8230;</td></tr>';
+      var me = baseEntries[userRankPos];
+      var myRank = me.rank || getRank(me.score, me.completion || 0, false);
+      var myBadge = myRank ? '<span class="trn-lb-badge trn-rank-' + myRank + '">' + myRank + ' ' + getRankIcon(myRank) + '</span>' : '—';
+      html += '<tr style="background:#FFF5F5;font-weight:600;">' +
+        '<td><span class="trn-lb-rank-num">' + (userRankPos+1) + '</span></td>' +
+        '<td>' + escHtml(me.name || '') + ' <span style="font-size:0.72rem;color:#E31F26;">(Bạn)</span></td>' +
+        '<td style="font-size:0.78rem;color:#4A5568;">' + (me.bu ? escHtml(me.bu) : '—') + '</td>' +
+        '<td style="font-weight:700;">' + (me.score != null ? me.score.toFixed(1) : '—') + '</td>' +
+        '<td>' + (me.completion || 0) + '%</td>' +
+        '<td>' + myBadge + '</td>' +
+        '</tr>';
+    }
+
+    if (baseEntries.length === 0) {
+      html += '<tr><td colspan="6" style="text-align:center;color:#A0AEC0;padding:40px 0;">Chưa có dữ liệu. Hãy làm quiz đầu tiên!</td></tr>';
+    }
+
     html += '</tbody></table>';
+    html += '<div style="text-align:center;font-size:0.72rem;color:#A0AEC0;margin-top:12px;">Hiển thị top ' + Math.min(MAX_SHOW, baseEntries.length) + '/' + totalPeople + ' nhân viên • Cập nhật tự động khi làm quiz</div>';
     pageContent.innerHTML = html;
   }
 
@@ -1715,9 +1833,13 @@ window.TrainingEmbed = (function() {
       saveState();
     }
 
+    // === REMOTE SAVE to Google Sheets ===
+    var attemptNum = state.quizzes[quizId] && state.quizzes[quizId].attempts ? state.quizzes[quizId].attempts.length : 1;
+    saveQuizScoreRemote(quizId, score, total, attemptNum, timeTaken);
+
     document.getElementById('trnQuizModal').classList.add('hidden');
 
-    const resultIcons = { S: '🌟', A: '🎯', B: '👍', C: '📝', F: '💪' };
+    const resultIcons = { 'S+': '👑', S: '🌟', A: '🎯', B: '👍', C: '📝', F: '💪' };
     const resultMsgs = {
       S: 'Xuất sắc! Bạn nắm vững kiến thức!',
       A: 'Rất tốt! Tiếp tục phát huy!',
