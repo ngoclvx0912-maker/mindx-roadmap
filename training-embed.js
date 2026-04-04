@@ -225,11 +225,20 @@ window.TrainingEmbed = (function() {
     ];
 
     // Auto-scan for any NEW programs not in the hardcoded list
+    // Catches: onboard*, upskill_*, advanced_*, custom_* — anything with .days array
     Object.keys(TRAINING_DATA).forEach(function(key) {
-      if (key.startsWith('onboard') && TRAINING_DATA[key] && TRAINING_DATA[key].days) {
+      var data = TRAINING_DATA[key];
+      if (data && data.days && Array.isArray(data.days)) {
         var found = programs.find(function(p) { return p.key === key; });
         if (!found) {
-          programs.push({ key: key, program: key, label: TRAINING_DATA[key].title || key, role: 'all' });
+          var isUpskill = key.startsWith('upskill_');
+          programs.push({
+            key: key,
+            program: key,
+            label: data.title || key,
+            role: 'all',
+            category: isUpskill ? 'upskill' : 'onboard'
+          });
         }
       }
     });

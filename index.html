@@ -392,7 +392,9 @@
             {label:'K18 CS', page:'track_k18_cs'},
             {label:'Qu\u1ea3n l\u00fd', page:'track_manager'}
           ]},
-          {icon:'\ud83c\udfaf', label:'B\u1ea3o tr\u1ee3/Du h\u1ecdc', page:'roleplay_lab'},
+          {type:'sub', icon:'\ud83d\udcda', label:'Upskill', children:[
+            {label:'B\u1ea3o tr\u1ee3/Du h\u1ecdc', page:'roleplay_lab'}
+          ]},
           {icon:'\ud83d\udcdd', label:'Ki\u1ec3m tra', page:'quiz_hub'},
           {type:'sub', icon:'\ud83d\udca1', label:'Microlearning', children:[
             {label:'Tip of the Week', page:'micro_tips'},
@@ -442,7 +444,23 @@
               cb.innerHTML='<span class="nav-label">'+c.label+'</span>';
               cb.addEventListener('click',function(){
                 ensureTrainingView();
-                if(window.TrainingEmbed) window.TrainingEmbed.navigate(c.page);
+                if(c.page === 'roleplay_lab') {
+                  var tc=document.getElementById('trainingContainer');
+                  var rc=document.getElementById('roleplayContainer');
+                  if(tc) tc.style.display='none';
+                  var nameOvl=document.getElementById('trnNameOverlay');
+                  if(nameOvl) nameOvl.classList.add('hidden');
+                  if(rc) rc.style.display='block';
+                  if(window.RolePlayLab) window.RolePlayLab.init(rc);
+                  var pt=document.getElementById('pageTitle');
+                  if(pt) pt.textContent=c.label;
+                } else {
+                  var tc2=document.getElementById('trainingContainer');
+                  var rc2=document.getElementById('roleplayContainer');
+                  if(tc2) tc2.style.display='block';
+                  if(rc2) rc2.style.display='none';
+                  if(window.TrainingEmbed) window.TrainingEmbed.navigate(c.page);
+                }
                 markActive(c.page);
               });
               sgCh.appendChild(cb);
