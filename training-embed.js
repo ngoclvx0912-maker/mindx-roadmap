@@ -45,6 +45,9 @@ window.TrainingEmbed = (function() {
   let subnavEl = null;
   let pageContent = null;
 
+  /* ---- Quiz Registry ---- */
+  var quizRegistry = [];
+
   /* ---- Load / Save State ---- */
   function loadState() {
     try {
@@ -116,7 +119,15 @@ window.TrainingEmbed = (function() {
     var ids = Object.keys(state.quizzes);
     ids.forEach(function(id) {
       var q = state.quizzes[id];
-      results.push({ id: id, score: ((q.score / q.total) * 10).toFixed(1), total: q.total, correct: q.score, timestamp: q.timestamp });
+      var best = getBestScore(id);
+      if (best === null) return;
+      results.push({
+        id: id,
+        score: best.toFixed(1),
+        total: q.total,
+        correct: q.score,
+        timestamp: q.timestamp || (q.attempts && q.attempts.length ? new Date(q.attempts[q.attempts.length-1].date).getTime() : 0)
+      });
     });
     results.sort(function(a, b) { return b.timestamp - a.timestamp; });
     return results.slice(0, limit || 3);
@@ -136,28 +147,110 @@ window.TrainingEmbed = (function() {
     return unread[Math.floor(Math.random() * unread.length)];
   }
 
-  function getAllQuizzes() {
-    var quizzes = [];
-    TRAINING_DATA.onboard.days.forEach(function(day) {
-      day.sections.forEach(function(s) {
-        if (s.quiz) quizzes.push({ quiz: s.quiz, academy: 'K12 Sale', dayTitle: 'Ngày ' + day.day, icon: day.icon });
+  /* ---- QUIZ REGISTRY ---- */
+  function buildQuizRegistry() {
+    var registry = [];
+    var programs = [
+      { key: 'onboard', program: 'sale_k12', label: 'Sale K12 Onboard', role: 'sale' },
+      { key: 'onboardCSK12', program: 'csk12', label: 'CS K12 Onboard', role: 'cs' },
+      { key: 'onboardK18', program: 'k18_sale', label: 'K18 Sale Onboard', role: 'sale' }
+    ];
+
+    // Auto-scan for any NEW programs not in the hardcoded list
+    Object.keys(TRAINING_DATA).forEach(function(key) {
+      if (key.startsWith('onboard') && TRAINING_DATA[key] && TRAINING_DATA[key].days) {
+        var found = programs.find(function(p) { return p.key === key; });
+        if (!found) {
+          programs.push({ key: key, program: key, label: TRAINING_DATA[key].title || key, role: 'all' });
+        }
+      }
+    });
+
+    programs.forEach(function(prog) {
+      var data = TRAINING_DATA[prog.key];
+      if (!data || !data.days) return;
+      data.days.forEach(function(day) {
+        day.sections.forEach(function(section) {
+          if (!section.quiz) return;
+          var isFinal = section.quiz.questions && section.quiz.questions.length >= 20;
+          registry.push({
+            id: section.quiz.id,
+            sectionId: section.id,
+            program: prog.program,
+            programLabel: prog.label,
+            programKey: prog.key,
+            day: day.day,
+            dayLabel: day.title || day.subtitle || '',
+            type: isFinal ? 'final_exam' : 'quiz',
+            title: section.quiz.title || section.title,
+            questionCount: section.quiz.questions ? section.quiz.questions.length : 0,
+            weight: isFinal ? 3 : 1,
+            maxAttempts: isFinal ? 3 : null,
+            scorable: true,
+            leaderboardGroup: ['total', prog.program],
+            role: prog.role,
+            tags: [prog.program]
+          });
+        });
       });
     });
-    if (TRAINING_DATA.onboardCSK12) {
-      TRAINING_DATA.onboardCSK12.days.forEach(function(day) {
-        day.sections.forEach(function(s) {
-          if (s.quiz) quizzes.push({ quiz: s.quiz, academy: 'CS K12', dayTitle: 'Ngày ' + day.day, icon: day.icon });
+
+    // Add microlearning quizzes
+    if (TRAINING_DATA.microlearning && TRAINING_DATA.microlearning.quizFriday) {
+      TRAINING_DATA.microlearning.quizFriday.forEach(function(q) {
+        registry.push({
+          id: q.id || 'quiz_friday',
+          program: 'microlearning',
+          programLabel: 'Quiz Friday',
+          programKey: 'microlearning',
+          type: 'microlearning',
+          title: q.title || 'Quiz Friday',
+          questionCount: q.questions ? q.questions.length : 0,
+          weight: 0.5,
+          maxAttempts: null,
+          scorable: true,
+          leaderboardGroup: ['total', 'quiz_friday'],
+          role: 'all',
+          tags: ['microlearning', 'friday']
         });
       });
-    }
-    if (TRAINING_DATA.onboardK18) {
-      TRAINING_DATA.onboardK18.days.forEach(function(day) {
-        day.sections.forEach(function(s) {
-          if (s.quiz) quizzes.push({ quiz: s.quiz, academy: 'K18 Sale', dayTitle: 'Ngày ' + day.day, icon: day.icon });
+      // Also register combined quiz_friday as a scorable entry if quizFriday is an array of questions
+      if (!Array.isArray(TRAINING_DATA.microlearning.quizFriday[0]) && TRAINING_DATA.microlearning.quizFriday[0] && TRAINING_DATA.microlearning.quizFriday[0].q) {
+        // quizFriday is a flat array of questions (not an array of quiz objects)
+        // Remove what we added above and add a single entry
+        registry = registry.filter(function(r) { return r.program !== 'microlearning'; });
+        registry.push({
+          id: 'quiz_friday',
+          program: 'microlearning',
+          programLabel: 'Quiz Friday',
+          programKey: 'microlearning',
+          type: 'microlearning',
+          title: 'Quiz Friday',
+          questionCount: TRAINING_DATA.microlearning.quizFriday.length,
+          weight: 0.5,
+          maxAttempts: null,
+          scorable: true,
+          leaderboardGroup: ['total', 'quiz_friday'],
+          role: 'all',
+          tags: ['microlearning', 'friday']
         });
-      });
+      }
     }
-    return quizzes;
+
+    return registry;
+  }
+
+  function getAllQuizzes() {
+    return quizRegistry.map(function(entry) {
+      var quizData = findQuizData(entry.id);
+      return {
+        registry: entry,
+        quiz: quizData,
+        academy: entry.programLabel,
+        dayTitle: entry.day ? 'Ngày ' + entry.day : '',
+        icon: '📝'
+      };
+    }).filter(function(q) { return q.quiz; });
   }
 
   /* ---- Init ---- */
@@ -172,6 +265,7 @@ window.TrainingEmbed = (function() {
     if (!container) return;
 
     loadState();
+    quizRegistry = buildQuizRegistry();
 
     // Build internal structure
     container.innerHTML = '';
@@ -358,77 +452,143 @@ window.TrainingEmbed = (function() {
   window._trnNavigate = function(page) { navigate(page); };
 
   /* ---- SCORING / RANK ---- */
-  function getScore(quizId) {
-    const q = state.quizzes[quizId];
+
+  // Get best score for a quiz (supports multi-attempt)
+  function getBestScore(quizId) {
+    var q = state.quizzes[quizId];
     if (!q) return null;
-    return ((q.score / q.total) * 10).toFixed(1);
+    // Multi-attempt format
+    if (q.attempts && q.attempts.length > 0) {
+      return Math.max.apply(null, q.attempts.map(function(a) { return a.score; }));
+    }
+    // Legacy single-attempt format
+    if (q.score !== undefined && q.total !== undefined) {
+      return (q.score / q.total) * 10;
+    }
+    return null;
   }
 
-  function getRank(score) {
-    if (score >= 9) return 'S';
-    if (score >= 8) return 'A';
-    if (score >= 7) return 'B';
-    if (score >= 6) return 'C';
+  // Get number of attempts for a quiz
+  function getAttemptCount(quizId) {
+    var q = state.quizzes[quizId];
+    if (!q) return 0;
+    if (q.attempts) return q.attempts.length;
+    if (q.score !== undefined) return 1;
+    return 0;
+  }
+
+  // Backward-compatible single-quiz score display string
+  function getScore(quizId) {
+    var best = getBestScore(quizId);
+    if (best === null) return null;
+    return best.toFixed(1);
+  }
+
+  // Get weighted score for a specific program (or all programs when programId is falsy)
+  function getProgramScore(programId) {
+    var entries = quizRegistry.filter(function(q) {
+      return q.scorable && (programId ? q.program === programId : true);
+    });
+    var totalWeighted = 0, totalWeight = 0;
+    entries.forEach(function(q) {
+      var result = getBestScore(q.id);
+      if (result !== null) {
+        totalWeighted += result * q.weight;
+        totalWeight += q.weight;
+      }
+    });
+    if (totalWeight === 0) return null;
+    return (totalWeighted / totalWeight).toFixed(1);
+  }
+
+  // Get completion % for a program by programKey (TRAINING_DATA key)
+  function getProgramCompletion(programKey) {
+    var data = TRAINING_DATA[programKey];
+    if (!data || !data.days) return 0;
+    var total = 0, completed = 0;
+    data.days.forEach(function(day) {
+      day.sections.forEach(function(s) {
+        total++;
+        if (state.lessonsViewed[s.id]) completed++;
+      });
+    });
+    return total > 0 ? Math.round((completed / total) * 100) : 0;
+  }
+
+  // Get deduplicated programs list from registry (excludes microlearning)
+  function getPrograms() {
+    var seen = {};
+    var programs = [];
+    quizRegistry.forEach(function(q) {
+      if (q.program === 'microlearning') return;
+      if (!seen[q.program]) {
+        seen[q.program] = true;
+        programs.push({ id: q.program, label: q.programLabel, key: q.programKey });
+      }
+    });
+    return programs;
+  }
+
+  // Check if all final exams are >= 9
+  function checkAllFinalExams() {
+    var finals = quizRegistry.filter(function(q) { return q.type === 'final_exam'; });
+    if (finals.length === 0) return false;
+    return finals.every(function(q) {
+      var score = getBestScore(q.id);
+      return score !== null && score >= 9;
+    });
+  }
+
+  // Upgraded rank with S+
+  function getRank(score, completion, allFinalExamsAbove9) {
+    if (score === null || score === undefined) return null;
+    var s = parseFloat(score);
+    if (isNaN(s)) return null;
+    // Support legacy call with just score number
+    if (completion === undefined) {
+      if (s >= 9.0) return 'S';
+      if (s >= 8.0) return 'A';
+      if (s >= 7.0) return 'B';
+      if (s >= 6.0) return 'C';
+      return 'F';
+    }
+    if (s >= 9.5 && completion >= 100 && allFinalExamsAbove9) return 'S+';
+    if (s >= 9.0 && completion >= 90) return 'S';
+    if (s >= 8.0) return 'A';
+    if (s >= 7.0) return 'B';
+    if (s >= 6.0) return 'C';
     return 'F';
   }
 
   function getRankIcon(rank) {
-    const icons = { S: '⭐', A: '🔵', B: '🟢', C: '🟡', F: '🔴' };
+    var icons = { 'S+': '👑', S: '⭐', A: '🔵', B: '🟢', C: '🟡', F: '🔴' };
     return icons[rank] || '';
   }
 
+  // Registry-driven overall score (weighted)
   function getOverallScore() {
-    const quizIds = Object.keys(state.quizzes);
-    if (quizIds.length === 0) return null;
-    let total = 0, count = 0;
-    quizIds.forEach(id => {
-      const q = state.quizzes[id];
-      total += (q.score / q.total) * 10;
-      count++;
-    });
-    return (total / count).toFixed(1);
+    return getProgramScore(null);
   }
 
   function getOverallRank() {
-    const score = getOverallScore();
+    var score = getOverallScore();
     if (score === null) return null;
-    return getRank(parseFloat(score));
+    var completion = getCompletionPercent();
+    var allFinals = checkAllFinalExams();
+    return getRank(parseFloat(score), completion, allFinals);
   }
 
+  // Completion helpers (registry-driven, backward compatible)
   function getCompletionPercent() {
-    const allSections = [];
-    if (typeof TRAINING_DATA !== 'undefined' && TRAINING_DATA.onboard) {
-      TRAINING_DATA.onboard.days.forEach(day => {
-        day.sections.forEach(s => allSections.push(s.id));
-      });
-    }
-    if (allSections.length === 0) return 0;
-    const completed = allSections.filter(id => state.lessonsViewed[id]).length;
-    return Math.round((completed / allSections.length) * 100);
+    return getProgramCompletion('onboard');
   }
 
   function getK18CompletionPercent() {
-    const allSections = [];
-    if (typeof TRAINING_DATA !== 'undefined' && TRAINING_DATA.onboardK18) {
-      TRAINING_DATA.onboardK18.days.forEach(day => {
-        day.sections.forEach(s => allSections.push(s.id));
-      });
-    }
-    if (allSections.length === 0) return 0;
-    const completed = allSections.filter(id => state.lessonsViewed[id]).length;
-    return Math.round((completed / allSections.length) * 100);
+    return getProgramCompletion('onboardK18');
   }
 
   function getCSK12CompletionPercent() {
-    const allSections = [];
-    if (typeof TRAINING_DATA !== 'undefined' && TRAINING_DATA.onboardCSK12) {
-      TRAINING_DATA.onboardCSK12.days.forEach(day => {
-        day.sections.forEach(s => allSections.push(s.id));
-      });
-    }
-    if (allSections.length === 0) return 0;
-    const completed = allSections.filter(id => state.lessonsViewed[id]).length;
-    return Math.round((completed / allSections.length) * 100);
+    return getProgramCompletion('onboardCSK12');
   }
 
   function getLessonsCompleted() {
@@ -443,8 +603,6 @@ window.TrainingEmbed = (function() {
   /* ---- RENDER: DASHBOARD ---- */
   function renderDashboard() {
     const completion = getCompletionPercent();
-    const k18completion = getK18CompletionPercent();
-    const csk12completion = getCSK12CompletionPercent();
     const rank = getOverallRank();
     const avgScore = getQuizAverage();
     const lessonsCount = getLessonsCompleted();
@@ -461,7 +619,8 @@ window.TrainingEmbed = (function() {
     var overallScore = getOverallScore();
     if (overallScore !== null && displayName) {
       var existing = lbEntries.findIndex(function(e) { return e.name === displayName; });
-      var userEntry = { name: displayName, score: parseFloat(overallScore), completion: completion, rank: getOverallRank() };
+      var totalCompletion = Math.round((getCompletionPercent() + getK18CompletionPercent() + getCSK12CompletionPercent()) / 3);
+      var userEntry = { name: displayName, score: parseFloat(overallScore), completion: totalCompletion, rank: getOverallRank() };
       if (existing >= 0) lbEntries[existing] = userEntry; else lbEntries.push(userEntry);
     }
     lbEntries.sort(function(a,b) { return b.score - a.score; });
@@ -510,41 +669,32 @@ window.TrainingEmbed = (function() {
 
       <h3 style="font-size:1rem;font-weight:700;margin-bottom:16px;">Lộ trình đào tạo</h3>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:24px;">
-        <div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;cursor:pointer;" onclick="window._trnNavigate('day1')">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-            <span style="font-size:1.5rem;">🎯</span>
-            <div>
-              <div style="font-size:0.92rem;font-weight:700;color:#1A202C;">Sale K12 Onboard</div>
-              <div style="font-size:0.72rem;color:#A0AEC0;">5 ngày &bull; ${TRAINING_DATA.onboard.days.reduce(function(a,d){return a+d.sections.length;},0)} phần</div>
-            </div>
-          </div>
-          <div class="trn-progress-bar"><div class="trn-progress-fill red" style="width:${completion}%"></div></div>
-          <div style="font-size:0.75rem;color:#A0AEC0;margin-top:6px;">${completion}% hoàn thành</div>
-        </div>
-        ${TRAINING_DATA.onboardCSK12 ? `
-        <div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;cursor:pointer;" onclick="window._trnNavigate('csk12_day1')">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-            <span style="font-size:1.5rem;">💚</span>
-            <div>
-              <div style="font-size:0.92rem;font-weight:700;color:#1A202C;">CS K12 Onboard</div>
-              <div style="font-size:0.72rem;color:#A0AEC0;">5 ngày &bull; ${TRAINING_DATA.onboardCSK12.days.reduce(function(a,d){return a+d.sections.length;},0)} phần</div>
-            </div>
-          </div>
-          <div class="trn-progress-bar"><div class="trn-progress-fill green" style="width:${csk12completion}%"></div></div>
-          <div style="font-size:0.75rem;color:#A0AEC0;margin-top:6px;">${csk12completion}% hoàn thành</div>
-        </div>` : ''}
-        ${TRAINING_DATA.onboardK18 ? `
-        <div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;cursor:pointer;" onclick="window._trnNavigate('k18_day1')">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-            <span style="font-size:1.5rem;">🚀</span>
-            <div>
-              <div style="font-size:0.92rem;font-weight:700;color:#1A202C;">K18 Sale Onboard</div>
-              <div style="font-size:0.72rem;color:#A0AEC0;">5 ngày &bull; ${TRAINING_DATA.onboardK18.days.reduce(function(a,d){return a+d.sections.length;},0)} phần</div>
-            </div>
-          </div>
-          <div class="trn-progress-bar"><div class="trn-progress-fill blue" style="width:${k18completion}%"></div></div>
-          <div style="font-size:0.75rem;color:#A0AEC0;margin-top:6px;">${k18completion}% hoàn thành</div>
-        </div>` : ''}
+        ${(function() {
+          var progIcons = { 'sale_k12': '🎯', 'csk12': '💚', 'k18_sale': '🚀' };
+          var progColors = { 'sale_k12': 'red', 'csk12': 'green', 'k18_sale': 'blue' };
+          var progPages = { 'sale_k12': 'day1', 'csk12': 'csk12_day1', 'k18_sale': 'k18_day1' };
+          return getPrograms().map(function(prog) {
+            var pCompletion = getProgramCompletion(prog.key);
+            var pScore = getProgramScore(prog.id);
+            var pRank = pScore ? getRank(parseFloat(pScore), pCompletion, checkAllFinalExams()) : null;
+            var sectionCount = TRAINING_DATA[prog.key] ? TRAINING_DATA[prog.key].days.reduce(function(a,d){return a+d.sections.length;},0) : 0;
+            var dayCount = TRAINING_DATA[prog.key] ? TRAINING_DATA[prog.key].days.length : 0;
+            var icon = progIcons[prog.id] || '📚';
+            var colorClass = progColors[prog.id] || 'red';
+            var navPage = progPages[prog.id] || (prog.key + '1');
+            return '<div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;cursor:pointer;" onclick="window._trnNavigate(\'' + navPage + '\')">' +
+              '<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">' +
+              '<span style="font-size:1.5rem;">' + icon + '</span>' +
+              '<div>' +
+              '<div style="font-size:0.92rem;font-weight:700;color:#1A202C;">' + prog.label + '</div>' +
+              '<div style="font-size:0.72rem;color:#A0AEC0;">' + dayCount + ' ngày &bull; ' + sectionCount + ' phần' +
+              (pScore ? ' &bull; ' + pScore + '/10 ' + (pRank ? getRankIcon(pRank) : '') : '') + '</div>' +
+              '</div></div>' +
+              '<div class="trn-progress-bar"><div class="trn-progress-fill ' + colorClass + '" style="width:' + pCompletion + '%"></div></div>' +
+              '<div style="font-size:0.75rem;color:#A0AEC0;margin-top:6px;">' + pCompletion + '% ho\u00e0n th\u00e0nh</div>' +
+              '</div>';
+          }).join('');
+        })()}
       </div>
 
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-bottom:24px;">
@@ -798,94 +948,175 @@ window.TrainingEmbed = (function() {
   function renderQuizHub() {
     var allQ = getAllQuizzes();
     var totalQuizzes = allQ.length;
-    var completedQuizzes = allQ.filter(function(q) { return state.quizzes[q.quiz.id]; }).length;
+    var completedQuizzes = allQ.filter(function(q) { return state.quizzes[q.registry.id]; }).length;
     var avgStr = getQuizAverage();
+    var programs = getPrograms();
 
-    // Group by academy
-    var groups = {};
-    allQ.forEach(function(q) {
-      if (!groups[q.academy]) groups[q.academy] = [];
-      groups[q.academy].push(q);
+    var html = '<div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;margin-bottom:20px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">' +
+      '<div style="text-align:center;"><div style="font-size:1.8rem;font-weight:800;color:#1A202C;">' + completedQuizzes + '/' + totalQuizzes + '</div><div style="font-size:0.72rem;color:#A0AEC0;">Quiz đã làm</div></div>' +
+      '<div style="text-align:center;"><div style="font-size:1.8rem;font-weight:800;color:#1A202C;">' + avgStr + '</div><div style="font-size:0.72rem;color:#A0AEC0;">Điểm TB (có trọng số)</div></div>' +
+      '<div style="flex:1;"><div class="trn-progress-bar" style="height:10px;"><div class="trn-progress-fill red" style="width:' + (totalQuizzes > 0 ? Math.round(completedQuizzes/totalQuizzes*100) : 0) + '%"></div></div></div>' +
+      '</div>';
+
+    // Render per-program groups
+    programs.forEach(function(prog) {
+      var progQuizzes = allQ.filter(function(q) { return q.registry.program === prog.id; });
+      if (progQuizzes.length === 0) return;
+
+      var progScore = getProgramScore(prog.id);
+      html += '<h3 style="font-size:0.95rem;font-weight:700;margin:20px 0 8px;color:#1A202C;">' +
+        prog.label + (progScore ? ' <span style="font-weight:400;color:#4A5568;font-size:0.82rem;">— ' + progScore + '/10</span>' : '') + '</h3>';
+
+      // Group by day within program
+      var days = {};
+      progQuizzes.forEach(function(q) {
+        var dk = q.registry.day || 0;
+        if (!days[dk]) days[dk] = [];
+        days[dk].push(q);
+      });
+
+      Object.keys(days).sort(function(a,b){return parseInt(a)-parseInt(b);}).forEach(function(dayKey) {
+        if (parseInt(dayKey) > 0) {
+          html += '<div style="font-size:0.78rem;font-weight:700;color:#2563EB;margin:12px 0 6px;text-transform:uppercase;letter-spacing:0.05em;">Ngày ' + dayKey + '</div>';
+        }
+        html += '<div class="trn-quiz-hub-grid">';
+        days[dayKey].forEach(function(q) {
+          var score = getScore(q.registry.id);
+          var rk = score !== null ? getRank(parseFloat(score)) : null;
+          var statusIcon = rk ? (rk === 'F' ? '✗' : '✓') : '—';
+          var statusColor = rk ? (rk === 'F' ? '#E31F26' : '#059669') : '#A0AEC0';
+          var attempts = getAttemptCount(q.registry.id);
+          var maxAttempts = q.registry.maxAttempts;
+          var locked = maxAttempts && attempts >= maxAttempts;
+          var weightLabel = q.registry.type === 'final_exam' ? ' • Thi cuối khóa' : '';
+          html += '<div class="trn-quiz-hub-card" ' + (locked ? '' : 'onclick="window._trnStartQuiz(\'' + q.registry.id + '\')"') + ' style="' + (locked ? 'opacity:0.7;cursor:default;' : 'cursor:pointer;') + '">' +
+            '<div style="display:flex;align-items:center;justify-content:space-between;">' +
+            '<div class="trn-qh-icon">' + q.icon + '</div>' +
+            '<span style="font-size:0.72rem;font-weight:700;color:' + statusColor + ';">' + statusIcon + ' ' + (rk ? 'Rank ' + rk : 'Chưa làm') + '</span>' +
+            '</div>' +
+            '<div class="trn-qh-title">' + q.registry.title + '</div>' +
+            '<div class="trn-qh-meta">' + (q.dayTitle || '') + ' — ' + q.registry.questionCount + ' câu • ×' + q.registry.weight + weightLabel + '</div>' +
+            (score !== null ? '<div class="trn-qh-score">Điểm cao nhất: ' + score + '/10' + (attempts > 0 ? ' (' + attempts + ' lượt)' : '') + '</div>' : '') +
+            (locked ? '<div style="margin-top:6px;font-size:0.72rem;color:#E31F26;font-weight:600;">Đã hết lượt thi (' + attempts + '/' + maxAttempts + ')</div>' :
+              (score !== null ? '<div style="margin-top:6px;"><button style="padding:4px 12px;background:#F8F9FA;border:1px solid #E2E8F0;border-radius:6px;font-family:inherit;font-size:0.72rem;font-weight:600;cursor:pointer;">Làm lại</button></div>' : '')) +
+            '</div>';
+        });
+        html += '</div>';
+      });
     });
 
-    // Add Quiz Friday
-    if (TRAINING_DATA.microlearning && TRAINING_DATA.microlearning.quizFriday) {
-      if (!groups['Microlearning']) groups['Microlearning'] = [];
-      groups['Microlearning'].push({ quiz: { id: 'quiz_friday', title: 'Quiz Friday', questions: TRAINING_DATA.microlearning.quizFriday }, academy: 'Microlearning', dayTitle: 'Hàng tuần', icon: '🎯' });
-    }
-
-    let html = `
-      <div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;margin-bottom:20px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
-        <div style="text-align:center;">
-          <div style="font-size:1.8rem;font-weight:800;color:#1A202C;">${completedQuizzes}/${totalQuizzes}</div>
-          <div style="font-size:0.72rem;color:#A0AEC0;">Quiz đã làm</div>
-        </div>
-        <div style="text-align:center;">
-          <div style="font-size:1.8rem;font-weight:800;color:#1A202C;">${avgStr}</div>
-          <div style="font-size:0.72rem;color:#A0AEC0;">Điểm TB</div>
-        </div>
-        <div style="flex:1;">
-          <div class="trn-progress-bar" style="height:10px;"><div class="trn-progress-fill red" style="width:${totalQuizzes > 0 ? Math.round(completedQuizzes/totalQuizzes*100) : 0}%"></div></div>
-        </div>
-      </div>
-    `;
-
-    Object.keys(groups).forEach(function(academy) {
-      html += `<h3 style="font-size:0.95rem;font-weight:700;margin:20px 0 12px;color:#1A202C;">${academy}</h3>`;
+    // Microlearning / Quiz Friday section
+    var fridayQ = allQ.filter(function(q) { return q.registry.program === 'microlearning'; });
+    if (fridayQ.length > 0) {
+      html += '<h3 style="font-size:0.95rem;font-weight:700;margin:20px 0 8px;color:#1A202C;">Microlearning</h3>';
       html += '<div class="trn-quiz-hub-grid">';
-      groups[academy].forEach(function(q) {
-        var score = getScore(q.quiz.id);
+      fridayQ.forEach(function(q) {
+        var score = getScore(q.registry.id);
         var rk = score !== null ? getRank(parseFloat(score)) : null;
         var statusIcon = rk ? (rk === 'F' ? '✗' : '✓') : '—';
         var statusColor = rk ? (rk === 'F' ? '#E31F26' : '#059669') : '#A0AEC0';
-        html += `
-          <div class="trn-quiz-hub-card" onclick="window._trnStartQuiz('${q.quiz.id}')">
-            <div style="display:flex;align-items:center;justify-content:space-between;">
-              <div class="trn-qh-icon">${q.icon || '📝'}</div>
-              <span style="font-size:0.72rem;font-weight:700;color:${statusColor};">${statusIcon} ${rk ? 'Rank ' + rk : 'Chưa làm'}</span>
-            </div>
-            <div class="trn-qh-title">${q.quiz.title}</div>
-            <div class="trn-qh-meta">${q.dayTitle} — ${q.quiz.questions.length} câu</div>
-            ${score !== null ? `<div class="trn-qh-score">Điểm cao nhất: ${score}/10</div>` : ''}
-            ${score !== null ? '<div style="margin-top:6px;"><button style="padding:4px 12px;background:#F8F9FA;border:1px solid #E2E8F0;border-radius:6px;font-family:inherit;font-size:0.72rem;font-weight:600;cursor:pointer;">Làm lại</button></div>' : ''}
-          </div>`;
+        html += '<div class="trn-quiz-hub-card" onclick="window._trnStartQuiz(\'' + q.registry.id + '\')">' +
+          '<div style="display:flex;align-items:center;justify-content:space-between;">' +
+          '<div class="trn-qh-icon">🎯</div>' +
+          '<span style="font-size:0.72rem;font-weight:700;color:' + statusColor + ';">' + statusIcon + ' ' + (rk ? 'Rank ' + rk : 'Chưa làm') + '</span>' +
+          '</div>' +
+          '<div class="trn-qh-title">' + q.registry.title + '</div>' +
+          '<div class="trn-qh-meta">Hàng tuần — ' + q.registry.questionCount + ' câu</div>' +
+          (score !== null ? '<div class="trn-qh-score">Điểm cao nhất: ' + score + '/10</div>' : '') +
+          (score !== null ? '<div style="margin-top:6px;"><button style="padding:4px 12px;background:#F8F9FA;border:1px solid #E2E8F0;border-radius:6px;font-family:inherit;font-size:0.72rem;font-weight:600;cursor:pointer;">Làm lại</button></div>' : '') +
+          '</div>';
       });
       html += '</div>';
-    });
+    }
 
     pageContent.innerHTML = html;
   }
 
   /* ---- RENDER: QUIZ RESULTS ---- */
   function renderQuizResults() {
-    const quizIds = Object.keys(state.quizzes);
-    const overallScore = getOverallScore();
-    const overallRank = getOverallRank();
+    var overallScore = getOverallScore();
+    var overallRank = getOverallRank();
+    var programs = getPrograms();
+    var allQ = getAllQuizzes();
 
-    let html = `
-      <div class="trn-dash-welcome" style="margin-bottom:24px;">
-        <h2>Kết quả tổng hợp</h2>
-        <p>Điểm trung bình: ${overallScore || '—'}/10 ${overallRank ? `| Rank: ${overallRank} ${getRankIcon(overallRank)}` : ''}</p>
-      </div>
-      <div class="trn-results-grid">
-        ${quizIds.length === 0 ? '<p style="color:#A0AEC0;font-size:0.85rem;">Bạn chưa làm quiz nào. Hãy bắt đầu từ lộ trình Onboard!</p>' : ''}
-        ${quizIds.map(id => {
-          const q = state.quizzes[id];
-          const score = ((q.score / q.total) * 10).toFixed(1);
-          const rank = getRank(parseFloat(score));
-          const date = new Date(q.timestamp).toLocaleDateString('vi-VN');
-          return `
-            <div class="trn-result-card">
-              <div class="trn-rc-quiz">
-                <div class="trn-rc-quiz-name">${id}</div>
-                <div class="trn-rc-quiz-date">${date} — ${q.score}/${q.total} câu đúng</div>
-              </div>
-              <div class="trn-rc-score">${score}/10</div>
-              <span class="trn-lb-badge trn-rank-${rank}">${rank}</span>
-            </div>`;
-        }).join('')}
-      </div>
-    `;
+    var html = '<div class="trn-dash-welcome" style="margin-bottom:24px;">' +
+      '<h2>Kết quả tổng hợp</h2>' +
+      '<p>Điểm có trọng số: ' + (overallScore || '—') + '/10' +
+      (overallRank ? ' | Rank: ' + overallRank + ' ' + getRankIcon(overallRank) : '') + '</p>' +
+      '</div>';
+
+    var hasAny = Object.keys(state.quizzes).length > 0;
+    if (!hasAny) {
+      html += '<p style="color:#A0AEC0;font-size:0.85rem;">Bạn chưa làm quiz nào. Hãy bắt đầu từ lộ trình Onboard!</p>';
+      pageContent.innerHTML = html;
+      return;
+    }
+
+    // Per-program breakdown
+    programs.forEach(function(prog) {
+      var progScore = getProgramScore(prog.id);
+      var progCompletion = getProgramCompletion(prog.key);
+      var progRank = progScore ? getRank(parseFloat(progScore), progCompletion, checkAllFinalExams()) : null;
+      var progQuizzes = allQ.filter(function(q) { return q.registry.program === prog.id && state.quizzes[q.registry.id]; });
+      if (progQuizzes.length === 0) return;
+
+      html += '<div style="margin-bottom:24px;">' +
+        '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">' +
+        '<h3 style="font-size:0.95rem;font-weight:700;margin:0;">' + prog.label + '</h3>' +
+        (progScore ? '<div style="display:flex;align-items:center;gap:8px;">' +
+          '<span style="font-size:0.92rem;font-weight:700;">' + progScore + '/10</span>' +
+          (progRank ? '<span class="trn-lb-badge trn-rank-' + progRank + '">' + progRank + ' ' + getRankIcon(progRank) + '</span>' : '') +
+          '</div>' : '') +
+        '</div>' +
+        '<div class="trn-results-grid">';
+
+      progQuizzes.forEach(function(q) {
+        var score = getScore(q.registry.id);
+        var rank = score !== null ? getRank(parseFloat(score)) : null;
+        var bestNum = getBestScore(q.registry.id);
+        var attempts = getAttemptCount(q.registry.id);
+        var qData = state.quizzes[q.registry.id];
+        var date = qData && qData.timestamp ? new Date(qData.timestamp).toLocaleDateString('vi-VN') : '—';
+        var correctCount = qData && qData.score !== undefined ? qData.score : '—';
+        var totalCount = qData && qData.total !== undefined ? qData.total : '—';
+        var typeLabel = q.registry.type === 'final_exam' ? ' 🎓 Thi cuối' : '';
+
+        html += '<div class="trn-result-card">' +
+          '<div class="trn-rc-quiz">' +
+          '<div class="trn-rc-quiz-name">' + q.registry.title + typeLabel + '</div>' +
+          '<div class="trn-rc-quiz-date">' + date + ' — ' + correctCount + '/' + totalCount + ' câu đúng' +
+          (attempts > 1 ? ' &bull; ' + attempts + ' lượt' : '') + '</div>' +
+          '</div>' +
+          '<div class="trn-rc-score">' + (score || '—') + '/10</div>' +
+          (rank ? '<span class="trn-lb-badge trn-rank-' + rank + '">' + rank + '</span>' : '') +
+          '</div>';
+      });
+
+      html += '</div></div>';
+    });
+
+    // Microlearning results
+    var fridayDone = allQ.filter(function(q) { return q.registry.program === 'microlearning' && state.quizzes[q.registry.id]; });
+    if (fridayDone.length > 0) {
+      html += '<div style="margin-bottom:24px;">' +
+        '<h3 style="font-size:0.95rem;font-weight:700;margin-bottom:12px;">Microlearning</h3>' +
+        '<div class="trn-results-grid">';
+      fridayDone.forEach(function(q) {
+        var score = getScore(q.registry.id);
+        var rank = score !== null ? getRank(parseFloat(score)) : null;
+        var qData = state.quizzes[q.registry.id];
+        var date = qData && qData.timestamp ? new Date(qData.timestamp).toLocaleDateString('vi-VN') : '—';
+        html += '<div class="trn-result-card">' +
+          '<div class="trn-rc-quiz">' +
+          '<div class="trn-rc-quiz-name">' + q.registry.title + '</div>' +
+          '<div class="trn-rc-quiz-date">' + date + '</div>' +
+          '</div>' +
+          '<div class="trn-rc-score">' + (score || '—') + '/10</div>' +
+          (rank ? '<span class="trn-lb-badge trn-rank-' + rank + '">' + rank + '</span>' : '') +
+          '</div>';
+      });
+      html += '</div></div>';
+    }
 
     pageContent.innerHTML = html;
   }
@@ -1029,77 +1260,102 @@ window.TrainingEmbed = (function() {
   }
 
   /* ---- RENDER: LEADERBOARD ---- */
-  function renderLeaderboard() {
+  function renderLeaderboard(activeTab) {
     var emp = getEmployeeSession();
     var displayName = emp && emp.name ? emp.name : state.userName;
     var userBU = emp && emp.bu ? emp.bu : '';
+    var overallScore = getOverallScore();
+    var overallRank = getOverallRank();
+    var medals = ['🥇','🥈','🥉'];
 
-    let entries = [...TRAINING_DATA.sampleLeaderboard];
-    const overallScore = getOverallScore();
+    // Build tab list dynamically from registry
+    var tabs = [{ id: 'total', label: 'Tổng hợp' }];
+    getPrograms().forEach(function(p) { tabs.push({ id: p.id, label: p.label }); });
+    tabs.push({ id: 'quiz_friday', label: 'Quiz Friday' });
+
+    if (!activeTab) activeTab = 'total';
+
+    // Expose re-render for tab clicks
+    window._trnLbTab = function(tab) { renderLeaderboard(tab); };
+
+    // Build entries for the active tab
+    var baseEntries = TRAINING_DATA.sampleLeaderboard ? [...TRAINING_DATA.sampleLeaderboard] : [];
+
+    // Inject current user
     if (overallScore !== null && displayName) {
-      const existing = entries.findIndex(e => e.name === displayName);
-      const userEntry = {
+      var totalCompletion = Math.round((getCompletionPercent() + getK18CompletionPercent() + getCSK12CompletionPercent()) / 3);
+      var existing = baseEntries.findIndex(function(e) { return e.name === displayName; });
+      var userEntry = {
         name: displayName,
         score: parseFloat(overallScore),
-        completion: getCompletionPercent(),
-        rank: getOverallRank(),
+        completion: totalCompletion,
+        rank: overallRank,
         date: new Date().toISOString().slice(0,10),
         bu: userBU
       };
-      if (existing >= 0) entries[existing] = userEntry;
-      else entries.push(userEntry);
+      if (existing >= 0) baseEntries[existing] = userEntry;
+      else baseEntries.push(userEntry);
     }
 
-    entries.sort((a,b) => b.score - a.score);
+    baseEntries.sort(function(a,b) { return b.score - a.score; });
+    var userRankPos = baseEntries.findIndex(function(e) { return e.name === displayName; });
 
-    // Find user rank
-    var userRankPos = entries.findIndex(function(e) { return e.name === displayName; });
-    var medals = ['🥇','🥈','🥉'];
+    // Tabs HTML
+    var tabsHtml = '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">' +
+      tabs.map(function(t) {
+        var isActive = t.id === activeTab;
+        return '<button onclick="window._trnLbTab(\'' + t.id + '\')" style="padding:6px 14px;border-radius:20px;border:1px solid ' +
+          (isActive ? '#E31F26' : '#E2E8F0') + ';background:' + (isActive ? '#E31F26' : '#FFFFFF') +
+          ';color:' + (isActive ? '#FFFFFF' : '#4A5568') + ';font-family:inherit;font-size:0.78rem;font-weight:' +
+          (isActive ? '700' : '500') + ';cursor:pointer;">' + t.label + '</button>';
+      }).join('') +
+      '</div>';
 
-    let html = `
-      ${overallScore !== null ? `
-      <div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;margin-bottom:20px;display:flex;align-items:center;gap:20px;">
-        <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#E31F26,#B91C22);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:800;">${userRankPos >= 0 ? userRankPos + 1 : '—'}</div>
-        <div>
-          <div style="font-size:0.92rem;font-weight:700;">Điểm của bạn: ${overallScore}/10</div>
-          <div style="font-size:0.78rem;color:#A0AEC0;">Xếp hạng ${userRankPos >= 0 ? '#' + (userRankPos+1) : '—'} trên ${entries.length} người ${userBU ? '&bull; BU: ' + escHtml(userBU) : ''}</div>
-        </div>
-        ${getOverallRank() ? '<span class="trn-lb-badge trn-rank-' + getOverallRank() + '" style="font-size:0.85rem;padding:6px 16px;">' + getOverallRank() + ' ' + getRankIcon(getOverallRank()) + '</span>' : ''}
-      </div>` : ''}
+    var html = '';
 
-      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:16px;">🏆 Bảng xếp hạng TVTS</h3>
+    // User's own stat card
+    if (overallScore !== null) {
+      html += '<div style="background:#FFFFFF;border-radius:10px;padding:20px;border:1px solid #F1F5F9;margin-bottom:20px;display:flex;align-items:center;gap:20px;">' +
+        '<div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#E31F26,#B91C22);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:800;">' +
+        (userRankPos >= 0 ? userRankPos + 1 : '—') + '</div>' +
+        '<div>' +
+        '<div style="font-size:0.92rem;font-weight:700;">Điểm của bạn: ' + overallScore + '/10</div>' +
+        '<div style="font-size:0.78rem;color:#A0AEC0;">Xếp hạng ' + (userRankPos >= 0 ? '#' + (userRankPos+1) : '—') + ' trên ' + baseEntries.length + ' người ' + (userBU ? '&bull; BU: ' + escHtml(userBU) : '') + '</div>' +
+        '</div>' +
+        (overallRank ? '<span class="trn-lb-badge trn-rank-' + overallRank + '" style="font-size:0.85rem;padding:6px 16px;">' + overallRank + ' ' + getRankIcon(overallRank) + '</span>' : '') +
+        '</div>';
+    }
 
-      <div style="background:#F8F9FA;border-radius:8px;padding:12px 16px;font-size:0.78rem;color:#4A5568;margin-bottom:16px;line-height:1.5;">
-        <strong>Cách tính điểm:</strong> Điểm = Trung bình tất cả quiz đã làm (thang 10). Rank: S (≥9) &bull; A (≥8) &bull; B (≥7) &bull; C (≥6) &bull; F (<6)
-      </div>
+    html += tabsHtml;
+    html += '<h3 style="font-size:1.1rem;font-weight:700;margin-bottom:16px;">🏆 Bảng xếp hạng TVTS</h3>';
 
-      <table class="trn-leaderboard-table">
-        <thead>
-          <tr>
-            <th style="width:60px;">#</th>
-            <th>Họ tên</th>
-            <th>Điểm</th>
-            <th>Hoàn thành</th>
-            <th>Rank</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${entries.map((e, i) => {
-            const isMe = e.name === displayName;
-            const topClass = i === 0 ? 'top1' : i === 1 ? 'top2' : i === 2 ? 'top3' : '';
-            return `
-              <tr style="${isMe ? 'background:#FFF5F5;font-weight:600;' : ''}">
-                <td><span class="trn-lb-rank-num ${topClass}">${i < 3 ? medals[i] : (i+1)}</span></td>
-                <td>${escHtml(e.name)} ${isMe ? '<span style="font-size:0.72rem;color:#E31F26;">(Bạn)</span>' : ''}</td>
-                <td style="font-weight:700;">${e.score.toFixed(1)}</td>
-                <td>${e.completion}%</td>
-                <td><span class="trn-lb-badge trn-rank-${e.rank}">${e.rank} ${getRankIcon(e.rank)}</span></td>
-              </tr>`;
-          }).join('')}
-        </tbody>
-      </table>
-    `;
+    // Scoring method explanation
+    var scoringNote = activeTab === 'total'
+      ? 'Tất cả quiz có trọng số (×1 = quiz thường, ×3 = thi cuối, ×0.5 = Quiz Friday)'
+      : 'Chỉ tính quiz thuộc chương trình này';
+    html += '<div style="background:#F8F9FA;border-radius:8px;padding:12px 16px;font-size:0.78rem;color:#4A5568;margin-bottom:16px;line-height:1.5;">' +
+      '<strong>Cách tính điểm:</strong> ' + scoringNote + '. Rank: S+ (≥9.5, 100%, tất cả thi cuối ≥9) &bull; S (≥9, ≥90%) &bull; A (≥8) &bull; B (≥7) &bull; C (≥6) &bull; F (<6)' +
+      '</div>';
 
+    html += '<table class="trn-leaderboard-table"><thead><tr>' +
+      '<th style="width:60px;">#</th><th>Họ tên</th><th>BU</th><th>Điểm</th><th>Hoàn thành</th><th>Rank</th>' +
+      '</tr></thead><tbody>';
+
+    baseEntries.forEach(function(e, i) {
+      var isMe = e.name === displayName;
+      var topClass = i === 0 ? 'top1' : i === 1 ? 'top2' : i === 2 ? 'top3' : '';
+      var rankBadge = e.rank ? '<span class="trn-lb-badge trn-rank-' + e.rank + '">' + e.rank + ' ' + getRankIcon(e.rank) + '</span>' : '—';
+      html += '<tr style="' + (isMe ? 'background:#FFF5F5;font-weight:600;' : '') + '">' +
+        '<td><span class="trn-lb-rank-num ' + topClass + '">' + (i < 3 ? medals[i] : (i+1)) + '</span></td>' +
+        '<td>' + escHtml(e.name) + (isMe ? ' <span style="font-size:0.72rem;color:#E31F26;">(Bạn)</span>' : '') + '</td>' +
+        '<td style="font-size:0.78rem;color:#4A5568;">' + (e.bu ? escHtml(e.bu) : '—') + '</td>' +
+        '<td style="font-weight:700;">' + e.score.toFixed(1) + '</td>' +
+        '<td>' + e.completion + '%</td>' +
+        '<td>' + rankBadge + '</td>' +
+        '</tr>';
+    });
+
+    html += '</tbody></table>';
     pageContent.innerHTML = html;
   }
 
@@ -1144,18 +1400,12 @@ window.TrainingEmbed = (function() {
           <span class="trn-settings-label">Rank</span>
           <span class="trn-settings-value">${overallRank ? '<span class="trn-lb-badge trn-rank-' + overallRank + '">' + overallRank + ' ' + getRankIcon(overallRank) + '</span>' : '—'}</span>
         </div>
-        <div class="trn-settings-row">
-          <span class="trn-settings-label">K12 Sale Onboard</span>
-          <span class="trn-settings-value">${getCompletionPercent()}%</span>
-        </div>
-        <div class="trn-settings-row">
-          <span class="trn-settings-label">CS K12 Onboard</span>
-          <span class="trn-settings-value">${getCSK12CompletionPercent()}%</span>
-        </div>
-        <div class="trn-settings-row">
-          <span class="trn-settings-label">K18 Sale Onboard</span>
-          <span class="trn-settings-value">${getK18CompletionPercent()}%</span>
-        </div>
+        ${getPrograms().map(function(prog) {
+          return '<div class="trn-settings-row">' +
+            '<span class="trn-settings-label">' + prog.label + '</span>' +
+            '<span class="trn-settings-value">' + getProgramCompletion(prog.key) + '%</span>' +
+            '</div>';
+        }).join('')}
         <div class="trn-settings-row">
           <span class="trn-settings-label">Bài học đã xem</span>
           <span class="trn-settings-value">${getLessonsCompleted()}</span>
@@ -1417,16 +1667,51 @@ window.TrainingEmbed = (function() {
     const scoreOutOf10 = ((score / total) * 10).toFixed(1);
     const rank = getRank(parseFloat(scoreOutOf10));
 
-    // Save best score
-    const existing = state.quizzes[currentQuiz.id];
-    if (!existing || score > existing.score) {
-      state.quizzes[currentQuiz.id] = {
-        score: score,
-        total: total,
-        timestamp: Date.now(),
-        answers: [...quizState.answers],
-        timeTaken: timeTaken
-      };
+    // Multi-attempt tracking with max-attempt enforcement
+    var quizId = currentQuiz.id;
+    var entry = quizRegistry.find(function(q) { return q.id === quizId; });
+
+    // Check max attempts before saving (shouldn't reach here if locked, but guard anyway)
+    if (entry && entry.maxAttempts) {
+      var prevAttempts = getAttemptCount(quizId);
+      if (prevAttempts >= entry.maxAttempts) {
+        // Max attempts already reached — do not save, still show result
+      } else {
+        // Store attempt
+        if (!state.quizzes[quizId]) {
+          state.quizzes[quizId] = { attempts: [], score: score, total: total, timestamp: Date.now() };
+        }
+        if (!state.quizzes[quizId].attempts) state.quizzes[quizId].attempts = [];
+        state.quizzes[quizId].attempts.push({
+          score: (score / total) * 10,
+          time: timeTaken,
+          date: new Date().toISOString().split('T')[0],
+          answers: quizState.answers.slice()
+        });
+        // Keep best score in top-level for backward compatibility
+        var bestScore = Math.max.apply(null, state.quizzes[quizId].attempts.map(function(a) { return a.score; }));
+        state.quizzes[quizId].score = Math.round(bestScore * total / 10);
+        state.quizzes[quizId].total = total;
+        state.quizzes[quizId].timestamp = Date.now();
+        saveState();
+      }
+    } else {
+      // No max attempt limit — save best score (legacy + attempts tracking)
+      if (!state.quizzes[quizId]) {
+        state.quizzes[quizId] = { attempts: [], score: score, total: total, timestamp: Date.now() };
+      }
+      if (!state.quizzes[quizId].attempts) state.quizzes[quizId].attempts = [];
+      state.quizzes[quizId].attempts.push({
+        score: (score / total) * 10,
+        time: timeTaken,
+        date: new Date().toISOString().split('T')[0],
+        answers: quizState.answers.slice()
+      });
+      // Keep best score in top-level for backward compatibility
+      var bestAll = Math.max.apply(null, state.quizzes[quizId].attempts.map(function(a) { return a.score; }));
+      state.quizzes[quizId].score = Math.round(bestAll * total / 10);
+      state.quizzes[quizId].total = total;
+      state.quizzes[quizId].timestamp = Date.now();
       saveState();
     }
 
