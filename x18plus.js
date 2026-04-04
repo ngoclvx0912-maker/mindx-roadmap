@@ -1599,6 +1599,9 @@
   }
 
   function activateX18(key) {
+    // Centralized view switch: hide K12 pricing, show roadmap area for 18+
+    if (window.switchView) window.switchView("x18");
+
     var pageTitle = document.getElementById("pageTitle");
     if (pageTitle) pageTitle.textContent = titleMap[key] || "18+";
 
@@ -1612,8 +1615,6 @@
     document.querySelectorAll(".nav-x18-item").forEach(function (btn) {
       btn.classList.toggle("active", btn.getAttribute("data-x18") === key);
     });
-    document.querySelectorAll(".nav-item").forEach(function (btn) { btn.classList.remove("active"); });
-    document.querySelectorAll(".nav-xmember, .nav-xart, .nav-xmember2").forEach(function (btn) { btn.classList.remove("active"); });
   }
 
   function buildSidebar() {

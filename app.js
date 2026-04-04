@@ -1053,6 +1053,8 @@
 
   // ===== SWITCHING =====
   function switchRoadmap(name) {
+    // Ensure K12 view is active
+    if (window.switchView) window.switchView("k12");
     state.currentRoadmap = name;
     $$(".nav-item").forEach(function(btn) { btn.classList.toggle("active", btn.getAttribute("data-roadmap") === name); });
     var titles = { robotics: "L\u1ED9 tr\u00ECnh Robotics", coding: "L\u1ED9 tr\u00ECnh Coding", art: "L\u1ED9 tr\u00ECnh Art" };
@@ -1323,9 +1325,48 @@
     setTimeout(function() { t.remove(); }, 3000);
   }
 
+  // ===== CENTRALIZED VIEW SWITCHING =====
+  // All content areas: k12 (roadmap+pricing), x18, training, roleplay
+  // Sales flows (xmember/xart/xmember2/xrobot) are overlays — don't need view switching
+  window.switchView = function(view) {
+    var roadmapW = $("#roadmapWrapper");
+    var pricingS = $("#pricingSection");
+    var trainingC = $("#trainingContainer");
+    var roleplayC = $("#roleplayContainer");
+    // Hide all
+    if (roadmapW) roadmapW.style.display = "none";
+    if (pricingS) pricingS.style.display = "none";
+    if (trainingC) trainingC.classList.remove("trn-active");
+    if (roleplayC) roleplayC.style.display = "none";
+    // Clear active states
+    $$(".nav-item").forEach(function(b) { b.classList.remove("active"); });
+    $$(".nav-x18-item").forEach(function(b) { b.classList.remove("active"); });
+    $$(".nav-group-header").forEach(function(h) { h.classList.remove("active"); });
+    // Show the right view
+    if (view === "k12") {
+      if (roadmapW) roadmapW.style.display = "";
+      if (pricingS) pricingS.style.display = "";
+      var k12Header = document.querySelector('[data-group="k12"]');
+      if (k12Header) k12Header.classList.add("active");
+    } else if (view === "x18") {
+      if (roadmapW) roadmapW.style.display = "";
+      var x18Header = document.querySelector('[data-group="18plus"]');
+      if (x18Header) x18Header.classList.add("active");
+    } else if (view === "training") {
+      if (trainingC) trainingC.classList.add("trn-active");
+      var trnHeader = document.querySelector('[data-group="training"]');
+      if (trnHeader) trnHeader.classList.add("active");
+    } else if (view === "roleplay") {
+      if (roleplayC) roleplayC.style.display = "";
+    }
+  };
+
   // ===== INIT =====
   function init() {
-    $$(".nav-item").forEach(function(btn) { btn.addEventListener("click", function() { switchRoadmap(btn.getAttribute("data-roadmap")); }); });
+    $$(".nav-item").forEach(function(btn) { btn.addEventListener("click", function() {
+      window.switchView("k12");
+      switchRoadmap(btn.getAttribute("data-roadmap"));
+    }); });
     $("#hamburgerBtn").addEventListener("click", openSidebar);
     $("#sidebarClose").addEventListener("click", closeSidebar);
     $("#sidebarOverlay").addEventListener("click", closeSidebar);

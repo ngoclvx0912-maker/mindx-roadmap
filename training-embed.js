@@ -310,6 +310,9 @@ window.TrainingEmbed = (function() {
 
   /* ---- NAVIGATION ---- */
   function navigate(page) {
+    // Centralized view switch: hide K12/18+ content, show training
+    if (window.switchView) window.switchView("training");
+
     state.currentPage = page;
     saveState();
     setActiveSubnav(page);
