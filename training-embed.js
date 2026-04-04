@@ -1348,6 +1348,9 @@ window.TrainingEmbed = (function() {
     // Build tab list dynamically from registry
     var tabs = [{ id: 'total', label: 'Tổng hợp' }];
     getPrograms().forEach(function(p) { tabs.push({ id: p.id, label: p.label }); });
+    // Always show Upskill tab (Role-Play Lab + future upskill programs)
+    var hasUpskillTab = tabs.find(function(t) { return t.id === 'upskill'; });
+    if (!hasUpskillTab) tabs.push({ id: 'upskill', label: 'Upskill' });
     tabs.push({ id: 'quiz_friday', label: 'Quiz Friday' });
 
     if (!activeTab) activeTab = 'total';

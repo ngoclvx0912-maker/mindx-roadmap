@@ -364,42 +364,46 @@
       if(children && children.children.length === 0) {
         var items = [
           {icon:'\ud83c\udfe0', label:'T\u1ed5ng quan', page:'dashboard'},
-          {type:'sub', icon:'\ud83d\udcc5', label:'Sale K12 Onboard', children:[
+          {type:'section', label:'K12'},
+          {type:'sub', icon:'\ud83c\udfaf', label:'Sale K12', children:[
             {label:'Ng\u00e0y 1: WHY & MINDSET', page:'day1'},
             {label:'Ng\u00e0y 2: PRODUCT MASTERY', page:'day2'},
             {label:'Ng\u00e0y 3: SELLING SKILLS', page:'day3'},
             {label:'Ng\u00e0y 4: SIMULATION', page:'day4'},
             {label:'Ng\u00e0y 5: ASSESSMENT', page:'day5'}
           ]},
-          {type:'sub', icon:'\ud83c\udfaf', label:'CS K12 Onboard', children:[
+          {type:'sub', icon:'\ud83d\udc9a', label:'CS K12', children:[
             {label:'Ng\u00e0y 1: T\u1ed4NG QUAN', page:'csk12_day1'},
             {label:'Ng\u00e0y 2: S\u1ea2N PH\u1ea8M', page:'csk12_day2'},
             {label:'Ng\u00e0y 3: V\u1eacN H\u00c0NH', page:'csk12_day3'},
             {label:'Ng\u00e0y 4: CH\u0102M S\u00d3C', page:'csk12_day4'},
             {label:'Ng\u00e0y 5: \u0110\u00c1NH GI\u00c1', page:'csk12_day5'}
           ]},
-          {type:'sub', icon:'\ud83d\ude80', label:'K18 Sale Onboard', children:[
+          {type:'section', label:'18+'},
+          {type:'sub', icon:'\ud83d\ude80', label:'Sale 18+', children:[
             {label:'Ng\u00e0y 1: WHY & MINDSET', page:'k18_day1'},
             {label:'Ng\u00e0y 2: PRODUCT (18+)', page:'k18_day2'},
             {label:'Ng\u00e0y 3: SELLING (18+)', page:'k18_day3'},
             {label:'Ng\u00e0y 4: SIMULATION (18+)', page:'k18_day4'},
             {label:'Ng\u00e0y 5: ASSESSMENT (18+)', page:'k18_day5'}
           ]},
+          {type:'section', label:'UPSKILL'},
+          {type:'sub', icon:'\ud83d\udcda', label:'B\u1ea3o tr\u1ee3/Du h\u1ecdc', children:[
+            {label:'AI Role-Play Lab', page:'roleplay_lab'}
+          ]},
+          {type:'divider'},
+          {type:'sub', icon:'\ud83d\udca1', label:'Microlearning', children:[
+            {label:'Tip of the Week', page:'micro_tips'},
+            {label:'Case Study', page:'micro_cases'},
+            {label:'Quiz Friday', page:'micro_friday'}
+          ]},
+          {icon:'\ud83d\udcdd', label:'Ki\u1ec3m tra', page:'quiz_hub'},
           {type:'sub', icon:'\ud83c\udfaf', label:'Tracks', children:[
             {label:'K12 Sale', page:'track_k12_sale'},
             {label:'K12 CS', page:'track_k12_cs'},
             {label:'K18 Sale', page:'track_k18_sale'},
             {label:'K18 CS', page:'track_k18_cs'},
             {label:'Qu\u1ea3n l\u00fd', page:'track_manager'}
-          ]},
-          {type:'sub', icon:'\ud83d\udcda', label:'Upskill', children:[
-            {label:'B\u1ea3o tr\u1ee3/Du h\u1ecdc', page:'roleplay_lab'}
-          ]},
-          {icon:'\ud83d\udcdd', label:'Ki\u1ec3m tra', page:'quiz_hub'},
-          {type:'sub', icon:'\ud83d\udca1', label:'Microlearning', children:[
-            {label:'Tip of the Week', page:'micro_tips'},
-            {label:'Case Study', page:'micro_cases'},
-            {label:'Quiz Friday', page:'micro_friday'}
           ]},
           {icon:'\ud83c\udfc6', label:'B\u1ea3ng x\u1ebfp h\u1ea1ng', page:'leaderboard'},
           {icon:'\u2699\ufe0f', label:'C\u00e0i \u0111\u1eb7t', page:'settings'}
@@ -424,6 +428,20 @@
           if(m){m.classList.add('active');var sg=m.closest('.trn-sidebar-subgroup');if(sg){var sb=sg.querySelector('.trn-sidebar-subgroup-btn');if(sb)sb.classList.add('active');}}
         }
         items.forEach(function(it){
+          if(it.type==='section'){
+            var lbl=document.createElement('div');
+            lbl.className='nav-sublabel';
+            lbl.textContent=it.label;
+            lbl.style.marginTop='10px';
+            children.appendChild(lbl);
+            return;
+          }
+          if(it.type==='divider'){
+            var hr=document.createElement('div');
+            hr.className='nav-xmember-divider';
+            children.appendChild(hr);
+            return;
+          }
           if(it.type==='sub'){
             var sg=document.createElement('div');
             sg.className='trn-sidebar-subgroup';
