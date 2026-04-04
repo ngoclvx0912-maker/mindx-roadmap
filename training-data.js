@@ -2781,18 +2781,7 @@ const TRAINING_DATA = {
   /* --------------------------------------------------------
      LEADERBOARD SAMPLE DATA
      -------------------------------------------------------- */
-  sampleLeaderboard: [
-    { name: "Nguyễn Minh Anh", score: 9.6, completion: 100, rank: "S", date: "2026-03-15" },
-    { name: "Trần Đức Huy", score: 9.2, completion: 100, rank: "S", date: "2026-03-14" },
-    { name: "Lê Thị Hương", score: 8.8, completion: 100, rank: "A", date: "2026-03-16" },
-    { name: "Phạm Văn Nam", score: 8.5, completion: 95, rank: "A", date: "2026-03-13" },
-    { name: "Đỗ Thị Mai", score: 8.1, completion: 92, rank: "A", date: "2026-03-17" },
-    { name: "Hoàng Văn Đức", score: 7.8, completion: 88, rank: "B", date: "2026-03-12" },
-    { name: "Vũ Thị Linh", score: 7.5, completion: 85, rank: "B", date: "2026-03-18" },
-    { name: "Bùi Quang Khải", score: 7.0, completion: 80, rank: "B", date: "2026-03-11" },
-    { name: "Ngô Thị Trang", score: 6.5, completion: 70, rank: "C", date: "2026-03-19" },
-    { name: "Đinh Văn Phong", score: 6.2, completion: 65, rank: "C", date: "2026-03-10" }
-  ],
+  sampleLeaderboard: [],
 
   /* --------------------------------------------------------
      K18 SALE ONBOARD 5-DAY PROGRAM (20 bài — upgraded)
