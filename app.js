@@ -1396,10 +1396,11 @@
   var style = document.createElement("style");
   style.textContent = [
     ".sidebar, .sidebar-overlay, .topbar, .save-btn, #adminBadge { display: none !important; }",
-    ".roadmap-wrapper { margin-top: 0 !important; padding-top: 0 !important; }",
+    ".roadmap-wrapper { margin-top: 0 !important; padding-top: 8px !important; height: 100vh !important; }",
     ".pricing-section { margin-top: 0 !important; }",
-    "body { overflow: hidden; }",
-    ".roadmap-canvas { height: 100vh !important; max-height: 100vh !important; }",
+    "body { overflow: hidden; margin: 0; padding: 0; }",
+    ".roadmap-canvas { height: calc(100vh - 8px) !important; max-height: none !important; overflow-y: auto !important; }",
+    "#intercomChat { display: none !important; }",
   ].join("\n");
   document.head.appendChild(style);
 
