@@ -1385,3 +1385,119 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
 })();
+
+// ===== EMBED MODE =====
+// When loaded with ?embed=true, hide sidebar/topbar and support deep-link routing
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  if (!params.get("embed")) return;
+
+  // Hide chrome
+  var style = document.createElement("style");
+  style.textContent = [
+    ".sidebar, .sidebar-overlay, .topbar, .save-btn, #adminBadge { display: none !important; }",
+    ".roadmap-wrapper { margin-top: 0 !important; padding-top: 0 !important; }",
+    ".pricing-section { margin-top: 0 !important; }",
+    "body { overflow: hidden; }",
+    ".roadmap-canvas { height: 100vh !important; max-height: 100vh !important; }",
+  ].join("\n");
+  document.head.appendChild(style);
+
+  // Extended hash routing for embed
+  function handleHash() {
+    var hash = window.location.hash.replace("#", "");
+    var parts = hash.split("/");
+    var product = parts[0]; // robotics, coding, art
+    var section = parts[1]; // slides, pricing, roadmap, or 18plus product key
+
+    // K12 products
+    if (["robotics", "coding", "art"].indexOf(product) >= 0) {
+      if (window.switchView) window.switchView("k12");
+      // Small delay to ensure DOM is ready
+      setTimeout(function() {
+        // Navigate to product
+        var btns = document.querySelectorAll(".nav-item");
+        btns.forEach(function(btn) {
+          if (btn.getAttribute("data-roadmap") === product) btn.click();
+        });
+
+        // Open section
+        setTimeout(function() {
+          if (section === "slides") {
+            if (product === "robotics" && window.xrobotActivate) window.xrobotActivate();
+            else if (product === "coding" && window.xmemberActivate) window.xmemberActivate();
+            else if (product === "art" && window.xartActivate) window.xartActivate();
+          }
+          // For pricing and roadmap — they're shown by default when product is selected
+        }, 500);
+      }, 300);
+    }
+
+    // Du học slides
+    if (product === "duhoc" || hash === "duhoc/slides") {
+      setTimeout(function() {
+        if (window.xmember2Activate) window.xmember2Activate();
+      }, 500);
+    }
+
+    // 18+ products
+    if (product === "18plus") {
+      if (window.switchView) window.switchView("x18");
+      var courseKey = parts[1]; // coding, data, itba, uiux, marketing, dataeng, ai
+      setTimeout(function() {
+        // Click the 18+ course nav item
+        var items = document.querySelectorAll(".nav-x18-item");
+        items.forEach(function(item) {
+          var text = item.textContent || "";
+          var map = {
+            "coding": "Coding", "data": "Data", "itba": "Business",
+            "uiux": "UI/UX", "marketing": "Marketing", "dataeng": "Data Eng", "ai": "AI"
+          };
+          if (courseKey && map[courseKey] && text.indexOf(map[courseKey]) >= 0) {
+            item.click();
+          }
+        });
+
+        // Open slides if requested
+        if (parts[2] === "slides") {
+          setTimeout(function() {
+            // Scroll to sales flow button and click it
+            var canvas = document.getElementById("roadmapCanvas");
+            if (canvas) canvas.scrollTo(0, canvas.scrollHeight);
+            setTimeout(function() {
+              var btns = document.querySelectorAll("button");
+              for (var i = 0; i < btns.length; i++) {
+                if (btns[i].textContent && btns[i].textContent.indexOf("Sales Flow") >= 0) {
+                  btns[i].click();
+                  break;
+                }
+              }
+            }, 500);
+          }, 500);
+        }
+      }, 500);
+    }
+  }
+
+  // Listen for hash changes
+  window.addEventListener("hashchange", handleHash);
+
+  // Also handle postMessage from parent for navigation
+  window.addEventListener("message", function(e) {
+    if (e.data && e.data.type === "navigate") {
+      window.location.hash = e.data.hash;
+      handleHash();
+    }
+  });
+
+  // Initial routing after app loads
+  var checkReady = setInterval(function() {
+    if (document.querySelector(".nav-item")) {
+      clearInterval(checkReady);
+      setTimeout(handleHash, 200);
+    }
+  }, 100);
+
+  // Notify parent that embed is ready
+  window.parent.postMessage({ type: "embed-ready" }, "*");
+})();
