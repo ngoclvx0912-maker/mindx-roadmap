@@ -235,7 +235,7 @@ const TRAINING_DATA = {
     <p>Lộ trình dài nhất và flagship của MindX. Từ lập trình kéo thả Scratch đến AI và Computer Science.</p>
     <ul>
       <li><strong>Năm 1 — Scratch (8+):</strong> Lập trình kéo thả MIT, tạo game đầu tiên</li>
-      <li><strong>Năm 2 — Game Creator (11+):</strong> Python cơ bản, game 2D, deploy lên itch.io</li>
+      <li><strong>Năm 2 — Game Creator (11+):</strong> GameMaker Studio 2, GML, game 2D, deploy lên itch.io</li>
       <li><strong>Năm 3 — App Producer (11+):</strong> Mobile app, UI/UX, database cơ bản</li>
       <li><strong>Năm 4 — Web Developer (14+):</strong> Full-stack web, HTML/CSS/JS + Python backend</li>
       <li><strong>Năm 5 — Computer Scientist (15+):</strong> Thuật toán, AI/ML cơ bản, thi đấu quốc tế</li>
@@ -252,7 +252,7 @@ const TRAINING_DATA = {
     <ul>
       <li><strong>Năm 0 — Kỹ sư Robot nhí (4+):</strong> LEGO Spike Essential, robot động vật</li>
       <li><strong>Năm 1 — Nhập môn Robotics (6+):</strong> VEX GO, robot giao hàng, cửa thông minh</li>
-      <li><strong>Năm 2 — Truy tìm bí ẩn (8+):</strong> VEX GO nâng cao, debug, thuyết trình</li>
+      <li><strong>Năm 2 — Truy tìm bí ẩn Robot (8+):</strong> VEX GO nâng cao, debug, thuyết trình</li>
       <li><strong>Năm 3 — Sáng tạo Robot (10+):</strong> VEX IQ, Python/C++, PID controller, thi đấu quốc tế</li>
     </ul>
     <p><strong>Điểm đặc biệt:</strong> Dùng kit chuẩn thi đấu VEX IQ Challenge — 30,000+ đội từ 80+ quốc gia</p>
@@ -265,15 +265,15 @@ const TRAINING_DATA = {
     <h4>Track 3: Art & Design (7 năm) — Độ tuổi 4–18+</h4>
     <p>Lộ trình Art dài nhất thị trường — từ bút chì đến Adobe Creative Suite và After Effects.</p>
     <ul>
-      <li><strong>Năm 1 — Little Artist (4+):</strong> Tranh tay, kể chuyện bằng hình ảnh, iPad cơ bản</li>
+      <li><strong>Năm 0 — Little Artist (4+):</strong> Tranh tay, đất nặn, họa cụ truyền thống — khám phá sáng tạo</li>
       <li><strong>Năm 2 — Digital Art Foundations (7+):</strong> Procreate, character design, màu sắc</li>
       <li><strong>Năm 3 — Visual Thinking (9+):</strong> Infographic, editorial illustration, visual narrative</li>
       <li><strong>Năm 4 — Game Art (11+):</strong> Pixel art, sprite sheet, UI kit cho game</li>
-      <li><strong>Năm 5 — Character & Mascot (12+):</strong> Brand character, mascot, style guide</li>
+      <li><strong>Năm 5 — Character & Mascot Design (12+):</strong> Brand character, mascot, style guide</li>
       <li><strong>Năm 6 — Visual Communication (13+):</strong> Adobe Illustrator/Photoshop/InDesign, brand identity</li>
       <li><strong>Năm 7 — Motion & Video (14+):</strong> Premiere Pro, After Effects, motion graphic</li>
     </ul>
-    <p><strong>Chương trình đặc biệt:</strong> Cregen I & II (dự án thật), Internship, UX/UI chuyên sâu Năm 7</p>
+    <p><strong>Chương trình đặc biệt:</strong> CreGen I & II (dự án thật), Internship, UX/UI chuyên sâu Năm 7</p>
   </div>
 </div>
 
@@ -344,7 +344,7 @@ const TRAINING_DATA = {
       <li>👨‍🏫 <strong>500+ giáo viên</strong> — 100% được đào tạo chuyên sâu theo track</li>
       <li>🤝 <strong>200+ đối tác doanh nghiệp</strong> trong chương trình Bảo trợ việc làm</li>
       <li>🌍 <strong>25+ quốc gia</strong> học viên MindX đã du học thành công</li>
-      <li>🏆 <strong>10 năm</strong> kinh nghiệm giáo dục công nghệ K12 (2015–2025)</li>
+      <li>🏆 <strong>11 năm</strong> kinh nghiệm giáo dục công nghệ K12 (2015–2026)</li>
     </ul>
   </div>
 </div>
@@ -638,7 +638,7 @@ const TRAINING_DATA = {
   <div class="insight-number">📌</div>
   <div class="insight-body">
     <h4>Năm 2 — Game Creator (11+): "Tại sao cần học làm game? Có nghề gì không?"</h4>
-    <p><strong>Game Creator là gì:</strong> Bước chuyển từ Scratch sang Python thật — con viết code bằng tay, hiểu OOP cơ bản, thiết kế game 2D với Pygame.</p>
+    <p><strong>Game Creator là gì:</strong> Bước chuyển từ Scratch sang Python thật — con viết code bằng tay, hiểu OOP cơ bản, thiết kế game 2D với GameMaker Studio 2 (GML).</p>
     <p><strong>Con học được gì:</strong> Python hàm, vòng lặp, list, dictionary — nền tảng để học bất kỳ lĩnh vực lập trình nào. Portfolio game thật được upload lên itch.io — có người chơi thật.</p>
     <p><strong>Nghề nghiệp:</strong> Game Developer là nghề thiếu nhân lực nhất ngành CNTT Việt Nam — lương khởi điểm 15–25 triệu/tháng, kinh nghiệm 3–5 năm có thể đạt 40–70 triệu.</p>
     <div class="script-box">
@@ -792,19 +792,19 @@ const TRAINING_DATA = {
       <td><strong>Năm 3</strong></td>
       <td>Visual Thinking</td>
       <td>9–12 tuổi</td>
-      <td>Procreate nâng cao, Canva</td>
+      <td>Sketchbook, MediBang, bút cảm ứng</td>
       <td>Editorial illustration, infographic có thể đăng mạng xã hội</td>
     </tr>
     <tr>
       <td><strong>Năm 4</strong></td>
       <td>Game Art</td>
       <td>11–14 tuổi</td>
-      <td>Aseprite (pixel art), Illustrator cơ bản</td>
+      <td>MediBang / Sketchbook</td>
       <td>Character sprite sheet với animation, Game UI kit hoàn chỉnh</td>
     </tr>
     <tr>
       <td><strong>Năm 5</strong></td>
-      <td>Character & Mascot</td>
+      <td>Character & Mascot Design</td>
       <td>12–15 tuổi</td>
       <td>Procreate, Illustrator</td>
       <td>Mascot thương hiệu với brand guide, character sheet truyện tranh</td>
@@ -813,7 +813,7 @@ const TRAINING_DATA = {
       <td><strong>Năm 6</strong></td>
       <td>Visual Communication</td>
       <td>13–16 tuổi</td>
-      <td>Adobe Illustrator + Photoshop + InDesign</td>
+      <td>Adobe Illustrator + Photoshop</td>
       <td>Brand identity hoàn chỉnh (logo, màu, font, 5 vật phẩm), campaign visual</td>
     </tr>
     <tr>
@@ -882,7 +882,7 @@ const TRAINING_DATA = {
   <div class="insight-number">⭐</div>
   <div class="insight-body">
     <ul>
-      <li><strong>Cregen I & II:</strong> Dự án thật với khách hàng thật — con không làm bài tập mà làm brief thật từ doanh nghiệp. Triển lãm tác phẩm cuối chương trình. Phù hợp từ Năm 5 trở lên.</li>
+      <li><strong>CreGen I & II:</strong> Dự án thật với khách hàng thật — con không làm bài tập mà làm brief thật từ doanh nghiệp. Triển lãm tác phẩm cuối chương trình. Phù hợp từ Năm 5 trở lên.</li>
       <li><strong>Internship Art:</strong> Thực tập tại agency design và studio trong nước. Được mentor bởi designer chuyên nghiệp đang làm việc trong ngành.</li>
       <li><strong>UX/UI Năm 7:</strong> Chuyên sâu Figma, user research, prototyping — hướng cho học viên muốn đi sâu vào thiết kế sản phẩm số. Lương UX/UI designer 18–35 triệu/tháng.</li>
     </ul>
@@ -916,7 +916,7 @@ const TRAINING_DATA = {
                 q: "Chương trình Cregen của MindX dành cho học viên Art ở năm nào trở lên?",
                 options: ["Từ Năm 1", "Từ Năm 3", "Từ Năm 5", "Chỉ Năm 7"],
                 correct: 2,
-                explanation: "Cregen I & II từ Năm 5 trở lên — khi học viên đã đủ kỹ năng để làm dự án thật với khách hàng thật. Đây là bước 'real-world experience' quan trọng trong portfolio."
+                explanation: "CreGen I & II từ Năm 5 trở lên — khi học viên đã đủ kỹ năng để làm dự án thật với khách hàng thật. Đây là bước 'real-world experience' quan trọng trong portfolio."
               },
               {
                 q: "Học viên học cả Game Art (Art track) lẫn Game Creator (Coding track) có lợi thế gì đặc biệt?",
@@ -925,7 +925,7 @@ const TRAINING_DATA = {
                 explanation: "Combo Game Art + Game Creator là kỹ năng T-shaped độc đáo: tự làm game từ A đến Z. Rất ít người có combo này — và đó chính là lợi thế cạnh tranh khổng lồ khi xin việc vào game studio."
               },
               {
-                q: "Khóa Motion & Video (Năm 7) dạy công cụ Adobe nào?",
+                q: "Khóa Motion & Video (Năm 6) dạy công cụ Adobe nào?",
                 options: ["Illustrator và InDesign", "Photoshop và Lightroom", "Premiere Pro và After Effects", "XD và Figma"],
                 correct: 2,
                 explanation: "Premiere Pro (edit video) và After Effects (motion graphic, animation) — đây là 2 công cụ tiêu chuẩn của mọi video editor và motion designer chuyên nghiệp."
@@ -2221,7 +2221,7 @@ const TRAINING_DATA = {
                 q: "Lộ trình Art & Design tại MindX có bao nhiêu năm?",
                 options: ["4 năm", "5 năm", "6 năm", "7 năm"],
                 correct: 3,
-                explanation: "Art & Design MindX có 7 năm: Little Artist (4+) → Digital Art Foundations (7+) → Visual Thinking (9+) → Game Art (11+) → Character & Mascot (12+) → Visual Communication (13+) → Motion & Video (14+)."
+                explanation: "Art & Design MindX có 7 năm: Little Artist (4+) → Digital Art Foundations (7+) → Visual Thinking (9+) → Game Art (11+) → Character & Mascot Design (12+) → Visual Communication (13+) → Motion & Video (14+)."
               },
               {
                 q: "Chương trình Cregen tại MindX Art là gì?",
@@ -2656,7 +2656,7 @@ const TRAINING_DATA = {
       title: "K18 Sale",
       description: "Tư vấn tuyển sinh K18+ — 7 sản phẩm: Coding, Data, ITBA, UI/UX, Marketing, Data Engineer, AI.",
       icon: "🚀",
-      detail: "TVTS K18 focus vào 7 sản phẩm cho người lớn (18+): XCareer Coding, AI-Data Analyst, IT Business Analyst, UI/UX Designer, Fullstack Marketing, Data Engineer, AI. Đối tượng khách hàng: sinh viên năm 3-4, người đi làm 1-3 năm muốn chuyển ngành, người 5+ năm muốn upskill. 80K+ học viên, 200+ đối tác doanh nghiệp, cam kết việc làm. Hoàn thành lộ trình Onboard K18 (5 ngày) để bắt đầu tư vấn.",
+      detail: "TVTS K18 focus vào 7 sản phẩm cho người lớn (18+): XCareer Coding, AI-Data Analyst, IT Business Analyst, UI/UX Designer, Fullstack Marketing, Data Engineer, AI. Đối tượng khách hàng: sinh viên năm 3-4, người đi làm 1-3 năm muốn chuyển ngành, người 5+ năm muốn upskill. 100K+ học viên, 200+ đối tác doanh nghiệp, cam kết việc làm. Hoàn thành lộ trình Onboard K18 (5 ngày) để bắt đầu tư vấn.",
       modules: ["Onboard K18 (5 ngày đầy đủ)", "7 sản phẩm 18+: Coding, Data, ITBA, UI/UX, Marketing, DE, AI", "Insight 3 nhóm KH: SV, người chuyển ngành, người upskill", "Kỹ năng tư vấn người lớn & Xử lý từ chối 18+", "ROI selling, cam kết việc làm, Internship X"]
     },
     k18_cs: {
@@ -2759,7 +2759,7 @@ const TRAINING_DATA = {
         id: "cs6",
         title: "Case Study: Upsale combo 24T nhờ Demo Day ấn tượng",
         type: "success",
-        content: `<strong>Bối cảnh:</strong> PH đăng ký 12T Scratch Creator cho bé Khang, 10 tuổi. Sắp hết khóa, PH chưa quyết định re-enroll.
+        content: `<strong>Bối cảnh:</strong> PH đăng ký 12T Scratch — App Creator cho bé Khang, 10 tuổi. Sắp hết khóa, PH chưa quyết định re-enroll.
 
 <strong>Diễn biến:</strong> CS Đức chuẩn bị Demo Day kỹ lưỡng: nhờ GV cho bé Khang demo project game AI tích hợp Teachable Machine. CS quay video riêng gửi PH trước buổi Demo. Tại Demo Day, bé Khang thuyết trình tự tin, PH rất ấn tượng khi thấy con demo game nhận diện hình ảnh. CS tiếp cận: "Bé Khang tiến bộ rất nhiều! Game Creator sẽ nâng cấp kỹ năng con lên level pro — dùng GameMaker Studio chuyên nghiệp."
 
@@ -2870,11 +2870,11 @@ const TRAINING_DATA = {
 
 <h4>3. MindX 18+ — Vị thế thị trường</h4>
 <div class="stats-grid">
-  <div class="stat-card"><div class="stat-number">80K+</div><div class="stat-label">Học viên tích lũy</div></div>
+  <div class="stat-card"><div class="stat-number">100K+</div><div class="stat-label">Học viên tích lũy</div></div>
   <div class="stat-card"><div class="stat-number">200+</div><div class="stat-label">Đối tác doanh nghiệp</div></div>
   <div class="stat-card"><div class="stat-number">11</div><div class="stat-label">Năm kinh nghiệm</div></div>
   <div class="stat-card"><div class="stat-number">7</div><div class="stat-label">Bộ môn 18+</div></div>
-  <div class="stat-card"><div class="stat-number">40+</div><div class="stat-label">Cơ sở toàn quốc</div></div>
+  <div class="stat-card"><div class="stat-number">50+</div><div class="stat-label">Cơ sở toàn quốc</div></div>
   <div class="stat-card"><div class="stat-number">Cam kết</div><div class="stat-label">Internship X</div></div>
 </div>
 
@@ -4022,7 +4022,7 @@ const TRAINING_DATA = {
   <div class="objection-header"><span class="obj-num">2</span>"Học xong có được việc không?"</div>
   <div class="objection-body">
     <p><strong>Tâm lý ẩn:</strong> Lo lắng chính đáng — đầu tư tiền + thời gian + cơ hội cost mà không chắc kết quả.</p>
-    <p><strong>Script:</strong> <em>"Câu hỏi rất quan trọng — và đây là câu hỏi mà bất kỳ người thông minh nào cũng phải hỏi. MindX cam kết Internship X — sau khi hoàn thành lộ trình, anh/chị được giới thiệu tại 200+ đối tác: FPT, Shopee, Techcombank, VNG. Cấp S có Career Kickstart: mentor review CV, mock interview 1-1, portfolio chuyên nghiệp. 80K+ học viên đã tin tưởng MindX."</em></p>
+    <p><strong>Script:</strong> <em>"Câu hỏi rất quan trọng — và đây là câu hỏi mà bất kỳ người thông minh nào cũng phải hỏi. MindX cam kết Internship X — sau khi hoàn thành lộ trình, anh/chị được giới thiệu tại 200+ đối tác: FPT, Shopee, Techcombank, VNG. Cấp S có Career Kickstart: mentor review CV, mock interview 1-1, portfolio chuyên nghiệp. 100K+ học viên đã tin tưởng MindX."</em></p>
   </div>
 </div>
 
@@ -5634,7 +5634,7 @@ const TRAINING_DATA = {
   <tbody>
     <tr>
       <td style="padding:8px;border:1px solid #E2E8F0;font-weight:600;">Năm 1</td>
-      <td style="padding:8px;border:1px solid #E2E8F0;">Scratch Creator</td>
+      <td style="padding:8px;border:1px solid #E2E8F0;">Scratch — App Creator</td>
       <td style="padding:8px;border:1px solid #E2E8F0;">8–11 tuổi</td>
       <td style="padding:8px;border:1px solid #E2E8F0;">Scratch 3.0 (MIT)</td>
       <td style="padding:8px;border:1px solid #E2E8F0;">Game platformer, Animation, Câu chuyện tương tác</td>
@@ -5652,7 +5652,7 @@ const TRAINING_DATA = {
       <td style="padding:8px;border:1px solid #E2E8F0;font-weight:600;">Năm 3</td>
       <td style="padding:8px;border:1px solid #E2E8F0;">App Producer</td>
       <td style="padding:8px;border:1px solid #E2E8F0;">11–14 tuổi</td>
-      <td style="padding:8px;border:1px solid #E2E8F0;">Python + MIT App Inventor</td>
+      <td style="padding:8px;border:1px solid #E2E8F0;">Python + PyQt</td>
       <td style="padding:8px;border:1px solid #E2E8F0;">App cài được trên điện thoại Android thật</td>
       <td style="padding:8px;border:1px solid #E2E8F0;">Điểm WOW nhất: PH thấy con cài app lên điện thoại thật → rất ấn tượng. Dùng để upsell</td>
     </tr>
@@ -5715,7 +5715,7 @@ const TRAINING_DATA = {
     <h4>Nhóm 1: Câu hỏi về độ tuổi & thời điểm bắt đầu</h4>
 
     <p><strong>Q1: "Con tôi mới 8 tuổi, học Coding có sớm quá không?"</strong></p>
-    <p style="color:#059669;padding-left:15px;"><em>"Không sớm chút nào ạ! Khóa Scratch Creator thiết kế riêng cho trẻ 8+. Con học kéo thả block hình ảnh — không cần gõ code. Trên thế giới, MIT (đại học số 1 thế giới) tạo ra Scratch chính là để dạy trẻ 8 tuổi tư duy lập trình. Anh/chị yên tâm, GV của chúng em có nhiều kinh nghiệm với trẻ độ tuổi này ạ."</em></p>
+    <p style="color:#059669;padding-left:15px;"><em>"Không sớm chút nào ạ! Khóa Scratch — App Creator thiết kế riêng cho trẻ 8+. Con học kéo thả block hình ảnh — không cần gõ code. Trên thế giới, MIT (đại học số 1 thế giới) tạo ra Scratch chính là để dạy trẻ 8 tuổi tư duy lập trình. Anh/chị yên tâm, GV của chúng em có nhiều kinh nghiệm với trẻ độ tuổi này ạ."</em></p>
 
     <p><strong>Q2: "Sao phải học theo lộ trình, con không học nhảy cóc được không?"</strong></p>
     <p style="color:#059669;padding-left:15px;"><em>"Dạ mỗi năm học xây nền tảng cho năm sau ạ. Nếu bé nhảy thẳng lên Python mà chưa qua Scratch, bé sẽ thiếu tư duy thuật toán cơ bản — giống như học toán lớp 5 mà chưa biết cộng trừ. MindX thiết kế từng bước để con tiến bộ chắc chắn, không bị 'sốc kiến thức' ạ."</em></p>
@@ -5763,10 +5763,10 @@ const TRAINING_DATA = {
             title: "Quiz: Lộ trình Coding — Góc nhìn CS",
             questions: [
               {
-                q: "Lộ trình Coding năm 1 (Scratch Creator) dành cho trẻ bao nhiêu tuổi?",
+                q: "Lộ trình Coding năm 1 (Scratch — App Creator) dành cho trẻ bao nhiêu tuổi?",
                 options: ["6+", "8+", "10+", "12+"],
                 correct: 1,
-                explanation: "Scratch Creator dành cho trẻ 8+ — sử dụng Scratch 3.0 (MIT), kéo thả block, không cần biết code."
+                explanation: "Scratch — App Creator dành cho trẻ 8+ — sử dụng Scratch 3.0 (MIT), kéo thả block, không cần biết code."
               },
               {
                 q: "Output ấn tượng nhất của khóa App Producer (Năm 3) để CS dùng khi upsell là?",
@@ -5815,11 +5815,11 @@ const TRAINING_DATA = {
   </thead>
   <tbody>
     <tr><td style="padding:8px;border:1px solid #E2E8F0;font-weight:600;">Năm 0</td><td style="padding:8px;border:1px solid #E2E8F0;">Little Artist</td><td style="padding:8px;border:1px solid #E2E8F0;">4–6 tuổi</td><td style="padding:8px;border:1px solid #E2E8F0;">Màu vẽ, giấy, iPad đơn giản</td><td style="padding:8px;border:1px solid #E2E8F0;">Tranh kể chuyện cá nhân, digital art đầu tiên</td></tr>
-    <tr style="background:#F5F3FF;"><td style="padding:8px;border:1px solid #E2E8F0;font-weight:600;">Năm 1</td><td style="padding:8px;border:1px solid #E2E8F0;">Digital Art Foundations</td><td style="padding:8px;border:1px solid #E2E8F0;">7–8 tuổi</td><td style="padding:8px;border:1px solid #E2E8F0;">iPad + Apple Pencil + Procreate</td><td style="padding:8px;border:1px solid #E2E8F0;">Character design, Illustrated scene</td></tr>
-    <tr><td style="padding:8px;border:1px solid #E2E8F0;font-weight:600;">Năm 2</td><td style="padding:8px;border:1px solid #E2E8F0;">Visual Thinking</td><td style="padding:8px;border:1px solid #E2E8F0;">9–10 tuổi</td><td style="padding:8px;border:1px solid #E2E8F0;">Procreate nâng cao + Canva</td><td style="padding:8px;border:1px solid #E2E8F0;">Editorial illustration, Infographic hoàn chỉnh</td></tr>
-    <tr style="background:#F5F3FF;"><td style="padding:8px;border:1px solid #E2E8F0;font-weight:600;">Năm 3</td><td style="padding:8px;border:1px solid #E2E8F0;">Game Art</td><td style="padding:8px;border:1px solid #E2E8F0;">11+ tuổi</td><td style="padding:8px;border:1px solid #E2E8F0;">Procreate + Aseprite (pixel art)</td><td style="padding:8px;border:1px solid #E2E8F0;">Bộ nhân vật game với animation, UI kit</td></tr>
-    <tr><td style="padding:8px;border:1px solid #E2E8F0;font-weight:600;">Năm 4</td><td style="padding:8px;border:1px solid #E2E8F0;">Character & Mascot</td><td style="padding:8px;border:1px solid #E2E8F0;">12+ tuổi</td><td style="padding:8px;border:1px solid #E2E8F0;">Procreate + Adobe Illustrator cơ bản</td><td style="padding:8px;border:1px solid #E2E8F0;">Mascot thương hiệu hoàn chỉnh + brand guide</td></tr>
-    <tr style="background:#F5F3FF;"><td style="padding:8px;border:1px solid #E2E8F0;font-weight:600;">Năm 5</td><td style="padding:8px;border:1px solid #E2E8F0;">Visual Communication</td><td style="padding:8px;border:1px solid #E2E8F0;">13+ tuổi</td><td style="padding:8px;border:1px solid #E2E8F0;">Adobe Illustrator + Photoshop + InDesign</td><td style="padding:8px;border:1px solid #E2E8F0;">Brand identity hoàn chỉnh, Campaign visual</td></tr>
+    <tr style="background:#F5F3FF;"><td style="padding:8px;border:1px solid #E2E8F0;font-weight:600;">Năm 1</td><td style="padding:8px;border:1px solid #E2E8F0;">Digital Art Foundations</td><td style="padding:8px;border:1px solid #E2E8F0;">7–9 tuổi</td><td style="padding:8px;border:1px solid #E2E8F0;">iPad + Apple Pencil + Procreate</td><td style="padding:8px;border:1px solid #E2E8F0;">Character design, Illustrated scene</td></tr>
+    <tr><td style="padding:8px;border:1px solid #E2E8F0;font-weight:600;">Năm 2</td><td style="padding:8px;border:1px solid #E2E8F0;">Visual Thinking</td><td style="padding:8px;border:1px solid #E2E8F0;">9–10 tuổi</td><td style="padding:8px;border:1px solid #E2E8F0;">Sketchbook, MediBang, bút cảm ứng</td><td style="padding:8px;border:1px solid #E2E8F0;">Editorial illustration, Infographic hoàn chỉnh</td></tr>
+    <tr style="background:#F5F3FF;"><td style="padding:8px;border:1px solid #E2E8F0;font-weight:600;">Năm 3</td><td style="padding:8px;border:1px solid #E2E8F0;">Game Art</td><td style="padding:8px;border:1px solid #E2E8F0;">11+ tuổi</td><td style="padding:8px;border:1px solid #E2E8F0;">MediBang / Sketchbook</td><td style="padding:8px;border:1px solid #E2E8F0;">Bộ nhân vật game với animation, UI kit</td></tr>
+    <tr><td style="padding:8px;border:1px solid #E2E8F0;font-weight:600;">Năm 4</td><td style="padding:8px;border:1px solid #E2E8F0;">Character & Mascot Design</td><td style="padding:8px;border:1px solid #E2E8F0;">12+ tuổi</td><td style="padding:8px;border:1px solid #E2E8F0;">Procreate + Adobe Illustrator cơ bản</td><td style="padding:8px;border:1px solid #E2E8F0;">Mascot thương hiệu hoàn chỉnh + brand guide</td></tr>
+    <tr style="background:#F5F3FF;"><td style="padding:8px;border:1px solid #E2E8F0;font-weight:600;">Năm 5</td><td style="padding:8px;border:1px solid #E2E8F0;">Visual Communication</td><td style="padding:8px;border:1px solid #E2E8F0;">13+ tuổi</td><td style="padding:8px;border:1px solid #E2E8F0;">Adobe Illustrator + Photoshop</td><td style="padding:8px;border:1px solid #E2E8F0;">Brand identity hoàn chỉnh, Campaign visual</td></tr>
     <tr><td style="padding:8px;border:1px solid #E2E8F0;font-weight:600;">Năm 6</td><td style="padding:8px;border:1px solid #E2E8F0;">Motion & Video</td><td style="padding:8px;border:1px solid #E2E8F0;">14+ tuổi</td><td style="padding:8px;border:1px solid #E2E8F0;">Adobe Premiere + After Effects</td><td style="padding:8px;border:1px solid #E2E8F0;">Motion graphic explainer 60-90s, Short film 3-5 phút</td></tr>
   </tbody>
 </table>
@@ -7203,9 +7203,9 @@ const TRAINING_DATA = {
       { q: "Sứ mệnh của MindX là gì?", options: ["Đào tạo nghề IT cho người lớn", "Trang bị kỹ năng công nghệ cho thế hệ trẻ Việt Nam", "Phát triển phần mềm giáo dục", "Kết nối giáo viên và học viên"], correct: 1, explanation: "Sứ mệnh: Trang bị kỹ năng công nghệ cho thế hệ trẻ Việt Nam, giúp họ tự tin bước vào kỷ nguyên số." },
       { q: "CS khác Sale ở KPI nào?", options: ["Doanh thu", "Retention, satisfaction, re-enroll", "Số lead tuyển sinh", "Số cuộc gọi tư vấn"], correct: 1, explanation: "CS tập trung retention (giữ chân), satisfaction (hài lòng), re-enroll (tái đăng ký) — không phải doanh thu." },
       { q: "6 tư duy dịch vụ CS MindX bao gồm tư duy nào?", options: ["Proactive, Empathy, Ownership, Detail, Solution, Data-driven", "Lấy HV làm trung tâm, Đồng hành, Chủ động, Cải tiến, Hơn mong đợi, Gắn kết sứ mệnh", "Listen, Analyze, Solve, Follow-up, Report, Improve", "Fast, Friendly, Flexible, Fair, Focused, Fun"], correct: 1, explanation: "6 tư duy: Lấy HV làm trung tâm | Đồng hành | Chủ động & Giải pháp | Cải tiến | Hơn cả mong đợi | Gắn kết sứ mệnh." },
-      { q: "Lộ trình Coding K12 bắt đầu từ bao nhiêu tuổi và khóa gì?", options: ["8+ với Scratch", "10+ với Scratch Creator", "9+ với Python Basics", "12+ với Game Creator"], correct: 1, explanation: "Coding bắt đầu từ 10+ với Scratch Creator — lập trình kéo thả, không cần biết code." },
+      { q: "Lộ trình Coding K12 bắt đầu từ bao nhiêu tuổi và khóa gì?", options: ["8+ với Scratch — App Creator", "10+ với Scratch", "9+ với Python Basics", "12+ với Game Creator"], correct: 0, explanation: "Coding bắt đầu từ 8+ với Scratch — App Creator — lập trình kéo thả (MIT Scratch 3.0), không cần biết code." },
       { q: "Lộ trình Robotics gồm bao nhiêu năm và bắt đầu từ mấy tuổi?", options: ["3 năm từ 6+", "4 năm từ 4+", "5 năm từ 4+", "4 năm từ 6+"], correct: 1, explanation: "Robotics: 4 năm (Năm 0: 4+, Năm 1: 6+, Năm 2: 8+, Năm 3: 10+)." },
-      { q: "Lộ trình Art & Design gồm bao nhiêu năm?", options: ["5 năm", "6 năm", "7 năm", "4 năm"], correct: 2, explanation: "Art & Design: 7 năm từ Little Artist (4+) đến Motion & Video (14+)." },
+      { q: "Lộ trình Art & Design gồm bao nhiêu năm?", options: ["6 khóa", "7 khóa", "8 khóa (Năm 0–7)", "9 khóa"], correct: 2, explanation: "Art & Design: 8 khóa (Năm 0–7): Little Artist (4+) → Digital Art Foundations (7+) → Visual Thinking (9+) → Game Art (11+) → Character & Mascot Design (12+) → Visual Communication (13+) → Motion & Video (14+) → Interaction Design — UX/UI (15+)." },
       { q: "Combo 24T có ưu đãi gì so với đăng ký từng khóa?", options: ["Chỉ giảm giá", "Giá tốt nhất + tặng áo MindX + ưu tiên lớp", "Free 3 tháng", "Tặng thiết bị học"], correct: 1, explanation: "Combo 24T: giá tốt nhất, tặng áo MindX, ưu tiên xếp lớp." },
       { q: "MindX thu phí hoàn là bao nhiêu % học phí còn lại?", options: ["10%", "15%", "20%", "25%"], correct: 2, explanation: "MindX giữ 20% phí xử lý, hoàn lại 80% học phí chưa sử dụng." },
       { q: "Student Profile cần cập nhật trong bao lâu sau khi PH thanh toán?", options: ["24h", "48h", "72h", "1 tuần"], correct: 1, explanation: "Thông tin HV + PH phải cập nhật trong 48h kể từ khi hoàn tất thanh toán." },
